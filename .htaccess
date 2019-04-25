@@ -1,0 +1,14 @@
+php_value memory_limit 256M
+RLimitMem 268435456
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond $1 !^(index\.php|assets|robots\.txt)
+RewriteRule ^(.*)$ index.php/$1 [L] 
+
+<FilesMatch "\.(ttf|otf|eot|woff|font.css)$">
+  <IfModule mod_headers.c>
+	Header set Access-Control-Allow-Origin "*"
+  </IfModule>
+</FilesMatch> 

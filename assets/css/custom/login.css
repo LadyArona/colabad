@@ -5206,7 +5206,9 @@ input[type='button'].btn-block
 
 .nav-pills .nav-link
 {
-    border-radius: .25rem;
+    /* border-radius: .25rem; */
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
 }
 
 .nav-pills .nav-link.active,
@@ -5708,7 +5710,9 @@ input[type='button'].btn-block
     word-wrap: break-word;
 
     border: .0625rem solid rgba(0, 0, 0, .05);
-    border-radius: .25rem; 
+    /* border-radius: .25rem;  */
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
     background-color: #fff;
     background-clip: border-box;
 }
@@ -10233,7 +10237,7 @@ button.bg-darker:focus
     .mb-sm-3,
     .my-sm-3
     {
-        margin-bottom: 1rem !important;
+       /*  margin-bottom: 1rem !important; */
     }
     .ml-sm-3,
     .mx-sm-3
@@ -11527,7 +11531,7 @@ button.bg-darker:focus
     .pt-lg-5,
     .py-lg-5
     {
-        padding-top: 3rem !important;
+        /* padding-top: 3rem !important; */
     }
     .pr-lg-5,
     .px-lg-5
@@ -11537,7 +11541,7 @@ button.bg-darker:focus
     .pb-lg-5,
     .py-lg-5
     {
-        padding-bottom: 3rem !important;
+       /*  padding-bottom: 3rem !important; */
     }
     .pl-lg-5,
     .px-lg-5
@@ -14229,7 +14233,7 @@ button.section-darker:focus
 
 .btn
 {
-    font-size: .875rem; 
+    font-size: .775rem; 
 
     position: relative;
 
@@ -15619,13 +15623,13 @@ textarea[resize='horizontal']
 }
 .input-group .form-control:not(:first-child)
 {
-    padding-left: 0; 
+    padding-left: 5px; 
 
     border-left: 0;
 }
 .input-group .form-control:not(:last-child)
 {
-    padding-right: 0; 
+    padding-right: 5px;
 
     border-right: 0;
 }
@@ -16065,13 +16069,14 @@ textarea[resize='horizontal']
 .nav-link i:not(.fa)
 {
     position: relative;
-    top: 2px;
+    margin-right: 5px;
+    /* top: 2px; */
 }
-
+/* 
 .nav-pills .nav-item:not(:last-child)
 {
     padding-right: 1rem;
-}
+} */
 
 .nav-pills .nav-link
 {
@@ -16132,14 +16137,14 @@ textarea[resize='horizontal']
 {
     font-size: 1rem;
 }
-
+/* 
 .nav-wrapper
 {
     padding: 1rem 0;
 
     border-top-left-radius: .25rem;
     border-top-right-radius: .25rem;
-}
+} */
 .nav-wrapper + .card
 {
     border-top-left-radius: 0;
@@ -16181,7 +16186,7 @@ textarea[resize='horizontal']
 }
 .navbar-brand img
 {
-    height: 30px;
+    height: 45px;
 }
 
 .navbar-dark .navbar-brand
@@ -17153,10 +17158,14 @@ textarea[resize='horizontal']
 
 .section-lg
 {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;   
 }
 
+.facebook {
+    color: #FFFFFF;
+    background-color: #3b5998;
+}
 .section-sm
 {
     padding-top: 2rem;
