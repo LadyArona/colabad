@@ -27,7 +27,7 @@ class Loginajax extends CI_Controller {
           $result = $this->login->salvarCadastro($form);
           $this->output
                ->set_content_type('application/json')
-               ->set_output(json_encode(($result > 0) ? array("result" => "OK") : array("result" => "ERRO")));
+               ->set_output(json_encode($result));
       }
   }
 

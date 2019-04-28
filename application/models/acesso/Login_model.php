@@ -5,6 +5,7 @@ class Login_model extends CI_Model {
 
      public function __construct(){
         parent::__construct();
+        $this->load->model('Email_model', 'email');
      }
 
   function salvarCadastro($form){
@@ -21,7 +22,7 @@ class Login_model extends CI_Model {
         $txtDetalhe      = (isset($values['txtDetalhe']))      ? $values['txtDetalhe']      : null;
         $txtConhecimento = (isset($values['txtConhecimento'])) ? $values['txtConhecimento'] : null;
 
-        $token = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123467890*/!$()';
+        $token = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123467890';
         $token = str_shuffle($token);
         $token = substr($token, 0, 10);
 
@@ -34,13 +35,19 @@ class Login_model extends CI_Model {
           'USU_TOKEN' => $token
         ); 
 
-        $this->db->insert('usu_usuario', $dados);
-        $id = $this->db->insert_id();
+        $emailResult = $this->email->envia_verificacao($edEmail, $token);
 
-        return ($id);
+        if ($emailResult['result'] == 'OK') {
+          $this->db->insert('usu_usuario', $dados);
+          $id = $this->db->insert_id();
+        }
+
+        return $emailResult;
       } catch(PDOException $e) { 
-         echo 'Erro: ' . $e->getMessage();
-         return 0;
+         return array(
+            'result'   => 'ERRO',
+            'mensagem' => 'Erro: ' . $e->getMessage()
+          );
       }
     }
   }

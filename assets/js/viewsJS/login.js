@@ -53,14 +53,23 @@ const login = {
           error: function (){
             app.showNotification('Erro ao cadastrar', 'danger', 2)
           },
-          complete: function(){
-            $.loader('close')
-          },
-          success: function(data){
-            if (data.result == "OK") {
-              app.showNotification('Cadastro realizado!', 'success', 2)
-            }
+        }).done((data) => {
+          if (data.result === 'OK') {
+            app.showNotification(
+              `Você se cadastrou, <br>
+              <strong>${data.mensagem}</strong>`,
+              'success', 1
+            )
+          } else
+          if (data.result === 'ERRO') {
+            console.log('error dados ', err)
+            app.showNotification(`Erro ao cadastrar ${data.mensagem}`, 'danger', 2)
           }
+        }).fail((err) => {
+          console.log('error dados ', err)
+          app.showNotification('Erro ao cadastrar', 'danger', 2)
+        }).always(() => {
+          $.loader('close')
         })
     }
   }
