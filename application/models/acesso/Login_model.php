@@ -52,4 +52,14 @@ class Login_model extends CI_Model {
     }
   }
 
+  function verificarEmail($email) {
+    $tabela = 'usu_usuario';
+    $dados  = 
+      array(
+        'USU_EMAIL' => $email
+      );
+    $dataFiltered = $this->db->get_where($tabela, $dados)->num_rows();
+    return $dataFiltered;
+  }
+
 }

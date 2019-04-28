@@ -31,4 +31,15 @@ class Loginajax extends CI_Controller {
       }
   }
 
+  function verificarEmail(){
+
+      if($this->input->post('SalvaCadastro') == ""){
+          $email  = $this->input->post('email');
+          $result = $this->login->verificarEmail($email);
+          $this->output
+               ->set_content_type('application/json')
+               ->set_output(json_encode($result));
+      }
+  }
+
 }

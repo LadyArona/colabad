@@ -158,12 +158,11 @@
                           <input class="form-control" id="edPass" name="edPass" placeholder="Senha"
                                  type="password" minlength="6">
                         </div>
+                        <div class="text-muted font-italic">
+                         Segurança da senha:
+                            <span class="msg font-weight-700" id="msg">...</span>
+                        </div>
                       </div>
-                      <div class="text-muted font-italic">
-                       Segurança da senha:
-                          <span class="text-success font-weight-700">Forte</span>
-                      </div>
-                      <span class="alignl font-sm">Sua senha deve ter pelo menos 6 caracteres e conter apenas números e letras.</span>
                       <div class="form-group">
                         <div class="input-group input-group-alternative">
                           <div class="input-group-prepend">
@@ -173,38 +172,20 @@
                                  type="password" minlength="6">
                         </div> 
                       </div>
-                      <br>
-
-                <div class="form-group mb-4">
-                  <textarea class="form-control form-control-alternative" id="txtDetalhe" name="txtDetalhe" rows="4" cols="80" 
-                            placeholder="QUER DETALHAR ALGUMA ESPECIFICIDADE? Escreva aqui..."></textarea>
-                </div>
-                <div class="form-group mb-4">
-                  <textarea class="form-control form-control-alternative" id="txtConhecimento" name="txtConhecimento" rows="4" cols="80" 
-                            placeholder="Conte-nos qual é o seu conhecimento sobre áudio-descrição: (opcional)"></textarea>
-                </div>
-                Deseja contribuir também como: (Para ser aceito seu usuário será avaliado pelo administrador do sistema)  
-                <div class="custom-control custom-checkbox mb-3">
-                  <input class="custom-control-input" id="customCheck1" type="checkbox">
-                  <label class="custom-control-label" for="customCheck1">Áudio-descritor (O usuário tem permissão de fazer áudio-descricao nas imagens)</label>
-                </div>
-                <div class="custom-control custom-checkbox mb-3">
-                  <input class="custom-control-input" id="customCheck2" type="checkbox" checked>
-                  <label class="custom-control-label" for="customCheck2">
-                Revisor (O usuário tem permissão de fazer revisões das imagens com áudio-descrição)</label>
-                </div>
-
-                    <div class="row my-4">
-                      <div class="col-12">
-                        <div class="custom-control custom-control-alternative custom-checkbox">
-                          <input class="custom-control-input" id="customCheckRegister" type="checkbox">
-                          <label class="custom-control-label" for="customCheckRegister">
-                            <span>Ao se cadastrar, você concorda com a <a href="#" class="text-light">Política de Privacidade</a> e <a href="#" class="text-light">Termos de Uso</a> e aceita receber as nossas novidades.
-                            </span>
-                          </label>
+                      <div class="row my-4">
+                        <div class="col-12">
+                          <div class="custom-control custom-control-alternative custom-checkbox">
+                            <input class="custom-control-input" id="CheckRegistrar" type="checkbox">
+                            <label class="custom-control-label" for="CheckRegistrar">
+                              <span>Ao se cadastrar, você concorda com a 
+                                    <a href="#" class="text-light" target="_blanck">Política de Privacidade</a> e 
+                                    <a href="#" class="text-light" target="_blanck">Termos de Uso</a> 
+                                    e aceita receber as nossas novidades por email.
+                              </span>
+                            </label>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
                       <div class="text-center">
                         <button type="button" class="btn btn-primary my-4 btn-block"
