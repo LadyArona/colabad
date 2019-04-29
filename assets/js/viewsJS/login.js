@@ -26,7 +26,7 @@ const login = {
     }
 
     // VERIFICAR SE O EMAIL JÁ EXISTE
-    let qtd = await login.verificarEmail()
+    let qtd = await login.verificarEmail('edEmail')
     if (qtd > 0) {
       app.showNotification("Email já está cadastrado,<br><strong>tente recuperar sua senha</strong>", 'danger', 5)
       $("#edEmail").focus()
@@ -65,13 +65,48 @@ const login = {
 
     return true
   },
+  validaCamposLogin: async () => {
+    if ($("#edEmailLogin").val() == '') {
+      app.showNotification("Informe o seu email!", 'danger', 5)
+      $("#edEmailLogin").focus()
+      return false
+    }
+
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($("#edEmailLogin").val()) == false) {
+      app.showNotification("Informe um email válido!", 'danger', 5)
+      $("#edEmailLogin").focus()
+      return false
+    }
+
+    // VERIFICAR SE O EMAIL JÁ EXISTE
+    let qtd = await login.verificarEmail('edEmailLogin')
+    if (qtd <= 0) {
+      app.showNotification("Email não está cadastrado,<br><strong>faça um cadastro</strong>", 'danger', 5)
+      $("#edEmailLogin").focus()
+      return false
+    }    
+
+    if ($("#edPassLogin").val() == '') {
+      app.showNotification("Informe a senha!", 'danger', 5)
+      $("#edPassLogin").focus()
+      return false
+    }
+
+    if ($("#edPassLogin").val().length < 6) {
+      app.showNotification("Sua senha deve ter pelo menos 6 caracteres!", 'danger', 5)
+      $("#edPassLogin").focus()
+      return false
+    }
+
+    return true
+  },
   salvarCadastro: async () => {
     let validar = await login.validaCampos()
     if (validar) {
       $.ajax({
         url: `${baseUrl}acesso/loginajax/salvarCadastro`,
         data: {
-          salvarCadastro: '', 
+          salvarCadastro: '',
           Form: $('#formCadastrar').serialize()
         },
         dataType: "JSON",
@@ -91,7 +126,7 @@ const login = {
           )
         } else
         if (data.result === 'ERRO') {
-          console.log('error dados ')
+          console.log(data)
           app.showNotification(`Erro ao cadastrar ${data.mensagem}`, 'danger', 2)
         }
       }).fail((err) => {
@@ -102,8 +137,8 @@ const login = {
       })
     }
   },
-  verificarEmail: async () => {
-    const email = $("#edEmail").val()
+  verificarEmail: async (campo) => {
+    const email = $(`#${campo}`).val()
     let result = 0
 
     await $.ajax({
@@ -159,5 +194,42 @@ const login = {
     }
     $('#msg').html(strength);
     document.getElementById("msg").style.color = color;
+  },
+  login: async () => {
+    let validar = await login.validaCamposLogin()
+    if (validar) {
+      $.ajax({
+        url: `${baseUrl}acesso/loginajax/login`,
+        data: {
+          Login: '',
+          Form: $('#formLogin').serialize()
+        },
+        dataType: "JSON",
+        type: "POST",
+        beforeSend: function() {
+         $.loader({
+             className:"blue-with-image-2",
+             content:'Aguarde, salvando dados.'
+         }) 
+        }
+      }).done((data) => {
+        if (data.result === 'OK') {
+          app.showNotification(
+            `Você se cadastrou, <br>
+            <strong>${data.mensagem}</strong>`,
+            'success', 1
+          )
+        } else
+        if (data.result === 'ERRO') {
+          console.log(data)
+          app.showNotification(`Erro ao entrar ${data.mensagem}`, 'danger', 2)
+        }
+      }).fail((err) => {
+        console.log('error dados ', err)
+        app.showNotification('Erro ao entrar', 'danger', 2)
+      }).always(() => {
+        $.loader('close')
+      })
+    }
   }
 }

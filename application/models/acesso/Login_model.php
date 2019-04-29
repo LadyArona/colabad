@@ -62,4 +62,43 @@ class Login_model extends CI_Model {
     return $dataFiltered;
   }
 
+  function login($form) {
+    if (isset($form)) { 
+      parse_str($form, $values); 
+
+      // AQUI VALIDA NO SICREDI
+      $sicrediLogin = $this->input->post('edUsername');
+      $sicrediSenha = $this->input->post('edPassword');
+
+      $result = $this->auth->autenticacaoLDAP($sicrediLogin, $sicrediSenha);
+
+      if ($result) {
+        //se validou no sistema do Sicredi então busca usuário na base
+        $login = $this->auth->login($sicrediLogin);
+
+        if (isset($login)) {
+          $session_data = array(
+              'sessao_agile'        => $result,
+              'sessao_cod_user'     => $login['cod'],
+              'sessao_usuario_user' => $login['usuario'],
+              'sessao_nome_user'    => $login['nome'],
+              'sessao_cod_pes'      => $login['codPes'],
+              'sessao_cod_cargo'    => $login['codCargo'],
+              'sessao_sis_acesso'   => $login['sisAcessos']
+          );
+
+          $this->session->set_userdata('logged_in_agile', $session_data);
+          redirect(base_url());
+        } else {
+          $this->session->set_flashdata('message', 'Usuário não possui perfil no Agile');
+          redirect(base_url().'login');
+        }
+
+      } else {
+        $this->session->set_flashdata('message', 'Usuário ou Senha inválidos');
+        redirect(base_url().'login');
+      }
+    }
+  }
+
 }

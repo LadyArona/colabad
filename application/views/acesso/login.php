@@ -40,13 +40,13 @@
                     </div>
                   </div>
                   <div class="card-body px-lg-5 py-lg-5">
-                    <form role="form">
+                    <form name="formLogin" id="formLogin" action="" method="">
                       <div class="form-group mb-3">
                         <div class="input-group input-group-alternative">
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                           </div>
-                          <input class="form-control" placeholder="Email" type="email">
+                          <input class="form-control" id="edEmailLogin" name="edEmailLogin" placeholder="Email" type="email">
                         </div>
                       </div>
                       <div class="form-group">
@@ -54,7 +54,8 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                           </div>
-                          <input class="form-control" placeholder="Password" type="password">
+                          <input class="form-control" id="edPassLogin" name="edPassLogin" placeholder="Senha"
+                                 type="password" minlength="6">
                         </div>
                       </div>
                         <div class="row mt-3">
@@ -73,7 +74,9 @@
                           </div>
                         </div>
                       <div class="text-center">
-                        <button type="button" class="btn btn-primary btn-block my-4"><i class="fas fa-sign-in-alt"></i> ENTRAR</button>
+                        <button type="button" class="btn btn-primary btn-block my-4" onclick="login.login()">
+                          <i class="fas fa-sign-in-alt"></i> ENTRAR
+                        </button>
                       </div>
                     </form>
                   </div>
