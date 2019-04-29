@@ -72,13 +72,11 @@ class Email_model extends CI_Model {
     }
 
     function verifica_email($codigo){
-      
-
-
-
-      $sql = "update trn_user set active_status='A' WHERE email_verification_code=?";
+      $sql = "UPDATE usu_usuario U
+              SET U.USU_EMAILCONF = 1
+              WHERE U.USU_TOKEN = ? ;";
       $this->db->query($sql, array($codigo));
-      return $this->db->affected_rows(); 
+      return ($this->db->affected_rows() > 0) ? 'OK' : 'ERRO';
     }
   }
 ?>

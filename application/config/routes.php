@@ -53,4 +53,6 @@ $route['default_controller'] = 'index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['login'] = 'acesso/login';
+
 $route['vericar/(:any)'] = "/emails/verificar_email/$1";

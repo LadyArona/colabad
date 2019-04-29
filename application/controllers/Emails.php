@@ -13,22 +13,15 @@ class Emails extends CI_Controller {
   }    
 
   function verificar_email($verifica = null) {
-    if ($verifica == null) {
-      //envia para página de erro
-    } else {
-      $registro = $this->Emails_model->verifica_email($verifica);
+    $data['conteudo'] = 'verificacao';
+    $data['tipo'] = 'EMPTY'; 
 
-      if ($registro > 0){
-        $msg = array('success' => "Email Verified Successfully!"); 
-        //Envia para página de sucesso
-      } else {
-        $msg = array('error'   => "Sorry Unable to Verify Your Email!"); 
-        //envia para página de erro
-      }
-
-      $data['msg'] = $msg; 
+    if ($verifica != null) {
+      // ERRO ou OK
+      $data['tipo'] = $this->email->verifica_email($verifica);
     }
-    //$this->load->view('index.php', $data);
+
+    $this->load->view('acesso/template', $data);
   }
 
   //function envia_verificacao() {  

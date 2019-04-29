@@ -34,32 +34,12 @@
               <div class="tab-pane fade active show" id="entrar" role="tabpanel" aria-labelledby="entrar-tab">              
 
                 <div class="card bg-secondary shadow border-0">
-                  <div class="card-header bg-white pb-5">
-                    <div class="text-muted text-center mb-3">
+                  <div class="card-header bg-white">
+                    <div class="text-muted text-center">
                       <h1>ENTRAR</h1>
-                    </div>
-                    <div class="text-muted text-center mb-3">
-                     com seu perfil nas redes sociais
-                    </div>
-                    <div class="btn-wrapper text-center">
-                      <a href="#" class="btn btn-neutral btn-icon btn-block facebook">
-                        <span class="btn-inner--icon">
-                          <img src="<?php echo base_url();?>assets/img/icons/common/facebook.svg">
-                        </span>
-                        <span class="btn-inner--text">Facebook</span>
-                      </a>
-                      <a href="#" class="btn btn-neutral btn-icon btn-block">
-                        <span class="btn-inner--icon">
-                          <img src="<?php echo base_url();?>assets/img/icons/common/google.svg">
-                        </span>
-                        <span class="btn-inner--text">Google</span>
-                      </a>
                     </div>
                   </div>
                   <div class="card-body px-lg-5 py-lg-5">
-                    <div class="text-center text-muted mb-4">
-                     ou
-                    </div>
                     <form role="form">
                       <div class="form-group mb-3">
                         <div class="input-group input-group-alternative">
@@ -103,32 +83,12 @@
               <div class="tab-pane fade" id="cadastro" role="tabpanel" aria-labelledby="cadastro-tab">              
 
                 <div class="card bg-secondary shadow border-0">
-                  <div class="card-header bg-white pb-5">
-                    <div class="text-muted text-center mb-3">
+                  <div class="card-header bg-white">
+                    <div class="text-muted text-center">
                       <h1>CADASTRE-SE</h1>
-                    </div>
-                    <div class="text-muted text-center mb-3">
-                     com seu perfil nas redes sociais
-                    </div>
-                    <div class="btn-wrapper text-center">
-                      <a href="#" class="btn btn-neutral btn-icon btn-block facebook">
-                        <span class="btn-inner--icon">
-                          <img src="<?php echo base_url();?>assets/img/icons/common/facebook.svg">
-                        </span>
-                        <span class="btn-inner--text">Facebook</span>
-                      </a>
-                      <a href="#" class="btn btn-neutral btn-icon btn-block">
-                        <span class="btn-inner--icon">
-                          <img src="<?php echo base_url();?>assets/img/icons/common/google.svg">
-                        </span>
-                        <span class="btn-inner--text">Google</span>
-                      </a>
                     </div>
                   </div>
                   <div class="card-body px-lg-5 py-lg-5">
-                    <div class="text-center text-muted mb-4">
-                     ou
-                    </div>
                     <form name="formCadastrar" id="formCadastrar" action="" method="">
                       <!-- NOME -->
                       <div class="form-group">
