@@ -3,19 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
-    public function __construct() {
-        parent::__construct();
+  public function __construct() {
+    parent::__construct();
 
-        $this->load->helper('url');
-        $this->load->helper('functions_helper');
-         
-    }
+    $this->load->helper('url');
+    $this->load->helper('functions_helper');
+  }
 
-    public function index()
-    {
-        $data['title']    = 'Login';
-        $data['conteudo'] = 'login';
+  public function index(){
+    $data['title']    = 'Login';
+    $data['conteudo'] = 'login';
 
-        $this->load->view('acesso/template', $data);
-    }
+    $this->load->view('acesso/template', $data);
+  }
 }

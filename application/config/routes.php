@@ -56,3 +56,4 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'acesso/login';
 
 $route['vericar/(:any)'] = "/emails/verificar_email/$1";
+$route['redefinir/(:any)'] = "/emails/redefinir_senha/$1";

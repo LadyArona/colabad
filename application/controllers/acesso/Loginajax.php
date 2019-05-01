@@ -29,6 +29,26 @@ class Loginajax extends CI_Controller {
              ->set_output(json_encode($result));
     }
   }
+  
+  function esqueceuSenha(){
+    if($this->input->post('esqueceuSenha') == ""){
+        $form   = $this->input->post('Form');
+        $result = $this->login->esqueceuSenha($form);
+        $this->output
+             ->set_content_type('application/json')
+             ->set_output(json_encode($result));
+    }
+  }  
+  
+  function mudarSenha(){
+    if($this->input->post('mudarSenha') == ""){
+        $form   = $this->input->post('Form');
+        $result = $this->login->mudarSenha($form);
+        $this->output
+             ->set_content_type('application/json')
+             ->set_output(json_encode($result));
+    }
+  }
 
   function verificarEmail(){
     if($this->input->post('SalvaCadastro') == ""){

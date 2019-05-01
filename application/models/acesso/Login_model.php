@@ -22,11 +22,8 @@ class Login_model extends CI_Model {
         $txtDetalhe      = (isset($values['txtDetalhe']))      ? $values['txtDetalhe']      : null;
         $txtConhecimento = (isset($values['txtConhecimento'])) ? $values['txtConhecimento'] : null;
 
-        $token = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123467890';
-        $token = str_shuffle($token);
-        $token = substr($token, 0, 10);
-
-        $hash = password_hash($edPass, PASSWORD_BCRYPT);
+        $token = gerarToken();
+        $hash  = password_hash($edPass, PASSWORD_BCRYPT);
 
         $dados = array(
           'USU_NOME'  => $edNome,
@@ -35,7 +32,11 @@ class Login_model extends CI_Model {
           'USU_TOKEN' => $token
         ); 
 
-        $emailResult = $this->email->envia_verificacao($edEmail, $token);
+        $data['tipo'] = 'verificacao';
+        $data['para'] = $edEmail;
+        $data['conteudo'] = $token;
+
+        $emailResult = $this->email->envia_email($data);
 
         if ($emailResult['result'] == 'OK') {
           $this->db->insert('usu_usuario', $dados);
@@ -43,6 +44,83 @@ class Login_model extends CI_Model {
         }
 
         return $emailResult;
+      } catch(PDOException $e) { 
+         return array(
+            'result'   => 'ERRO',
+            'mensagem' => 'Erro: ' . $e->getMessage()
+          );
+      }
+    }
+  }
+
+  function esqueceuSenha($form){
+    $values = array();
+
+    if (isset($form)) { 
+      parse_str($form, $values); 
+
+      try{
+        $edEmail = (isset($values['edEmailLogin'])) ? $values['edEmailLogin'] : null;
+
+        $token = gerarToken();
+
+        $sqlU = " UPDATE usu_usuario U
+                 SET U.USU_PWDTOKEN = '$token',
+                     U.USU_PWDTOKENEXP = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 15 MINUTE)
+                 WHERE U.USU_EMAIL = '$edEmail' ;";
+        $this->db->query($sqlU);        
+
+        $data['tipo'] = 'esqueceu';
+        $data['para'] = $edEmail;
+        $data['conteudo'] = $token;
+
+        $emailResult = $this->email->envia_email($data);
+
+        return $emailResult;
+      } catch(PDOException $e) { 
+         return array(
+            'result'   => 'ERRO',
+            'mensagem' => 'Erro: ' . $e->getMessage()
+          );
+      }
+    }
+  }
+
+  function mudarSenha($form){
+    $values = array();
+
+    if (isset($form)) { 
+      parse_str($form, $values); 
+
+      try{
+        $edToken    = (isset($values['edToken']))    ? $values['edToken']    : null;
+        $edNivelSec = (isset($values['edNivelSec'])) ? $values['edNivelSec'] : null;
+        $edPass     = (isset($values['edPass']))     ? $values['edPass']     : null;
+        $hash       = password_hash($edPass, PASSWORD_BCRYPT);
+
+        $sqlU = " UPDATE usu_usuario U
+                  SET U.USU_PWD  = '$hash',
+                      U.USU_PWDTOKEN = NULL
+                  WHERE U.USU_ID = $edNivelSec
+                   AND U.USU_PWDTOKEN = '$edToken'
+                   AND CURRENT_TIMESTAMP <= U.USU_PWDTOKENEXP ; ";
+        $query = $this->db->query($sqlU);
+
+        /*echo "<pre>";
+        print_r($query);
+        exit;*/
+
+        if ($query > 0) {
+          return array(
+            'result'   => 'OK',
+            'mensagem' => 'Senha alterada'
+          );
+        } else {
+          return array(
+            'result'   => 'ERRO',
+            'mensagem' => 'Token expirou, repita o procedimento'
+          );
+        }
       } catch(PDOException $e) { 
          return array(
             'result'   => 'ERRO',

@@ -1,6 +1,6 @@
 urlAtual = window.location.pathname.split('/')[2];
 app = { 
-    showNotification: (message, type, time, multiply = 1000) => {
+    showNotification: (message, type, time, multiply = 2000) => {
       $.notify({
           icon: "notifications",
           message: message

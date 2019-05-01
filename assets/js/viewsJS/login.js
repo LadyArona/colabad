@@ -65,6 +65,33 @@ const login = {
 
     return true
   },
+  validaCamposRedefinir: async () => {
+    if ($("#edPass").val() == '') {
+      app.showNotification("Informe a senha!", 'danger', 5)
+      $("#edPass").focus()
+      return false
+    }
+
+    if ($("#edPass").val().length < 6) {
+      app.showNotification("Sua senha deve ter pelo menos 6 caracteres!", 'danger', 5)
+      $("#edPass").focus()
+      return false
+    }
+
+    if ($("#edConfPass").val() == '') {
+      app.showNotification("Confirme a senha!", 'danger', 5)
+      $("#edConfPass").focus()
+      return false
+    }
+
+    if ($("#edPass").val() != $("#edConfPass").val()) {
+      app.showNotification("Verifique as senhas, estão diferentes!", 'danger', 5)
+      $("#edPass").focus()
+      return false
+    }
+
+    return true
+  },
   validaCamposLogin: async () => {
     if ($("#edEmailLogin").val() == '') {
       app.showNotification("Informe o seu email!", 'danger', 5)
@@ -257,7 +284,75 @@ const login = {
   esqueceuSenha: async () => {
     let validar = await login.validaCamposEsqueceuSenha()
     if (validar) {
-      
+      $.ajax({
+        url: `${baseUrl}acesso/loginajax/esqueceuSenha`,
+        data: {
+          esqueceuSenha: '',
+          Form: $('#formLogin').serialize()
+        },
+        dataType: "JSON",
+        type: "POST",
+        beforeSend: function() {
+         $.loader({
+             className:"blue-with-image-2",
+             content:'Aguarde, enviando email.'
+         }) 
+        }
+      }).done((data) => {
+        if (data.result === 'OK') {
+          app.showNotification(
+            `Recuperação de senha enviada <br>
+            <strong>${data.mensagem}</strong>`,
+            'success', 1
+          )
+        } else
+        if (data.result === 'ERRO') {
+          console.log(data)
+          app.showNotification(`Erro ao enviar ${data.mensagem}`, 'danger', 2)
+        }
+      }).fail((err) => {
+        console.log('error dados ', err)
+        app.showNotification('Erro ao enviar', 'danger', 2)
+      }).always(() => {
+        $.loader('close')
+      })
+    }
+  },
+  redefinir: async () => {
+    let validar = await login.validaCamposRedefinir()
+    if (validar) {
+      $.ajax({
+        url: `${baseUrl}acesso/loginajax/mudarSenha`,
+        data: {
+          mudarSenha: '',
+          Form: $('#formRedefinir').serialize()
+        },
+        dataType: "JSON",
+        type: "POST",
+        beforeSend: function() {
+         $.loader({
+             className:"blue-with-image-2",
+             content:'Aguarde, alterando senha.'
+         })
+        }
+      }).done((data) => {
+        if (data.result === 'OK') {
+          app.showNotification(
+            `<strong>${data.mensagem}</strong>`,
+            'success', 2
+          )
+          window.location.href = `${baseUrl}/login`
+        } else
+        if (data.result === 'ERRO') {
+          console.log(data)
+          app.showNotification(`Não foi possível alterar<br><strong> ${data.mensagem}</strong>`, 'danger', 2)
+        }
+      }).fail((err) => {
+        console.log('error dados ', err)
+        app.showNotification('Erro ao alterar', 'danger', 2)
+      }).always(() => {
+        $.loader('close')
+      })
     }
   }
 }

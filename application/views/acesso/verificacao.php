@@ -15,6 +15,11 @@
     $img = '../assets/img/cross.svg'; 
     $titulo = $msg;
     $msg = 'Este email já foi verificado ou algo deu errado...';
+  } else
+  if ($tipo == 'ERRO_REDEF') {
+    $img = '../assets/img/cross.svg'; 
+    $titulo = $msg;
+    $msg = 'Algo deu errado...';
   }
 ?>
 

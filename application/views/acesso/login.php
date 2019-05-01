@@ -68,7 +68,7 @@
                             </div>
                           </div>
                           <div class="col-6 text-right">
-                            <a href="#" class="text-light">
+                            <a href="javascript:login.esqueceuSenha()" class="text-light">
                              Esqueceu sua senha?
                             </a>
                           </div>

@@ -4,16 +4,26 @@ if ( ! function_exists('autenticacaoLDAP')){
 
 }
 
+if ( ! function_exists('gerarToken')){
+  function gerarToken($tam = 12){
+    $token = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123467890';
+    $token = str_shuffle($token);
+    $token = substr($token, 0, $tam);
+
+    return $token;
+  }
+} 
+
 if ( ! function_exists('formataValor')){
 
     function formataValor($valor, $tipo = 1){
-    	// 1 - americano para real
-    	// 2 - real para americano
-    	if ($tipo == 1){
-    		return number_format($valor, 2, ',', '.');
-    	}else if($tipo == 2){
-        	return str_replace(',','.', str_replace('.','',  $valor));
-    	}
+      // 1 - americano para real
+      // 2 - real para americano
+      if ($tipo == 1){
+        return number_format($valor, 2, ',', '.');
+      }else if($tipo == 2){
+          return str_replace(',','.', str_replace('.','',  $valor));
+      }
     }
 } 
 

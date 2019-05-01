@@ -7,18 +7,11 @@ class Email_model extends CI_Model {
       parent::__construct();
     }
 
-    function envia_verificacao($para, $verificacao){
-      // Load PHPMailer library
+    function envia_email($data){
       $this->load->library('phpmailer_lib');
-      
-      // PHPMailer object
       $mail = $this->phpmailer_lib->load();
-      
-      // SMTP configuration
       $mail->isSMTP();
       //$mail->SMTPDebug = 1;  // debugging: 1 = errors and messages, 2 = messages only
-
-      //$mail->SMTPAuth   = true;
       $mail->SMTPAuth   = true; // authentication enabled
       $mail->SMTPSecure = false;
 
@@ -34,22 +27,32 @@ class Email_model extends CI_Model {
       $mail->addReplyTo($this->config->item('email_Username'), $this->config->item('email_Autor'));
       
       // Add a recipient
-      $mail->addAddress($para);
+      $mail->addAddress($data['para']);
       
       // Add cc or bcc 
       //$mail->addCC($para);
       //$mail->addBCC($para);
-      
+      $assunto = '';
+      $caminho = '';
+
+      if ($data['tipo'] == 'verificacao') {
+        $caminho = 'emails/verificar';
+        $assunto = ' - Confirme seu email';
+      }
+
+      if ($data['tipo'] == 'esqueceu') {
+        $caminho = 'emails/esqueceu';
+        $assunto = ' - Recuperar senha';
+      }
+
       // Email subject
-      $mail->Subject = $this->config->item('abrv').' - Confirme seu email';
+      $mail->Subject = $this->config->item('abrv').$assunto;
       
       // Set email format to HTML
       $mail->isHTML(true);
       
       // Email body content
-      
-      $data['verificacao'] = $verificacao;
-      $mailContent = $this->load->view('emails/verificar', $data, true);
+      $mailContent = $this->load->view($caminho, $data, true);
 
       $mail->Body = $mailContent;
       
@@ -64,7 +67,7 @@ class Email_model extends CI_Model {
          $result = 
           array(
             'result'   => 'OK',
-            'mensagem' => 'agora verifique seu email!'
+            'mensagem' => 'verifique seu email!'
           );
       }
 
@@ -77,6 +80,23 @@ class Email_model extends CI_Model {
               WHERE U.USU_TOKEN = ? ;";
       $this->db->query($sql, array($codigo));
       return ($this->db->affected_rows() > 0) ? 'OK' : 'ERRO';
+    }
+
+    function verifica_token($codigo){
+      $retorno = '0';
+
+      $sql = "SELECT U.USU_ID
+              FROM usu_usuario U
+              WHERE U.USU_PWDTOKEN = ? 
+              AND CURRENT_TIMESTAMP <= U.USU_PWDTOKENEXP ;";
+
+      $query = $this->db->query($sql, array($codigo));
+
+      if ($query->num_rows() > 0){
+        $retorno = $query->result()[0]->USU_ID;
+      }
+
+      return $retorno;
     }
   }
 ?>
