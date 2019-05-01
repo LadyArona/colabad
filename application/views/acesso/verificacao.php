@@ -9,7 +9,7 @@
     $link = $link.'login'; 
     $img = '../assets/img/check.svg'; 
     $titulo = 'Parabéns!';
-    $msg = 'Seu email foi verificado com sucesso, <br>agora você faz parte do ColabAD';
+    $msg = 'Seu email foi verificado com sucesso, <br>agora você faz parte do '.$this->config->item('abrv');
   } else
   if ($tipo == 'ERRO') {
     $img = '../assets/img/cross.svg'; 

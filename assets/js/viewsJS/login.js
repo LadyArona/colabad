@@ -100,6 +100,29 @@ const login = {
 
     return true
   },
+  validaCamposEsqueceuSenha: async () => {
+    if ($("#edEmailLogin").val() == '') {
+      app.showNotification("Informe o seu email!", 'danger', 5)
+      $("#edEmailLogin").focus()
+      return false
+    }
+
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($("#edEmailLogin").val()) == false) {
+      app.showNotification("Informe um email válido!", 'danger', 5)
+      $("#edEmailLogin").focus()
+      return false
+    }
+
+    // VERIFICAR SE O EMAIL JÁ EXISTE
+    let qtd = await login.verificarEmail('edEmailLogin')
+    if (qtd <= 0) {
+      app.showNotification("Email não está cadastrado,<br><strong>faça um cadastro</strong>", 'danger', 5)
+      $("#edEmailLogin").focus()
+      return false
+    }    
+
+    return true
+  },
   salvarCadastro: async () => {
     let validar = await login.validaCampos()
     if (validar) {
@@ -209,20 +232,19 @@ const login = {
         beforeSend: function() {
          $.loader({
              className:"blue-with-image-2",
-             content:'Aguarde, salvando dados.'
+             content:'Aguarde, entrando.'
          }) 
         }
       }).done((data) => {
-        if (data.result === 'OK') {
+        if (data.result == 'ERRO') {
           app.showNotification(
-            `Você se cadastrou, <br>
-            <strong>${data.mensagem}</strong>`,
-            'success', 1
+            `<strong>${data.mensagem}</strong>`,
+            'danger', 3
           )
-        } else
-        if (data.result === 'ERRO') {
-          console.log(data)
-          app.showNotification(`Erro ao entrar ${data.mensagem}`, 'danger', 2)
+        }
+
+        if (data.result == 'OK') {
+          window.location.href = baseUrl
         }
       }).fail((err) => {
         console.log('error dados ', err)
@@ -230,6 +252,12 @@ const login = {
       }).always(() => {
         $.loader('close')
       })
+    }
+  },
+  esqueceuSenha: async () => {
+    let validar = await login.validaCamposEsqueceuSenha()
+    if (validar) {
+      
     }
   }
 }

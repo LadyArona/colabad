@@ -44,10 +44,10 @@ $(document).ready(function() {
     // Headroom - show/hide navbar on scroll
     if($('.headroom')[0]) {
         var headroom  = new Headroom(document.querySelector("#navbar-main"), {
-            offset: 200,
+            offset: 85,
             tolerance : {
                 up : 5,
-                down : 10
+                down : 5
             },
         });
         headroom.init();

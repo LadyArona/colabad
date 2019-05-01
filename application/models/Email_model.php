@@ -22,16 +22,16 @@ class Email_model extends CI_Model {
       $mail->SMTPAuth   = true; // authentication enabled
       $mail->SMTPSecure = false;
 
-      $mail->SMTPSecure = 'ssl';
-      $mail->Mailer     = 'smtp';
-      $mail->Host       = 'smtp.gmail.com';
-      $mail->Port       = 465; // or 587
+      $mail->SMTPSecure = $this->config->item('email_SMTPSecure');
+      $mail->Mailer     = $this->config->item('email_Mailer');
+      $mail->Host       = $this->config->item('email_Host');
+      $mail->Port       = $this->config->item('email_Port');
 
-      $mail->Username   = 'tallinydn@gmail.com';
-      $mail->Password   = '022189Adn';
+      $mail->Username   = $this->config->item('email_Username');
+      $mail->Password   = $this->config->item('email_Password');
 
-      $mail->setFrom('tallinydn@gmail.com', 'Talliny ColabAD');
-      $mail->addReplyTo('tallinydn@gmail.com', 'Talliny ColabAD');
+      $mail->setFrom($this->config->item('email_Username'), $this->config->item('email_Autor'));
+      $mail->addReplyTo($this->config->item('email_Username'), $this->config->item('email_Autor'));
       
       // Add a recipient
       $mail->addAddress($para);
@@ -41,7 +41,7 @@ class Email_model extends CI_Model {
       //$mail->addBCC($para);
       
       // Email subject
-      $mail->Subject = 'ColabAD - Confirme seu email';
+      $mail->Subject = $this->config->item('abrv').' - Confirme seu email';
       
       // Set email format to HTML
       $mail->isHTML(true);

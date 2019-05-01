@@ -22,7 +22,8 @@ class App_model extends CI_Model {
                     C.CONF_VERSAO,
                     C.CONF_AUTOR,
                     C.CONF_KEYWORDS,
-                    C.CONF_FACEBOOK
+                    C.CONF_FACEBOOK,
+                    C.CONF_REPOSITORIO
                FROM conf_configuracoes C
                INNER JOIN conf_cidade CD
                   ON CD.CID_ID = C.CID_ID
@@ -36,20 +37,31 @@ class App_model extends CI_Model {
     if ($query->num_rows() > 0){
       foreach ($query->result() as $row) {
         $dados = array(
-          'nome' => $row->CONF_NOME,
-          'abrv' => $row->CONF_ABRV,
-          'descr' => $row->CONF_DESCRICAO,
-          'logo' => $row->CONF_LOGO,
-          'logo_alt' => $row->CONF_LOGOALT,
-          'cidade' => $row->CID_DESCRICAO,
-          'estado' => $row->EST_DESCRICAO,
-          'email' => $row->CONF_EMAIL,
-          'dt_att' => $row->CONF_DATAATT,
-          'dt_cad' => $row->CONF_DATACAD,
-          'versao' => $row->CONF_VERSAO,
-          'autor' => $row->CONF_AUTOR,
-          'keys' => $row->CONF_KEYWORDS,
-          'facebook' => $row->CONF_FACEBOOK
+          'nome'        => $row->CONF_NOME,
+          'abrv'        => $row->CONF_ABRV,
+          'descr'       => $row->CONF_DESCRICAO,
+          'logo'        => $row->CONF_LOGO,
+          'logo_alt'    => $row->CONF_LOGOALT,
+          'cidade'      => $row->CID_DESCRICAO,
+          'estado'      => $row->EST_DESCRICAO,
+
+          'email_SMTPSecure' => 'ssl',
+          'email_Mailer'     => 'smtp',
+          'email_Host'       => 'smtp.gmail.com',
+          'email_Port'       => 465, // or 587
+
+          'email_Username'   => $row->CONF_EMAIL,
+          'email_Password'   => '022189Adn',
+          'email_Autor'      => 'Equipe '.$row->CONF_ABRV,
+ 
+          'dt_att'      => $row->CONF_DATAATT,
+          'dt_cad'      => $row->CONF_DATACAD,
+          'versao'      => $row->CONF_VERSAO,
+          'autor'       => $row->CONF_AUTOR,
+          'autor_link'  => '#',
+          'keys'        => $row->CONF_KEYWORDS,
+          'facebook'    => $row->CONF_FACEBOOK,
+          'repositorio' => $row->CONF_REPOSITORIO
         ); 
       }
       return $dados;

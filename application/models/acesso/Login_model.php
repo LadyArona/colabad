@@ -66,37 +66,88 @@ class Login_model extends CI_Model {
     if (isset($form)) { 
       parse_str($form, $values); 
 
-      // AQUI VALIDA NO SICREDI
-      $sicrediLogin = $this->input->post('edUsername');
-      $sicrediSenha = $this->input->post('edPassword');
+      $login = $values['edEmailLogin'];
+      $senha = $values['edPassLogin'];
 
-      $result = $this->auth->autenticacaoLDAP($sicrediLogin, $sicrediSenha);
+      //busca dados do usuário
+      $this->db->select(
+        'U.USU_ID,
+         U.USU_CADDATA,
+         U.USU_SITUACAO,
+         U.USU_NOME,
+         U.USU_EMAIL,
+         U.USU_PWD,
+         U.USU_EMAILCONF,
+         U.USU_TOKEN,
+         U.USU_CONTACESSO,
+         U.USU_ULTIMOACESSO,
+         U.PERF_ID,
+         P.PERF_NIVEL')    
+      ->from('usu_usuario U')
+      ->join('usu_perfil P', ' P.PERF_ID = U.PERF_ID')
+      ->where('U.USU_EMAIL', $login)
+      ->limit(1);
+      
+      $query = $this->db->get();
 
-      if ($result) {
-        //se validou no sistema do Sicredi então busca usuário na base
-        $login = $this->auth->login($sicrediLogin);
+      if($query->num_rows() == 1){
+        $row = $query->result()[0];
+        if (password_verify($senha, $row->USU_PWD)) {
+          if ($row->USU_SITUACAO == 'I') {
+            return 
+              array(
+                'result'   => 'ERRO',
+                'mensagem' => 'Usuário Inativo! <br> Entre em contato com a nossa equipe'
+              );
+            exit;
+          }
 
-        if (isset($login)) {
+          if ($row->USU_EMAILCONF == 0) {
+            return 
+              array(
+                'result'   => 'ERRO',
+                'mensagem' => 'Email não verificado! <br> Verifique seu email para poder entrar'
+              );
+            exit;
+          }
+
           $session_data = array(
-              'sessao_agile'        => $result,
-              'sessao_cod_user'     => $login['cod'],
-              'sessao_usuario_user' => $login['usuario'],
-              'sessao_nome_user'    => $login['nome'],
-              'sessao_cod_pes'      => $login['codPes'],
-              'sessao_cod_cargo'    => $login['codCargo'],
-              'sessao_sis_acesso'   => $login['sisAcessos']
+            'sesColabad'              => true,
+            'sesColabad_vId'          => $row->USU_ID,
+            'sesColabad_vCadastro'    => $row->USU_CADDATA,
+            'sesColabad_vStatus'      => $row->USU_SITUACAO,
+            'sesColabad_vNome'        => $row->USU_NOME,
+            'sesColabad_vEmail'       => $row->USU_EMAIL,
+            'sesColabad_vPw'          => $row->USU_PWD,
+            'sesColabad_vEmailConf'   => $row->USU_EMAILCONF,
+            'sesColabad_vQtdAcesso'   => $row->USU_CONTACESSO,
+            'sesColabad_vUltAcesso'   => $row->USU_ULTIMOACESSO,
+            'sesColabad_vPerfilId'    => $row->PERF_ID,
+            'sesColabad_vPerfilNivel' => $row->PERF_NIVEL
           );
 
-          $this->session->set_userdata('logged_in_agile', $session_data);
-          redirect(base_url());
-        } else {
-          $this->session->set_flashdata('message', 'Usuário não possui perfil no Agile');
-          redirect(base_url().'login');
-        }
+          //atualiza contador e ultimo login
+          $sqlU = " UPDATE usu_usuario U
+                   SET U.USU_CONTACESSO = (U.USU_CONTACESSO + 1),
+                       U.USU_ULTIMOACESSO = CURRENT_TIMESTAMP
+                   WHERE U.USU_ID = $row->USU_ID ;";
+          $this->db->query($sqlU);
 
-      } else {
-        $this->session->set_flashdata('message', 'Usuário ou Senha inválidos');
-        redirect(base_url().'login');
+          $this->session->set_userdata('logged_in_colabad', $session_data);
+          return 
+            array(
+              'result'   => 'OK',
+              'mensagem' => 'Entrando!'
+            );
+          exit;
+        } else {
+          return 
+            array(
+              'result'   => 'ERRO',
+              'mensagem' => 'Senha inválida!'
+            );
+          exit;
+        }
       }
     }
   }

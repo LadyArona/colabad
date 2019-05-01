@@ -1,7 +1,3 @@
-
-
-
-
 <?php 
   header('Content-Type: text/html; charset=utf-8');
   header("Expires: Mon, 12 Jan 1983 05:00:00 GMT");
@@ -24,6 +20,10 @@
           <div class="row">
             <div class="col-md-12">
               <a class="btn btn-success mt-4" href="<?php echo base_url();?>acesso/login">Login</a>
+
+<pre>
+<?php print_r($_SESSION); ?>
+</pre>
             </div>
           </div>
         </div>
