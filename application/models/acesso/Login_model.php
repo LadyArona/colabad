@@ -110,7 +110,7 @@ class Login_model extends CI_Model {
         print_r($query);
         exit;*/
 
-        if ($query > 0) {
+        if ($this->db->affected_rows() > 0) {
           return array(
             'result'   => 'OK',
             'mensagem' => 'Senha alterada'
