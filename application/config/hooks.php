@@ -17,3 +17,10 @@ $hook['post_controller_constructor'][] = array('class'    => 'configuracoes',
                                        'filename' => 'Configuracoes.php',
                                        'filepath' => 'hooks',
                            'params'   => '');
+
+
+$hook['post_controller_constructor'][] = array('class'  => 'configuracoes',
+                                       'function' => 'author',
+                                       'filename' => 'Configuracoes.php',
+                                       'filepath' => 'hooks',
+                         'params'   => '');

@@ -5622,15 +5622,16 @@ CREATE TABLE IF NOT EXISTS `conf_configuracoes` (
   `CONF_AUTOR` varchar(50) NOT NULL,
   `CONF_KEYWORDS` varchar(150) DEFAULT NULL,
   `CONF_FACEBOOK` varchar(150) DEFAULT NULL,
+  `CONF_REPOSITORIO` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`CONF_ID`),
   KEY `FK_conf_configuracoes_conf_cidade` (`CID_ID`),
   CONSTRAINT `FK_conf_configuracoes_conf_cidade` FOREIGN KEY (`CID_ID`) REFERENCES `conf_cidade` (`CID_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela colabad2.conf_configuracoes: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela colabad2.conf_configuracoes: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `conf_configuracoes` DISABLE KEYS */;
-INSERT IGNORE INTO `conf_configuracoes` (`CONF_ID`, `CONF_NOME`, `CONF_ABRV`, `CONF_DESCRICAO`, `CONF_LOGO`, `CONF_LOGOALT`, `CID_ID`, `CONF_EMAIL`, `CONF_EMAILFROM`, `CONF_EMAILPWD`, `CONF_EMAILHOST`, `CONF_DATAATT`, `CONF_DATACAD`, `CONF_VERSAO`, `CONF_AUTOR`, `CONF_KEYWORDS`, `CONF_FACEBOOK`) VALUES
-	(1, 'ColabAD', 'ColabAD', 'Rede Colaborativa de Audiodescrição', NULL, NULL, 4780, NULL, NULL, NULL, NULL, '2019-04-14 18:17:46', '2019-04-14 18:14:44', '1.0.0.1', 'Talliny Dalla Nora', NULL, NULL);
+INSERT IGNORE INTO `conf_configuracoes` (`CONF_ID`, `CONF_NOME`, `CONF_ABRV`, `CONF_DESCRICAO`, `CONF_LOGO`, `CONF_LOGOALT`, `CID_ID`, `CONF_EMAIL`, `CONF_EMAILFROM`, `CONF_EMAILPWD`, `CONF_EMAILHOST`, `CONF_DATAATT`, `CONF_DATACAD`, `CONF_VERSAO`, `CONF_AUTOR`, `CONF_KEYWORDS`, `CONF_FACEBOOK`, `CONF_REPOSITORIO`) VALUES
+	(1, 'ColabAD', 'ColabAD', 'Rede Colaborativa de Audiodescrição', 'assets/img/brand/white.png', 'Rede Colaborativa de Audiodescrição', 4780, 'tallinydn@gmail.com', 'tallinydn@gmail.com', '022189Adn', NULL, '2019-05-01 16:48:02', '2019-04-14 18:14:44', '1.0.0.1', 'Talliny Dalla Nora', 'Rede Colaborativa de Audiodescrição', 'https://fb.me/redeColabad', 'https://github.com/LadyArona/colabad');
 /*!40000 ALTER TABLE `conf_configuracoes` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.conf_estado
@@ -5710,26 +5711,51 @@ INSERT IGNORE INTO `usu_perfil` (`PERF_ID`, `PERF_DESCRICAO`, `PERF_NIVEL`) VALU
 	(3, 'Administrador', 99);
 /*!40000 ALTER TABLE `usu_perfil` ENABLE KEYS */;
 
+-- Copiando estrutura para tabela colabad2.usu_tela
+CREATE TABLE IF NOT EXISTS `usu_tela` (
+  `TELA_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `TELA_CAMINHO` varchar(255) DEFAULT NULL,
+  `TELA_DESCRICAO` varchar(255) DEFAULT NULL,
+  `TELA_PRIVADO` int(11) DEFAULT NULL,
+  PRIMARY KEY (`TELA_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela colabad2.usu_tela: ~5 rows (aproximadamente)
+/*!40000 ALTER TABLE `usu_tela` DISABLE KEYS */;
+INSERT IGNORE INTO `usu_tela` (`TELA_ID`, `TELA_CAMINHO`, `TELA_DESCRICAO`, `TELA_PRIVADO`) VALUES
+	(1, 'index', NULL, 0),
+	(2, 'login', NULL, 0),
+	(3, 'loginajax', NULL, 0),
+	(4, 'emails', NULL, 0),
+	(5, 'verificacao', NULL, 0),
+	(6, 'privado', NULL, 100);
+/*!40000 ALTER TABLE `usu_tela` ENABLE KEYS */;
+
 -- Copiando estrutura para tabela colabad2.usu_usuario
 CREATE TABLE IF NOT EXISTS `usu_usuario` (
   `USU_ID` int(11) NOT NULL AUTO_INCREMENT,
   `USU_CADDATA` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `USU_SITUACAO` char(1) NOT NULL DEFAULT 'A',
-  `USU_NOME` varchar(255) DEFAULT NULL,
+  `USU_NOME` varchar(255) NOT NULL,
   `USU_EMAIL` varchar(255) NOT NULL,
   `USU_PWD` varchar(255) NOT NULL,
+  `USU_PWDTOKEN` varchar(255) DEFAULT NULL,
+  `USU_PWDTOKENEXP` datetime DEFAULT NULL,
   `USU_EMAILCONF` tinyint(4) NOT NULL DEFAULT '0',
-  `USU_TOKEN` varchar(255) NOT NULL,
+  `USU_TOKEN` varchar(255) DEFAULT NULL,
   `PERF_ID` int(11) NOT NULL DEFAULT '1',
+  `USU_ULTIMOACESSO` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `USU_CONTACESSO` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`USU_ID`),
   KEY `FK_usu_usuario_usu_perfil` (`PERF_ID`),
   CONSTRAINT `FK_usu_usuario_usu_perfil` FOREIGN KEY (`PERF_ID`) REFERENCES `usu_perfil` (`PERF_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela colabad2.usu_usuario: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `usu_usuario` DISABLE KEYS */;
-INSERT IGNORE INTO `usu_usuario` (`USU_ID`, `USU_CADDATA`, `USU_SITUACAO`, `USU_NOME`, `USU_EMAIL`, `USU_PWD`, `USU_EMAILCONF`, `USU_TOKEN`, `PERF_ID`) VALUES
-	(29, '2019-04-28 22:58:49', 'A', 'Talliny', 'loja.anima.animus@gmail.com', '$2y$10$12C.Vf4RkINKuyxTlTRRAeF8W7spP09pmSYz1APzt3K7SK6daHedK', 1, 'D7gFwKyWvY', 1);
+INSERT IGNORE INTO `usu_usuario` (`USU_ID`, `USU_CADDATA`, `USU_SITUACAO`, `USU_NOME`, `USU_EMAIL`, `USU_PWD`, `USU_PWDTOKEN`, `USU_PWDTOKENEXP`, `USU_EMAILCONF`, `USU_TOKEN`, `PERF_ID`, `USU_ULTIMOACESSO`, `USU_CONTACESSO`) VALUES
+	(29, '2019-04-28 22:58:49', 'A', 'Talliny', 'loja.anima.animus@gmail.com', '$2y$10$pq.blSaMfUppsakvGUCDKuEsfKFXimHVCu3ZQP.EB1YzS8LNLMhf2', NULL, '2019-05-01 20:31:26', 1, 'D7gFwKyWvY', 3, '2019-05-02 00:05:33', 7),
+	(30, '2019-05-01 23:06:54', 'A', 'João Eduardo', '1fb97b50a5@mailboxy.fun', '$2y$10$taNSjshaMuuSydutARf6t.7rL5aOuD7q0L/3iuKXmDkYzUTpJ6lj.', NULL, NULL, 1, 'XBDEAnmCUVZg', 1, '2019-05-01 23:08:08', 1);
 /*!40000 ALTER TABLE `usu_usuario` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -1,25 +1,31 @@
 <?php 
+  if (!isset($tipo)) { $tipo = ''; }
   $link = base_url(); 
-  $img = '../assets/img/question.svg'; 
+  $img = base_url().'/assets/img/question.svg'; 
   $titulo = 'Ops...';
   $msg = 'Não encontramos o que você estava procurando';
   $count = 10;
 
   if ($tipo == 'OK') {
     $link = $link.'login'; 
-    $img = '../assets/img/check.svg'; 
+    $img = base_url().'/assets/img/check.svg'; 
     $titulo = 'Parabéns!';
     $msg = 'Seu email foi verificado com sucesso, <br>agora você faz parte do '.$this->config->item('abrv');
   } else
   if ($tipo == 'ERRO') {
-    $img = '../assets/img/cross.svg'; 
+    $img = base_url().'/assets/img/cross.svg'; 
     $titulo = $msg;
     $msg = 'Este email já foi verificado ou algo deu errado...';
   } else
   if ($tipo == 'ERRO_REDEF') {
-    $img = '../assets/img/cross.svg'; 
+    $img = base_url().'/assets/img/cross.svg'; 
     $titulo = $msg;
     $msg = 'Algo deu errado...';
+  } else
+  if ($tipo == 'PERMISSAO') {
+    $img = base_url().'/assets/img/cross.svg'; 
+    $titulo = 'Você não tem permissão';
+    $msg = 'Em caso de dúvidas, entre em contato com a nossa equipe';
   }
 ?>
 

@@ -19,11 +19,13 @@
         <div class="content">
           <div class="row">
             <div class="col-md-12">
-              <a class="btn btn-success mt-4" href="<?php echo base_url();?>acesso/login">Login</a>
-
+              <a class="btn btn-success mt-4" href="<?php echo base_url();?>acesso/login">ENTRAR</a>
+              <a class="btn btn-danger  mt-4" href="<?php echo base_url('index/logout'); ?>"><i class="fas fa-user-times"></i> Sair</a>
+<br>
 <pre>
 <?php print_r($_SESSION); ?>
 </pre>
+<br>
             </div>
           </div>
         </div>

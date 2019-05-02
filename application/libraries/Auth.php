@@ -1,9 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Auth {
   private $CI; // Receberá a instância do Codeigniter
-  private $permissaoView = 'login'; // Recebe o nome da view correspondente à página informativa de usuário sem permissão de acesso
+  private $permissaoView = 'mensagem'; // Recebe o nome da view correspondente à página informativa de usuário sem permissão de acesso
   private $loginView     = 'login'; // Recebe o nome da view correspondente à tela de login
-  private $index         = 'index'; // Recebe o nome da view correspondente à tela de login
+  private $index         = 'index'; // Recebe o nome da view correspondente à tela de inicio
   
   public function __construct(){
     /*
@@ -36,7 +36,7 @@ class Auth {
       /*
        * Se o método ja existir na tabela, então recupera se ele é público ou privado
        * O método sendo público (0), então não verifica o login e libera o acesso
-       * Mas se for privado (1) então é verificado o login e a permissão do usuário
+       * Mas se for privado (maior que 0) então é verificado o login e a permissão do usuário
        */
       if($resultMetodos[0]->TELA_PRIVADO==0){
         if ($valida) {
@@ -48,27 +48,19 @@ class Auth {
       } else {
         //$data
         //$email      = $this->CI->session->userdata('email');
-        $id_tela = $resultMetodos[0]->TELA_CODIGO;
+        $id_tela = $resultMetodos[0]->TELA_ID;
 
-        $login = $this->CI->session->userdata('logged_in_agile'); //$logged_in_agile
+        $login = $this->CI->session->userdata('logged_in_colabad');
 
-        $sessao_agile        = $login['sessao_agile']; //$logged_in_agile
-        $sessao_cod_user     = $login['sessao_cod_user']; //$id_usuario
-        $sessao_usuario_user = $login['sessao_usuario_user'];
-        $sessao_nome_user    = $login['sessao_nome_user']; //$nome
-        $sessao_cod_pes      = $login['sessao_cod_pes'];
+        $sessao_colabad      = $login['sesColabad']; //$logged_in_colabad
+        $sessao_cod_user     = $login['sesColabad_vId']; //$id_usuario
+        $sessao_usuario_user = $login['sesColabad_vEmail'];
+        $sessao_usu_nivel    = $login['sesColabad_vPerfilNivel'];
         /*
          * Se o usuário estiver logado faz a verificação da permissão
          * caso contrário redireciona para uma tela de login
          */
-        if($sessao_nome_user && $sessao_agile && $sessao_cod_user){
-          $array = array('TELA_CODIGO' => $id_tela, 'USU_CODIGO' => $sessao_cod_user);
-          $qryPermissoes = $this->CI->db->where($array)->get('usu_acessotela');
-          $resultPermissoes = $qryPermissoes->result();
-/*
-    echo "<pre>";
-    print_r($this->CI->db->last_query());
-    exit;*/
+        if($sessao_usu_nivel && $sessao_colabad && $sessao_cod_user){
           /*
            * Se o usuário não tiver a permissão para acessar o método,
            * ou seja, não estiver relacionado na tabela "permissoes",
@@ -76,11 +68,11 @@ class Auth {
            * não tem permissão de acesso;
            * caso contrário o acesso é liberado
            */
-          if(count($resultPermissoes)==0){
+          if($sessao_usu_nivel < $resultMetodos[0]->TELA_PRIVADO){
             if ($valida) {
               return false;
             } else {
-              $this->CI->session->set_flashdata('message', 'Você não possui permissão');
+              // não possui permissão'
               redirect(base_url($this->permissaoView), 'refresh');
             }
           } else {
@@ -91,7 +83,6 @@ class Auth {
             //verifica se a tela é pública ou privada
             return false;
           } else {
-            $this->CI->session->set_flashdata('message', 'Tela privada, efetue login e/ou solicite permissão');
             redirect(base_url($this->loginView), 'refresh');
           }
         }
@@ -102,7 +93,7 @@ class Auth {
   function logout()
   {
     if ($this->CI->session->userdata() != null) {
-      $this->CI->session->unset_userdata('logged_in_agile');
+      $this->CI->session->unset_userdata('logged_in_colabad');
       $this->CI->session->sess_destroy(); //destroi a sessao
     }
     redirect(base_url()); // redireciona para a raiz do sistema(pagina de login)
