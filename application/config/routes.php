@@ -53,7 +53,9 @@ $route['default_controller'] = 'index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['login'] = 'acesso/login';
+$route['login']                   = 'acesso/login';
+$route['politica_de_privacidade'] = 'acesso/politica';
+$route['termos_de_uso']           = 'acesso/termos';
 
 $route['vericar/(:any)'] = "/emails/verificar_email/$1";
 $route['redefinir/(:any)'] = "/emails/redefinir_senha/$1";

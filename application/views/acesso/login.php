@@ -141,8 +141,8 @@
                             <input class="custom-control-input" id="CheckRegistrar" type="checkbox">
                             <label class="custom-control-label" for="CheckRegistrar">
                               <span>Ao se cadastrar, você concorda com a 
-                                    <a href="#" class="text-light" target="_blanck">Política de Privacidade</a> e 
-                                    <a href="#" class="text-light" target="_blanck">Termos de Uso</a> 
+                                    <a href="<?php echo base_url().'politica_de_privacidade';?>" class="text-light" target="_blanck">Política de Privacidade</a> e 
+                                    <a href="<?php echo base_url().'termos_de_uso';?>" class="text-light" target="_blanck">Termos de Uso</a> 
                                     e aceita receber as nossas novidades por email.
                               </span>
                             </label>
