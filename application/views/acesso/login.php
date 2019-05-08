@@ -46,16 +46,16 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                           </div>
-                          <input class="form-control" id="edEmailLogin" name="edEmailLogin" placeholder="Email" type="email">
+                          <input class="form-control" id="edEmailLogin" name="edEmailLogin" placeholder="Email" type="email" required autocomplete="email">
                         </div>
-                      </div>
+                      </div> 
                       <div class="form-group">
                         <div class="input-group input-group-alternative">
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                           </div>
                           <input class="form-control" id="edPassLogin" name="edPassLogin" placeholder="Senha"
-                                 type="password" minlength="6">
+                                 type="password" minlength="6" required>
                         </div>
                       </div>
                         <div class="row mt-3">
@@ -99,7 +99,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                           </div>
-                          <input class="form-control" id="edNome" name="edNome" placeholder="Nome" type="text">
+                          <input class="form-control" id="edNome" name="edNome" placeholder="Nome" type="text" required>
                         </div>
                       </div>
 
@@ -109,7 +109,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                           </div>
-                          <input class="form-control" id="edEmail" name="edEmail" placeholder="Email" type="email">
+                          <input class="form-control" id="edEmail" name="edEmail" placeholder="Email" type="email" required autocomplete="email">
                         </div>
                       </div>
                       <!-- SENHA -->
@@ -119,7 +119,7 @@
                             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                           </div>
                           <input class="form-control" id="edPass" name="edPass" placeholder="Senha"
-                                 type="password" minlength="6">
+                                 type="password" minlength="6" required>
                         </div>
                         <div class="text-muted font-italic">
                          Segurança da senha:
@@ -132,13 +132,13 @@
                             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                           </div>
                           <input class="form-control" id="edConfPass" name="edConfPass" placeholder="Confirmar senha" 
-                                 type="password" minlength="6">
+                                 type="password" minlength="6" required>
                         </div> 
                       </div>
                       <div class="row my-4">
                         <div class="col-12">
                           <div class="custom-control custom-control-alternative custom-checkbox">
-                            <input class="custom-control-input" id="CheckRegistrar" type="checkbox">
+                            <input class="custom-control-input" id="CheckRegistrar" type="checkbox" required>
                             <label class="custom-control-label" for="CheckRegistrar">
                               <span>Ao se cadastrar, você concorda com a 
                                     <a href="<?php echo base_url().'politica_de_privacidade';?>" class="text-light" target="_blanck">Política de Privacidade</a> e 

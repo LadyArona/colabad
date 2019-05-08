@@ -1,5 +1,5 @@
 <head>
-    <?php 
+  <?php 
     $keysPrincipal = $this->config->item('keys'); 
     $descPrincipal = $this->config->item('descr');
 
@@ -31,6 +31,8 @@
   <!-- ICONES -->
   <link href="<?php echo base_url();?>assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
   <link href="<?php echo base_url();?>assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  
+
   <!-- FERRAMENTAS -->
 
   <!-- CSS -->

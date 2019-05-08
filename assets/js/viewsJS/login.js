@@ -271,7 +271,7 @@ const login = {
         }
 
         if (data.result == 'OK') {
-          window.location.href = baseUrl
+          window.location.href = `${baseUrl}painel`
         }
       }).fail((err) => {
         console.log('error dados ', err)
