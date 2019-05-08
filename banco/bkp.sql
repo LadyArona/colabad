@@ -5718,7 +5718,7 @@ CREATE TABLE IF NOT EXISTS `usu_tela` (
   `TELA_DESCRICAO` varchar(255) DEFAULT NULL,
   `TELA_PRIVADO` int(11) DEFAULT NULL,
   PRIMARY KEY (`TELA_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela colabad2.usu_tela: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `usu_tela` DISABLE KEYS */;
@@ -5728,7 +5728,8 @@ INSERT IGNORE INTO `usu_tela` (`TELA_ID`, `TELA_CAMINHO`, `TELA_DESCRICAO`, `TEL
 	(3, 'loginajax', NULL, 0),
 	(4, 'emails', NULL, 0),
 	(5, 'verificacao', NULL, 0),
-	(6, 'privado', NULL, 100);
+	(6, 'painel', NULL, 1),
+	(7, 'publicar', NULL, 1);
 /*!40000 ALTER TABLE `usu_tela` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.usu_usuario
@@ -5754,7 +5755,7 @@ CREATE TABLE IF NOT EXISTS `usu_usuario` (
 -- Copiando dados para a tabela colabad2.usu_usuario: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `usu_usuario` DISABLE KEYS */;
 INSERT IGNORE INTO `usu_usuario` (`USU_ID`, `USU_CADDATA`, `USU_SITUACAO`, `USU_NOME`, `USU_EMAIL`, `USU_PWD`, `USU_PWDTOKEN`, `USU_PWDTOKENEXP`, `USU_EMAILCONF`, `USU_TOKEN`, `PERF_ID`, `USU_ULTIMOACESSO`, `USU_CONTACESSO`) VALUES
-	(29, '2019-04-28 22:58:49', 'A', 'Talliny', 'loja.anima.animus@gmail.com', '$2y$10$pq.blSaMfUppsakvGUCDKuEsfKFXimHVCu3ZQP.EB1YzS8LNLMhf2', NULL, '2019-05-01 20:31:26', 1, 'D7gFwKyWvY', 3, '2019-05-02 00:05:33', 7),
+	(29, '2019-04-28 22:58:49', 'A', 'Talliny', 'loja.anima.animus@gmail.com', '$2y$10$pq.blSaMfUppsakvGUCDKuEsfKFXimHVCu3ZQP.EB1YzS8LNLMhf2', NULL, '2019-05-01 20:31:26', 1, 'D7gFwKyWvY', 3, '2019-05-07 23:04:49', 14),
 	(30, '2019-05-01 23:06:54', 'A', 'João Eduardo', '1fb97b50a5@mailboxy.fun', '$2y$10$taNSjshaMuuSydutARf6t.7rL5aOuD7q0L/3iuKXmDkYzUTpJ6lj.', NULL, NULL, 1, 'XBDEAnmCUVZg', 1, '2019-05-01 23:08:08', 1);
 /*!40000 ALTER TABLE `usu_usuario` ENABLE KEYS */;
 
