@@ -5,6 +5,12 @@ const login = {
     $('#edPass').keyup(function(event) {
       login.validaSenha(this.value)
     })
+
+    $("input[name='edPassLogin']").keyup(function(event) {
+      if (event.keyCode === 13) {
+        login.login()
+      }
+    })
   },
   validaCampos: async () => {
     if ($("#edNome").val() == '') {
