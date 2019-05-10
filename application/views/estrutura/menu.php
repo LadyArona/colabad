@@ -80,7 +80,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./examples/login.html">
-              <i class="ni ni-key-25 text-info"></i> Login
+              <i class="ni ni-album-2 text-info"></i> Projetos
             </a>
           </li>
           <li class="nav-item">

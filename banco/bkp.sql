@@ -5705,10 +5705,14 @@ CREATE TABLE IF NOT EXISTS `img_cadastro` (
   `IMG_AUDIODESCRICAO` text,
   `IMG_STATUS` char(1) NOT NULL DEFAULT 'A',
   PRIMARY KEY (`IMG_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela colabad2.img_cadastro: ~2 rows (aproximadamente)
+-- Copiando dados para a tabela colabad2.img_cadastro: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `img_cadastro` DISABLE KEYS */;
+INSERT IGNORE INTO `img_cadastro` (`IMG_ID`, `IMG_NOME`, `IMG_NOMEUNIQ`, `IMG_TYPE`, `IMG_TITULO`, `IMG_AUDIODESCRICAO`, `IMG_STATUS`) VALUES
+	(10, 'team-1-800x800.jpg', '9abe32b3ee76a84e31d389e103338fb0.jpg', 'image/jpeg', 'Exposição do Museu Farroupilha em 1978', 'Fotografia, horizontal, em preto e branco. Três homens observando um objeto sobre uma mesa, e outras pessoas em volta em um ambiente interno.\n\nAo centro da imagem, um homem de frente, em pé, enquadrado dos joelhos para cima. Tem pele clara, cabelo curto, crespo e escuro. Está com o rosto levemente inclinado para baixo observando o objeto. Veste terno e calça acinzentados, camisa clara e gravata escura. Em sua mão direita, segura uma taça transparente com um líquido escuro.\n\nA direita, dois homens de perfil para a esquerda, um ao lado do outro.  A frente um homem de pele clara, cabelo curto com entrada de calvície, liso e escuro, e bigode escuro. Veste uma blusa com estampa de fundo claro com listras escuras e calça acinzentada. Em sua mão esquerda segura folhas de ofício e entre dois dedos segura um cigarro. Após ele, um homem de pele clara, cabelo curto, crespo e escuro. Veste terno escuro e segura na mão direita uma taça transparente com um líquido escuro.\n\nA frente deles, uma mesa de metal com tampo de madeira clara. Sobre ela três caixas de vidro retangulares. A primeira caixa a direita, tem um estribo e a representação de uma cuia logo atrás do estribo. Na caixa ao lado esquerdo, tem uma boleadeira, e atrás tem uma caixa com duas esporas.\n\nA esquerda do homem e após a mesa, um pilar claro, com uma estrutura de quatro lados, formadas por hastes metálicas de cerca de dois metros de altura, unidas por hastes horizontais na parte superior e inferior. Em cada lado da estrutura um painel claro. No painel da frente uma espada escura. Próximos a estrutura, estão dois homens, virados de costas com cabelo liso, curto e escuro e roupas escuras.\n\nNo restante do ambiente, outras estruturas de ferro ao fundo da imagem e cerca de dez pessoas em pé.\n\nA parede do fundo tem persianas claras. O teto é claro com luminárias retangulares na vertical. O chão é escuro.', 'A'),
+	(11, 'team-3-800x800.jpg', '6f8b5247ed0bac3dc08b9974770131fa.jpg', 'image/jpeg', 'Televisão no Ensino de Cirurgia em 1963', 'Fotografia, horizontal, em preto e branco. Um quadro com desenho ilustrando uma sala de cirurgia.\n\nO quadro tem as bordas escuras, grossas, e uma listra clara mais fina em volta de todo o quadro. Os desenhos são feitos em tons claros e escuros. Na esquerda tem cinco pessoas vestindo trajes cirúrgicos: toucas, máscaras e roupão. Elas estão em volta de uma mesa cirúrgica; acima da mesa tem uma luminária redonda.\n\nDestacado por uma claridade maior ao centro da imagem, um homem sentado, está de frente para uma televisão.\n\nA direita da imagem, doze homens sentados em formação de um U de costas para a fotografia, assistindo a cirurgia na imagem projetada em um telão.\n\nO quadro está localizado em um ambiente interno , com paredes brancas.', 'A'),
+	(12, 'team-2-800x800.jpg', '1cc88dde6b2a3f62272bd16c3b80a190.jpg', 'image/jpeg', 'Concurso Estudantil Sobre Antártica em 1996', 'Fotografia, horizontal e colorida, de quatro pessoas em pé em um ambiente interno.\n\nNa esquerda da imagem, um homem em pé, com faixa etária de 50 anos, tem pele branca, cabelo curto, liso e grisalho; veste terno preto, com camisa branca e gravata vermelha. Segura em suas mãos um porta documento de veludo; A fotografia está enquadrada da cintura para cima e o homem está de perfil esquerdo para a imagem.\n\nA sua frente, uma mulher com faixa etária de 25 anos, tem pele branca, cabelo liso, loiro e comprido. Usa óculos de armação fina de metal e lentes redondas; está com um vestido rosa, e segura a frente de seu corpo um diploma;\n\nAtrás, uma parede lisa e branca. Próximos a ela, dois homens em pé. A esquerda da imagem um homem com faixa etária de 50 anos, pele branca, cabelo curto, liso e grisalho. Ele veste terno cinza e gravata vermelha com detalhes pretos; está com as mãos em posição de aplauso. Ao seu lado outro homem, com faixa etária de 50 anos, pele clara, cabelo liso, preto e curto; Tem barba preta e usa óculos de lentes redondas e armação fina e escura. \n\nAtrás dos homens próximo a parede, ao lado esquerdo da imagem, um mastro com a bandeira do Brasil, a frente uma mesa de madeira com um microfone em cima.', 'A');
 /*!40000 ALTER TABLE `img_cadastro` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.img_log
@@ -5725,10 +5729,14 @@ CREATE TABLE IF NOT EXISTS `img_log` (
   CONSTRAINT `FK_img_log_img_cadastro` FOREIGN KEY (`IMG_ID`) REFERENCES `img_cadastro` (`IMG_ID`),
   CONSTRAINT `FK_img_log_img_logtipo` FOREIGN KEY (`ILT_ID`) REFERENCES `img_logtipo` (`ILT_ID`),
   CONSTRAINT `FK_img_log_usu_usuario` FOREIGN KEY (`USU_ID`) REFERENCES `usu_usuario` (`USU_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela colabad2.img_log: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `img_log` DISABLE KEYS */;
+INSERT IGNORE INTO `img_log` (`ILOG_ID`, `IMG_ID`, `USU_ID`, `ILT_ID`, `ILOG_DATA`) VALUES
+	(1, 10, 29, 1, '2019-05-10 01:35:29'),
+	(2, 11, 29, 1, '2019-05-10 01:36:22'),
+	(3, 12, 29, 1, '2019-05-10 01:38:25');
 /*!40000 ALTER TABLE `img_log` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.img_logtipo
@@ -5743,6 +5751,33 @@ CREATE TABLE IF NOT EXISTS `img_logtipo` (
 INSERT IGNORE INTO `img_logtipo` (`ILT_ID`, `ILT_DESCRICAO`) VALUES
 	(1, 'Publicada');
 /*!40000 ALTER TABLE `img_logtipo` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela colabad2.proj_cadastro
+CREATE TABLE IF NOT EXISTS `proj_cadastro` (
+  `PROJ_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `PROJ_TITULO` text,
+  `PROJ_DESCRICAO` text,
+  `PROJ_STATUS` char(1) DEFAULT NULL,
+  `PROJ_PRIVADO` char(1) DEFAULT NULL,
+  PRIMARY KEY (`PROJ_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela colabad2.proj_cadastro: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `proj_cadastro` DISABLE KEYS */;
+/*!40000 ALTER TABLE `proj_cadastro` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela colabad2.proj_usuario
+CREATE TABLE IF NOT EXISTS `proj_usuario` (
+  `PU_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `PROJ_ID` int(11) DEFAULT NULL,
+  `USU_ID` int(11) DEFAULT NULL,
+  `PU_TIPO` int(11) DEFAULT NULL,
+  PRIMARY KEY (`PU_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela colabad2.proj_usuario: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `proj_usuario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `proj_usuario` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.usu_perfil
 CREATE TABLE IF NOT EXISTS `usu_perfil` (
