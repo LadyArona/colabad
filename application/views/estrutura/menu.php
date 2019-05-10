@@ -147,6 +147,46 @@
             </a>
           </li>
         </ul>
+        <!-- Divider -->
+        <hr class="my-3">
+        <h6 class="navbar-heading text-muted">Usuário</h6>
+        <ul class="navbar-nav mb-md-3">
+          <li class="nav-item">
+            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
+              <i class="ni ni-ui-04"></i> Components
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./examples/profile.html" class="nav-link">
+              <i class="ni ni-single-02"></i>
+              <span>My profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./examples/profile.html" class="nav-link">
+              <i class="ni ni-settings-gear-65"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./examples/profile.html" class="nav-link">
+              <i class="ni ni-calendar-grid-58"></i>
+              <span>Activity</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./examples/profile.html" class="nav-link">
+              <i class="ni ni-support-16"></i>
+              <span>Support</span>
+            </a>
+          </li>
+        </ul>
+
+        <hr class="my-3">
+        <a href="#!" class="nav-link">
+          <i class="ni ni-user-run"></i>
+          <span>Logout</span>
+        </a>
       </div>
     </div>
   </nav>

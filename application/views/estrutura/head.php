@@ -42,5 +42,8 @@
   <link rel="stylesheet" type='text/css' href="<?php echo base_url();?>assets/css/style.css">
   <link rel="stylesheet" type='text/css' href="<?php echo base_url();?>assets/css/painel.css?v=1.0.0">
 
-
+  <!-- CSS ESPECÍFICO -->
+<?php if ($conteudo == 'publicar') { ?>
+  <link rel="stylesheet" type='text/css' href="<?php echo base_url();?>assets/css/custom/publicar.css">
+<?php } ?>
 </head>

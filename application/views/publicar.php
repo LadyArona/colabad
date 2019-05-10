@@ -10,46 +10,56 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label class="form-control-label" for="input-address">Título</label>
-                  <input id="input-address" class="form-control" 
-                         placeholder="Home Address" value="" type="text">
+                  <label class="form-control-label" for="edTitulo">Título da imagem</label>
+                  <input id="edTitulo" name="edTitulo" class="form-control" required
+                         value="" type="text">
                 </div>
               </div>
             </div>
           </div>
           <div class="pl-lg-4">
             <div class="form-group">
-              <label class="form-control-label" for="input-obs">Áudiodescrição da imagem</label>
-              <textarea rows="6" class="form-control" id="input-obs" 
-                        placeholder="A few words about you ..."></textarea>
+              <label class="form-control-label" for="edAudiodescricao">Áudiodescrição da imagem</label>
+              <textarea rows="10" class="form-control" id="edAudiodescricao" name="edAudiodescricao" required></textarea>
             </div>
           </div>
           
           <div class="pl-lg-4">
-            <div class="form-group"> 
-              <div class="custom-file">
-                <input type="file" id="inputGroupFile01" 
-                       class="imgInp custom-file-input" aria-describedby="inputGroupFileAddon01">
-                <label class="custom-file-label" for="inputGroupFile01" data-browse="Buscar">
-                  Selecione a imagem
-                </label>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-group"> 
+                  <div class="custom-file">
+                    <input type="file" id="inputGroupFile01" required
+                           class="custom-file-input" aria-describedby="inputGroupFileAddon01"
+                           accept="image/jpg, image/jpeg, image/png">
+                    <label class="custom-file-label" for="inputGroupFile01">
+                      Selecione a imagem
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="alert"></div>
-            <div id='img_contain'>
-              <img id="blah" align='middle' 
-                   src="http://www.clker.com/cliparts/c/W/h/n/P/W/generic-image-file-icon-hi.png" 
-                   alt="your image" title=''/>
-            </div> 
+            <div class="row">
+              <div class="col-lg-12">
+                <div id='img_contain'>
+                  <img id="blah" align='middle' 
+                       src="<?php echo base_url();?>assets/img/imagem_generica.png" 
+                       alt="Imagem Genérica (sua imagem aparece aqui)" title=''/>
+                </div> 
+              </div>
+            </div>
           </div>
           <hr class="my-4" />
           <div class="pl-lg-4">
             <div class="row">
-              <div class="col-lg-6">
-                <button type="button" class="btn btn-block btn-success" value="Salvar">SALVAR</button>
+              <div class="col-lg-6 col-md-3">
+                <button type="button" class="btn btn-block btn-success" 
+                        value="Salvar" id="btnSalvar"
+                        onclick="publicar.salvaCadastro()">SALVAR</button>
               </div>
-              <div class="col-lg-6">
-                <button type="submit" class="btn btn-block btn-default" value="Cancelar">CANCELAR</button>
+              <div class="col-lg-6 col-md-3">
+                <button type="reset" class="btn btn-block btn-default" 
+                        value="Cancelar" id="btnCancelar">CANCELAR</button>
               </div>
             </div>
           </div>

@@ -21,55 +21,6 @@ app = {
       let map={"â":"a","Â":"A","à":"a","À":"A","á":"a","Á":"A","ã":"a","Ã":"A","ê":"e","Ê":"E","è":"e","È":"E","é":"e","É":"E","î":"i","Î":"I","ì":"i","Ì":"I","í":"i","Í":"I","õ":"o","Õ":"O","ô":"o","Ô":"O","ò":"o","Ò":"O","ó":"o","Ó":"O","ü":"u","Ü":"U","û":"u","Û":"U","ú":"u","Ú":"U","ù":"u","Ù":"U","ç":"c","Ç":"C"};
       return s.replace(/[\W\[\] ]/g, a => {return map[a]||a}); 
     },
-    verificaNotificacao: () => {
-      /*$.post(baseUrl + 'appajax/buscaNotificacoes', {Notificacoes: ''}, data => {
-        if (data != null) {
-          let title   = data.vNotTitle;
-          let size    = (data.vNotSize == 'S') ? 'small' : 'large';
-          let message = data.vNotMessage;
-          bootbox.alert({ title, size, message });
-        }
-      });*/
-    }, 
-    initApp: () => {
-      setInterval(function(){app.verificaNotificacao();}, 300000); 
-
-      $('#edData, #edBuscaDataInicial, #edBuscaDataFinal').bootstrapMaterialDatePicker({
-        format : 'DD/MM/YYYY', 
-        lang : 'pt-br', 
-        cancelText : 'Cancelar', 
-        time: false 
-      });
-
-      $('#edDataPropostaInicial, #edDataPropostaFinal').bootstrapMaterialDatePicker({
-        format : 'DD/MM/YYYY', 
-        lang : 'pt-br', 
-        cancelText : 'Cancelar', 
-        time: false 
-      });
-
-      $('#edHora, #edHoraInicio, #edHoraFim').bootstrapMaterialDatePicker({
-        format : 'HH:mm', 
-        lang : 'pt-br', 
-        cancelText : 'Cancelar', 
-        date: false 
-      });
-
-      //PROPOSTAS
-      $('.card-content .scrum .panel-body').mouseover(function() {
-          $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
-      }).mouseout(function() {
-          $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
-      });      
-      
-      //Controla active li do menu.
-      $('.sidebar-wrapper ul.nav li a.firstA').click(function() {
-          $('.sidebar-wrapper ul.nav li').removeClass('active');
-          $(this).parent().addClass('active');
-      });
-
-      //app.matomoAnalytics()
-    },
     matomoAnalytics: () => {
       const _paq = window._paq || []
       _paq.push(['trackPageView'])
@@ -86,7 +37,7 @@ app = {
     },
     carregaCombo: (idCombo, tipoInfo, codToSelect = null, codToControl = null) => {
       $("#"+idCombo).empty();
-      let urlBusca = (urlAtual == 'propostas') ? 'propostas/appajax/carregaDadosCombo' : 'appajax/carregaDadosCombo';
+      let urlBusca = 'appajax/carregaDadosCombo';
       $.post(baseUrl + urlBusca, {CarregaDadosCombo: '', tipoInfo, codToControl}, function(j){
           if(j != null){
             for (let i = 0; i < j.length; i++) {
@@ -112,7 +63,7 @@ app = {
       }, "json");
     },
     carregaComboMultiplo: async (idCombo, tipoInfo, codToSelect = null, codToControl = null, getValue = false) => {
-      let urlBusca = (urlAtual == 'propostas') ? 'propostas/appajax/carregaDadosCombo' : 'appajax/carregaDadosCombo';
+      let urlBusca = 'appajax/carregaDadosCombo';
 
       $("#"+idCombo).empty()
       let dados = []

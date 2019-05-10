@@ -4909,6 +4909,11 @@ input[type='button'].btn-block
     content: 'Browse';
 }
 
+.custom-file-input:lang(pt-br) ~ .custom-file-label::after
+{
+    content: 'Buscar';
+}
+
 .custom-file-label
 {
     line-height: 1.5;

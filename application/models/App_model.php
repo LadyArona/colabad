@@ -17,6 +17,8 @@ class App_model extends CI_Model {
                     CD.CID_DESCRICAO,
                     E.EST_DESCRICAO,
                     C.CONF_EMAIL,
+                    C.CONF_EMAILPWD,
+                    C.CONF_EMAILHOST,
                     DATE_FORMAT(C.CONF_DATAATT,'%d/%m/%Y') AS CONF_DATAATT,
                     DATE_FORMAT(C.CONF_DATACAD,'%d/%m/%Y') AS CONF_DATACAD,
                     C.CONF_VERSAO,
@@ -47,11 +49,11 @@ class App_model extends CI_Model {
 
           'email_SMTPSecure' => 'ssl',
           'email_Mailer'     => 'smtp',
-          'email_Host'       => 'smtp.gmail.com',
+          'email_Host'       => $row->CONF_EMAILHOST,
           'email_Port'       => 465, // or 587
 
           'email_Username'   => $row->CONF_EMAIL,
-          'email_Password'   => '022189Adn',
+          'email_Password'   => $row->CONF_EMAILPWD,
           'email_Autor'      => 'Equipe '.$row->CONF_ABRV,
  
           'dt_att'      => $row->CONF_DATAATT,

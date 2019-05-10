@@ -27,7 +27,7 @@ class Publicar extends CI_Controller {
           $data['msg'] = $this->upload->display_errors();
     }
 
-    $data['title']    = 'Publicar';
+    $data['title']    = 'Publicar Imagem';
     $data['conteudo'] = 'publicar';
 
     $data['breadcrumbs'] = array($data['conteudo'] => $data['title']);

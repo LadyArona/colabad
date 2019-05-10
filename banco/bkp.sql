@@ -5631,7 +5631,7 @@ CREATE TABLE IF NOT EXISTS `conf_configuracoes` (
 -- Copiando dados para a tabela colabad2.conf_configuracoes: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `conf_configuracoes` DISABLE KEYS */;
 INSERT IGNORE INTO `conf_configuracoes` (`CONF_ID`, `CONF_NOME`, `CONF_ABRV`, `CONF_DESCRICAO`, `CONF_LOGO`, `CONF_LOGOALT`, `CID_ID`, `CONF_EMAIL`, `CONF_EMAILFROM`, `CONF_EMAILPWD`, `CONF_EMAILHOST`, `CONF_DATAATT`, `CONF_DATACAD`, `CONF_VERSAO`, `CONF_AUTOR`, `CONF_KEYWORDS`, `CONF_FACEBOOK`, `CONF_REPOSITORIO`) VALUES
-	(1, 'ColabAD', 'ColabAD', 'Rede Colaborativa de Audiodescrição', 'assets/img/brand/white.png', 'Rede Colaborativa de Audiodescrição', 4780, 'tallinydn@gmail.com', 'tallinydn@gmail.com', '022189Adn', NULL, '2019-05-01 16:48:02', '2019-04-14 18:14:44', '1.0.0.1', 'Talliny Dalla Nora', 'Rede Colaborativa de Audiodescrição', 'https://fb.me/redeColabad', 'https://github.com/LadyArona/colabad');
+	(1, 'ColabAD', 'ColabAD', 'Rede Colaborativa de Audiodescrição', 'assets/img/brand/white.png', 'Rede Colaborativa de Audiodescrição', 4780, 'tallinydn@gmail.com', 'xxxxxxx', 'xxxxxx', 'smtp.gmail.com', '2019-05-09 22:12:06', '2019-04-14 18:14:44', '1.0.0.1', 'Talliny Dalla Nora', 'Rede Colaborativa de Audiodescrição', 'https://fb.me/redeColabad', 'https://github.com/LadyArona/colabad');
 /*!40000 ALTER TABLE `conf_configuracoes` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.conf_estado
@@ -5755,7 +5755,7 @@ CREATE TABLE IF NOT EXISTS `usu_usuario` (
 -- Copiando dados para a tabela colabad2.usu_usuario: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `usu_usuario` DISABLE KEYS */;
 INSERT IGNORE INTO `usu_usuario` (`USU_ID`, `USU_CADDATA`, `USU_SITUACAO`, `USU_NOME`, `USU_EMAIL`, `USU_PWD`, `USU_PWDTOKEN`, `USU_PWDTOKENEXP`, `USU_EMAILCONF`, `USU_TOKEN`, `PERF_ID`, `USU_ULTIMOACESSO`, `USU_CONTACESSO`) VALUES
-	(29, '2019-04-28 22:58:49', 'A', 'Talliny', 'loja.anima.animus@gmail.com', '$2y$10$pq.blSaMfUppsakvGUCDKuEsfKFXimHVCu3ZQP.EB1YzS8LNLMhf2', NULL, '2019-05-01 20:31:26', 1, 'D7gFwKyWvY', 3, '2019-05-07 23:04:49', 14),
+	(29, '2019-04-28 22:58:49', 'A', 'Talliny', 'loja.anima.animus@gmail.com', '$2y$10$pq.blSaMfUppsakvGUCDKuEsfKFXimHVCu3ZQP.EB1YzS8LNLMhf2', NULL, '2019-05-01 20:31:26', 1, 'D7gFwKyWvY', 3, '2019-05-09 19:17:13', 15),
 	(30, '2019-05-01 23:06:54', 'A', 'João Eduardo', '1fb97b50a5@mailboxy.fun', '$2y$10$taNSjshaMuuSydutARf6t.7rL5aOuD7q0L/3iuKXmDkYzUTpJ6lj.', NULL, NULL, 1, 'XBDEAnmCUVZg', 1, '2019-05-01 23:08:08', 1);
 /*!40000 ALTER TABLE `usu_usuario` ENABLE KEYS */;
 

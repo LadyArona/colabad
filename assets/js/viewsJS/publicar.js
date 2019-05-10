@@ -1,31 +1,101 @@
-$("#inputGroupFile01").change(function(event) {  
-  RecurFadeIn();
-  readURL(this);    
-});
-$("#inputGroupFile01").on('click',function(event){
-  RecurFadeIn();
-});
-function readURL(input) {    
-  if (input.files && input.files[0]) {   
-    var reader = new FileReader();
-    var filename = $("#inputGroupFile01").val();
-    filename = filename.substring(filename.lastIndexOf('\\')+1);
-    reader.onload = function(e) {
-      debugger;      
-      $('#blah').attr('src', e.target.result);
-      $('#blah').hide();
-      $('#blah').fadeIn(500);      
-      $('.custom-file-label').text(filename);             
+
+const publicar = {
+  initConfig: () => {
+    $('#edTitulo').focus()
+
+    $('#inputGroupFile01').change(function(event) {  
+      publicar.readURL(this)   
+    })
+
+    $('#btnCancelar').click(function(event) {  
+      publicar.limpaImagem()
+      $('#edTitulo').focus()
+    })
+  },
+  readURL: (input) => {    
+    if (input.files && input.files[0]) {
+      let file = input.files[0]
+      if (file.type != 'image/jpeg' && file.type != 'image/png') {
+        app.showNotification(`Tipo de arquivo inválido!<br><strong>${file.type}</strong>`, 'danger', 5)
+        publicar.limpaImagem()
+        $('#inputGroupFile01').focus()
+        return false
+      } else {
+        var reader = new FileReader()
+        var filename = $('#inputGroupFile01').val()
+        filename = filename.substring(filename.lastIndexOf('\\')+1)
+        reader.onload = function(e) {
+          // debugger      
+          $('#blah').attr('src', e.target.result)
+          $('#blah').attr('alt', filename)
+          $('#blah').hide()
+          $('#blah').fadeIn(500)      
+          $('.custom-file-label').text(filename)
+          $('#btnSalvar').focus()
+        }
+        reader.readAsDataURL(input.files[0])
+      }
+    } 
+  },
+  salvaImagem: () => {
+    if (publicar.validaSalvar()) {
+      $.ajax({
+        url: `${baseUrl}ajax/salvaImagem`,
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          salvaImagem: ''
+        },
+        beforeSend: () => {
+          $.loader({
+            className: 'blue-with-image-2',
+            content: ''
+          })
+        }
+      }).done((data) => {
+        if (data.result === 'OK') {
+          app.showNotification(
+            `Imagem publicada com sucesso! <br>
+            <strong>${data.mensagem}</strong>`,
+            'success', 2
+          )
+        }
+      }).fail((err) => {
+        console.log('error dados ', err)
+        app.showNotification(`Ops! Ocorreu um erro`, 'danger', 1)
+      }).always(() => {
+        $.loader('close')
+      })
     }
-    reader.readAsDataURL(input.files[0]);    
-  } 
-  $(".alert").removeClass("loading").hide();
+  },
+  validaSalvar: () => {
+    if ($('#edTitulo').val() == '') {
+      app.showNotification(`Informe o título da imagem!`, 'danger', 5)
+      $('#edTitulo').focus()
+      return false
+    }
+
+    if ($('#edAudiodescricao').val() == '') {
+      app.showNotification(`Informe a áudiodescrição da imagem!`, 'danger', 5)
+      $('#edAudiodescricao').focus()
+      return false
+    }
+
+    if ($('#inputGroupFile01')[0].files[0] == null) {
+      app.showNotification(`Informe a imagem que deseja publicar!`, 'danger', 5)
+      $('#inputGroupFile01').focus()
+      return false
+    }
+
+    return true
+  },
+  limpaImagem: () => {
+    $('#inputGroupFile01').val('')
+    $('#blah').hide()
+    $('#blah').attr('src', `${baseUrl}assets/img/imagem_generica.png`)
+    $('#blah').attr('alt', 'Imagem Genérica (sua imagem aparece aqui)')
+    $('#blah').fadeIn(500)
+    $('.custom-file-label').text('Selecione a imagem')
+  }
 }
-function RecurFadeIn(){ 
-  console.log('ran');
-  FadeInAlert("Wait for it...");  
-}
-function FadeInAlert(text){
-  $(".alert").show();
-  $(".alert").text(text).addClass("loading");  
-}
+
