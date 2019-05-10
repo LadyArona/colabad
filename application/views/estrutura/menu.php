@@ -22,7 +22,7 @@
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item">
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
@@ -30,32 +30,6 @@
               </span>
             </div>
           </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-            <div class=" dropdown-header noti-title">
-              <h6 class="text-overflow m-0">Welcome!</h6>
-            </div>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-single-02"></i>
-              <span>My profile</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-settings-gear-65"></i>
-              <span>Settings</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-calendar-grid-58"></i>
-              <span>Activity</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-support-16"></i>
-              <span>Support</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#!" class="dropdown-item">
-              <i class="ni ni-user-run"></i>
-              <span>Logout</span>
-            </a>
-          </div>
         </li>
       </ul>
       <!-- Collapse -->
@@ -100,18 +74,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./examples/maps.html">
-              <i class="ni ni-pin-3 text-orange"></i> Maps
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./examples/profile.html">
-              <i class="ni ni-single-02 text-yellow"></i> User profile
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="./examples/tables.html">
-              <i class="ni ni-bullet-list-67 text-red"></i> Tables
+              <i class="ni ni-bullet-list-67 text-red"></i> Minhas Imagens
             </a>
           </li>
           <li class="nav-item">
@@ -127,65 +91,37 @@
         </ul>
         <!-- Divider -->
         <hr class="my-3">
-        <!-- Heading -->
-        <h6 class="navbar-heading text-muted">Documentation</h6>
-        <!-- Navigation -->
-        <ul class="navbar-nav mb-md-3">
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
-              <i class="ni ni-spaceship"></i> Getting started
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-              <i class="ni ni-palette"></i> Foundation
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-              <i class="ni ni-ui-04"></i> Components
-            </a>
-          </li>
-        </ul>
-        <!-- Divider -->
-        <hr class="my-3">
         <h6 class="navbar-heading text-muted">Usuário</h6>
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-              <i class="ni ni-ui-04"></i> Components
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="./examples/profile.html" class="nav-link">
-              <i class="ni ni-single-02"></i>
-              <span>My profile</span>
+            <a class="nav-link" href="./examples/profile.html">
+              <i class="ni ni-single-02 text-yellow"></i> Meu Perfil
             </a>
           </li>
           <li class="nav-item">
             <a href="./examples/profile.html" class="nav-link">
               <i class="ni ni-settings-gear-65"></i>
-              <span>Settings</span>
+              <span>Configurações</span>
             </a>
           </li>
           <li class="nav-item">
             <a href="./examples/profile.html" class="nav-link">
               <i class="ni ni-calendar-grid-58"></i>
-              <span>Activity</span>
+              <span>Atividade</span>
             </a>
           </li>
           <li class="nav-item">
             <a href="./examples/profile.html" class="nav-link">
               <i class="ni ni-support-16"></i>
-              <span>Support</span>
+              <span>Suporte</span>
             </a>
           </li>
         </ul>
 
         <hr class="my-3">
-        <a href="#!" class="nav-link">
+        <a href="<?php echo base_url('index/logout'); ?>" class="nav-link">
           <i class="ni ni-user-run"></i>
-          <span>Logout</span>
+          <span>Sair</span>
         </a>
       </div>
     </div>

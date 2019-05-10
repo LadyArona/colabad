@@ -5,7 +5,7 @@
         <h3 class="mb-0">Dados da Imagem</h3>
       </div>
       <div class="card-body">
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data" id="formImagem">
           <div class="pl-lg-4">
             <div class="row">
               <div class="col-md-12">
@@ -55,7 +55,7 @@
               <div class="col-lg-6 col-md-3">
                 <button type="button" class="btn btn-block btn-success" 
                         value="Salvar" id="btnSalvar"
-                        onclick="publicar.salvaCadastro()">SALVAR</button>
+                        onclick="publicar.salvaImagem()">SALVAR</button>
               </div>
               <div class="col-lg-6 col-md-3">
                 <button type="reset" class="btn btn-block btn-default" 

@@ -15,12 +15,14 @@ class Ajax extends CI_Controller {
   }
 
   function salvaImagem(){
-    if($this->input->post('salvaImagem') == ""){
-      $this->load->model('Publicar_model', 'pub');
-      $registros = $this->pub->salvaImagem();
-      $this->output
-           ->set_content_type('application/json')
-           ->set_output(json_encode($registros));
-    }
+    $this->load->model('Publicar_model', 'pub');
+    
+    $titulo    = $this->input->post('titulo');
+    $descricao = $this->input->post('descricao');
+
+    $registros = $this->pub->salvaImagem($_FILES['imagem'], $titulo, $descricao);
+    $this->output
+         ->set_content_type('application/json')
+         ->set_output(json_encode($registros));
   }
 }

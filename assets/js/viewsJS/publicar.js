@@ -39,13 +39,17 @@ const publicar = {
   },
   salvaImagem: () => {
     if (publicar.validaSalvar()) {
+        let formData = new FormData()
+        formData.append('imagem', $('#inputGroupFile01')[0].files[0])
+        formData.append('titulo', $('#edTitulo').val())
+        formData.append('descricao', $('#edAudiodescricao').val())
+
       $.ajax({
         url: `${baseUrl}ajax/salvaImagem`,
         type: 'POST',
-        dataType: 'json',
-        data: {
-          salvaImagem: ''
-        },
+        processData: false,
+        contentType: false,
+        data: formData,
         beforeSend: () => {
           $.loader({
             className: 'blue-with-image-2',
@@ -59,6 +63,7 @@ const publicar = {
             <strong>${data.mensagem}</strong>`,
             'success', 2
           )
+          $('#btnCancelar').click()
         }
       }).fail((err) => {
         console.log('error dados ', err)

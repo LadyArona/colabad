@@ -71,5 +71,23 @@ class App_model extends CI_Model {
       return null;
     }
   }
+
+  function gravaLog($img, $tipo) {
+    try{
+      $tabela = 'img_log';
+
+      $dados = 
+        array(
+          'IMG_ID' => $img,
+          'ILT_ID' => $tipo,
+          'USU_ID' => $this->session->userdata('logged_in_colabad')['sesColabad_vId']
+        );  
+
+        $this->db->insert($tabela, $dados);
+    } catch(PDOException $e) { 
+      echo 'Erro: ' . $e->getMessage();
+      print_r($e);
+    }
+  }
 }
 

@@ -5695,6 +5695,55 @@ INSERT IGNORE INTO `conf_regiao` (`REG_ID`, `REG_DESCRICAO`) VALUES
 	(5, 'Centro-Oeste');
 /*!40000 ALTER TABLE `conf_regiao` ENABLE KEYS */;
 
+-- Copiando estrutura para tabela colabad2.img_cadastro
+CREATE TABLE IF NOT EXISTS `img_cadastro` (
+  `IMG_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `IMG_NOME` varchar(255) DEFAULT NULL,
+  `IMG_NOMEUNIQ` varchar(255) DEFAULT NULL,
+  `IMG_TYPE` varchar(50) DEFAULT NULL,
+  `IMG_TITULO` text,
+  `IMG_AUDIODESCRICAO` text,
+  `IMG_STATUS` char(1) NOT NULL DEFAULT 'A',
+  PRIMARY KEY (`IMG_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela colabad2.img_cadastro: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `img_cadastro` DISABLE KEYS */;
+/*!40000 ALTER TABLE `img_cadastro` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela colabad2.img_log
+CREATE TABLE IF NOT EXISTS `img_log` (
+  `ILOG_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `IMG_ID` int(11) DEFAULT NULL,
+  `USU_ID` int(11) DEFAULT NULL,
+  `ILT_ID` int(11) DEFAULT NULL,
+  `ILOG_DATA` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ILOG_ID`),
+  KEY `FK_img_log_img_cadastro` (`IMG_ID`),
+  KEY `FK_img_log_usu_usuario` (`USU_ID`),
+  KEY `FK_img_log_img_logtipo` (`ILT_ID`),
+  CONSTRAINT `FK_img_log_img_cadastro` FOREIGN KEY (`IMG_ID`) REFERENCES `img_cadastro` (`IMG_ID`),
+  CONSTRAINT `FK_img_log_img_logtipo` FOREIGN KEY (`ILT_ID`) REFERENCES `img_logtipo` (`ILT_ID`),
+  CONSTRAINT `FK_img_log_usu_usuario` FOREIGN KEY (`USU_ID`) REFERENCES `usu_usuario` (`USU_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela colabad2.img_log: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `img_log` DISABLE KEYS */;
+/*!40000 ALTER TABLE `img_log` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela colabad2.img_logtipo
+CREATE TABLE IF NOT EXISTS `img_logtipo` (
+  `ILT_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ILT_DESCRICAO` varchar(255) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ILT_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela colabad2.img_logtipo: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `img_logtipo` DISABLE KEYS */;
+INSERT IGNORE INTO `img_logtipo` (`ILT_ID`, `ILT_DESCRICAO`) VALUES
+	(1, 'Publicada');
+/*!40000 ALTER TABLE `img_logtipo` ENABLE KEYS */;
+
 -- Copiando estrutura para tabela colabad2.usu_perfil
 CREATE TABLE IF NOT EXISTS `usu_perfil` (
   `PERF_ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -5718,7 +5767,7 @@ CREATE TABLE IF NOT EXISTS `usu_tela` (
   `TELA_DESCRICAO` varchar(255) DEFAULT NULL,
   `TELA_PRIVADO` int(11) DEFAULT NULL,
   PRIMARY KEY (`TELA_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela colabad2.usu_tela: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `usu_tela` DISABLE KEYS */;
@@ -5729,15 +5778,16 @@ INSERT IGNORE INTO `usu_tela` (`TELA_ID`, `TELA_CAMINHO`, `TELA_DESCRICAO`, `TEL
 	(4, 'emails', NULL, 0),
 	(5, 'verificacao', NULL, 0),
 	(6, 'painel', NULL, 1),
-	(7, 'publicar', NULL, 1);
+	(7, 'publicar', NULL, 1),
+	(8, 'ajax', NULL, 0);
 /*!40000 ALTER TABLE `usu_tela` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.usu_usuario
 CREATE TABLE IF NOT EXISTS `usu_usuario` (
   `USU_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USU_NOME` varchar(255) NOT NULL,
   `USU_CADDATA` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `USU_SITUACAO` char(1) NOT NULL DEFAULT 'A',
-  `USU_NOME` varchar(255) NOT NULL,
   `USU_EMAIL` varchar(255) NOT NULL,
   `USU_PWD` varchar(255) NOT NULL,
   `USU_PWDTOKEN` varchar(255) DEFAULT NULL,
@@ -5752,11 +5802,11 @@ CREATE TABLE IF NOT EXISTS `usu_usuario` (
   CONSTRAINT `FK_usu_usuario_usu_perfil` FOREIGN KEY (`PERF_ID`) REFERENCES `usu_perfil` (`PERF_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela colabad2.usu_usuario: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela colabad2.usu_usuario: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `usu_usuario` DISABLE KEYS */;
-INSERT IGNORE INTO `usu_usuario` (`USU_ID`, `USU_CADDATA`, `USU_SITUACAO`, `USU_NOME`, `USU_EMAIL`, `USU_PWD`, `USU_PWDTOKEN`, `USU_PWDTOKENEXP`, `USU_EMAILCONF`, `USU_TOKEN`, `PERF_ID`, `USU_ULTIMOACESSO`, `USU_CONTACESSO`) VALUES
-	(29, '2019-04-28 22:58:49', 'A', 'Talliny', 'loja.anima.animus@gmail.com', '$2y$10$pq.blSaMfUppsakvGUCDKuEsfKFXimHVCu3ZQP.EB1YzS8LNLMhf2', NULL, '2019-05-01 20:31:26', 1, 'D7gFwKyWvY', 3, '2019-05-09 19:17:13', 15),
-	(30, '2019-05-01 23:06:54', 'A', 'João Eduardo', '1fb97b50a5@mailboxy.fun', '$2y$10$taNSjshaMuuSydutARf6t.7rL5aOuD7q0L/3iuKXmDkYzUTpJ6lj.', NULL, NULL, 1, 'XBDEAnmCUVZg', 1, '2019-05-01 23:08:08', 1);
+INSERT IGNORE INTO `usu_usuario` (`USU_ID`, `USU_NOME`, `USU_CADDATA`, `USU_SITUACAO`, `USU_EMAIL`, `USU_PWD`, `USU_PWDTOKEN`, `USU_PWDTOKENEXP`, `USU_EMAILCONF`, `USU_TOKEN`, `PERF_ID`, `USU_ULTIMOACESSO`, `USU_CONTACESSO`) VALUES
+	(29, 'Talliny', '2019-04-28 22:58:49', 'A', 'loja.anima.animus@gmail.com', '$2y$10$pq.blSaMfUppsakvGUCDKuEsfKFXimHVCu3ZQP.EB1YzS8LNLMhf2', NULL, '2019-05-01 20:31:26', 1, 'D7gFwKyWvY', 3, '2019-05-09 19:17:13', 15),
+	(30, 'João Eduardo', '2019-05-01 23:06:54', 'A', '1fb97b50a5@mailboxy.fun', '$2y$10$taNSjshaMuuSydutARf6t.7rL5aOuD7q0L/3iuKXmDkYzUTpJ6lj.', NULL, NULL, 1, 'XBDEAnmCUVZg', 1, '2019-05-01 23:08:08', 1);
 /*!40000 ALTER TABLE `usu_usuario` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

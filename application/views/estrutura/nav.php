@@ -18,16 +18,23 @@
 
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
-          <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="./assets/img/theme/team-4-800x800.jpg">
-              </span>
-              <div class="media-body ml-2 d-none d-lg-block">
-                <span class="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="ni ni-bell-55"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder" src="./assets/img/theme/team-4-800x800.jpg">
+                </span>
+                <div class="media-body ml-2 d-none d-lg-block">
+                  <span class="mb-0 text-sm  font-weight-bold"><?php echo $this->session->userdata('logged_in_colabad')['sesColabad_vNome']; ?></span>
+                </div>
               </div>
-            </div>
-          </a>
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
