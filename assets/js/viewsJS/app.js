@@ -1,5 +1,9 @@
 urlAtual = window.location.pathname.split('/')[2];
-app = { 
+app = {
+    initApp: () => {
+      $('.selectpicker').selectpicker();
+      
+    },
     showNotification: (message, type, time, multiply = 2000) => {
       $.notify({
           icon: "notifications",

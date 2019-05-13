@@ -90,13 +90,12 @@ class Auth {
     }
   }
 
-  function logout()
-  {
+  function logout() {
     if ($this->CI->session->userdata() != null) {
       $this->CI->session->unset_userdata('logged_in_colabad');
       $this->CI->session->sess_destroy(); //destroi a sessao
     }
     redirect(base_url()); // redireciona para a raiz do sistema(pagina de login)
-  }  
+  }
 
 }

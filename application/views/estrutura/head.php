@@ -32,12 +32,13 @@
   <!-- ICONES -->
   <link rel="stylesheet" type='text/css' href="<?php echo base_url();?>assets/vendor/nucleo/css/nucleo.css">
   <link rel="stylesheet" type='text/css' href="<?php echo base_url();?>assets/vendor/font-awesome/css/font-awesome.min.css">
-  
-  <!-- Icons -->
-  <link rel="stylesheet" type='text/css' href="<?php echo base_url();?>assets/vendor/nucleo/css/nucleo.css">
   <link rel="stylesheet" type='text/css' href="<?php echo base_url();?>assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
   
   <!-- CSS -->
+  <link rel="stylesheet" type='text/css' href="<?php echo base_url();?>assets/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type='text/css' href="<?php echo base_url();?>assets/css/buttons.dataTables.min.css">
+  <link rel="stylesheet" type='text/css' href="<?php echo base_url();?>assets/css/bootstrap-select.min.css">
+
   <link rel="stylesheet" type='text/css' href="<?php echo base_url();?>assets/css/jquery.loader.min.css">
   <link rel="stylesheet" type='text/css' href="<?php echo base_url();?>assets/css/style.css">
   <link rel="stylesheet" type='text/css' href="<?php echo base_url();?>assets/css/painel.css?v=1.0.0">

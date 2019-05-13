@@ -5,14 +5,14 @@
     "sInfoFiltered": "(Filtrados de _MAX_ registros)",
     "sInfoPostFix": "",
     "sInfoThousands": ".",
-    "sLengthMenu": "_MENU_ resultados por página",
+    "sLengthMenu": "_MENU_ &nbsp; resultados por página",
     "sLoadingRecords": "Carregando...",
     "sProcessing": "Processando...",
     "sZeroRecords": "Nenhum registro encontrado",
-    "sSearch": "Pesquisar",
+    "sSearch": "<i class='fas fa-search'></i> &nbsp; Pesquisar",
     "oPaginate": {
-        "sNext": "Próximo",
-        "sPrevious": "Anterior",
+        "sNext": "<i class='fas fa-forward'></i> Próximo ",
+        "sPrevious": "Anterior <i class='fas fa-backward'></i>",
         "sFirst": "Primeiro",
         "sLast": "Último"
     },

@@ -5757,14 +5757,52 @@ CREATE TABLE IF NOT EXISTS `proj_cadastro` (
   `PROJ_ID` int(11) NOT NULL AUTO_INCREMENT,
   `PROJ_TITULO` text,
   `PROJ_DESCRICAO` text,
-  `PROJ_STATUS` char(1) DEFAULT NULL,
+  `PROJ_STATUS` char(1) DEFAULT 'A',
   `PROJ_PRIVADO` char(1) DEFAULT NULL,
-  PRIMARY KEY (`PROJ_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `USU_ID` int(11) DEFAULT NULL,
+  `PROJ_DATACAD` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`PROJ_ID`),
+  KEY `FK_proj_cadastro_usu_usuario` (`USU_ID`),
+  CONSTRAINT `FK_proj_cadastro_usu_usuario` FOREIGN KEY (`USU_ID`) REFERENCES `usu_usuario` (`USU_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela colabad2.proj_cadastro: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `proj_cadastro` DISABLE KEYS */;
+INSERT IGNORE INTO `proj_cadastro` (`PROJ_ID`, `PROJ_TITULO`, `PROJ_DESCRICAO`, `PROJ_STATUS`, `PROJ_PRIVADO`, `USU_ID`, `PROJ_DATACAD`) VALUES
+	(1, 'Projeto Retalhos de Memória de Santa Maria', 'Início das atividades:  julho de 2015.\r\n\r\nO Projeto Retalhos da Memória de Santa Maria: Difusão e Acessibilidade promove a difusão com acessibilidade da memória fotográfica institucional com o objetivo de consolidar a importância do arquivo fotográfico da UFSM. Acadêmicos dos Cursos de Arquivologia, Jornalismo, História e Desenho Industrial (bolsistas e voluntários) selecionam imagens do acervo – retalhos da história da cidade – e produzem textos sobre as mesmas pesquisando em fontes documentais primárias.\r\n\r\nÉ coordenado pelo Departamento de Arquivo Geral (DAG) em parceria com o Núcleo de Acessibilidade da Coordenadoria de Ações Educacionais (CAED) da UFSM.\r\n\r\nOs posters são publicados semanalmente às terças-feiras.', 'A', '1', 29, '2019-05-11 23:01:44'),
+	(2, 'TEste 123', 'adshighsiudhguisdg', 'A', '0', 29, '2019-05-12 00:59:12'),
+	(3, 'se sortable option to set the basic sort.', 'Packet is the leading bare metal automation platform for developers.\r\nads via Carbon', 'A', '0', 29, '2019-05-12 01:01:25'),
+	(4, 'rgdfbdfbdf', 'dfbdfbdfb', 'A', '1', 29, '2019-05-12 01:16:58'),
+	(5, 'fffffffffffffff', 'ffffffffffffff', 'A', '0', 29, '2019-05-12 01:21:02'),
+	(6, 'jjjjjjjjjjj', 'jjjjjjjjj', 'A', '0', 29, '2019-05-12 01:22:03'),
+	(7, 'vsdvsdv', 'sdvsdvsdv', 'A', '0', 29, '2019-05-12 01:42:02'),
+	(8, 'vvvvvvvvvvvvv', 'vvvvvvvvvvvvvvvv', 'A', '0', 29, '2019-05-12 01:42:07'),
+	(9, '333333636346346', '346346346346346346', 'A', '0', 29, '2019-05-12 01:42:15'),
+	(10, '373737837', 'mfnh5 4 4 rgd 4', 'A', '0', 29, '2019-05-12 01:42:23'),
+	(11, 'svsvsvsvsvs', 'vsvsvsvsv', 'A', '0', 29, '2019-05-12 01:54:05'),
+	(12, 'teste', 'teste 123', 'A', '1', 29, '2019-05-12 22:23:32'),
+	(13, 'teste tfdgg', 'sdgsdgsdg', 'A', '1', 29, '2019-05-12 22:24:49'),
+	(14, 'teste tfdgg', 'sdgsdgsdg', 'A', '1', 29, '2019-05-12 22:28:14'),
+	(15, 'teste tfdgg', 'sdgsdgsdg', 'A', '1', 29, '2019-05-12 22:28:38');
 /*!40000 ALTER TABLE `proj_cadastro` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela colabad2.proj_participantes
+CREATE TABLE IF NOT EXISTS `proj_participantes` (
+  `PROJ_ID` int(11) NOT NULL,
+  `USU_ID` int(11) NOT NULL,
+  `PAR_RESPONSAVEL` char(1) NOT NULL DEFAULT 'N',
+  PRIMARY KEY (`USU_ID`,`PROJ_ID`),
+  KEY `FK_proj_participantes_proj_cadastro` (`PROJ_ID`),
+  CONSTRAINT `FK_proj_participantes_proj_cadastro` FOREIGN KEY (`PROJ_ID`) REFERENCES `proj_cadastro` (`PROJ_ID`),
+  CONSTRAINT `FK_proj_participantes_usu_usuario` FOREIGN KEY (`USU_ID`) REFERENCES `usu_usuario` (`USU_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela colabad2.proj_participantes: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `proj_participantes` DISABLE KEYS */;
+INSERT IGNORE INTO `proj_participantes` (`PROJ_ID`, `USU_ID`, `PAR_RESPONSAVEL`) VALUES
+	(15, 29, 'N'),
+	(15, 30, 'N');
+/*!40000 ALTER TABLE `proj_participantes` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.proj_usuario
 CREATE TABLE IF NOT EXISTS `proj_usuario` (
@@ -5802,9 +5840,9 @@ CREATE TABLE IF NOT EXISTS `usu_tela` (
   `TELA_DESCRICAO` varchar(255) DEFAULT NULL,
   `TELA_PRIVADO` int(11) DEFAULT NULL,
   PRIMARY KEY (`TELA_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela colabad2.usu_tela: ~5 rows (aproximadamente)
+-- Copiando dados para a tabela colabad2.usu_tela: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `usu_tela` DISABLE KEYS */;
 INSERT IGNORE INTO `usu_tela` (`TELA_ID`, `TELA_CAMINHO`, `TELA_DESCRICAO`, `TELA_PRIVADO`) VALUES
 	(1, 'index', NULL, 0),
@@ -5814,7 +5852,9 @@ INSERT IGNORE INTO `usu_tela` (`TELA_ID`, `TELA_CAMINHO`, `TELA_DESCRICAO`, `TEL
 	(5, 'verificacao', NULL, 0),
 	(6, 'painel', NULL, 1),
 	(7, 'publicar', NULL, 1),
-	(8, 'ajax', NULL, 0);
+	(8, 'ajax', NULL, 0),
+	(9, 'projetos', NULL, 1),
+	(10, 'appajax', NULL, 1);
 /*!40000 ALTER TABLE `usu_tela` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.usu_usuario
@@ -5840,7 +5880,7 @@ CREATE TABLE IF NOT EXISTS `usu_usuario` (
 -- Copiando dados para a tabela colabad2.usu_usuario: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `usu_usuario` DISABLE KEYS */;
 INSERT IGNORE INTO `usu_usuario` (`USU_ID`, `USU_NOME`, `USU_CADDATA`, `USU_SITUACAO`, `USU_EMAIL`, `USU_PWD`, `USU_PWDTOKEN`, `USU_PWDTOKENEXP`, `USU_EMAILCONF`, `USU_TOKEN`, `PERF_ID`, `USU_ULTIMOACESSO`, `USU_CONTACESSO`) VALUES
-	(29, 'Talliny', '2019-04-28 22:58:49', 'A', 'loja.anima.animus@gmail.com', '$2y$10$pq.blSaMfUppsakvGUCDKuEsfKFXimHVCu3ZQP.EB1YzS8LNLMhf2', NULL, '2019-05-01 20:31:26', 1, 'D7gFwKyWvY', 3, '2019-05-09 19:17:13', 15),
+	(29, 'Talliny', '2019-04-28 22:58:49', 'A', 'loja.anima.animus@gmail.com', '$2y$10$pq.blSaMfUppsakvGUCDKuEsfKFXimHVCu3ZQP.EB1YzS8LNLMhf2', NULL, '2019-05-01 20:31:26', 1, 'D7gFwKyWvY', 3, '2019-05-12 22:04:36', 18),
 	(30, 'João Eduardo', '2019-05-01 23:06:54', 'A', '1fb97b50a5@mailboxy.fun', '$2y$10$taNSjshaMuuSydutARf6t.7rL5aOuD7q0L/3iuKXmDkYzUTpJ6lj.', NULL, NULL, 1, 'XBDEAnmCUVZg', 1, '2019-05-01 23:08:08', 1);
 /*!40000 ALTER TABLE `usu_usuario` ENABLE KEYS */;
 

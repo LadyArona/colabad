@@ -89,5 +89,38 @@ class App_model extends CI_Model {
       print_r($e);
     }
   }
+
+  /*-- Função para buscar os dados dos combos padrões --*/    
+  function buscaDadosCombo($tipoInfo, $codToControl){
+    $dados = array();
+    $sql = '';
+
+    if ($tipoInfo == 'U') {
+      $where = ($codToControl != '') ? ' AND U.USU_ID = '.$codToControl.' ' : '';            
+      $sql = " SELECT U.USU_ID ID, U.USU_NOME DESCRICAO, '' COR, '' ICON 
+                FROM usu_usuario U
+                WHERE U.USU_SITUACAO = 'A'
+                $where 
+                ORDER BY U.USU_NOME; ";
+    } 
+
+    $query = $this->db->query($sql);
+
+    if ($query->num_rows() > 0){
+      foreach ($query->result() as $row) {
+            $dados[] = array(
+                'vIdInfo'   => $row->ID,
+                'vNomeInfo' => $row->DESCRICAO,
+                'vCorInfo'  => $row->COR,
+                'vIconInfo' => $row->ICON
+            );  
+      }
+
+      return $dados;
+    }
+
+    return null;
+  }
+
 }
 

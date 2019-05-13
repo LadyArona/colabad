@@ -1920,7 +1920,7 @@ pre code
 .table th,
 .table td
 {
-    padding: 1rem;
+    padding: 0.7rem;
 
     vertical-align: top;
 
@@ -20892,7 +20892,7 @@ textarea[resize='horizontal']
 .table td,
 .table th
 {
-    font-size: .8125rem;
+    font-size: .9rem;
 
     white-space: nowrap;
 }

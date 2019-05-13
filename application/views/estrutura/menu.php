@@ -6,8 +6,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Brand -->
-      <a class="navbar-brand pt-0" href="./index.html">
-        <img src="./assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+      <a class="navbar-brand pt-0" href="<?php echo base_url();?>">
+        <img src="<?php echo base_url();?>assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -26,7 +26,7 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="./assets/img/theme/team-1-800x800.jpg">
+                <img alt="Image placeholder" src="<?php echo base_url();?>assets/img/theme/team-1-800x800.jpg">
               </span>
             </div>
           </a>
@@ -38,8 +38,8 @@
         <div class="navbar-collapse-header d-md-none">
           <div class="row">
             <div class="col-6 collapse-brand">
-              <a href="./index.html">
-                <img src="./assets/img/brand/blue.png">
+              <a href="<?php echo base_url();?>">
+                <img src="<?php echo base_url();?>assets/img/brand/blue.png">
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -74,17 +74,17 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./examples/tables.html">
+            <a class="nav-link" href="<?php echo base_url();?>publicar">
               <i class="ni ni-bullet-list-67 text-red"></i> Minhas Imagens
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./examples/login.html">
+            <a class="nav-link" href="<?php echo base_url();?>projetos/cadastrar">
               <i class="ni ni-album-2 text-info"></i> Projetos
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./examples/register.html">
+            <a class="nav-link" href="<?php echo base_url();?>publicar">
               <i class="ni ni-circle-08 text-pink"></i> Register
             </a>
           </li>
@@ -121,7 +121,7 @@
         <hr class="my-3">
         <a href="<?php echo base_url('index/logout'); ?>" class="nav-link">
           <i class="ni ni-user-run"></i>
-          <span>Sair</span>
+          <span>Sair</span> 
         </a>
       </div>
     </div>

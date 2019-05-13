@@ -25,4 +25,26 @@ class Ajax extends CI_Controller {
          ->set_content_type('application/json')
          ->set_output(json_encode($registros));
   }
+
+  function buscarProjeto(){
+    if($this->input->post('buscarProjeto') == ""){
+      $this->load->model('Projetos_model', 'proj');
+      $registros = $this->proj->buscarProjeto();
+      $this->output
+           ->set_content_type('application/json')
+           ->set_output(json_encode($registros));
+    }
+  }  
+
+  function salvarProjeto(){
+    if($this->input->post('salvarProjeto') == ""){
+      $this->load->model('Projetos_model', 'proj');
+      $form   = $this->input->post('form');
+      $participantes = $this->input->post('participantes');
+      $result = $this->proj->salvarProjeto($form, $participantes);
+      $this->output
+           ->set_content_type('application/json')
+           ->set_output(json_encode($result));
+    }
+  }
 }

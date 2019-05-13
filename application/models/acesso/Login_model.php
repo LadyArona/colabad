@@ -149,7 +149,7 @@ class Login_model extends CI_Model {
 
       //busca dados do usuário
       $this->db->select(
-        'U.USU_ID,
+        "U.USU_ID,
          U.USU_CADDATA,
          U.USU_SITUACAO,
          SUBSTRING_INDEX(SUBSTRING_INDEX(U.USU_NOME, ' ', 1), ' ', -1) USU_NOME,
@@ -161,7 +161,7 @@ class Login_model extends CI_Model {
          U.USU_CONTACESSO,
          U.USU_ULTIMOACESSO,
          U.PERF_ID,
-         P.PERF_NIVEL')    
+         P.PERF_NIVEL")    
       ->from('usu_usuario U')
       ->join('usu_perfil P', ' P.PERF_ID = U.PERF_ID')
       ->where('U.USU_EMAIL', $login)
