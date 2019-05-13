@@ -10,7 +10,7 @@ const projetos = {
     $('#btnCancelar').click(function(event) {  
       projetos.limparCampos()
       $('#edTitulo').focus()
-    })   
+    })
 
     $('#btnSalvar').click(function(event) {  
       projetos.salvarCadastro()
@@ -111,12 +111,12 @@ const projetos = {
       $.ajax({
         url: `${baseUrl}ajax/salvarProjeto`,
         data: {
-          salvarProjeto: '', 
+          salvarProjeto: '',
           form: $('#formProjeto').serialize(),
           participantes
         },
-        dataType: "JSON",
-        type: "POST",
+        dataType: 'JSON',
+        type: 'POST',
         beforeSend: () => {
           $.loader({
             className: 'blue-with-image-2',
@@ -162,11 +162,11 @@ const projetos = {
     $.ajax({
       url: `${baseUrl}ajax/carregarProjeto`,
       data: {
-        carregarProjeto: '', 
+        carregarProjeto: '',
         id
       },
-      dataType: "JSON",
-      type: "POST",
+      dataType: 'JSON',
+      type: 'POST',
       beforeSend: () => {
         $.loader({
           className: 'blue-with-image-2',
@@ -175,11 +175,11 @@ const projetos = {
       }
     }).done((data) => {
       if (data.result === 'OK') {
-        $("#edTitulo").val(data.vTitulo)
-        $("#edDescricao").val(data.vDescricao)
+        $('#edTitulo').val(data.vTitulo)
+        $('#edDescricao').val(data.vDescricao)
 
-        $("#cbPublico").val(data.vPublico).selectpicker('render').selectpicker('refresh')
-        $("#cbStatus").val(data.vStatus).selectpicker('render').selectpicker('refresh')
+        $('#cbPublico').val(data.vPublico).selectpicker('render').selectpicker('refresh')
+        $('#cbStatus').val(data.vStatus).selectpicker('render').selectpicker('refresh')
 
         $('#edEditar').val('S')
         $('#edCodigo').val(data.vId)
@@ -200,7 +200,6 @@ const projetos = {
     }).always(() => {
       $.loader('close')
     })
-
   },
   limparCampos: () => {
     $('#cbPublico').val(0).selectpicker('render').selectpicker('refresh')
@@ -215,4 +214,3 @@ const projetos = {
     })
   }
 }
-

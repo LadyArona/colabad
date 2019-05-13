@@ -36,6 +36,17 @@ class Ajax extends CI_Controller {
     }
   }  
 
+  function carregarProjeto(){
+    if($this->input->post('carregarProjeto') == ""){
+      $this->load->model('Projetos_model', 'proj');
+      $id        = $this->input->post('id');
+      $registros = $this->proj->carregarProjeto($id);
+      $this->output
+           ->set_content_type('application/json')
+           ->set_output(json_encode($registros));
+    }
+  }  
+
   function salvarProjeto(){
     if($this->input->post('salvarProjeto') == ""){
       $this->load->model('Projetos_model', 'proj');

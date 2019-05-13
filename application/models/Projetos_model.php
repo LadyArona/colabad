@@ -83,7 +83,7 @@ class Projetos_model extends CI_Model {
       }
 
       foreach ($query->result() as $row) {
-        $nestedData = array(); 
+        $nestedData = array();
 
         $nestedData[] = $row->vId;
         $nestedData[] = '<strong>'.$row->vTitulo.'</strong>';
@@ -110,8 +110,77 @@ class Projetos_model extends CI_Model {
             );
 
       } catch(PDOException $e) { 
-              echo 'Erro: ' . $e->getMessage();
+        return
+          array(
+            'result' => 'ERRO',
+            'mensagem' => $e->getMessage()
+          );
       }           
+  }
+
+  public function carregarProjeto ($id) {
+    $tabela      = 'proj_cadastro';
+
+    try{
+      $sql = "SELECT P.PROJ_ID vId,
+                     P.PROJ_TITULO vTitulo,
+                     P.PROJ_DESCRICAO vDescricao,
+                     P.PROJ_STATUS vStatus,
+                     P.PROJ_PRIVADO vPrivado
+
+              FROM proj_cadastro P
+
+              WHERE P.PROJ_ID = $id ;";
+
+      $query = $this->db->query($sql);
+
+      if ($query->num_rows() > 0){
+        foreach ($query->result() as $row) {
+          $dados = array(
+            'vTitulo'       => $row->vTitulo,
+            'vDescricao'    => $row->vDescricao,
+            'vResponsavel'  => $row->vPrivado,
+            'vStatus'       => $row->vStatus,
+            'vId'           => $row->vId
+          );
+        }
+
+        //busca participantes
+        $sql = "SELECT P.USU_ID vId,
+                       U.USU_NOME vNome,
+                       P.PAR_RESPONSAVEL vResponsavel
+
+                FROM proj_participantes P
+                  JOIN usu_usuario U ON U.USU_ID = P.USU_ID
+
+                WHERE P.PROJ_ID = $id ;";
+
+        $query = $this->db->query($sql);
+
+        if ($query->num_rows() > 0){
+          foreach ($query->result() as $row) {
+            $dados['vParticipante'][] = array(
+              'vId'          => $row->vId,
+              'vNome'        => $row->vNome,
+              'vResponsavel' => $row->vResponsavel
+            );
+          }
+        }
+
+        return
+          array(
+            'result' => 'OK',
+            'mensagem' => $id.' - '.$edTitulo
+          );
+
+      }
+    } catch(PDOException $e) { 
+      return
+        array(
+          'result' => 'ERRO',
+          $dados
+        );
+    }           
   }
 
   public function salvarProjeto ($form, $participantes) {
