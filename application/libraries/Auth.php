@@ -98,4 +98,20 @@ class Auth {
     redirect(base_url()); // redireciona para a raiz do sistema(pagina de login)
   }
 
+  function logUsuario ($origem, $id, $tipo) {
+    $tabela = 'usu_log';
+
+    $usuario = $this->CI->session->userdata('logged_in_colabad') != null ? $this->CI->session->userdata('logged_in_colabad')['sesColabad_vId'] : $id;
+
+    $dados = 
+      array(
+        'LOG_ORIGEM'    => $origem,
+        'LOG_ORIGEM_ID' => $id,
+        'LT_ID'         => $tipo,
+        'USU_ID'        => $usuario
+      );
+
+    $this->CI->db->insert($tabela, $dados);
+  }
+
 }

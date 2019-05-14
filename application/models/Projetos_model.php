@@ -137,11 +137,13 @@ class Projetos_model extends CI_Model {
       if ($query->num_rows() > 0){
         foreach ($query->result() as $row) {
           $dados = array(
+            'result'        => 'OK',
             'vTitulo'       => $row->vTitulo,
             'vDescricao'    => $row->vDescricao,
             'vResponsavel'  => $row->vPrivado,
             'vStatus'       => $row->vStatus,
-            'vId'           => $row->vId
+            'vId'           => $row->vId,
+            'vParticipante' => array()
           );
         }
 
@@ -167,11 +169,7 @@ class Projetos_model extends CI_Model {
           }
         }
 
-        return
-          array(
-            'result' => 'OK',
-            'mensagem' => $id.' - '.$edTitulo
-          );
+        return $dados;
 
       }
     } catch(PDOException $e) { 
@@ -187,7 +185,7 @@ class Projetos_model extends CI_Model {
     $id  = 0;
     $values = array();
 
-    if (isset($form)) { 
+    if (isset($form)) {
       parse_str($form, $values); 
 
       try{
@@ -212,10 +210,12 @@ class Projetos_model extends CI_Model {
           $id = $this->db->affected_rows();
 
           $this->salvaParticipantes($values['edCodigo'], $participantes, 'S');
+          $this->auth->logUsuario($tabela, $id, 3);
         } else {
           $this->db->insert($tabela, $dados);
           $id = $this->db->insert_id();
           $this->salvaParticipantes($id, $participantes, 'N');
+          $this->auth->logUsuario($tabela, $id, 1);
         }
 
         return

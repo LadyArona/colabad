@@ -5,8 +5,6 @@ const projetos = {
   initConfig: () => {
     app.carregaCombo('cbParticipante', 'U')
 
-    $('#edTitulo').focus()
-
     $('#btnCancelar').click(function(event) {  
       projetos.limparCampos()
       $('#edTitulo').focus()
@@ -134,6 +132,7 @@ const projetos = {
           $('#btnCancelar').click()
           tabelaProjetos.ajax.reload()
           //$('.nav-pills a[href="#projetos"]').tab('show')
+          app.selectTab(0)
         }
       }).fail((err) => {
         console.log('error dados ', err)
@@ -148,6 +147,20 @@ const projetos = {
       app.showNotification(`Informe o título do Projeto!`, 'danger', 5)
       $('#edTitulo').focus()
       return false
+    }
+
+    if(!$("#cbPublico").selectpicker('val')){
+      app.showNotification("Selecione o Tipo de Privacidade do Projeto", 'danger', 5);
+      $("#cbPublico").selectpicker('toggle').selectpicker('render')
+      return false;
+    }
+
+    if(!$("#cbStatus").selectpicker('val')){
+      app.showNotification("Selecione o Status do Projeto", 'danger', 5);
+      $("#cbStatus")
+        .selectpicker('toggle')
+        .selectpicker('render');
+      return false;
     }
 
     if (participantes.length == 0) {
@@ -174,7 +187,9 @@ const projetos = {
         })
       }
     }).done((data) => {
-      if (data.result === 'OK') {
+      if (data.result == 'OK') {
+        app.selectTab(1)
+
         $('#edTitulo').val(data.vTitulo)
         $('#edDescricao').val(data.vDescricao)
 
@@ -184,13 +199,15 @@ const projetos = {
         $('#edEditar').val('S')
         $('#edCodigo').val(data.vId)
 
-        data.vParticipante.each(function (index, el) {
-          projetos.addRow(el.vId, el.vNome, el.vResponsavel)
-        })
+        if (data.vParticipante.length > 0) {
+          data.vParticipante.map(function (el) {
+            projetos.addRow(el.vId, el.vNome, el.vResponsavel)
+          })
+        }
 
-        $('.nav-pills a[href="#cadastrar"]').tab('show')
+         $('#edTitulo').focus()
       } else
-      if (data.result === 'ERRO') {
+      if (data.result == 'ERRO') {
         console.log('error dados ', data)
         app.showNotification(`Ops! Erro ao carregar`, 'danger', 2)
       }

@@ -4,7 +4,7 @@
       <div class="card-header bg-white border-0">
         <ul class="nav nav-pills nav-fill flex-column flex-md-row" role="tablist">
           <li class="nav-item mr-2 mr-md-0">
-            <a class="nav-link mb-sm-3 mb-md-0 active" id="projetos-tab" data-toggle="tab" href="#projetos" role="tab" aria-controls="projetos" aria-selected="true">
+            <a class="nav-link mb-sm-3 mb-md-0 active show" id="projetos-tab" data-toggle="tab" href="#projetos" role="tab" aria-controls="projetos" aria-selected="true">
               <i class="ni ni-album-2"></i> Meus Projetos
             </a>
           </li>
@@ -70,7 +70,7 @@
                   <div class="form-group">
                     <label class="form-control-label" for="cbPublico">Privacidade do Projeto</label>
                     <select class="selectpicker form-control" data-style="select-with-transition" 
-                            title="Selecione" id="cbPublico" name="cbPublico">
+                            title="Selecione" id="cbPublico" name="cbPublico" required>
                       <option value="0" selected>Público</option>
                       <option value="1">Privado</option>
                     </select>
@@ -80,7 +80,7 @@
                   <div class="form-group">
                     <label class="form-control-label" for="cbStatus">Status do Projeto</label>
                     <select class="selectpicker form-control" data-style="select-with-transition" 
-                            title="Selecione" id="cbStatus" name="cbStatus">
+                            title="Selecione" id="cbStatus" name="cbStatus" required>
                       <option value="A" selected>Ativo</option>
                       <option value="I">Inativo</option>
                     </select>

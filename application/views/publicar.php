@@ -23,7 +23,15 @@
               <textarea rows="10" class="form-control" id="edAudiodescricao" name="edAudiodescricao" required></textarea>
             </div>
           </div>
-          
+          <div class="pl-lg-4">
+            <div class="form-group">
+              <label class="form-control-label" for="cbProjeto">Projeto</label>
+              <select class="selectpicker form-control" data-style="select-with-transition" 
+                      title="Selecione" id="cbProjeto" name="cbProjeto" required>
+              </select>
+            </div>
+          </div>
+          <hr class="my-4" />
           <div class="pl-lg-4">
             <div class="row">
               <div class="col-lg-12">

@@ -4,6 +4,12 @@ app = {
       $('.selectpicker').selectpicker();
       
     },
+    selectTab: (tabindex = 0) => {
+      $('.nav-pills li a').removeClass('active show');
+      $('.nav-pills li a').eq(tabindex).addClass('active show');
+      $('.tab-pane').removeClass('active show');
+      $('.tab-pane').eq(tabindex).addClass('active show');
+    },
     showNotification: (message, type, time, multiply = 2000) => {
       $.notify({
           icon: "notifications",

@@ -1,6 +1,8 @@
 
 const publicar = {
   initConfig: () => {
+     app.carregaCombo('cbProjeto', 'P', 0)
+
     $('#edTitulo').focus()
 
     $('#inputGroupFile01').change(function(event) {  
@@ -42,6 +44,7 @@ const publicar = {
         let formData = new FormData()
         formData.append('imagem', $('#inputGroupFile01')[0].files[0])
         formData.append('titulo', $('#edTitulo').val())
+        formData.append('projeto', $('#cbProjeto').val())
         formData.append('descricao', $('#edAudiodescricao').val())
 
       $.ajax({
@@ -84,6 +87,12 @@ const publicar = {
       app.showNotification(`Informe a áudiodescrição da imagem!`, 'danger', 5)
       $('#edAudiodescricao').focus()
       return false
+    }
+
+    if(!$("#cbProjeto").selectpicker('val')){
+      app.showNotification("Selecione um Projeto para a Imagem", 'danger', 5);
+      $("#cbProjeto").selectpicker('toggle').selectpicker('render')
+      return false;
     }
 
     if ($('#inputGroupFile01')[0].files[0] == null) {

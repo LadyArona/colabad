@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login_model extends CI_Model {
 
-     public function __construct(){
-        parent::__construct();
-        $this->load->model('Email_model', 'email');
-     }
+  public function __construct(){
+    parent::__construct();
+    $this->load->model('Email_model', 'email');
+  }
 
   function salvarCadastro($form){
     $id  = 0;
@@ -41,6 +41,7 @@ class Login_model extends CI_Model {
         if ($emailResult['result'] == 'OK') {
           $this->db->insert('usu_usuario', $dados);
           $id = $this->db->insert_id();
+          $this->auth->logUsuario('usu_usuario', $id, 1);
         }
 
         return $emailResult;
@@ -75,6 +76,7 @@ class Login_model extends CI_Model {
         $data['conteudo'] = $token;
 
         $emailResult = $this->email->envia_email($data);
+        $this->auth->logUsuario('recuperar_senha', 0, 4);
 
         return $emailResult;
       } catch(PDOException $e) { 
@@ -105,12 +107,10 @@ class Login_model extends CI_Model {
                    AND U.USU_PWDTOKEN = '$edToken'
                    AND CURRENT_TIMESTAMP <= U.USU_PWDTOKENEXP ; ";
         $query = $this->db->query($sqlU);
+        $id    = $this->db->affected_rows();
 
-        /*echo "<pre>";
-        print_r($query);
-        exit;*/
-
-        if ($this->db->affected_rows() > 0) {
+        if ($id > 0) {
+          $this->auth->logUsuario('usu_usuario', $id, 5);
           return array(
             'result'   => 'OK',
             'mensagem' => 'Senha alterada'
@@ -158,8 +158,6 @@ class Login_model extends CI_Model {
          U.USU_PWD,
          U.USU_EMAILCONF,
          U.USU_TOKEN,
-         U.USU_CONTACESSO,
-         U.USU_ULTIMOACESSO,
          U.PERF_ID,
          P.PERF_NIVEL")    
       ->from('usu_usuario U')
@@ -199,18 +197,12 @@ class Login_model extends CI_Model {
             'sesColabad_vEmail'       => $row->USU_EMAIL,
             'sesColabad_vPw'          => $row->USU_PWD,
             'sesColabad_vEmailConf'   => $row->USU_EMAILCONF,
-            'sesColabad_vQtdAcesso'   => $row->USU_CONTACESSO,
-            'sesColabad_vUltAcesso'   => $row->USU_ULTIMOACESSO,
             'sesColabad_vPerfilId'    => $row->PERF_ID,
             'sesColabad_vPerfilNivel' => $row->PERF_NIVEL
           );
 
-          //atualiza contador e ultimo login
-          $sqlU = " UPDATE usu_usuario U
-                   SET U.USU_CONTACESSO = (U.USU_CONTACESSO + 1),
-                       U.USU_ULTIMOACESSO = CURRENT_TIMESTAMP
-                   WHERE U.USU_ID = $row->USU_ID ;";
-          $this->db->query($sqlU);
+          //atualiza ultimo login
+          $this->auth->logUsuario('usu_usuario', $row->USU_ID, 2);
 
           $this->session->set_userdata('logged_in_colabad', $session_data);
           return 

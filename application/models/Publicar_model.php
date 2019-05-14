@@ -7,7 +7,7 @@ class Publicar_model extends CI_Model {
     $this->load->model('App_model', 'app');
   }
 
-  public function salvaImagem ($imagem, $titulo, $descricao) {
+  public function salvaImagem ($imagem, $titulo, $descricao, $projeto) {
     try{
       $tabela = 'img_cadastro';
 
@@ -32,13 +32,15 @@ class Publicar_model extends CI_Model {
           'IMG_NOMEUNIQ'       => $nome_imagem,
           'IMG_TYPE'           => $imagem['type'],
           'IMG_TITULO'         => $titulo,
-          'IMG_AUDIODESCRICAO' => $descricao
+          'IMG_AUDIODESCRICAO' => $descricao,
+          'PROJ_ID'            => $projeto
         );  
 
       $this->db->insert($tabela, $dados);
       $id = $this->db->insert_id();
 
       $this->app->gravaLog($id, 1);
+      $this->auth->logUsuario($tabela, $id, 1);
 
       return
         array(

@@ -5678,6 +5678,23 @@ INSERT IGNORE INTO `conf_estado` (`EST_ID`, `EST_UFID`, `EST_DESCRICAO`, `EST_UF
 	(27, 17, 'Tocantins', 'TO', 1);
 /*!40000 ALTER TABLE `conf_estado` ENABLE KEYS */;
 
+-- Copiando estrutura para tabela colabad2.conf_logtipo
+CREATE TABLE IF NOT EXISTS `conf_logtipo` (
+  `LT_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LT_DESCRICAO` varchar(255) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`LT_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela colabad2.conf_logtipo: ~5 rows (aproximadamente)
+/*!40000 ALTER TABLE `conf_logtipo` DISABLE KEYS */;
+INSERT IGNORE INTO `conf_logtipo` (`LT_ID`, `LT_DESCRICAO`) VALUES
+	(1, 'Cadastrar'),
+	(2, 'Login'),
+	(3, 'Editar'),
+	(4, 'recuperar senha'),
+	(5, 'alterar senha');
+/*!40000 ALTER TABLE `conf_logtipo` ENABLE KEYS */;
+
 -- Copiando estrutura para tabela colabad2.conf_regiao
 CREATE TABLE IF NOT EXISTS `conf_regiao` (
   `REG_ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -5704,15 +5721,20 @@ CREATE TABLE IF NOT EXISTS `img_cadastro` (
   `IMG_TITULO` text,
   `IMG_AUDIODESCRICAO` text,
   `IMG_STATUS` char(1) NOT NULL DEFAULT 'A',
-  PRIMARY KEY (`IMG_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  `PROJ_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`IMG_ID`),
+  KEY `FK_img_cadastro_proj_cadastro` (`PROJ_ID`),
+  CONSTRAINT `FK_img_cadastro_proj_cadastro` FOREIGN KEY (`PROJ_ID`) REFERENCES `proj_cadastro` (`PROJ_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela colabad2.img_cadastro: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela colabad2.img_cadastro: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `img_cadastro` DISABLE KEYS */;
-INSERT IGNORE INTO `img_cadastro` (`IMG_ID`, `IMG_NOME`, `IMG_NOMEUNIQ`, `IMG_TYPE`, `IMG_TITULO`, `IMG_AUDIODESCRICAO`, `IMG_STATUS`) VALUES
-	(10, 'team-1-800x800.jpg', '9abe32b3ee76a84e31d389e103338fb0.jpg', 'image/jpeg', 'Exposição do Museu Farroupilha em 1978', 'Fotografia, horizontal, em preto e branco. Três homens observando um objeto sobre uma mesa, e outras pessoas em volta em um ambiente interno.\n\nAo centro da imagem, um homem de frente, em pé, enquadrado dos joelhos para cima. Tem pele clara, cabelo curto, crespo e escuro. Está com o rosto levemente inclinado para baixo observando o objeto. Veste terno e calça acinzentados, camisa clara e gravata escura. Em sua mão direita, segura uma taça transparente com um líquido escuro.\n\nA direita, dois homens de perfil para a esquerda, um ao lado do outro.  A frente um homem de pele clara, cabelo curto com entrada de calvície, liso e escuro, e bigode escuro. Veste uma blusa com estampa de fundo claro com listras escuras e calça acinzentada. Em sua mão esquerda segura folhas de ofício e entre dois dedos segura um cigarro. Após ele, um homem de pele clara, cabelo curto, crespo e escuro. Veste terno escuro e segura na mão direita uma taça transparente com um líquido escuro.\n\nA frente deles, uma mesa de metal com tampo de madeira clara. Sobre ela três caixas de vidro retangulares. A primeira caixa a direita, tem um estribo e a representação de uma cuia logo atrás do estribo. Na caixa ao lado esquerdo, tem uma boleadeira, e atrás tem uma caixa com duas esporas.\n\nA esquerda do homem e após a mesa, um pilar claro, com uma estrutura de quatro lados, formadas por hastes metálicas de cerca de dois metros de altura, unidas por hastes horizontais na parte superior e inferior. Em cada lado da estrutura um painel claro. No painel da frente uma espada escura. Próximos a estrutura, estão dois homens, virados de costas com cabelo liso, curto e escuro e roupas escuras.\n\nNo restante do ambiente, outras estruturas de ferro ao fundo da imagem e cerca de dez pessoas em pé.\n\nA parede do fundo tem persianas claras. O teto é claro com luminárias retangulares na vertical. O chão é escuro.', 'A'),
-	(11, 'team-3-800x800.jpg', '6f8b5247ed0bac3dc08b9974770131fa.jpg', 'image/jpeg', 'Televisão no Ensino de Cirurgia em 1963', 'Fotografia, horizontal, em preto e branco. Um quadro com desenho ilustrando uma sala de cirurgia.\n\nO quadro tem as bordas escuras, grossas, e uma listra clara mais fina em volta de todo o quadro. Os desenhos são feitos em tons claros e escuros. Na esquerda tem cinco pessoas vestindo trajes cirúrgicos: toucas, máscaras e roupão. Elas estão em volta de uma mesa cirúrgica; acima da mesa tem uma luminária redonda.\n\nDestacado por uma claridade maior ao centro da imagem, um homem sentado, está de frente para uma televisão.\n\nA direita da imagem, doze homens sentados em formação de um U de costas para a fotografia, assistindo a cirurgia na imagem projetada em um telão.\n\nO quadro está localizado em um ambiente interno , com paredes brancas.', 'A'),
-	(12, 'team-2-800x800.jpg', '1cc88dde6b2a3f62272bd16c3b80a190.jpg', 'image/jpeg', 'Concurso Estudantil Sobre Antártica em 1996', 'Fotografia, horizontal e colorida, de quatro pessoas em pé em um ambiente interno.\n\nNa esquerda da imagem, um homem em pé, com faixa etária de 50 anos, tem pele branca, cabelo curto, liso e grisalho; veste terno preto, com camisa branca e gravata vermelha. Segura em suas mãos um porta documento de veludo; A fotografia está enquadrada da cintura para cima e o homem está de perfil esquerdo para a imagem.\n\nA sua frente, uma mulher com faixa etária de 25 anos, tem pele branca, cabelo liso, loiro e comprido. Usa óculos de armação fina de metal e lentes redondas; está com um vestido rosa, e segura a frente de seu corpo um diploma;\n\nAtrás, uma parede lisa e branca. Próximos a ela, dois homens em pé. A esquerda da imagem um homem com faixa etária de 50 anos, pele branca, cabelo curto, liso e grisalho. Ele veste terno cinza e gravata vermelha com detalhes pretos; está com as mãos em posição de aplauso. Ao seu lado outro homem, com faixa etária de 50 anos, pele clara, cabelo liso, preto e curto; Tem barba preta e usa óculos de lentes redondas e armação fina e escura. \n\nAtrás dos homens próximo a parede, ao lado esquerdo da imagem, um mastro com a bandeira do Brasil, a frente uma mesa de madeira com um microfone em cima.', 'A');
+INSERT IGNORE INTO `img_cadastro` (`IMG_ID`, `IMG_NOME`, `IMG_NOMEUNIQ`, `IMG_TYPE`, `IMG_TITULO`, `IMG_AUDIODESCRICAO`, `IMG_STATUS`, `PROJ_ID`) VALUES
+	(10, 'team-1-800x800.jpg', '9abe32b3ee76a84e31d389e103338fb0.jpg', 'image/jpeg', 'Exposição do Museu Farroupilha em 1978', 'Fotografia, horizontal, em preto e branco. Três homens observando um objeto sobre uma mesa, e outras pessoas em volta em um ambiente interno.\n\nAo centro da imagem, um homem de frente, em pé, enquadrado dos joelhos para cima. Tem pele clara, cabelo curto, crespo e escuro. Está com o rosto levemente inclinado para baixo observando o objeto. Veste terno e calça acinzentados, camisa clara e gravata escura. Em sua mão direita, segura uma taça transparente com um líquido escuro.\n\nA direita, dois homens de perfil para a esquerda, um ao lado do outro.  A frente um homem de pele clara, cabelo curto com entrada de calvície, liso e escuro, e bigode escuro. Veste uma blusa com estampa de fundo claro com listras escuras e calça acinzentada. Em sua mão esquerda segura folhas de ofício e entre dois dedos segura um cigarro. Após ele, um homem de pele clara, cabelo curto, crespo e escuro. Veste terno escuro e segura na mão direita uma taça transparente com um líquido escuro.\n\nA frente deles, uma mesa de metal com tampo de madeira clara. Sobre ela três caixas de vidro retangulares. A primeira caixa a direita, tem um estribo e a representação de uma cuia logo atrás do estribo. Na caixa ao lado esquerdo, tem uma boleadeira, e atrás tem uma caixa com duas esporas.\n\nA esquerda do homem e após a mesa, um pilar claro, com uma estrutura de quatro lados, formadas por hastes metálicas de cerca de dois metros de altura, unidas por hastes horizontais na parte superior e inferior. Em cada lado da estrutura um painel claro. No painel da frente uma espada escura. Próximos a estrutura, estão dois homens, virados de costas com cabelo liso, curto e escuro e roupas escuras.\n\nNo restante do ambiente, outras estruturas de ferro ao fundo da imagem e cerca de dez pessoas em pé.\n\nA parede do fundo tem persianas claras. O teto é claro com luminárias retangulares na vertical. O chão é escuro.', 'A', NULL),
+	(11, 'team-3-800x800.jpg', '6f8b5247ed0bac3dc08b9974770131fa.jpg', 'image/jpeg', 'Televisão no Ensino de Cirurgia em 1963', 'Fotografia, horizontal, em preto e branco. Um quadro com desenho ilustrando uma sala de cirurgia.\n\nO quadro tem as bordas escuras, grossas, e uma listra clara mais fina em volta de todo o quadro. Os desenhos são feitos em tons claros e escuros. Na esquerda tem cinco pessoas vestindo trajes cirúrgicos: toucas, máscaras e roupão. Elas estão em volta de uma mesa cirúrgica; acima da mesa tem uma luminária redonda.\n\nDestacado por uma claridade maior ao centro da imagem, um homem sentado, está de frente para uma televisão.\n\nA direita da imagem, doze homens sentados em formação de um U de costas para a fotografia, assistindo a cirurgia na imagem projetada em um telão.\n\nO quadro está localizado em um ambiente interno , com paredes brancas.', 'A', NULL),
+	(12, 'team-2-800x800.jpg', '1cc88dde6b2a3f62272bd16c3b80a190.jpg', 'image/jpeg', 'Concurso Estudantil Sobre Antártica em 1996', 'Fotografia, horizontal e colorida, de quatro pessoas em pé em um ambiente interno.\n\nNa esquerda da imagem, um homem em pé, com faixa etária de 50 anos, tem pele branca, cabelo curto, liso e grisalho; veste terno preto, com camisa branca e gravata vermelha. Segura em suas mãos um porta documento de veludo; A fotografia está enquadrada da cintura para cima e o homem está de perfil esquerdo para a imagem.\n\nA sua frente, uma mulher com faixa etária de 25 anos, tem pele branca, cabelo liso, loiro e comprido. Usa óculos de armação fina de metal e lentes redondas; está com um vestido rosa, e segura a frente de seu corpo um diploma;\n\nAtrás, uma parede lisa e branca. Próximos a ela, dois homens em pé. A esquerda da imagem um homem com faixa etária de 50 anos, pele branca, cabelo curto, liso e grisalho. Ele veste terno cinza e gravata vermelha com detalhes pretos; está com as mãos em posição de aplauso. Ao seu lado outro homem, com faixa etária de 50 anos, pele clara, cabelo liso, preto e curto; Tem barba preta e usa óculos de lentes redondas e armação fina e escura. \n\nAtrás dos homens próximo a parede, ao lado esquerdo da imagem, um mastro com a bandeira do Brasil, a frente uma mesa de madeira com um microfone em cima.', 'A', NULL),
+	(13, 'hand-man-view-sign-finger-symbol-941135-pxhere.com.jpg', '28b4a8176468d25cd76bfa1b8ecfda20.jpg', 'image/jpeg', 'essa agora vai', '0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n', 'A', NULL),
+	(14, 'hand-man-view-sign-finger-symbol-941135-pxhere.com.jpg', '71b64d54ac04b0a398759f433e0bc940.jpg', 'image/jpeg', 'sgsdgdsdgsdgsdg', 'cbProjeto\ncbProjeto\ncbProjeto\ncbProjeto\ncbProjeto\ncbProjeto\ncbProjeto\ncbProjeto\n', 'A', 1);
 /*!40000 ALTER TABLE `img_cadastro` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.img_log
@@ -5720,37 +5742,26 @@ CREATE TABLE IF NOT EXISTS `img_log` (
   `ILOG_ID` int(11) NOT NULL AUTO_INCREMENT,
   `IMG_ID` int(11) DEFAULT NULL,
   `USU_ID` int(11) DEFAULT NULL,
-  `ILT_ID` int(11) DEFAULT NULL,
+  `LT_ID` int(11) DEFAULT NULL,
   `ILOG_DATA` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ILOG_ID`),
   KEY `FK_img_log_img_cadastro` (`IMG_ID`),
   KEY `FK_img_log_usu_usuario` (`USU_ID`),
-  KEY `FK_img_log_img_logtipo` (`ILT_ID`),
+  KEY `FK_img_log_img_logtipo` (`LT_ID`),
   CONSTRAINT `FK_img_log_img_cadastro` FOREIGN KEY (`IMG_ID`) REFERENCES `img_cadastro` (`IMG_ID`),
-  CONSTRAINT `FK_img_log_img_logtipo` FOREIGN KEY (`ILT_ID`) REFERENCES `img_logtipo` (`ILT_ID`),
+  CONSTRAINT `FK_img_log_img_logtipo` FOREIGN KEY (`LT_ID`) REFERENCES `conf_logtipo` (`LT_ID`),
   CONSTRAINT `FK_img_log_usu_usuario` FOREIGN KEY (`USU_ID`) REFERENCES `usu_usuario` (`USU_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela colabad2.img_log: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `img_log` DISABLE KEYS */;
-INSERT IGNORE INTO `img_log` (`ILOG_ID`, `IMG_ID`, `USU_ID`, `ILT_ID`, `ILOG_DATA`) VALUES
+INSERT IGNORE INTO `img_log` (`ILOG_ID`, `IMG_ID`, `USU_ID`, `LT_ID`, `ILOG_DATA`) VALUES
 	(1, 10, 29, 1, '2019-05-10 01:35:29'),
 	(2, 11, 29, 1, '2019-05-10 01:36:22'),
-	(3, 12, 29, 1, '2019-05-10 01:38:25');
+	(3, 12, 29, 1, '2019-05-10 01:38:25'),
+	(4, 13, 29, 1, '2019-05-13 23:15:32'),
+	(5, 14, 29, 1, '2019-05-13 23:19:42');
 /*!40000 ALTER TABLE `img_log` ENABLE KEYS */;
-
--- Copiando estrutura para tabela colabad2.img_logtipo
-CREATE TABLE IF NOT EXISTS `img_logtipo` (
-  `ILT_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `ILT_DESCRICAO` varchar(255) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ILT_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
--- Copiando dados para a tabela colabad2.img_logtipo: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `img_logtipo` DISABLE KEYS */;
-INSERT IGNORE INTO `img_logtipo` (`ILT_ID`, `ILT_DESCRICAO`) VALUES
-	(1, 'Publicada');
-/*!40000 ALTER TABLE `img_logtipo` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.proj_cadastro
 CREATE TABLE IF NOT EXISTS `proj_cadastro` (
@@ -5769,7 +5780,7 @@ CREATE TABLE IF NOT EXISTS `proj_cadastro` (
 -- Copiando dados para a tabela colabad2.proj_cadastro: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `proj_cadastro` DISABLE KEYS */;
 INSERT IGNORE INTO `proj_cadastro` (`PROJ_ID`, `PROJ_TITULO`, `PROJ_DESCRICAO`, `PROJ_STATUS`, `PROJ_PRIVADO`, `USU_ID`, `PROJ_DATACAD`) VALUES
-	(1, 'Projeto Retalhos de Memória de Santa Maria', 'Início das atividades:  julho de 2015.\r\n\r\nO Projeto Retalhos da Memória de Santa Maria: Difusão e Acessibilidade promove a difusão com acessibilidade da memória fotográfica institucional com o objetivo de consolidar a importância do arquivo fotográfico da UFSM. Acadêmicos dos Cursos de Arquivologia, Jornalismo, História e Desenho Industrial (bolsistas e voluntários) selecionam imagens do acervo – retalhos da história da cidade – e produzem textos sobre as mesmas pesquisando em fontes documentais primárias.\r\n\r\nÉ coordenado pelo Departamento de Arquivo Geral (DAG) em parceria com o Núcleo de Acessibilidade da Coordenadoria de Ações Educacionais (CAED) da UFSM.\r\n\r\nOs posters são publicados semanalmente às terças-feiras.', 'A', '1', 29, '2019-05-11 23:01:44'),
+	(1, 'Projeto Retalhos de Memória de Santa Maria', 'Início das atividades:  julho de 2015.\r\n\r\nO Projeto Retalhos da Memória de Santa Maria: Difusão e Acessibilidade promove a difusão com acessibilidade da memória fotográfica institucional com o objetivo de consolidar a importância do arquivo fotográfico da UFSM. Acadêmicos dos Cursos de Arquivologia, Jornalismo, História e Desenho Industrial (bolsistas e voluntários) selecionam imagens do acervo – retalhos da história da cidade – e produzem textos sobre as mesmas pesquisando em fontes documentais primárias.\r\n\r\nÉ coordenado pelo Departamento de Arquivo Geral (DAG) em parceria com o Núcleo de Acessibilidade da Coordenadoria de Ações Educacionais (CAED) da UFSM.\r\n\r\nOs posters são publicados semanalmente às terças-feiras.', 'A', '0', 29, '2019-05-11 23:01:44'),
 	(2, 'TEste 123', 'adshighsiudhguisdg', 'A', '0', 29, '2019-05-12 00:59:12'),
 	(3, 'se sortable option to set the basic sort.', 'Packet is the leading bare metal automation platform for developers.\r\nads via Carbon', 'A', '0', 29, '2019-05-12 01:01:25'),
 	(4, 'rgdfbdfbdf', 'dfbdfbdfb', 'A', '1', 29, '2019-05-12 01:16:58'),
@@ -5797,10 +5808,12 @@ CREATE TABLE IF NOT EXISTS `proj_participantes` (
   CONSTRAINT `FK_proj_participantes_usu_usuario` FOREIGN KEY (`USU_ID`) REFERENCES `usu_usuario` (`USU_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela colabad2.proj_participantes: ~2 rows (aproximadamente)
+-- Copiando dados para a tabela colabad2.proj_participantes: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `proj_participantes` DISABLE KEYS */;
 INSERT IGNORE INTO `proj_participantes` (`PROJ_ID`, `USU_ID`, `PAR_RESPONSAVEL`) VALUES
+	(1, 29, 'N'),
 	(15, 29, 'N'),
+	(1, 30, 'N'),
 	(15, 30, 'N');
 /*!40000 ALTER TABLE `proj_participantes` ENABLE KEYS */;
 
@@ -5816,6 +5829,25 @@ CREATE TABLE IF NOT EXISTS `proj_usuario` (
 -- Copiando dados para a tabela colabad2.proj_usuario: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `proj_usuario` DISABLE KEYS */;
 /*!40000 ALTER TABLE `proj_usuario` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela colabad2.usu_log
+CREATE TABLE IF NOT EXISTS `usu_log` (
+  `LOG_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USU_ID` int(11) NOT NULL,
+  `LOG_DATA` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LOG_ORIGEM` varchar(50) NOT NULL,
+  `LOG_ORIGEM_ID` int(11) NOT NULL,
+  `LT_ID` int(11) NOT NULL,
+  PRIMARY KEY (`LOG_ID`,`USU_ID`),
+  KEY `FK_usu_log_conf_logtipo` (`LT_ID`),
+  CONSTRAINT `FK_usu_log_conf_logtipo` FOREIGN KEY (`LT_ID`) REFERENCES `conf_logtipo` (`LT_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela colabad2.usu_log: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `usu_log` DISABLE KEYS */;
+INSERT IGNORE INTO `usu_log` (`LOG_ID`, `USU_ID`, `LOG_DATA`, `LOG_ORIGEM`, `LOG_ORIGEM_ID`, `LT_ID`) VALUES
+	(1, 0, '2019-05-14 01:06:16', 'usu_usuario', 29, 2);
+/*!40000 ALTER TABLE `usu_log` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.usu_perfil
 CREATE TABLE IF NOT EXISTS `usu_perfil` (
@@ -5840,7 +5872,7 @@ CREATE TABLE IF NOT EXISTS `usu_tela` (
   `TELA_DESCRICAO` varchar(255) DEFAULT NULL,
   `TELA_PRIVADO` int(11) DEFAULT NULL,
   PRIMARY KEY (`TELA_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela colabad2.usu_tela: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `usu_tela` DISABLE KEYS */;
@@ -5854,7 +5886,9 @@ INSERT IGNORE INTO `usu_tela` (`TELA_ID`, `TELA_CAMINHO`, `TELA_DESCRICAO`, `TEL
 	(7, 'publicar', NULL, 1),
 	(8, 'ajax', NULL, 0),
 	(9, 'projetos', NULL, 1),
-	(10, 'appajax', NULL, 1);
+	(10, 'appajax', NULL, 1),
+	(11, 'perfil', NULL, 1),
+	(12, 'suporte', NULL, 1);
 /*!40000 ALTER TABLE `usu_tela` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.usu_usuario
@@ -5870,8 +5904,6 @@ CREATE TABLE IF NOT EXISTS `usu_usuario` (
   `USU_EMAILCONF` tinyint(4) NOT NULL DEFAULT '0',
   `USU_TOKEN` varchar(255) DEFAULT NULL,
   `PERF_ID` int(11) NOT NULL DEFAULT '1',
-  `USU_ULTIMOACESSO` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `USU_CONTACESSO` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`USU_ID`),
   KEY `FK_usu_usuario_usu_perfil` (`PERF_ID`),
   CONSTRAINT `FK_usu_usuario_usu_perfil` FOREIGN KEY (`PERF_ID`) REFERENCES `usu_perfil` (`PERF_ID`)
@@ -5879,9 +5911,9 @@ CREATE TABLE IF NOT EXISTS `usu_usuario` (
 
 -- Copiando dados para a tabela colabad2.usu_usuario: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `usu_usuario` DISABLE KEYS */;
-INSERT IGNORE INTO `usu_usuario` (`USU_ID`, `USU_NOME`, `USU_CADDATA`, `USU_SITUACAO`, `USU_EMAIL`, `USU_PWD`, `USU_PWDTOKEN`, `USU_PWDTOKENEXP`, `USU_EMAILCONF`, `USU_TOKEN`, `PERF_ID`, `USU_ULTIMOACESSO`, `USU_CONTACESSO`) VALUES
-	(29, 'Talliny', '2019-04-28 22:58:49', 'A', 'loja.anima.animus@gmail.com', '$2y$10$pq.blSaMfUppsakvGUCDKuEsfKFXimHVCu3ZQP.EB1YzS8LNLMhf2', NULL, '2019-05-01 20:31:26', 1, 'D7gFwKyWvY', 3, '2019-05-12 22:04:36', 18),
-	(30, 'João Eduardo', '2019-05-01 23:06:54', 'A', '1fb97b50a5@mailboxy.fun', '$2y$10$taNSjshaMuuSydutARf6t.7rL5aOuD7q0L/3iuKXmDkYzUTpJ6lj.', NULL, NULL, 1, 'XBDEAnmCUVZg', 1, '2019-05-01 23:08:08', 1);
+INSERT IGNORE INTO `usu_usuario` (`USU_ID`, `USU_NOME`, `USU_CADDATA`, `USU_SITUACAO`, `USU_EMAIL`, `USU_PWD`, `USU_PWDTOKEN`, `USU_PWDTOKENEXP`, `USU_EMAILCONF`, `USU_TOKEN`, `PERF_ID`) VALUES
+	(29, 'Talliny', '2019-04-28 22:58:49', 'A', 'loja.anima.animus@gmail.com', '$2y$10$pq.blSaMfUppsakvGUCDKuEsfKFXimHVCu3ZQP.EB1YzS8LNLMhf2', NULL, '2019-05-01 20:31:26', 1, 'D7gFwKyWvY', 3),
+	(30, 'João Eduardo', '2019-05-01 23:06:54', 'A', '1fb97b50a5@mailboxy.fun', '$2y$10$taNSjshaMuuSydutARf6t.7rL5aOuD7q0L/3iuKXmDkYzUTpJ6lj.', NULL, NULL, 1, 'XBDEAnmCUVZg', 1);
 /*!40000 ALTER TABLE `usu_usuario` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

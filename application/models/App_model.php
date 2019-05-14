@@ -79,9 +79,9 @@ class App_model extends CI_Model {
       $dados = 
         array(
           'IMG_ID' => $img,
-          'ILT_ID' => $tipo,
+          'LT_ID'  => $tipo,
           'USU_ID' => $this->session->userdata('logged_in_colabad')['sesColabad_vId']
-        );  
+        );
 
         $this->db->insert($tabela, $dados);
     } catch(PDOException $e) { 
@@ -102,7 +102,27 @@ class App_model extends CI_Model {
                 WHERE U.USU_SITUACAO = 'A'
                 $where 
                 ORDER BY U.USU_NOME; ";
-    } 
+    } else 
+    if ($tipoInfo == 'P') {
+      if ($codToControl == 0) {
+        $usuario = $this->session->userdata('logged_in_colabad')['sesColabad_vId'];
+        $where = " AND P.USU_ID = $usuario
+                OR P.PROJ_ID IN 
+                  (SELECT C.PROJ_ID 
+                  FROM proj_participantes C 
+                  WHERE C.USU_ID = $usuario
+                  AND C.PAR_RESPONSAVEL = 'S') ";
+      } else 
+      if ($codToControl != '')  { 
+        $where = ' AND P.PROJ_ID = '.$codToControl;
+      }
+
+      $sql = " SELECT P.PROJ_ID ID, P.PROJ_TITULO DESCRICAO, '' COR, '' ICON 
+              FROM proj_cadastro P
+              WHERE P.PROJ_STATUS = 'A'
+              $where
+              ORDER BY P.PROJ_TITULO; ";
+    }
 
     $query = $this->db->query($sql);
 

@@ -19,8 +19,9 @@ class Ajax extends CI_Controller {
     
     $titulo    = $this->input->post('titulo');
     $descricao = $this->input->post('descricao');
+    $projeto   = $this->input->post('projeto');
 
-    $registros = $this->pub->salvaImagem($_FILES['imagem'], $titulo, $descricao);
+    $registros = $this->pub->salvaImagem($_FILES['imagem'], $titulo, $descricao, $projeto);
     $this->output
          ->set_content_type('application/json')
          ->set_output(json_encode($registros));

@@ -69,23 +69,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url();?>publicar">
-              <i class="ni ni-send text-blue"></i> Publicar Imagem
+            <a class="nav-link" href="<?php echo base_url();?>projetos">
+              <i class="ni ni-bullet-list-67 text-red"></i> Projetos
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url();?>publicar">
-              <i class="ni ni-bullet-list-67 text-red"></i> Minhas Imagens
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url();?>projetos/cadastrar">
-              <i class="ni ni-album-2 text-info"></i> Projetos
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url();?>publicar">
-              <i class="ni ni-circle-08 text-pink"></i> Register
+              <i class="ni ni-album-2 text-info"></i> Imagens
             </a>
           </li>
         </ul>
@@ -94,24 +84,24 @@
         <h6 class="navbar-heading text-muted">Usuário</h6>
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-            <a class="nav-link" href="./examples/profile.html">
+            <a class="nav-link" href="<?php echo base_url();?>perfil">
               <i class="ni ni-single-02 text-yellow"></i> Meu Perfil
             </a>
           </li>
           <li class="nav-item">
-            <a href="./examples/profile.html" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="ni ni-settings-gear-65"></i>
               <span>Configurações</span>
             </a>
           </li>
           <li class="nav-item">
-            <a href="./examples/profile.html" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="ni ni-calendar-grid-58"></i>
               <span>Atividade</span>
             </a>
           </li>
           <li class="nav-item">
-            <a href="./examples/profile.html" class="nav-link">
+            <a href="<?php echo base_url();?>suporte" class="nav-link">
               <i class="ni ni-support-16"></i>
               <span>Suporte</span>
             </a>
