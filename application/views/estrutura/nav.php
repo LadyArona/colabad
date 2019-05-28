@@ -17,12 +17,16 @@
         </form>
 
         <!-- User -->
-        <ul class="navbar-nav align-items-center d-none d-md-flex">
-          <li class="nav-item">
+        <ul class="navbar-nav align-items-center d-none d-md-flex itensNotificacoes">
+          <li class="nav-item dropdown notficDropAvisos">
             <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="ni ni-bell-55"></i>
             </a>
+            <div id="divAvisos" class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
+            </div>
           </li>
+        </ul>
+        <ul class="navbar-nav align-items-center d-none d-md-flex">
           <li class="nav-item">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">

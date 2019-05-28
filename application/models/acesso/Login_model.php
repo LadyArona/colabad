@@ -24,12 +24,14 @@ class Login_model extends CI_Model {
 
         $token = gerarToken();
         $hash  = password_hash($edPass, PASSWORD_BCRYPT);
+        $link = criaLink($edNome);
 
         $dados = array(
           'USU_NOME'  => $edNome,
           'USU_EMAIL' => $edEmail,
           'USU_PWD'   => $hash,
-          'USU_TOKEN' => $token
+          'USU_TOKEN' => $token,
+          'USU_LINK'  => $link
         ); 
 
         $data['tipo'] = 'verificacao';
@@ -159,7 +161,8 @@ class Login_model extends CI_Model {
          U.USU_EMAILCONF,
          U.USU_TOKEN,
          U.PERF_ID,
-         P.PERF_NIVEL")    
+         P.PERF_NIVEL,
+         U.USU_LINK")    
       ->from('usu_usuario U')
       ->join('usu_perfil P', ' P.PERF_ID = U.PERF_ID')
       ->where('U.USU_EMAIL', $login)
@@ -198,7 +201,8 @@ class Login_model extends CI_Model {
             'sesColabad_vPw'          => $row->USU_PWD,
             'sesColabad_vEmailConf'   => $row->USU_EMAILCONF,
             'sesColabad_vPerfilId'    => $row->PERF_ID,
-            'sesColabad_vPerfilNivel' => $row->PERF_NIVEL
+            'sesColabad_vPerfilNivel' => $row->PERF_NIVEL,
+            'sesColabad_vLink'        => $row->USU_LINK
           );
 
           //atualiza ultimo login

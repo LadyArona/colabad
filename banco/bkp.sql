@@ -5634,6 +5634,27 @@ INSERT IGNORE INTO `conf_configuracoes` (`CONF_ID`, `CONF_NOME`, `CONF_ABRV`, `C
 	(1, 'ColabAD', 'ColabAD', 'Rede Colaborativa de Audiodescrição', 'assets/img/brand/white.png', 'Rede Colaborativa de Audiodescrição', 4780, 'tallinydn@gmail.com', 'xxxxxxx', 'xxxxxx', 'smtp.gmail.com', '2019-05-09 22:12:06', '2019-04-14 18:14:44', '1.0.0.1', 'Talliny Dalla Nora', 'Rede Colaborativa de Audiodescrição', 'https://fb.me/redeColabad', 'https://github.com/LadyArona/colabad');
 /*!40000 ALTER TABLE `conf_configuracoes` ENABLE KEYS */;
 
+-- Copiando estrutura para tabela colabad2.conf_deficiencia
+CREATE TABLE IF NOT EXISTS `conf_deficiencia` (
+  `DEF_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `DEF_DESCRICAO` varchar(500) DEFAULT NULL,
+  `DEF_SITUACAO` char(1) DEFAULT 'A',
+  PRIMARY KEY (`DEF_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela colabad2.conf_deficiencia: ~8 rows (aproximadamente)
+/*!40000 ALTER TABLE `conf_deficiencia` DISABLE KEYS */;
+INSERT IGNORE INTO `conf_deficiencia` (`DEF_ID`, `DEF_DESCRICAO`, `DEF_SITUACAO`) VALUES
+	(1, 'Altas habilidades / Superdotação', 'A'),
+	(2, 'Deficiência auditiva', 'A'),
+	(3, 'Deficiência física', 'A'),
+	(4, 'Deficiência intelectual', 'A'),
+	(5, 'Deficiência múltipla', 'A'),
+	(6, 'Deficiência visual', 'A'),
+	(7, 'Transtorno do Espectro Autista (TEA)', 'A'),
+	(8, 'Outras', 'A');
+/*!40000 ALTER TABLE `conf_deficiencia` ENABLE KEYS */;
+
 -- Copiando estrutura para tabela colabad2.conf_estado
 CREATE TABLE IF NOT EXISTS `conf_estado` (
   `EST_ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -5683,17 +5704,38 @@ CREATE TABLE IF NOT EXISTS `conf_logtipo` (
   `LT_ID` int(11) NOT NULL AUTO_INCREMENT,
   `LT_DESCRICAO` varchar(255) NOT NULL DEFAULT '0',
   PRIMARY KEY (`LT_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela colabad2.conf_logtipo: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `conf_logtipo` DISABLE KEYS */;
 INSERT IGNORE INTO `conf_logtipo` (`LT_ID`, `LT_DESCRICAO`) VALUES
-	(1, 'Cadastrar'),
+	(1, 'cadastrou'),
 	(2, 'Login'),
-	(3, 'Editar'),
+	(3, 'editou'),
 	(4, 'recuperar senha'),
-	(5, 'alterar senha');
+	(5, 'alterar senha'),
+	(6, 'aprovou');
 /*!40000 ALTER TABLE `conf_logtipo` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela colabad2.conf_notificacoes
+CREATE TABLE IF NOT EXISTS `conf_notificacoes` (
+  `NOTF_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NOTF_DESCRICAO` varchar(255) NOT NULL,
+  `NOTF_TIPO` char(1) NOT NULL,
+  `NOTF_LIDA` char(1) NOT NULL,
+  `NOTF_PADRAO` char(1) NOT NULL,
+  `NOTF_DIRECIONA` text,
+  `NOTF_USUARIO` varchar(50) NOT NULL,
+  `NOTF_DATA_HORA` datetime NOT NULL,
+  PRIMARY KEY (`NOTF_ID`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+-- Copiando dados para a tabela colabad2.conf_notificacoes: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `conf_notificacoes` DISABLE KEYS */;
+INSERT IGNORE INTO `conf_notificacoes` (`NOTF_ID`, `NOTF_DESCRICAO`, `NOTF_TIPO`, `NOTF_LIDA`, `NOTF_PADRAO`, `NOTF_DIRECIONA`, `NOTF_USUARIO`, `NOTF_DATA_HORA`) VALUES
+	(2, 'Você foi adicionado como colaborador do projeto: <b>Projeto Retalhos de Memória de Santa Maria</b>.', 'A', 'N', 'N', 'projeto/18/projeto-r', '30', '2019-05-27 23:56:58'),
+	(3, 'Você foi adicionado como colaborador do projeto: <b>teste</b>.', 'A', 'N', 'N', 'projeto/20/teste', '29', '2019-05-28 01:44:27');
+/*!40000 ALTER TABLE `conf_notificacoes` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.conf_regiao
 CREATE TABLE IF NOT EXISTS `conf_regiao` (
@@ -5722,19 +5764,18 @@ CREATE TABLE IF NOT EXISTS `img_cadastro` (
   `IMG_AUDIODESCRICAO` text,
   `IMG_STATUS` char(1) NOT NULL DEFAULT 'A',
   `PROJ_ID` int(11) DEFAULT NULL,
+  `IMG_LINK` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`IMG_ID`),
   KEY `FK_img_cadastro_proj_cadastro` (`PROJ_ID`),
   CONSTRAINT `FK_img_cadastro_proj_cadastro` FOREIGN KEY (`PROJ_ID`) REFERENCES `proj_cadastro` (`PROJ_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela colabad2.img_cadastro: ~3 rows (aproximadamente)
+-- Copiando dados para a tabela colabad2.img_cadastro: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `img_cadastro` DISABLE KEYS */;
-INSERT IGNORE INTO `img_cadastro` (`IMG_ID`, `IMG_NOME`, `IMG_NOMEUNIQ`, `IMG_TYPE`, `IMG_TITULO`, `IMG_AUDIODESCRICAO`, `IMG_STATUS`, `PROJ_ID`) VALUES
-	(10, 'team-1-800x800.jpg', '9abe32b3ee76a84e31d389e103338fb0.jpg', 'image/jpeg', 'Exposição do Museu Farroupilha em 1978', 'Fotografia, horizontal, em preto e branco. Três homens observando um objeto sobre uma mesa, e outras pessoas em volta em um ambiente interno.\n\nAo centro da imagem, um homem de frente, em pé, enquadrado dos joelhos para cima. Tem pele clara, cabelo curto, crespo e escuro. Está com o rosto levemente inclinado para baixo observando o objeto. Veste terno e calça acinzentados, camisa clara e gravata escura. Em sua mão direita, segura uma taça transparente com um líquido escuro.\n\nA direita, dois homens de perfil para a esquerda, um ao lado do outro.  A frente um homem de pele clara, cabelo curto com entrada de calvície, liso e escuro, e bigode escuro. Veste uma blusa com estampa de fundo claro com listras escuras e calça acinzentada. Em sua mão esquerda segura folhas de ofício e entre dois dedos segura um cigarro. Após ele, um homem de pele clara, cabelo curto, crespo e escuro. Veste terno escuro e segura na mão direita uma taça transparente com um líquido escuro.\n\nA frente deles, uma mesa de metal com tampo de madeira clara. Sobre ela três caixas de vidro retangulares. A primeira caixa a direita, tem um estribo e a representação de uma cuia logo atrás do estribo. Na caixa ao lado esquerdo, tem uma boleadeira, e atrás tem uma caixa com duas esporas.\n\nA esquerda do homem e após a mesa, um pilar claro, com uma estrutura de quatro lados, formadas por hastes metálicas de cerca de dois metros de altura, unidas por hastes horizontais na parte superior e inferior. Em cada lado da estrutura um painel claro. No painel da frente uma espada escura. Próximos a estrutura, estão dois homens, virados de costas com cabelo liso, curto e escuro e roupas escuras.\n\nNo restante do ambiente, outras estruturas de ferro ao fundo da imagem e cerca de dez pessoas em pé.\n\nA parede do fundo tem persianas claras. O teto é claro com luminárias retangulares na vertical. O chão é escuro.', 'A', NULL),
-	(11, 'team-3-800x800.jpg', '6f8b5247ed0bac3dc08b9974770131fa.jpg', 'image/jpeg', 'Televisão no Ensino de Cirurgia em 1963', 'Fotografia, horizontal, em preto e branco. Um quadro com desenho ilustrando uma sala de cirurgia.\n\nO quadro tem as bordas escuras, grossas, e uma listra clara mais fina em volta de todo o quadro. Os desenhos são feitos em tons claros e escuros. Na esquerda tem cinco pessoas vestindo trajes cirúrgicos: toucas, máscaras e roupão. Elas estão em volta de uma mesa cirúrgica; acima da mesa tem uma luminária redonda.\n\nDestacado por uma claridade maior ao centro da imagem, um homem sentado, está de frente para uma televisão.\n\nA direita da imagem, doze homens sentados em formação de um U de costas para a fotografia, assistindo a cirurgia na imagem projetada em um telão.\n\nO quadro está localizado em um ambiente interno , com paredes brancas.', 'A', NULL),
-	(12, 'team-2-800x800.jpg', '1cc88dde6b2a3f62272bd16c3b80a190.jpg', 'image/jpeg', 'Concurso Estudantil Sobre Antártica em 1996', 'Fotografia, horizontal e colorida, de quatro pessoas em pé em um ambiente interno.\n\nNa esquerda da imagem, um homem em pé, com faixa etária de 50 anos, tem pele branca, cabelo curto, liso e grisalho; veste terno preto, com camisa branca e gravata vermelha. Segura em suas mãos um porta documento de veludo; A fotografia está enquadrada da cintura para cima e o homem está de perfil esquerdo para a imagem.\n\nA sua frente, uma mulher com faixa etária de 25 anos, tem pele branca, cabelo liso, loiro e comprido. Usa óculos de armação fina de metal e lentes redondas; está com um vestido rosa, e segura a frente de seu corpo um diploma;\n\nAtrás, uma parede lisa e branca. Próximos a ela, dois homens em pé. A esquerda da imagem um homem com faixa etária de 50 anos, pele branca, cabelo curto, liso e grisalho. Ele veste terno cinza e gravata vermelha com detalhes pretos; está com as mãos em posição de aplauso. Ao seu lado outro homem, com faixa etária de 50 anos, pele clara, cabelo liso, preto e curto; Tem barba preta e usa óculos de lentes redondas e armação fina e escura. \n\nAtrás dos homens próximo a parede, ao lado esquerdo da imagem, um mastro com a bandeira do Brasil, a frente uma mesa de madeira com um microfone em cima.', 'A', NULL),
-	(13, 'hand-man-view-sign-finger-symbol-941135-pxhere.com.jpg', '28b4a8176468d25cd76bfa1b8ecfda20.jpg', 'image/jpeg', 'essa agora vai', '0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n0123456789\n', 'A', NULL),
-	(14, 'hand-man-view-sign-finger-symbol-941135-pxhere.com.jpg', '71b64d54ac04b0a398759f433e0bc940.jpg', 'image/jpeg', 'sgsdgdsdgsdgsdg', 'cbProjeto\ncbProjeto\ncbProjeto\ncbProjeto\ncbProjeto\ncbProjeto\ncbProjeto\ncbProjeto\n', 'A', 1);
+INSERT IGNORE INTO `img_cadastro` (`IMG_ID`, `IMG_NOME`, `IMG_NOMEUNIQ`, `IMG_TYPE`, `IMG_TITULO`, `IMG_AUDIODESCRICAO`, `IMG_STATUS`, `PROJ_ID`, `IMG_LINK`) VALUES
+	(15, 'UFSM-Projeto-Retalhos-Artigo-190-1997.080.0001-1024x685.jpg', 'b32fb6e8c311c451042b8c294feda0a0.jpg', 'image/jpeg', 'Usina termoelétrica em Candiota em 1997', '<p>Fotografia, horizontal e colorida, de um vasto campo, ao longe, uma usina.</p><p>Em toda a largura da imagem, um vasto campo verde, cortando horizontalmente esse campo, uma estrada de terra.</p><p>Na direita, uma torre metálica suportando alguns fios. Próximo à torre e mais a frente, um equipamento topográfico.</p><p>Distante, à esquerda e no final do campo, uma usina; da chaminé, sai fumaça que vai para a direita.</p><p>Céu azul claro com o horizonte amarelado.&nbsp;</p>', 'A', 18, 'usina-termoel-trica-em-candiota-em-1997'),
+	(16, 'UFSM-Projeto-Retalhos-Artigo-182-1996.115.0003-2-1-1024x642.jpg', '11ee3de585fa597880a920e4fa977594.jpg', 'image/jpeg', 'Concurso Estudantil Sobre Antártica em 1996', '<p>Fotografia, horizontal e colorida, de quatro pessoas em pé em um ambiente interno.</p><p>Na esquerda da imagem, um homem em pé, com faixa etária de 50 anos, tem pele branca, cabelo curto, liso e grisalho; veste terno preto, com camisa branca e gravata vermelha. Segura em suas mãos um porta documento de veludo; A fotografia está enquadrada da cintura para cima e o homem está de perfil esquerdo para a imagem.</p><p>A sua frente, uma mulher com faixa etária de 25 anos, tem pele branca, cabelo liso, loiro e comprido. Usa óculos de armação fina de metal e lentes redondas; está com um vestido rosa, e segura a frente de seu corpo um diploma;</p><p>Atrás, uma parede lisa e branca. Próximos a ela, dois homens em pé. A esquerda da imagem um homem com faixa etária de 50 anos, pele branca, cabelo curto, liso e grisalho. Ele veste terno cinza e gravata vermelha com detalhes pretos; está com as mãos em posição de aplauso. Ao seu lado outro homem, com faixa etária de 50 anos, pele clara, cabelo liso, preto e curto; Tem barba preta e usa óculos de lentes redondas e armação fina e escura.&nbsp;</p><p>Atrás dos homens próximo a parede, ao lado esquerdo da imagem, um mastro com a bandeira do Brasil, a frente uma mesa de madeira com um microfone em cima.</p>', 'A', 18, 'concurso-estudantil-sobre-ant-rtica-em-1996'),
+	(17, 'Sem-título-1-1024x853.jpg', '7ab0013aa4985917da79b1fdf500d9c5.jpg', 'image/jpeg', 'Curso de Máquinas e Ferramentas em 1974', '<p>Fotografia, horizontal, em preto e branco. Ao centro, um homem com a boca entreaberta e o braço esquerdo erguido, atrás de uma mesa retangular, em um espaço interno e sombreado (sob a incidência do flash fotográfico).</p><p>&nbsp;</p><p>O homem, em pé, posicionado na diagonal esquerda, está enquadrado da cintura para cima; tem faixa etária de 50 anos, pele clara, estatura alta, compleição física robusta, rosto oval, cabelo liso e escuro com entrada de calvície; veste terno escuro, com camisa clara e gravata escura.</p><p><br></p><p>Ele tem o braço esquerdo levemente voltado à frente, com a palma da mão virada para baixo; e com o direito, apoia-se no tampo da mesa, apenas com as pontas dos dedos.</p><p>&nbsp;</p><p><br></p><p>A mesa se encontra à frente do homem, visível na metade direita, tendo o formato retangular, de madeira, com um opérculo de vidro sobre o tampo de madeira, cuja superfície reflete a sombra do homem.</p><p><br></p><p>Em cima da mesa, à direita, tem um papel claro e, à esquerda, duas caixas de giz claro.</p><p><br></p><p>Ao fundo e à esquerda do homem, a quina de duas paredes. As paredes são claras e lisas, tendo na da direita, a parte inferior esquerda de um quadro negro, com algumas fórmulas ilegíveis.</p>', 'A', 18, 'curso-de-m-quinas-e-ferramentas-em-1974');
 /*!40000 ALTER TABLE `img_cadastro` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.img_log
@@ -5751,16 +5792,16 @@ CREATE TABLE IF NOT EXISTS `img_log` (
   CONSTRAINT `FK_img_log_img_cadastro` FOREIGN KEY (`IMG_ID`) REFERENCES `img_cadastro` (`IMG_ID`),
   CONSTRAINT `FK_img_log_img_logtipo` FOREIGN KEY (`LT_ID`) REFERENCES `conf_logtipo` (`LT_ID`),
   CONSTRAINT `FK_img_log_usu_usuario` FOREIGN KEY (`USU_ID`) REFERENCES `usu_usuario` (`USU_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela colabad2.img_log: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela colabad2.img_log: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `img_log` DISABLE KEYS */;
 INSERT IGNORE INTO `img_log` (`ILOG_ID`, `IMG_ID`, `USU_ID`, `LT_ID`, `ILOG_DATA`) VALUES
-	(1, 10, 29, 1, '2019-05-10 01:35:29'),
-	(2, 11, 29, 1, '2019-05-10 01:36:22'),
-	(3, 12, 29, 1, '2019-05-10 01:38:25'),
-	(4, 13, 29, 1, '2019-05-13 23:15:32'),
-	(5, 14, 29, 1, '2019-05-13 23:19:42');
+	(6, 15, 29, 1, '2019-05-18 15:21:53'),
+	(7, 16, 29, 1, '2019-05-18 17:33:38'),
+	(8, 17, 29, 1, '2019-05-19 00:28:47'),
+	(9, 16, 29, 3, '2019-05-19 00:43:40'),
+	(10, 16, 30, 6, '2019-05-19 00:45:48');
 /*!40000 ALTER TABLE `img_log` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.proj_cadastro
@@ -5772,29 +5813,18 @@ CREATE TABLE IF NOT EXISTS `proj_cadastro` (
   `PROJ_PRIVADO` char(1) DEFAULT NULL,
   `USU_ID` int(11) DEFAULT NULL,
   `PROJ_DATACAD` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `PROJ_LINK` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`PROJ_ID`),
   KEY `FK_proj_cadastro_usu_usuario` (`USU_ID`),
   CONSTRAINT `FK_proj_cadastro_usu_usuario` FOREIGN KEY (`USU_ID`) REFERENCES `usu_usuario` (`USU_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela colabad2.proj_cadastro: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `proj_cadastro` DISABLE KEYS */;
-INSERT IGNORE INTO `proj_cadastro` (`PROJ_ID`, `PROJ_TITULO`, `PROJ_DESCRICAO`, `PROJ_STATUS`, `PROJ_PRIVADO`, `USU_ID`, `PROJ_DATACAD`) VALUES
-	(1, 'Projeto Retalhos de Memória de Santa Maria', 'Início das atividades:  julho de 2015.\r\n\r\nO Projeto Retalhos da Memória de Santa Maria: Difusão e Acessibilidade promove a difusão com acessibilidade da memória fotográfica institucional com o objetivo de consolidar a importância do arquivo fotográfico da UFSM. Acadêmicos dos Cursos de Arquivologia, Jornalismo, História e Desenho Industrial (bolsistas e voluntários) selecionam imagens do acervo – retalhos da história da cidade – e produzem textos sobre as mesmas pesquisando em fontes documentais primárias.\r\n\r\nÉ coordenado pelo Departamento de Arquivo Geral (DAG) em parceria com o Núcleo de Acessibilidade da Coordenadoria de Ações Educacionais (CAED) da UFSM.\r\n\r\nOs posters são publicados semanalmente às terças-feiras.', 'A', '0', 29, '2019-05-11 23:01:44'),
-	(2, 'TEste 123', 'adshighsiudhguisdg', 'A', '0', 29, '2019-05-12 00:59:12'),
-	(3, 'se sortable option to set the basic sort.', 'Packet is the leading bare metal automation platform for developers.\r\nads via Carbon', 'A', '0', 29, '2019-05-12 01:01:25'),
-	(4, 'rgdfbdfbdf', 'dfbdfbdfb', 'A', '1', 29, '2019-05-12 01:16:58'),
-	(5, 'fffffffffffffff', 'ffffffffffffff', 'A', '0', 29, '2019-05-12 01:21:02'),
-	(6, 'jjjjjjjjjjj', 'jjjjjjjjj', 'A', '0', 29, '2019-05-12 01:22:03'),
-	(7, 'vsdvsdv', 'sdvsdvsdv', 'A', '0', 29, '2019-05-12 01:42:02'),
-	(8, 'vvvvvvvvvvvvv', 'vvvvvvvvvvvvvvvv', 'A', '0', 29, '2019-05-12 01:42:07'),
-	(9, '333333636346346', '346346346346346346', 'A', '0', 29, '2019-05-12 01:42:15'),
-	(10, '373737837', 'mfnh5 4 4 rgd 4', 'A', '0', 29, '2019-05-12 01:42:23'),
-	(11, 'svsvsvsvsvs', 'vsvsvsvsv', 'A', '0', 29, '2019-05-12 01:54:05'),
-	(12, 'teste', 'teste 123', 'A', '1', 29, '2019-05-12 22:23:32'),
-	(13, 'teste tfdgg', 'sdgsdgsdg', 'A', '1', 29, '2019-05-12 22:24:49'),
-	(14, 'teste tfdgg', 'sdgsdgsdg', 'A', '1', 29, '2019-05-12 22:28:14'),
-	(15, 'teste tfdgg', 'sdgsdgsdg', 'A', '1', 29, '2019-05-12 22:28:38');
+INSERT IGNORE INTO `proj_cadastro` (`PROJ_ID`, `PROJ_TITULO`, `PROJ_DESCRICAO`, `PROJ_STATUS`, `PROJ_PRIVADO`, `USU_ID`, `PROJ_DATACAD`, `PROJ_LINK`) VALUES
+	(18, 'Projeto Retalhos de Memória de Santa Maria', NULL, 'A', '0', 29, '2019-05-18 15:18:15', 'projeto-retalhos-de-memoria-de-santa-maria'),
+	(19, 'Meu Projeto de Teste', NULL, 'I', '1', 29, '2019-05-18 18:02:14', 'meu-projeto-de-teste'),
+	(20, 'teste', '<p>teste</p>', 'A', '0', 29, '2019-05-28 01:44:27', 'teste');
 /*!40000 ALTER TABLE `proj_cadastro` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.proj_participantes
@@ -5808,13 +5838,13 @@ CREATE TABLE IF NOT EXISTS `proj_participantes` (
   CONSTRAINT `FK_proj_participantes_usu_usuario` FOREIGN KEY (`USU_ID`) REFERENCES `usu_usuario` (`USU_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela colabad2.proj_participantes: ~4 rows (aproximadamente)
+-- Copiando dados para a tabela colabad2.proj_participantes: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `proj_participantes` DISABLE KEYS */;
 INSERT IGNORE INTO `proj_participantes` (`PROJ_ID`, `USU_ID`, `PAR_RESPONSAVEL`) VALUES
-	(1, 29, 'N'),
-	(15, 29, 'N'),
-	(1, 30, 'N'),
-	(15, 30, 'N');
+	(18, 29, 'S'),
+	(19, 29, 'N'),
+	(20, 29, 'N'),
+	(18, 30, 'N');
 /*!40000 ALTER TABLE `proj_participantes` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.proj_usuario
@@ -5841,12 +5871,37 @@ CREATE TABLE IF NOT EXISTS `usu_log` (
   PRIMARY KEY (`LOG_ID`,`USU_ID`),
   KEY `FK_usu_log_conf_logtipo` (`LT_ID`),
   CONSTRAINT `FK_usu_log_conf_logtipo` FOREIGN KEY (`LT_ID`) REFERENCES `conf_logtipo` (`LT_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela colabad2.usu_log: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `usu_log` DISABLE KEYS */;
 INSERT IGNORE INTO `usu_log` (`LOG_ID`, `USU_ID`, `LOG_DATA`, `LOG_ORIGEM`, `LOG_ORIGEM_ID`, `LT_ID`) VALUES
-	(1, 0, '2019-05-14 01:06:16', 'usu_usuario', 29, 2);
+	(14, 29, '2019-05-18 15:18:15', 'proj_cadastro', 18, 1),
+	(15, 29, '2019-05-18 15:21:53', 'img_cadastro', 15, 1),
+	(16, 29, '2019-05-18 17:33:38', 'img_cadastro', 16, 1),
+	(17, 29, '2019-05-18 18:02:14', 'proj_cadastro', 19, 1),
+	(18, 29, '2019-05-18 20:22:01', 'proj_cadastro', 1, 3),
+	(19, 29, '2019-05-18 20:22:36', 'proj_cadastro', 1, 3),
+	(20, 29, '2019-05-18 20:35:47', 'proj_cadastro', 1, 3),
+	(21, 29, '2019-05-18 20:36:42', 'proj_cadastro', 1, 3),
+	(22, 29, '2019-05-18 20:37:28', 'proj_cadastro', 0, 3),
+	(23, 29, '2019-05-18 20:38:35', 'proj_cadastro', 1, 3),
+	(24, 29, '2019-05-18 20:38:51', 'proj_cadastro', 1, 3),
+	(25, 29, '2019-05-18 21:24:17', 'usu_usuario', 29, 2),
+	(26, 29, '2019-05-18 21:30:21', 'usu_usuario', 29, 2),
+	(27, 29, '2019-05-18 23:02:52', 'usu_usuario', 29, 2),
+	(28, 29, '2019-05-19 00:28:47', 'img_cadastro', 17, 1),
+	(29, 29, '2019-05-19 02:45:51', 'usu_usuario', 29, 2),
+	(30, 29, '2019-05-20 23:59:38', 'usu_usuario', 29, 2),
+	(31, 29, '2019-05-22 22:06:31', 'usu_usuario', 29, 2),
+	(32, 29, '2019-05-23 00:01:38', 'proj_cadastro', 1, 3),
+	(33, 29, '2019-05-23 00:03:26', 'proj_cadastro', 1, 3),
+	(34, 29, '2019-05-27 23:38:54', 'usu_usuario', 29, 2),
+	(35, 29, '2019-05-27 23:50:19', 'proj_cadastro', 1, 3),
+	(36, 29, '2019-05-27 23:53:02', 'proj_cadastro', 0, 3),
+	(37, 29, '2019-05-27 23:55:59', 'proj_cadastro', 0, 3),
+	(38, 29, '2019-05-27 23:56:58', 'proj_cadastro', 18, 3),
+	(39, 29, '2019-05-28 01:44:27', 'proj_cadastro', 20, 1);
 /*!40000 ALTER TABLE `usu_log` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.usu_perfil
@@ -5872,7 +5927,7 @@ CREATE TABLE IF NOT EXISTS `usu_tela` (
   `TELA_DESCRICAO` varchar(255) DEFAULT NULL,
   `TELA_PRIVADO` int(11) DEFAULT NULL,
   PRIMARY KEY (`TELA_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela colabad2.usu_tela: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `usu_tela` DISABLE KEYS */;
@@ -5888,7 +5943,8 @@ INSERT IGNORE INTO `usu_tela` (`TELA_ID`, `TELA_CAMINHO`, `TELA_DESCRICAO`, `TEL
 	(9, 'projetos', NULL, 1),
 	(10, 'appajax', NULL, 1),
 	(11, 'perfil', NULL, 1),
-	(12, 'suporte', NULL, 1);
+	(12, 'suporte', NULL, 1),
+	(13, 'visualizar', NULL, 1);
 /*!40000 ALTER TABLE `usu_tela` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.usu_usuario
@@ -5904,6 +5960,7 @@ CREATE TABLE IF NOT EXISTS `usu_usuario` (
   `USU_EMAILCONF` tinyint(4) NOT NULL DEFAULT '0',
   `USU_TOKEN` varchar(255) DEFAULT NULL,
   `PERF_ID` int(11) NOT NULL DEFAULT '1',
+  `USU_LINK` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`USU_ID`),
   KEY `FK_usu_usuario_usu_perfil` (`PERF_ID`),
   CONSTRAINT `FK_usu_usuario_usu_perfil` FOREIGN KEY (`PERF_ID`) REFERENCES `usu_perfil` (`PERF_ID`)
@@ -5911,9 +5968,9 @@ CREATE TABLE IF NOT EXISTS `usu_usuario` (
 
 -- Copiando dados para a tabela colabad2.usu_usuario: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `usu_usuario` DISABLE KEYS */;
-INSERT IGNORE INTO `usu_usuario` (`USU_ID`, `USU_NOME`, `USU_CADDATA`, `USU_SITUACAO`, `USU_EMAIL`, `USU_PWD`, `USU_PWDTOKEN`, `USU_PWDTOKENEXP`, `USU_EMAILCONF`, `USU_TOKEN`, `PERF_ID`) VALUES
-	(29, 'Talliny', '2019-04-28 22:58:49', 'A', 'loja.anima.animus@gmail.com', '$2y$10$pq.blSaMfUppsakvGUCDKuEsfKFXimHVCu3ZQP.EB1YzS8LNLMhf2', NULL, '2019-05-01 20:31:26', 1, 'D7gFwKyWvY', 3),
-	(30, 'João Eduardo', '2019-05-01 23:06:54', 'A', '1fb97b50a5@mailboxy.fun', '$2y$10$taNSjshaMuuSydutARf6t.7rL5aOuD7q0L/3iuKXmDkYzUTpJ6lj.', NULL, NULL, 1, 'XBDEAnmCUVZg', 1);
+INSERT IGNORE INTO `usu_usuario` (`USU_ID`, `USU_NOME`, `USU_CADDATA`, `USU_SITUACAO`, `USU_EMAIL`, `USU_PWD`, `USU_PWDTOKEN`, `USU_PWDTOKENEXP`, `USU_EMAILCONF`, `USU_TOKEN`, `PERF_ID`, `USU_LINK`) VALUES
+	(29, 'Talliny', '2019-04-28 22:58:49', 'A', 'loja.anima.animus@gmail.com', '$2y$10$pq.blSaMfUppsakvGUCDKuEsfKFXimHVCu3ZQP.EB1YzS8LNLMhf2', NULL, '2019-05-01 20:31:26', 1, 'D7gFwKyWvY', 3, 'talliny'),
+	(30, 'João Eduardo', '2019-05-01 23:06:54', 'A', '1fb97b50a5@mailboxy.fun', '$2y$10$taNSjshaMuuSydutARf6t.7rL5aOuD7q0L/3iuKXmDkYzUTpJ6lj.', NULL, NULL, 1, 'XBDEAnmCUVZg', 1, 'joao-eduardo');
 /*!40000 ALTER TABLE `usu_usuario` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

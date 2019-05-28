@@ -142,5 +142,73 @@ class App_model extends CI_Model {
     return null;
   }
 
+  function geraNotificacao($descricao, $tipo, $notificacaoPadrao = 'N', $linkDirecionamento = null, $codUser = null){ 
+    /* tipos:
+      S = Solicitações
+      A = Avisos
+      Notificações padrões são as geradas pelo sistema. Do contrário, setar o parâmetro como N. */
+
+    $this->db->set('NOTF_DATA_HORA', 'NOW()', false);
+    $this->db->insert(
+      'conf_notificacoes',
+      array('NOTF_DESCRICAO' => $descricao,
+            'NOTF_TIPO'      => $tipo,
+            'NOTF_LIDA'      => 'N',
+            'NOTF_PADRAO'    => $notificacaoPadrao,
+            'NOTF_DIRECIONA' => $linkDirecionamento,
+            'NOTF_USUARIO'   => ($codUser != null) ? $codUser : $this->session->userdata('logged_in_colabad')['sesColabad_vId'])
+      );
+  }
+
+    
+  function buscaNotificacoes() {
+    //Controle pra não alertar o usuário mais que uma vez para a mesma notificação
+    //$contaNotficPadrao = $this->db->get_where('notificacoes', array('NOTF_PADRAO' => 'S', 'NOTF_USUARIO' => $this->codPes, "DATE_FORMAT(NOTF_DATA_HORA, '%Y-%m-%d') = " => date('Y-m-d')))->num_rows();
+    //if($contaNotficPadrao == 0){
+      //$this->notificacoesPadroes();
+    //}
+
+    $dados = array();
+
+    $sql = " SELECT N.NOTF_ID,
+                    N.NOTF_DESCRICAO,
+                    N.NOTF_TIPO,
+                    N.NOTF_LIDA,
+                    COALESCE(N.NOTF_DIRECIONA, '') NOTF_DIRECIONA,
+                    DATE_FORMAT(N.NOTF_DATA_HORA, '%d/%m/%Y %H:%i') NOTF_DATA_HORA
+            FROM conf_notificacoes N 
+            WHERE N.NOTF_USUARIO = ?
+            ORDER BY N.NOTF_DATA_HORA DESC, N.NOTF_LIDA ASC; ";
+
+    $query = $this->db->query($sql, array($this->session->userdata('logged_in_colabad')['sesColabad_vId']));
+        
+    if ($query->num_rows() > 0) {
+      foreach ($query->result() as $row) {
+        $dados[] = array(
+          'vNotId'        => $row->NOTF_ID,
+          'vNotDesc'      => $row->NOTF_DESCRICAO,
+          'vNotTipo'      => $row->NOTF_TIPO,
+          'vNotLida'      => $row->NOTF_LIDA,
+          'vNotDireciona' => $row->NOTF_DIRECIONA,
+          'vNotDataHora'  => $row->NOTF_DATA_HORA
+        );  
+      }
+      return $dados;
+    } else {
+      return null;
+    }
+  }
+
+  function atualizaStatusNotificacao($codNotificacao, $lerNaoler, $excluir) {
+    if($excluir != 'S'){
+      $this->db->set('NOTF_LIDA', $lerNaoler);
+      $this->db->where('NOTF_ID', $codNotificacao);
+      $this->db->update('conf_notificacoes');
+    } else {
+      $this->db->delete('conf_notificacoes', array('NOTF_ID' => $codNotificacao));
+    }
+
+    return $this->db->affected_rows();
+  }  
 }
 

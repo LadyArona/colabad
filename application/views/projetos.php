@@ -17,28 +17,13 @@
       </div>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="projetos" role="tabpanel" aria-labelledby="projetos-tab">
-          <div class="table-responsive">
-            <table id="tabelaProjetos" class="table table-bordered display nowrap small" cellspacing="0" width="100%">
-              <thead class="thead-light">
-                <tr>
-                  <?php 
-                    if(isset($tabelaProjetos)){
-                      foreach ($tabelaProjetos as $key => $value) {
-                        if($key == 'theadsTabela'){
-                          foreach ($value as $nomes => $conf) {
-                            echo "<th scope='col' width='".$conf['width']."%' style='text-align:".$conf['posicao'].";'";
-                            echo " title='".$conf['tooltip']."' ";
-                            echo " class='text-default'>";
-                            echo $nomes;
-                            echo "</th>";
-                          }
-                        }
-                      }
-                    }
-                  ?>
-                </tr>
-              </thead>
-            </table>   
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="row row-grid" id="vProjetos">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="tab-pane fade" id="cadastrar" role="tabpanel" aria-labelledby="cadastrar-tab">
@@ -146,34 +131,3 @@
     </div>
   </div>
 </div>
-
-
-<?php
-  $conf     = array();
-  $colOrdem = array();
-  $arrayDefsProjetos  = json_encode(array());
-  $arrayOrdemProjetos = json_encode(array());
-  if(isset($tabelaProjetos)){
-    foreach ($tabelaProjetos as $key => $value) {
-      if($key == 'columnDefs'){
-        foreach ($value as $defs) {
-          $conf[] = $defs;
-        }
-      }
-      if($key == 'ordemInicial'){
-        foreach ($value as $sort) {
-          $colOrdem[] = $sort;
-        }
-      }
-    }
-    $arrayDefsProjetos  = json_encode($conf);
-    $arrayOrdemProjetos = json_encode($colOrdem); 
-  }
-?>
-
-<script>
-  let columnDefsProjetos = [];
-  let colOrdemProjetos = [];
-  columnDefsProjetos = <?php echo $arrayDefsProjetos;  ?>;
-  colOrdemProjetos = <?php echo $arrayOrdemProjetos; ?>;
-</script>

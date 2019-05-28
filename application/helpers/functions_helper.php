@@ -4,6 +4,39 @@ if ( ! function_exists('autenticacaoLDAP')){
 
 }
 
+if ( ! function_exists('criaLink')){
+  function criaLink($str){
+    $slug = $str;
+    $slug = sanitizeString($slug, false);
+    $slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $slug);
+    $slug = strtolower($slug);
+    $slug = substr($slug, 0, 50);
+
+    return $slug;
+  }
+}
+
+if(! function_exists('sanitizeString')){
+  function sanitizeString($str, $under = true) {
+    $str = trim($str);
+    $str = preg_replace('/[áàãâä]/ui', 'a', $str);
+    $str = preg_replace('/[éèêë]/ui', 'e', $str);
+    $str = preg_replace('/[íìîï]/ui', 'i', $str);
+    $str = preg_replace('/[óòõôö]/ui', 'o', $str);
+    $str = preg_replace('/[úùûü]/ui', 'u', $str);
+    $str = preg_replace('/[ç]/ui', 'c', $str);
+    $str = trim($str);
+    if ($under) {
+      //$str = preg_replace('/[,(),;:|!"#$%&/=?~^><ªº-]/', '', $str);
+      $str = preg_replace('/[,(),;:|!"#$%&=?~^><ªº-]/', '', $str);
+      $str = preg_replace('/[^a-z0-9]/i', '_', $str);
+      $str = preg_replace('/_+/', '_', $str); // ideia do Bacco :)
+      $str = strtolower($str);
+    }
+    return $str;
+  }
+}
+
 if ( ! function_exists('gerarToken')){
   function gerarToken($tam = 12){
     $token = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123467890';
@@ -335,27 +368,6 @@ if(! function_exists('generateCSV')){
       ob_flush();
 
     }
-  }
-}
-
-if(! function_exists('sanitizeString')){
-  function sanitizeString($str, $under = true) {
-    $str = trim($str);
-    $str = preg_replace('/[áàãâä]/ui', 'a', $str);
-    $str = preg_replace('/[éèêë]/ui', 'e', $str);
-    $str = preg_replace('/[íìîï]/ui', 'i', $str);
-    $str = preg_replace('/[óòõôö]/ui', 'o', $str);
-    $str = preg_replace('/[úùûü]/ui', 'u', $str);
-    $str = preg_replace('/[ç]/ui', 'c', $str);
-    $str = trim($str);
-    if ($under) {
-      //$str = preg_replace('/[,(),;:|!"#$%&/=?~^><ªº-]/', '', $str);
-      $str = preg_replace('/[,(),;:|!"#$%&=?~^><ªº-]/', '', $str);
-      $str = preg_replace('/[^a-z0-9]/i', '_', $str);
-      $str = preg_replace('/_+/', '_', $str); // ideia do Bacco :)
-      $str = strtolower($str);
-    }
-    return $str;
   }
 }
 

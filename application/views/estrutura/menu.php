@@ -11,17 +11,6 @@
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
-        <li class="nav-item dropdown">
-          <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="ni ni-bell-55"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
         <li class="nav-item">
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
@@ -32,6 +21,15 @@
           </a>
         </li>
       </ul>
+      <ul class="nav align-items-center d-md-none itensNotificacoes">
+        <li class="nav-item dropdown notficDropAvisos">
+          <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="ni ni-bell-55"></i>
+          </a>
+          <div id="divAvisos" class="dropdown-menu dropdown-menu-arrow dropdown-menu-right dropdown-menu-sm-right" aria-labelledby="navbar-default_dropdown_1">
+          </div>
+        </li>
+      </ul>      
       <!-- Collapse -->
       <div class="collapse navbar-collapse" id="sidenav-collapse-main">
         <!-- Collapse header -->
@@ -84,7 +82,10 @@
         <h6 class="navbar-heading text-muted">Usuário</h6>
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url();?>perfil">
+            <?php
+              $perfil = base_url().'perfil/'.$this->session->userdata('logged_in_colabad')['sesColabad_vId'].'/'.$this->session->userdata('logged_in_colabad')['sesColabad_vLink'];
+            ?>
+            <a class="nav-link" href="<?php echo $perfil;?>">
               <i class="ni ni-single-02 text-yellow"></i> Meu Perfil
             </a>
           </li>

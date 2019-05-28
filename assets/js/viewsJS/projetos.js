@@ -1,4 +1,3 @@
-let tabelaProjetos = []
 let participantes = []
 
 const projetos = {
@@ -7,7 +6,6 @@ const projetos = {
 
     $('#btnCancelar').click(function(event) {  
       projetos.limparCampos()
-      $('#edTitulo').focus()
     })
 
     $('#btnSalvar').click(function(event) {  
@@ -17,8 +15,8 @@ const projetos = {
     $('#cbParticipante').on('changed.bs.select', function(e) {
       projetos.addRow($(this).selectpicker('val'), $(this).find(':selected').text(), 'N')
     })
-    //$('.nav-pills a[href="#projetos"]').tab('show')
-    projetos.initTabelaProjetos(columnDefsProjetos, colOrdemProjetos)
+    
+    projetos.initProjetos()
   },
   addRow: (idColaborador, nomeColaborador, resp) => {
     if (participantes.findIndex(x => x.cod === idColaborador) === -1) {
@@ -72,37 +70,86 @@ const projetos = {
       })
     }, 500)
   },
-  initTabelaProjetos: (columnDefs, colOrdem) => {
-    $('#tabelaProjetos').dataTable().fnDestroy()
-    tabelaProjetos =
-      $('#tabelaProjetos').DataTable({
-        language: {
-          url: `${baseUrl}assets/js/pt-br_datatables.js`
-        },
-        serverSide: true,
-        processing: true,
-        responsive: true,
-        info: true,
-        stateSave: true,
-        ajax: {
-          url: `${baseUrl}ajax/buscarProjeto`,
-          data: {buscarProjeto: ''},
-          type: 'POST'
-        },
-        ordering: true,
-        columnDefs,
-        deferRender: true,
-        scrollCollapse: true,
-        scroller: {
-          loadingIndicator: true
-        }
-      })
+  initProjetos: () => {
+    $('#vProjetos').html('')
 
-    if (colOrdem.length > 0) {
-      tabelaProjetos.order(colOrdem).draw()
-    }
+    $.ajax({
+      url: `${baseUrl}ajax/buscarProjeto`,
+      data: {
+        buscarProjeto: ''
+      },
+      dataType: 'JSON',
+      type: 'POST',
+      beforeSend: () => {
+        $.loader({
+          className: 'blue-with-image-2',
+          content: 'Aguarde, carregando...'
+        })
+      }
+    }).done((data) => {
+      if (data.result == 'OK') {
+        let html = ''
 
-    tabelaProjetos.columns.adjust()
+        data.vProjetos.map((item) => {
+          let privado = `<span class="badge badge-pill badge-${item.vPrivado == 0 ? 'success' : 'warning'}">${item.vPrivado == 0 ? 'Público' : 'Privado'}</span>`
+          let status = `<span class="badge badge-pill badge-${item.vStatus == 'A' ? 'info' : 'danger'}">${item.vStatus == 'A' ? 'Ativo' : 'Inativo'}</span>`
+          let imagem = `<span class="badge badge-pill badge-primary">${item.vImagens}${item.vImagens == 1 ? ' imagem' : ' imagens'}</span>`
+
+          let colab = ''
+          item.vColab.map((e) => {
+            colab += 
+              `<a href="" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="${e.vNome}">
+                <img alt="Colaborador do Projeto: ${e.vNome}" src="${baseUrl}assets/img/theme/team-1-800x800.jpg" class="rounded-circle">
+              </a>`
+          })
+
+          html +=
+          `<div class="col-lg-6 pb-4">
+            <div class="card card-lift--hover shadow border-0">
+              <div class="card-body py-4">
+                <h3 class="title text-uppercase">${item.vTitulo}</h3>
+                <p>Cadastrado em ${item.vData}</p>
+                <div>
+                  ${privado}
+                  ${status}
+                  ${imagem}
+                </div>
+                <div class="avatar-group mt-4">
+                  ${colab}
+                </div>
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <button class="btn btn-default btn-block"
+                    onclick='projetos.carregaEdit(${item.vId});'
+                    aria-label="Editar este Projeto">
+                      <i class="fas fa-edit"></i> Editar
+                    </button>
+                  </div>
+                  <div class="col-md-6">
+                    <a class="btn btn-primary btn-block"
+                    href='${item.vLink}'
+                    aria-label="Visualizar este Projeto">
+                      <i class="fas fa-eye"></i> Visualizar
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>`
+        })
+
+        $('#vProjetos').html(html)
+      } else
+      if (data.result == 'ERRO') {
+        console.log('error dados ', data)
+        app.showNotification(`Ops! Erro ao carregar`, 'danger', 2)
+      }
+    }).fail((err) => {
+      console.log('error dados ', err)
+      app.showNotification(`Ops! Ocorreu um erro`, 'danger', 2)
+    }).always(() => {
+      $.loader('close')
+    })
   },
   salvarCadastro: () => {
     if (projetos.validaSalvar()) {
@@ -123,16 +170,7 @@ const projetos = {
         }
       }).done((data) => {
         if (data.result === 'OK') {
-          app.showNotification(
-            `Projeto cadastrado com sucesso! <br>
-            <strong>${data.mensagem}</strong>`,
-            'success', 2
-          )
-
-          $('#btnCancelar').click()
-          tabelaProjetos.ajax.reload()
-          //$('.nav-pills a[href="#projetos"]').tab('show')
-          app.selectTab(0)
+          window.location.reload()
         }
       }).fail((err) => {
         console.log('error dados ', err)
@@ -191,9 +229,9 @@ const projetos = {
         app.selectTab(1)
 
         $('#edTitulo').val(data.vTitulo)
-        $('#edDescricao').val(data.vDescricao)
+        $('#edDescricao').froalaEditor('html.set', data.vDescricao)
 
-        $('#cbPublico').val(data.vPublico).selectpicker('render').selectpicker('refresh')
+        $('#cbPublico').val(data.vPrivado).selectpicker('render').selectpicker('refresh')
         $('#cbStatus').val(data.vStatus).selectpicker('render').selectpicker('refresh')
 
         $('#edEditar').val('S')
@@ -229,5 +267,7 @@ const projetos = {
     $(participantes).each(function (index, el) {
       projetos.removeRow(el.cod)
     })
+
+    app.selectTab(0)
   }
 }

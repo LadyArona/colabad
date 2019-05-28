@@ -29,6 +29,20 @@ class Appajax extends CI_Controller {
            ->set_output(json_encode($dados));
     }
   }
+
+  function atualizaStatusNotificacao(){
+    if($this->input->post('Notificacao') == ""){
+      $codNotificacao = $this->input->post('codNotificacao');
+      $lerNaoler      = $this->input->post('lerNaoler');
+      $excluir        = $this->input->post('excluir');
+      $result         = $this->app->atualizaStatusNotificacao($codNotificacao, $lerNaoler, $excluir);
+      $this->output
+           ->set_content_type('application/json')
+           ->set_output(json_encode(($result > 0) ? array("result" => "OK") : array("result" => "")));
+    } 
+  }
+  /*Funções para as notificações*/
+
     
   /*-- Função para buscar os dados dos combos padrões --*/   
   function carregaDadosCombo(){

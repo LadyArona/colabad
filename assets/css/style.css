@@ -626,3 +626,18 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     margin-left: 0px;
     width: 100%;
 }
+
+.itensNotificacoes .iconAction{
+    font-size: 10px !important;
+    width: auto !important;
+    text-align: left !important;
+    margin-right: 5px !important;
+    line-height: 20px !important;
+}
+ul.itensNotificacoes li.notficDropAvisos ul li {
+  box-shadow: 0px -1px 0px 0px #1a95ce;
+}
+ul.itensNotificacoes li.notficDropAvisos ul li a:hover {
+  background-color: #fff;
+  color: inherit;
+}

@@ -101,7 +101,7 @@ body
 
     text-align: left;
 
-    color: #5A645A;
+    color: #3e3e3e;
     background-color: #fff;
 }
 
@@ -2210,7 +2210,7 @@ pre code
 
 .table .thead-light th
 {
-    color: #5A645A;
+    color: #3e3e3e;
     border-color: #dee2e6; 
     background-color: #e9ecef;
 }
@@ -2446,7 +2446,7 @@ select.form-control:focus::-ms-value
     padding-top: .625rem;
     padding-bottom: .625rem;
 
-    color: #5A645A;
+    color: #3e3e3e;
     border: solid transparent;
     border-width: 1px 0; 
     background-color: transparent;
@@ -4084,7 +4084,7 @@ input[type='button'].btn-block
 
     text-align: left;
 
-    color: #5A645A;
+    color: #3e3e3e;
     border: 0 solid rgba(0, 0, 0, .15);
     border-radius: .3rem;
     background-color: #fff;
@@ -5192,7 +5192,7 @@ input[type='button'].btn-block
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link
 {
-    color: #5A645A;
+    color: #3e3e3e;
     border-color: #dee2e6 #dee2e6 #fff; 
     background-color: #fff;
 }
@@ -6701,19 +6701,19 @@ input[type='button'].btn-block
 
     text-align: inherit; 
 
-    color: #5A645A;
+    color: #3e3e3e;
 }
 .list-group-item-action:hover,
 .list-group-item-action:focus
 {
     text-decoration: none;
 
-    color: #5A645A;
+    color: #3e3e3e;
     background-color: #f6f9fc;
 }
 .list-group-item-action:active
 {
-    color: #5A645A;
+    color: #3e3e3e;
     background-color: #e9ecef;
 }
 
@@ -7621,7 +7621,7 @@ button.close
 {
     padding: .75rem .75rem;
 
-    color: #5A645A;
+    color: #3e3e3e;
 }
 
 .carousel
@@ -12459,7 +12459,7 @@ a.text-darker:focus
 
 .text-body
 {
-    color: #5A645A !important;
+    color: #3e3e3e !important;
 }
 
 .text-muted
@@ -15195,7 +15195,7 @@ a.btn-icon-only
 .footer .nav .nav-item .nav-link:hover,
 .footer .footer-link:hover
 {
-    color: #5A645A !important;
+    color: #3e3e3e !important;
 }
 .footer .list-unstyled li a
 {
@@ -15209,7 +15209,7 @@ a.btn-icon-only
 }
 .footer .list-unstyled li a:hover
 {
-    color: #5A645A;
+    color: #3e3e3e;
 }
 .footer .copyright
 {
@@ -16065,7 +16065,7 @@ textarea[resize='horizontal']
 
 .nav-link
 {
-    color: #5A645A;
+    color: #3e3e3e;
 }
 .nav-link:hover
 {
@@ -17163,8 +17163,8 @@ textarea[resize='horizontal']
 
 .section-lg
 {
-    padding-top: 5rem;
-    padding-bottom: 5rem;   
+    padding-top: 7rem;
+    padding-bottom: 3rem;   
 }
 
 .facebook {

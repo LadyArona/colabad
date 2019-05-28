@@ -1,7 +1,7 @@
 
 const publicar = {
   initConfig: () => {
-     app.carregaCombo('cbProjeto', 'P', 0)
+    app.carregaCombo('cbProjeto', 'P', 0)
 
     $('#edTitulo').focus()
 

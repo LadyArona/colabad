@@ -7,53 +7,27 @@ class Projetos_model extends CI_Model {
     $this->load->model('App_model', 'app');
   }
 
-  public function buscarProjeto () {
-    $tabela      = 'proj_cadastro';
-    $requestData = $_REQUEST;
-
+  public function buscarProjeto ($limit = 0) {
+    $tabela  = 'proj_cadastro';
     $usuario = $this->session->userdata('logged_in_colabad')['sesColabad_vId'];
-    $dataRows = array();
+    $dados   = array();
+
+    $limit = ($limit > 0) ? 'ORDER BY P.PROJ_DATACAD LIMIT '.$limit : '';
+
+    /*echo "<pre>";
+      print_r($limit);
+      exit;*/
 
     try{
-      $dataFiltered = $this->db->get_where($tabela)->num_rows(); 
-      $totalFiltered = $dataFiltered; 
-
-      $columns = 
-        array(
-          0 => 'vId',
-          1 => 'vTitulo',
-          2 => 'vStatus',
-          3 => 'vPrivado',
-          4 => 'vData',
-          5 => ''
-        );
-
-      $ordem = '';
-      foreach ($requestData['order'] as $key => $value) {
-        if ($ordem != '') {
-          $ordem .= ', ';
-        }
-
-        $ordem .= $columns[$value['column']].' '.$value['dir'];
-      }
-
-      if ($ordem != '') {
-        $ordem = ' ORDER BY '.$ordem;
-      }
-
       $sql = "SELECT P.PROJ_ID vId,
                    P.PROJ_TITULO vTitulo,
                    P.PROJ_DESCRICAO vDescricao,
-                   CASE
-                    WHEN P.PROJ_STATUS = 'A' THEN 'Ativo'
-                    ELSE 'Inativo'
-                   END vStatus,
-                   CASE
-                    WHEN P.PROJ_PRIVADO = 0 THEN 'Público'
-                    ELSE 'Privado'
-                   END vPrivado,
-                   DATE_FORMAT(P.PROJ_DATACAD, '%d/%m/%Y %h:%i') vData,
-                   (SELECT COUNT(C.PROJ_ID) FROM proj_participantes C WHERE C.PROJ_ID = P.PROJ_ID) vColab
+                   P.PROJ_LINK vLink,
+                   P.PROJ_STATUS vStatus,
+                   P.PROJ_PRIVADO vPrivado,
+                   DATE_FORMAT(P.PROJ_DATACAD, '%d de %M de %Y as %H:%i') vData,
+                   (SELECT COUNT(C.PROJ_ID) FROM proj_participantes C WHERE C.PROJ_ID = P.PROJ_ID) vColab,
+                   (SELECT COUNT(I.IMG_ID) FROM img_cadastro I WHERE I.PROJ_ID = P.PROJ_ID) vImagens
 
             FROM proj_cadastro P
 
@@ -62,52 +36,30 @@ class Projetos_model extends CI_Model {
                 (SELECT C.PROJ_ID 
                 FROM proj_participantes C 
                 WHERE C.USU_ID = $usuario
-                AND C.PAR_RESPONSAVEL = 'S') ;";
+                AND C.PAR_RESPONSAVEL = 'S') 
 
-      if(!empty($requestData['search']['value']) ) {
-        $sql = 
-          $sql.
-          " AND P.PROJ_TITULO LIKE '%".$requestData['search']['value']."%' 
-            $ordem   
-            LIMIT ".$requestData['start']." ,".$requestData['length'];
-
-            $query = $this->db->query($sql);
-            $totalFiltered = $query->num_rows();
-      } else {
-        $sql = 
-          $sql.
-          $ordem.
-          " LIMIT ".$requestData['start']." ,".$requestData['length'];
-                   
-        $query = $this->db->query($sql);
-      }
+            $limit ;";
+      
+      $this->db->query('SET lc_time_names = "pt_br"'); //para os meses sairem em portugues
+      $query = $this->db->query($sql);
 
       foreach ($query->result() as $row) {
-        $nestedData = array();
-
-        $nestedData[] = $row->vId;
-        $nestedData[] = '<strong>'.$row->vTitulo.'</strong>';
-        $nestedData[] = $row->vStatus;
-        $nestedData[] = $row->vPrivado;
-        $nestedData[] = $row->vColab;
-        $nestedData[] = "<a data-toggle='tooltip' 
-                        title='Editar' 
-                        class='fa fa-pencil-square-o text-default' 
-                        aria-hidden='true' 
-                        style='cursor: pointer; font-size: 20px;' 
-                        onclick='projetos.carregaEdit(".$row->vId.");'>
-                      </a>";
-
-        $dataRows[] = $nestedData;
+        $link = ($row->vLink != '') ? base_url().'projeto/'.$row->vId.'/'.$row->vLink : '';
+        $dados[] = 
+          array(
+            'vId'      => $row->vId,
+            'vTitulo'  => '<strong>'.$row->vTitulo.'</strong>',
+            'vStatus'  => $row->vStatus,
+            'vPrivado' => $row->vPrivado,
+            'vData'    => $row->vData,
+            'vImagens' => $row->vImagens,
+            'vLink'    => $link,
+            'vColab'   => $this->carregaColaboradores($row->vId)
+          );
       }
-
-      return array(
-              "draw"                 => intval( $requestData['draw'] ),
-              "iTotalDisplayRecords" => intval( $totalFiltered ), 
-              "recordsTotal"         => intval( $dataFiltered ), 
-              "recordsFiltered"      => intval( $totalFiltered ), 
-              "data"                 => $dataRows
-            );
+      $dados = array('result'    => 'OK',
+                     'vProjetos' => $dados);
+      return $dados;
 
       } catch(PDOException $e) { 
         return
@@ -119,7 +71,7 @@ class Projetos_model extends CI_Model {
   }
 
   public function carregarProjeto ($id) {
-    $tabela      = 'proj_cadastro';
+    $tabela = 'proj_cadastro';
 
     try{
       $sql = "SELECT P.PROJ_ID vId,
@@ -140,20 +92,99 @@ class Projetos_model extends CI_Model {
             'result'        => 'OK',
             'vTitulo'       => $row->vTitulo,
             'vDescricao'    => $row->vDescricao,
-            'vResponsavel'  => $row->vPrivado,
+            'vPrivado'      => $row->vPrivado,
             'vStatus'       => $row->vStatus,
             'vId'           => $row->vId,
-            'vParticipante' => array()
+            'vParticipante' => $this->carregaColaboradores($row->vId)
+          );
+
+
+        }
+
+        return $dados;
+
+      }
+    } catch(PDOException $e) { 
+      return
+        array(
+          'result' => 'ERRO',
+          $dados
+        );
+    }           
+  }
+
+  private function carregaColaboradores ($id) {
+    //busca participantes
+    $sql = "SELECT P.USU_ID vId,
+                   U.USU_NOME vNome,
+                   P.PAR_RESPONSAVEL vResponsavel
+
+            FROM proj_participantes P
+              JOIN usu_usuario U ON U.USU_ID = P.USU_ID
+
+            WHERE P.PROJ_ID = $id ;";
+
+    $query = $this->db->query($sql);
+
+    if ($query->num_rows() > 0){
+      foreach ($query->result() as $row) {
+        $dados[] = array(
+          'vId'          => $row->vId,
+          'vNome'        => $row->vNome,
+          'vResponsavel' => $row->vResponsavel
+        );
+      }
+    }
+
+    return $dados;
+  }
+
+  public function carregarProjetoVisualizar ($id) {
+    $tabela  = 'proj_cadastro';
+    $dados   = array();
+
+    try{
+      $sql = "SELECT P.PROJ_ID vId,
+                     P.PROJ_TITULO vTitulo,
+                     P.PROJ_DESCRICAO vDescricao,
+                     P.PROJ_STATUS vStatus,
+                     CASE 
+                      WHEN P.PROJ_PRIVADO = 0 THEN 'Projeto Público'
+                      ELSE 'Projeto Privado'
+                    END vPrivado
+
+              FROM proj_cadastro P
+
+              WHERE P.PROJ_ID = $id ;";
+
+      $query = $this->db->query($sql);
+
+      if ($query->num_rows() > 0){
+        foreach ($query->result() as $row) {
+          $dados = array(
+            'result'        => 'OK',
+            'vTitulo'       => $row->vTitulo,
+            'vDescricao'    => $row->vDescricao,
+            'vPrivado'      => $row->vPrivado,
+            'vStatus'       => $row->vStatus,
+            'vId'           => $row->vId,
+            'vParticipante' => array(),
+            'vImagens'      => array()
           );
         }
 
         //busca participantes
         $sql = "SELECT P.USU_ID vId,
                        U.USU_NOME vNome,
-                       P.PAR_RESPONSAVEL vResponsavel
+                       CASE
+                        WHEN P.PAR_RESPONSAVEL = 'S' THEN 'Responsável'
+                        ELSE ''
+                       END vResponsavel,
+                       PF.PERF_DESCRICAO vPerfil
 
                 FROM proj_participantes P
                   JOIN usu_usuario U ON U.USU_ID = P.USU_ID
+                  JOIN usu_perfil PF ON PF.PERF_ID = U.PERF_ID
 
                 WHERE P.PROJ_ID = $id ;";
 
@@ -164,7 +195,33 @@ class Projetos_model extends CI_Model {
             $dados['vParticipante'][] = array(
               'vId'          => $row->vId,
               'vNome'        => $row->vNome,
-              'vResponsavel' => $row->vResponsavel
+              'vResponsavel' => $row->vResponsavel,
+              'vPerfil'      => $row->vPerfil
+            );
+          }
+        }
+
+        //busca imagens
+        $sqlImg = "SELECT I.IMG_ID vId,
+                       I.IMG_NOMEUNIQ vNome,
+                       I.IMG_LINK vLink,
+                       I.IMG_TITULO vDesc
+
+                FROM img_cadastro I
+
+                WHERE I.IMG_STATUS = 'A'
+                  AND I.PROJ_ID = $id ;";
+
+        $queryImg = $this->db->query($sqlImg);
+
+        if ($queryImg->num_rows() > 0){
+          foreach ($queryImg->result() as $rowImg) {
+            $linkImg = ($rowImg->vLink != '') ? base_url().'imagem/'.$rowImg->vId.'/'.$rowImg->vLink : '';
+            $dados['vImagens'][] = array(
+              'vId'   => $rowImg->vId,
+              'vNome' => $rowImg->vNome,
+              'vLink' => $linkImg,
+              'vDesc' => $rowImg->vDesc
             );
           }
         }
@@ -188,6 +245,10 @@ class Projetos_model extends CI_Model {
     if (isset($form)) {
       parse_str($form, $values); 
 
+      /*echo "<pre>";
+      print_r($values);
+      exit;*/
+
       try{
         $tabela = 'proj_cadastro';
 
@@ -195,6 +256,9 @@ class Projetos_model extends CI_Model {
         $edDescricao  = ($values['edDescricao'] != '')  ? $values['edDescricao'] : null;
         $cbPublico    = ($values['cbPublico'] != '')    ? $values['cbPublico'] : null;
         $cbStatus     = ($values['cbStatus'] != '')     ? $values['cbStatus'] : null;
+        $edEditar     = ($values['edEditar'] == 'S')    ? 'S' : 'N';
+
+        $link = criaLink($edTitulo);
 
         $dados = 
           array(
@@ -202,21 +266,23 @@ class Projetos_model extends CI_Model {
             'PROJ_DESCRICAO' => $edDescricao,
             'PROJ_PRIVADO'   => $cbPublico,
             'PROJ_STATUS'    => $cbStatus,
+            'PROJ_LINK'      => $link,
             'USU_ID'         => $this->session->userdata('logged_in_colabad')['sesColabad_vId']
           );
 
-        if ($values['edEditar'] == 'S') {  
+        if ($edEditar == 'S') {  
           $this->db->update($tabela, $dados, array("PROJ_ID" => $values['edCodigo']));
-          $id = $this->db->affected_rows();
+          $id = $values['edCodigo'];
 
-          $this->salvaParticipantes($values['edCodigo'], $participantes, 'S');
           $this->auth->logUsuario($tabela, $id, 3);
         } else {
           $this->db->insert($tabela, $dados);
           $id = $this->db->insert_id();
-          $this->salvaParticipantes($id, $participantes, 'N');
           $this->auth->logUsuario($tabela, $id, 1);
         }
+
+        $link = 'projeto/'.$id.'/'.$link;
+        $this->salvaParticipantes($id, $participantes, $edEditar, $edTitulo, $link);
 
         return
           array(
@@ -234,7 +300,7 @@ class Projetos_model extends CI_Model {
     }
   }
 
-  function salvaParticipantes($id, $participantes, $editar) {
+  function salvaParticipantes($id, $participantes, $editar, $projeto, $link) {
     $tabela = 'proj_participantes';
 
     if ($editar == 'S') {
@@ -250,7 +316,9 @@ class Projetos_model extends CI_Model {
             'USU_ID'          => $value['cod'],
             'PAR_RESPONSAVEL' => $value['resp']
           )
-        ); 
+        );
+
+        $this->app->geraNotificacao('Você foi adicionado como colaborador do projeto: <b>'.$projeto.'</b>.', 'A', 'N', $link, $value['cod']);
       }
     }
   }  
