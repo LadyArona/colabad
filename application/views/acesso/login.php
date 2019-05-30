@@ -42,6 +42,7 @@
                   <div class="card-body px-lg-5 py-lg-5">
                     <form name="formLogin" id="formLogin" action="" method="">
                       <div class="form-group mb-3">
+                        <label class="form-control-label" for="edEmailLogin">Email</label>
                         <div class="input-group input-group-alternative">
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-email-83"></i></span>
@@ -50,6 +51,7 @@
                         </div>
                       </div> 
                       <div class="form-group">
+                        <label class="form-control-label" for="edPassLogin">Senha</label>
                         <div class="input-group input-group-alternative">
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
@@ -95,6 +97,7 @@
                     <form name="formCadastrar" id="formCadastrar" action="" method="">
                       <!-- NOME -->
                       <div class="form-group">
+                        <label class="form-control-label" for="edNome">Nome</label>
                         <div class="input-group input-group-alternative mb-3">
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
@@ -105,6 +108,7 @@
 
                       <!-- EMAIL -->
                       <div class="form-group mb-3">
+                        <label class="form-control-label" for="edEmail">Email</label>
                         <div class="input-group input-group-alternative">
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-email-83"></i></span>
@@ -114,6 +118,7 @@
                       </div>
                       <!-- SENHA -->
                       <div class="form-group">
+                        <label class="form-control-label" for="edPass">Senha</label>
                         <div class="input-group input-group-alternative">
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
@@ -127,6 +132,7 @@
                         </div>
                       </div>
                       <div class="form-group">
+                        <label class="form-control-label" for="edConfPass">Confirmar Senha</label>
                         <div class="input-group input-group-alternative">
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>

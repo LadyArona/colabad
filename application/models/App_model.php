@@ -95,6 +95,29 @@ class App_model extends CI_Model {
     $dados = array();
     $sql = '';
 
+    if ($tipoInfo == 'CID') {
+      $where = ($codToControl != '') ? ' AND C.EST_ID = '.$codToControl.' ' : '';            
+      $sql = " SELECT C.CID_ID ID, C.CID_DESCRICAO DESCRICAO, '' COR, '' ICON 
+                FROM conf_cidade C
+                WHERE C.CID_ID > 0
+                $where 
+                ORDER BY C.CID_DESCRICAO; ";
+    } else 
+    if ($tipoInfo == 'DEF') {
+      $where = ($codToControl != '') ? ' AND D.DEF_ID = '.$codToControl.' ' : '';            
+      $sql = " SELECT D.DEF_ID ID, D.DEF_DESCRICAO DESCRICAO, '' COR, '' ICON 
+              FROM conf_deficiencia D
+              WHERE D.DEF_SITUACAO = 'A'
+              $where
+              ORDER BY D.DEF_DESCRICAO; ";
+    } else 
+    if ($tipoInfo == 'EST') {
+      $where = ($codToControl != '') ? ' WHERE E.EST_ID = '.$codToControl.' ' : '';            
+      $sql = " SELECT E.EST_ID ID, CONCAT(E.EST_UF, ' - ', E.EST_DESCRICAO) DESCRICAO, '' COR, '' ICON 
+              FROM conf_estado E
+              $where
+              ORDER BY E.EST_DESCRICAO; ";
+    } else 
     if ($tipoInfo == 'U') {
       $where = ($codToControl != '') ? ' AND U.USU_ID = '.$codToControl.' ' : '';            
       $sql = " SELECT U.USU_ID ID, U.USU_NOME DESCRICAO, '' COR, '' ICON 
@@ -159,7 +182,6 @@ class App_model extends CI_Model {
             'NOTF_USUARIO'   => ($codUser != null) ? $codUser : $this->session->userdata('logged_in_colabad')['sesColabad_vId'])
       );
   }
-
     
   function buscaNotificacoes() {
     //Controle pra não alertar o usuário mais que uma vez para a mesma notificação

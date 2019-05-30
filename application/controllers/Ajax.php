@@ -60,6 +60,36 @@ class Ajax extends CI_Controller {
          ->set_output(json_encode($registros));
   }
   
+  function carregarPerfil(){
+    if($this->input->post('carregarPerfil') == ""){
+      $this->load->model('Perfil_model', 'perf');
+      $registros = $this->perf->carregarPerfil();
+      $this->output
+           ->set_content_type('application/json')
+           ->set_output(json_encode($registros));
+    }
+  }  
+
+  function salvarPerfil(){
+    $this->load->model('Perfil_model', 'perf');
+
+    $edNome           = $this->input->post('edNome');
+    $edEmail          = $this->input->post('edEmail');
+    $edPass           = $this->input->post('edPass');
+    $edAudiodescricao = $this->input->post('edAudiodescricao');
+    $cbEstado         = $this->input->post('cbEstado');
+    $cbCidade         = $this->input->post('cbCidade');
+    $edOrg            = $this->input->post('edOrg');
+    $cbDefic          = $this->input->post('cbDefic');
+    $cbQual           = $this->input->post('cbQual');
+    $edObs            = $this->input->post('edObs');
+
+    $registros = $this->perf->salvarPerfil($_FILES['imagem'], $edNome, $edEmail, $edPass, $edAudiodescricao, $cbEstado, $cbCidade, $edOrg, $cbDefic, $cbQual, $edObs);
+    $this->output
+         ->set_content_type('application/json')
+         ->set_output(json_encode($registros));
+  }
+  
   function carregarImagemVisualizar(){
     if($this->input->post('carregarImagemVisualizar') == ""){
       $this->load->model('Imagem_model', 'img');

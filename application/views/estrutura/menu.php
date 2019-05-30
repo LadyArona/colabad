@@ -1,5 +1,5 @@
   <!-- Sidenav -->
-  <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+  <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white pt-6" id="sidenav-main">
     <div class="container-fluid">
       <!-- Toggler -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,21 +9,11 @@
       <a class="navbar-brand pt-0" href="<?php echo base_url();?>">
         <img src="<?php echo base_url();?>assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
       </a>
-      <!-- User -->
-      <ul class="nav align-items-center d-md-none">
-        <li class="nav-item">
-          <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="<?php echo base_url();?>assets/img/theme/team-1-800x800.jpg">
-              </span>
-            </div>
-          </a>
-        </li>
-      </ul>
+      
       <ul class="nav align-items-center d-md-none itensNotificacoes">
         <li class="nav-item dropdown notficDropAvisos">
-          <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" 
+             aria-haspopup="true" aria-expanded="false" aria-label="Notificações">
             <i class="ni ni-bell-55"></i>
           </a>
           <div id="divAvisos" class="dropdown-menu dropdown-menu-arrow dropdown-menu-right dropdown-menu-sm-right" aria-labelledby="navbar-default_dropdown_1">

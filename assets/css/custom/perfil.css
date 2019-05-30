@@ -1,0 +1,24 @@
+
+#blah{  
+  max-height: 30vw;
+  height: auto;
+  width: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: unset;
+  left: 50%;
+  max-width: 80%;
+  transition: none;
+  transform: none;
+  border-radius: unset;
+}
+
+#img_contain{
+  margin: 20px 0;
+  width: auto;  
+}
+
+.custom-file-input{
+  cursor:pointer;
+}

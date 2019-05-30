@@ -1,6 +1,6 @@
 
     <!-- Top navbar -->
-    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark pt-5" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="<?php echo base_url().$conteudo; ?>"><?php echo $title; ?></a>
@@ -9,9 +9,10 @@
           <div class="form-group mb-0">
             <div class="input-group input-group-alternative">
               <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                <span class="input-group-text text-white"><i class="fas fa-search"></i></span>
+                <label class="form-control-label text-white pr-2" for="edPesquisar">Pesquisar: </label>
               </div>
-              <input class="form-control" placeholder="Pesquisar" type="text">
+              <input class="form-control" id="edPesquisar" name="edPesquisar" type="text">
             </div>
           </div>
         </form>
@@ -19,7 +20,8 @@
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex itensNotificacoes">
           <li class="nav-item dropdown notficDropAvisos">
-            <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" 
+               aria-haspopup="true" aria-expanded="false" aria-label="Notificações">
               <i class="ni ni-bell-55"></i>
             </a>
             <div id="divAvisos" class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">

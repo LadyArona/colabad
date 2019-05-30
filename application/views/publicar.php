@@ -38,7 +38,7 @@
                 <div class="form-group"> 
                   <div class="custom-file">
                     <input type="file" id="inputGroupFile01" required
-                           class="custom-file-input" aria-describedby="inputGroupFileAddon01"
+                           class="custom-file-input"
                            accept="image/jpg, image/jpeg, image/png">
                     <label class="custom-file-label" for="inputGroupFile01">
                       Selecione a imagem

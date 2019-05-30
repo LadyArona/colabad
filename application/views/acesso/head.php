@@ -40,4 +40,6 @@
   <link type='text/css' href="<?php echo base_url();?>assets/css/jquery.loader.min.css"           rel="stylesheet">
   <link type="text/css" href="<?php echo base_url();?>assets/css/style.css"                       rel="stylesheet">
   <link type="text/css" href="<?php echo base_url();?>assets/css/custom/login.css?v=1.0.1"        rel="stylesheet">
+
+<script src="https://cdn.accesslint.com/accesslint-1.1.2.js"></script>
 </head>

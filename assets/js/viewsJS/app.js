@@ -1,6 +1,27 @@
 urlAtual = window.location.pathname.split('/')[2];
 app = {
   initApp: () => {
+    /* ACESSIBILIDADE */
+    $(function(){
+      $('#font-setting-buttons').easyView({
+        container: 'body',
+        tags: ['html', 'h1','h2','h3','h4','h5','h6', 'div', 'p', 'a', 'span', 'strong', 'em', 'ul', 'ol', 'li', 'button', 'nav', 'footer'],
+        step: 10,
+        bootstrap: true,
+        increaseSelector: '.increase-me',
+        decreaseSelector: '.decrease-me',
+        normalSelector: '.reset-me',
+        contrastSelector: '.change-me'
+      });
+    });
+
+    $("#toConteudo").click(function() {
+        $('html,body').animate({scrollTop: $("#conteudo").offset().top}, 'slow')})
+    $("#toMenu").click(function() {
+        $('html,body').animate({scrollTop: $("#sidenav-main").offset().top}, 'slow')})
+
+    /* ACESSIBILIDADE */
+
     // Verifica e controla as notificações quando inicia e depois a cada 5 minutos - 300000
     app.verificaNotificacao()
     setInterval(function () {
@@ -63,7 +84,7 @@ app = {
         timer: time * multiply,
         placement: {
             from: 'top',
-            align: 'right'
+            align: 'center'
         }
     });
   },
@@ -283,34 +304,22 @@ app = {
           }
 
           if (totalSolicitacoesNL > 0 && contS > 0) {
-            $(
-              'ul.itensNotificacoes .notficDropSoliticacoes a.dropdown-toggle'
-            ).append(
-              [
-                '<span class="notification">' + totalSolicitacoesNL + '</span>'
-              ].join('')
-            )
+            $('ul.itensNotificacoes .notficDropSoliticacoes a.nav-link')
+              .append(['<span class="badge badge-pill page-link"style="float: right; margin-left: 3px;">' + totalSolicitacoesNL + '</span>'].join(''))
             if (contS > 3) {
               $('ul.itensNotificacoes .notficDropSoliticacoes ul').css(
                 'height',
-                '350px'
-              )
+                '350px')
             }
           } else if (totalSolicitacoesNL == 0 && contS == 0) {
             $('ul.itensNotificacoes .notficDropSoliticacoes ul').append(
-              ['div class="dropdown-item"><a href="#" class="notfic">Sem solicitações</a></div>'].join(
-                ''
-              )
+              ['div class="dropdown-item"><a href="#" class="notfic">Sem solicitações</a></div>'].join('')
             )
           }
 
           if (totalAvisosNL > 0 && contA > 0) {
-            $(
-              'ul.itensNotificacoes .notficDropAvisos a.dropdown-toggle'
-            ).append(
-              ['<span class="notification">' + totalAvisosNL + '</span>'].join(
-                ''
-              )
+            $('ul.itensNotificacoes .notficDropAvisos a.nav-link')
+              .append(['<span class="badge badge-pill page-link"style="float: right; margin-left: 3px;">' + totalAvisosNL + '</span>'].join('')
             )
             if (contA > 3) {
               $('ul.itensNotificacoes .notficDropAvisos ul').css(
@@ -319,20 +328,14 @@ app = {
               )
             }
           } else if (totalAvisosNL == 0 && contA == 0) {
-            $('ul.itensNotificacoes .notficDropAvisos ul').append(
-              ['<li><a href="#" class="notfic">Sem notificações</a></li>'].join(
-                ''
-              )
-            )
+            $('ul.itensNotificacoes .notficDropAvisos #divAvisos')
+              .append(['<li><a href="#" class="notfic">Sem notificações</a></li>'].join(''))
           }
         } else {
-          $('ul.itensNotificacoes .notficDropSoliticacoes ul').append(
-            ['<li><a href="#" class="notfic">Sem solicitações</a></li>'].join(
-              ''
-            )
-          )
-          $('ul.itensNotificacoes .notficDropAvisos ul').append(
-            ['<li><a href="#" class="notfic">Sem notificações</a></li>'].join(
+          $('ul.itensNotificacoes .notficDropSoliticacoes #divAvisos')
+            .append(['<div class="dropdown-item"><a href="#" class="notfic">Sem solicitações</a></div>'].join(''))
+          $('ul.itensNotificacoes .notficDropAvisos #divAvisos').append(
+            ['<div class="dropdown-item"><a href="#" class="notfic">Sem notificações</a></div>'].join(
               ''
             )
           )

@@ -5249,12 +5249,22 @@ input[type='button'].btn-block
 
     display: flex;
 
-    padding: 3rem 1rem; 
+    padding: 4rem 1rem; 
 
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
 }
+
+
+@media (max-width: 767.98px)
+{
+    .navbar
+    {
+        padding: 2rem 1rem;
+    }
+}
+
 .navbar > .container,
 .navbar > .container-fluid
 {

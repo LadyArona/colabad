@@ -14,16 +14,17 @@
 ?>
 <body>
 <?php 
+  $this->load->view('estrutura/acessibilidade');
   $this->load->view('estrutura/menu');
 ?>
   <!-- Main content -->
-  <div class="main-content">
+  <div class="main-content pt-4">
     <?php 
       $this->load->view('estrutura/nav');
       $this->load->view('estrutura/header');
     ?>
     <!-- Page content -->
-    <div class="container-fluid mt--9">
+    <div class="container-fluid mt--9" id="conteudo">
       <?php
         $this->load->view($conteudo);
         $this->load->view('estrutura/footer');

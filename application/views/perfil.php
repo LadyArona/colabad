@@ -58,7 +58,7 @@
         <div class="col-xl-8 order-xl-1">
           <div class="card bg-secondary shadow">
             <div class="card-body">
-              <form>
+              <form action="" method="POST" enctype="multipart/form-data" id="formPerfil">
                 <h6 class="heading-small text-muted mb-4">Informação do Usuário</h6>
                 <div class="pl-lg-4">
                   <div class="row">
@@ -78,20 +78,50 @@
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="edNovaSenha">Nova Senha</label>
-                        <input type="text" id="edNovaSenha" class="form-control" value="">
+                        <label class="form-control-label" for="edPass">Nova Senha</label>
+                        <input type="text" id="edPass" class="form-control" value="">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="edNovaSenhaConf">Confirmar Senha</label>
-                        <input type="text" id="edNovaSenhaConf" class="form-control" value="">
+                        <label class="form-control-label" for="edConfPass">Confirmar Senha</label>
+                        <input type="text" id="edConfPass" class="form-control" value="">
                       </div>
                     </div>
                   </div>
                 </div>
                 <hr class="my-4" />
-                <!-- Address -->
+                <h6 class="heading-small text-muted mb-4">Imagem de Perfil</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group"> 
+                        <div class="custom-file">
+                          <input type="file" id="inputGroupFile01"
+                                 class="custom-file-input"
+                                 accept="image/jpg, image/jpeg, image/png">
+                          <label class="custom-file-label" for="inputGroupFile01">
+                            Selecione a imagem
+                          </label>
+                        </div>
+                      </div>
+                      <div id='img_contain'>
+                        <img id="blah"
+                             src="<?php echo base_url();?>assets/img/imagem_generica.png" 
+                             alt="Imagem Genérica (sua imagem aparece aqui)" title=''/>
+                      </div> 
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="edAudiodescricao">Áudiodescrição da Imagem de Perfil</label>
+                        <textarea rows="10" class="form-control" id="edAudiodescricao" name="edAudiodescricao"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <hr class="my-4" />
+                <!-- Endereco -->
                 <h6 class="heading-small text-muted mb-4">Informação de Contato</h6>
                 <div class="pl-lg-4">
                   <div class="row">
@@ -99,7 +129,8 @@
                       <div class="form-group">
                         <label class="form-control-label" for="cbEstado">Estado</label>
                         <select class="selectpicker form-control" data-style="select-with-transition" 
-                                title="Selecione" id="cbEstado" name="cbEstado">
+                                title="Selecione o Estado" id="cbEstado" name="cbEstado"
+                                data-live-search="true">
                         </select>
                       </div>
                     </div>
@@ -107,7 +138,8 @@
                       <div class="form-group">
                         <label class="form-control-label" for="cbCidade">Cidade</label>
                         <select class="selectpicker form-control" data-style="select-with-transition" 
-                                title="Selecione" id="cbCidade" name="cbCidade">
+                                title="Selecione a Cidade" id="cbCidade" name="cbCidade"
+                                data-live-search="true">
                         </select>
                       </div>
                     </div>
@@ -120,24 +152,24 @@
                   </div>
                 </div>
                 <hr class="my-4" />
-                <!-- Description -->
+                <!-- Descricao -->
                 <h6 class="heading-small text-muted mb-4">Sobre você</h6>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label class="form-control-label" for="cbEstado">Você tem alguma deficiência?</label>
+                      <label class="form-control-label" for="cbDefic">Você tem alguma deficiência?</label>
                       <select class="selectpicker form-control" data-style="select-with-transition" 
-                              title="Selecione" id="cbEstado" name="cbEstado">
-                        <option>Sim</option>
-                        <option>Não</option>
+                              title="Selecione uma opção" id="cbDefic" name="cbDefic">
+                        <option value="S">Sim</option>
+                        <option value="N">Não</option>
                       </select>
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <label class="form-control-label" for="cbCidade">Qual?</label>
+                      <label class="form-control-label" for="cbQual">Qual?</label>
                       <select class="selectpicker form-control" data-style="select-with-transition" 
-                              title="Selecione" id="cbCidade" name="cbCidade">
+                              title="Selecione sua Deficiência" id="cbQual" name="cbQual">
                       </select>
                     </div>
                   </div>
@@ -145,7 +177,22 @@
                 <div class="pl-lg-12">
                   <div class="form-group">
                     <label class="form-control-label" for="edObs">Escreva um pouco sobre você</label>
-                    <textarea rows="10" class="form-control" placeholder="Escreva um pouco sobre você..."></textarea>
+                    <textarea rows="5" class="form-control" id="edObs" name="edObs"
+                              placeholder="Escreva um pouco sobre você..."></textarea>
+                  </div>
+                </div>
+
+                <hr class="my-4" />
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-3">
+                      <button type="button" class="btn btn-block btn-success" 
+                              value="Salvar" id="btnSalvar">SALVAR</button>
+                    </div>
+                    <div class="col-lg-6 col-md-3">
+                      <button type="reset" class="btn btn-block btn-default" 
+                              value="Cancelar" id="btnCancelar">CANCELAR</button>
+                    </div>
                   </div>
                 </div>
               </form>

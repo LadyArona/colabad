@@ -14,7 +14,7 @@
 ?>
 <body>
     <?php
-       $this->load->view('acesso/nav');
+      $this->load->view('acesso/nav');
     ?>
   <main>
     <?php

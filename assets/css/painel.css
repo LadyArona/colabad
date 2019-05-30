@@ -93,7 +93,7 @@ section
 body
 {
     font-family: Open Sans, sans-serif;
-    font-size: 1rem;
+    font-size: 1em;
     font-weight: 400;
     line-height: 1.5;
 
@@ -412,7 +412,7 @@ fieldset
 
 legend
 {
-    font-size: 1.5rem;
+    font-size: 1.5em;
     line-height: inherit;
 
     display: block;
@@ -505,69 +505,69 @@ h6,
 h1,
 .h1
 {
-    font-size: 1.625rem;
+    font-size: 1.625em;
 }
 
 h2,
 .h2
 {
-    font-size: 1.25rem;
+    font-size: 1.25em;
 }
 
 h3,
 .h3
 {
-    font-size: 1.0625rem;
+    font-size: 1.0625em;
 }
 
 h4,
 .h4
 {
-    font-size: .9375rem;
+    font-size: .9375em;
 }
 
 h5,
 .h5
 {
-    font-size: .8125rem;
+    font-size: .8125em;
 }
 
 h6,
 .h6
 {
-    font-size: .625rem;
+    font-size: .625em;
 }
 
 .lead
 {
-    font-size: 1.25rem;
+    font-size: 1.25em;
     font-weight: 300;
 }
 
 .display-1
 {
-    font-size: 3.3rem;
+    font-size: 3.3em;
     font-weight: 600;
     line-height: 1.5;
 }
 
 .display-2
 {
-    font-size: 2.75rem;
+    font-size: 2.75em;
     font-weight: 600;
     line-height: 1.5;
 }
 
 .display-3
 {
-    font-size: 2.1875rem;
+    font-size: 2.1875em;
     font-weight: 600;
     line-height: 1.5;
 }
 
 .display-4
 {
-    font-size: 1.6275rem;
+    font-size: 1.6275em;
     font-weight: 600;
     line-height: 1.5;
 }
@@ -628,7 +628,7 @@ mark,
 
 .blockquote
 {
-    font-size: 1.25rem; 
+    font-size: 1.25em; 
 
     margin-bottom: 1rem;
 }
@@ -2328,7 +2328,7 @@ pre code
 
 .form-control
 {
-    font-size: 1rem;
+    font-size: 1em;
     line-height: 1.5;
 
     display: block;
@@ -2414,7 +2414,7 @@ select.form-control:focus::-ms-value
 
 .col-form-label-lg
 {
-    font-size: 1.25rem;
+    font-size: 1.25em;
     line-height: 1.5; 
 
     padding-top: calc(.875rem + 1px);
@@ -2423,7 +2423,7 @@ select.form-control:focus::-ms-value
 
 .col-form-label-sm
 {
-    font-size: .875rem;
+    font-size: .875em;
     line-height: 1.5; 
 
     padding-top: calc(.25rem + 1px);
@@ -2455,7 +2455,7 @@ select.form-control:focus::-ms-value
 
 .form-control-sm
 {
-    font-size: .875rem;
+    font-size: .875em;
     line-height: 1.5;
 
     height: calc(1.8125rem + 2px);
@@ -2466,7 +2466,7 @@ select.form-control:focus::-ms-value
 
 .form-control-lg
 {
-    font-size: 1.25rem;
+    font-size: 1.25em;
     line-height: 1.5;
 
     height: calc(3.625rem + 2px);
@@ -2572,7 +2572,7 @@ textarea.form-control
 
 .valid-tooltip
 {
-    font-size: .875rem;
+    font-size: .875em;
     line-height: 1;
 
     position: absolute;
@@ -2706,7 +2706,7 @@ textarea.form-control
 
 .invalid-tooltip
 {
-    font-size: .875rem;
+    font-size: .875em;
     line-height: 1;
 
     position: absolute;
@@ -2906,7 +2906,7 @@ textarea.form-control
 
 .btn
 {
-    font-size: 1rem;
+    font-size: 1em;
     font-weight: 600;
     line-height: 1.5;
 
@@ -3953,7 +3953,7 @@ fieldset:disabled a.btn
 .btn-lg,
 .btn-group-lg > .btn
 {
-    font-size: 1.25rem;
+    font-size: 1.25em;
     line-height: 1.5;
 
     padding: .875rem 1rem;
@@ -3964,7 +3964,7 @@ fieldset:disabled a.btn
 .btn-sm,
 .btn-group-sm > .btn
 {
-    font-size: .875rem;
+    font-size: .875em;
     line-height: 1.5;
 
     padding: .25rem .5rem;
@@ -4061,7 +4061,7 @@ input[type='button'].btn-block
 
 .dropdown-menu
 {
-    font-size: 1rem;
+    font-size: 1em;
 
     position: absolute;
     z-index: 1000;
@@ -4280,7 +4280,7 @@ input[type='button'].btn-block
 
 .dropdown-header
 {
-    font-size: .875rem;
+    font-size: .875em;
 
     display: block;
 
@@ -4572,7 +4572,7 @@ input[type='button'].btn-block
 
 .input-group-text
 {
-    font-size: 1rem;
+    font-size: 1em;
     font-weight: 400;
     line-height: 1.5;
 
@@ -4603,7 +4603,7 @@ input[type='button'].btn-block
 .input-group-lg > .input-group-prepend > .btn,
 .input-group-lg > .input-group-append > .btn
 {
-    font-size: 1.25rem;
+    font-size: 1.25em;
     line-height: 1.5;
 
     height: calc(3.625rem + 2px);
@@ -4618,7 +4618,7 @@ input[type='button'].btn-block
 .input-group-sm > .input-group-prepend > .btn,
 .input-group-sm > .input-group-append > .btn
 {
-    font-size: .875rem;
+    font-size: .875em;
     line-height: 1.5;
 
     height: calc(1.8125rem + 2px);
@@ -5265,7 +5265,7 @@ input[type='button'].btn-block
 
 .navbar-brand
 {
-    font-size: 1.25rem;
+    font-size: 1.25em;
     line-height: inherit;
 
     display: inline-block;
@@ -5321,7 +5321,7 @@ input[type='button'].btn-block
 
 .navbar-toggler
 {
-    font-size: 1.25rem;
+    font-size: 1.25em;
     line-height: 1;
 
     padding: .25rem .75rem;
@@ -6130,7 +6130,7 @@ input[type='button'].btn-block
 
 .pagination-lg .page-link
 {
-    font-size: 1.25rem;
+    font-size: 1.25em;
     line-height: 1.5; 
 
     padding: .75rem 1.5rem;
@@ -6150,7 +6150,7 @@ input[type='button'].btn-block
 
 .pagination-sm .page-link
 {
-    font-size: .875rem;
+    font-size: .875em;
     line-height: 1.5; 
 
     padding: .25rem .5rem;
@@ -6625,7 +6625,7 @@ input[type='button'].btn-block
 
 .progress
 {
-    font-size: .75rem;
+    font-size: .75em;
 
     display: flex;
     overflow: hidden;
@@ -6994,7 +6994,7 @@ input[type='button'].btn-block
 
 .close
 {
-    font-size: 1.5rem;
+    font-size: 1.5em;
     font-weight: 600;
     line-height: 1;
 
@@ -7236,7 +7236,7 @@ button.close
 .tooltip
 {
     font-family: Open Sans, sans-serif;
-    font-size: .875rem;
+    font-size: .875em;
     font-weight: 400;
     font-style: normal;
     line-height: 1.5;
@@ -7383,7 +7383,7 @@ button.close
 .popover
 {
     font-family: Open Sans, sans-serif;
-    font-size: .875rem;
+    font-size: .875em;
     font-weight: 400;
     font-style: normal;
     line-height: 1.5;
@@ -7597,7 +7597,7 @@ button.close
 
 .popover-header
 {
-    font-size: 1rem;
+    font-size: 1em;
 
     margin-bottom: 0;
     padding: .5rem .95rem;
@@ -8049,7 +8049,7 @@ button.bg-default:focus
 
 .bg-white
 {
-    background-color: #fff !important;
+    background-color: #fff;
 }
 
 a.bg-white:hover,
@@ -8088,7 +8088,7 @@ button.bg-darker:focus
 
 .bg-white
 {
-    background-color: #fff !important;
+    background-color: #fff;
 }
 
 .bg-transparent
@@ -10526,6 +10526,15 @@ button.bg-darker:focus
 .py-6
 {
     padding-top: 4.5rem !important;
+}
+
+@media (max-width: 767.98px)
+{
+    .pt-6,
+    .py-6
+    {
+        padding-top: 1rem !important;
+    }
 }
 
 .pr-6,
@@ -14986,7 +14995,7 @@ button.bg-cyan:focus
 
 .bg-white
 {
-    background-color: #fff !important;
+    background-color: #fff;
 }
 
 a.bg-white:hover,
@@ -15051,7 +15060,7 @@ button.bg-lighter:focus
 
 .bg-gradient-primary
 {
-    background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%) !important;
+    background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%);
 }
 
 .bg-gradient-secondary
@@ -15407,7 +15416,7 @@ button.section-darker:focus
 
 .bg-gradient-primary
 {
-    background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%) !important;
+    background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%);
 }
 
 .bg-gradient-secondary
@@ -16322,22 +16331,22 @@ button.section-darker:focus
 
 .text-xs
 {
-    font-size: .75rem !important;
+    font-size: .75em !important;
 }
 
 .text-sm
 {
-    font-size: .875rem !important;
+    font-size: .875em !important;
 }
 
 .text-lg
 {
-    font-size: 1.25rem !important;
+    font-size: 1.25em !important;
 }
 
 .text-xl
 {
-    font-size: 1.5rem !important;
+    font-size: 1.5em !important;
 }
 
 .lh-100
@@ -16579,12 +16588,12 @@ a.text-lighter:focus
 
 .alert
 {
-    font-size: .875rem;
+    font-size: .875em;
 }
 
 .alert-heading
 {
-    font-size: .9375rem;
+    font-size: .9375em;
     font-weight: 600;
 
     margin-top: .15rem;
@@ -16592,7 +16601,7 @@ a.text-lighter:focus
 
 .alert-icon
 {
-    font-size: 1.25rem;
+    font-size: 1.25em;
 
     display: inline-block;
 
@@ -16647,7 +16656,7 @@ a.text-lighter:focus
 }
 .alert-dismissible .close > span:not(.sr-only)
 {
-    font-size: 1.5rem;
+    font-size: 1.5em;
 
     color: rgba(255, 255, 255, .6); 
     background-color: transparent;
@@ -16661,7 +16670,7 @@ a.text-lighter:focus
 
 .avatar
 {
-    font-size: 1rem;
+    font-size: 1em;
 
     display: inline-flex;
 
@@ -16690,7 +16699,7 @@ a.text-lighter:focus
 
 .avatar-lg
 {
-    font-size: .875rem; 
+    font-size: .875em; 
 
     width: 58px;
     height: 58px;
@@ -16698,7 +16707,7 @@ a.text-lighter:focus
 
 .avatar-sm
 {
-    font-size: .875rem; 
+    font-size: .875em; 
 
     width: 36px;
     height: 36px;
@@ -16766,7 +16775,7 @@ a.text-lighter:focus
 
 .badge-circle
 {
-    font-size: .875rem; 
+    font-size: .875em; 
 
     display: inline-flex;
 
@@ -16783,7 +16792,7 @@ a.text-lighter:focus
 
 .badge-dot
 {
-    font-size: .875rem;
+    font-size: .875em;
     font-weight: 400;
 
     padding-right: 0;
@@ -16822,7 +16831,7 @@ a.text-lighter:focus
 
 .btn
 {
-    font-size: .875rem;
+    font-size: .875em;
 
     position: relative;
 
@@ -16864,13 +16873,13 @@ a.text-lighter:focus
 .btn-sm,
 .btn-group-sm > .btn
 {
-    font-size: .75rem;
+    font-size: .75em;
 }
 
 .btn-lg,
 .btn-group-lg > .btn
 {
-    font-size: .875rem;
+    font-size: .875em;
 }
 
 [class*='btn-outline-']
@@ -16944,7 +16953,7 @@ a.btn-icon-only
 .btn-icon-clipboard
 {
     font-family: inherit;
-    font-size: 1rem;
+    font-size: 1em;
     font-weight: 400;
     line-height: 1.25;
 
@@ -16980,7 +16989,7 @@ a.btn-icon-only
 }
 .btn-icon-clipboard i
 {
-    font-size: 1.5rem; 
+    font-size: 1.5em; 
 
     box-sizing: content-box;
 
@@ -16990,7 +16999,7 @@ a.btn-icon-only
 }
 .btn-icon-clipboard span
 {
-    font-size: .875rem;
+    font-size: .875em;
     line-height: 1.5;
 
     display: inline-block;
@@ -17406,14 +17415,14 @@ a.btn-icon-only
 }
 .card-profile-stats > div .heading
 {
-    font-size: 1.1rem;
+    font-size: 1.1em;
     font-weight: bold;
 
     display: block;
 }
 .card-profile-stats > div .description
 {
-    font-size: .875rem;
+    font-size: .875em;
 
     color: #adb5bd;
 }
@@ -17482,7 +17491,7 @@ a.btn-icon-only
 
 .chart-legend
 {
-    font-size: .875rem;
+    font-size: .875em;
 
     display: flex;
 
@@ -17546,7 +17555,7 @@ a.btn-icon-only
 }
 .close > span:not(.sr-only)
 {
-    font-size: 1.25rem;
+    font-size: 1.25em;
     line-height: 17px;
 
     display: block;
@@ -17659,7 +17668,7 @@ a.btn-icon-only
 
 .custom-checkbox .custom-control-input ~ .custom-control-label
 {
-    font-size: .875rem; 
+    font-size: .875em; 
 
     cursor: pointer;
 }
@@ -17721,7 +17730,7 @@ a.btn-icon-only
 
 .custom-checkbox .custom-control-input ~ .custom-control-label
 {
-    font-size: .875rem; 
+    font-size: .875em; 
 
     cursor: pointer;
 }
@@ -17748,7 +17757,7 @@ a.btn-icon-only
 
 .custom-radio .custom-control-input ~ .custom-control-label
 {
-    font-size: .875rem; 
+    font-size: .875em; 
 
     cursor: pointer;
 }
@@ -17853,14 +17862,14 @@ a.btn-icon-only
 }
 .dropdown-menu .dropdown-item
 {
-    font-size: .875rem; 
+    font-size: .875em; 
 
     padding: .5rem 1rem;
 }
 .dropdown-menu .dropdown-item > i,
 .dropdown-menu .dropdown-item > svg
 {
-    font-size: 1rem;
+    font-size: 1em;
 
     margin-right: 1rem;
 
@@ -17869,7 +17878,7 @@ a.btn-icon-only
 
 .dropdown-header
 {
-    font-size: .625rem;
+    font-size: .625em;
     font-weight: 700; 
 
     padding-right: 1rem;
@@ -17925,7 +17934,7 @@ a.btn-icon-only
 }
 .footer .col-footer .heading
 {
-    font-size: .875rem;
+    font-size: .875em;
     font-weight: 600;
 
     margin-bottom: 1rem; 
@@ -17947,7 +17956,7 @@ a.btn-icon-only
 }
 .footer .list-unstyled li a
 {
-    font-size: .85rem; 
+    font-size: .85em; 
 
     display: inline-block;
 
@@ -17961,7 +17970,7 @@ a.btn-icon-only
 }
 .footer .copyright
 {
-    font-size: .875rem;
+    font-size: .875em;
 }
 
 .footer-dark .col-footer .heading
@@ -17971,7 +17980,7 @@ a.btn-icon-only
 
 .nav-footer .nav-link
 {
-    font-size: .875rem;
+    font-size: .875em;
 }
 
 .nav-footer .nav-item:last-child .nav-link
@@ -18015,7 +18024,7 @@ a.btn-icon-only
 
 .form-control-label
 {
-    font-size: .875rem;
+    font-size: .875em;
     font-weight: 600; 
 
     color: #3e3e3e;
@@ -18023,7 +18032,7 @@ a.btn-icon-only
 
 .form-control
 {
-    font-size: .875rem;
+    font-size: .875em;
 }
 .form-control:focus:-ms-input-placeholder
 {
@@ -18083,7 +18092,7 @@ textarea[resize='horizontal']
 
 .form-control-lg
 {
-    font-size: 1rem;
+    font-size: 1em;
 }
 
 .has-success,
@@ -18254,7 +18263,7 @@ textarea[resize='horizontal']
 .icon i,
 .icon svg
 {
-    font-size: 2.25rem;
+    font-size: 2.25em;
 }
 .icon + .icon-text
 {
@@ -18270,7 +18279,7 @@ textarea[resize='horizontal']
 .icon-xl i,
 .icon-xl svg
 {
-    font-size: 4.25rem;
+    font-size: 4.25em;
 }
 .icon-xl + .icon-text
 {
@@ -18285,7 +18294,7 @@ textarea[resize='horizontal']
 .icon-lg i,
 .icon-lg svg
 {
-    font-size: 3.25rem;
+    font-size: 3.25em;
 }
 .icon-lg + .icon-text
 {
@@ -18300,7 +18309,7 @@ textarea[resize='horizontal']
 .icon-sm i,
 .icon-sm svg
 {
-    font-size: 1.25rem;
+    font-size: 1.25em;
 }
 .icon-sm + .icon-text
 {
@@ -18323,17 +18332,17 @@ textarea[resize='horizontal']
 .icon-shape i,
 .icon-shape svg
 {
-    font-size: 1.25rem;
+    font-size: 1.25em;
 }
 .icon-shape.icon-lg i,
 .icon-shape.icon-lg svg
 {
-    font-size: 1.625rem;
+    font-size: 1.625em;
 }
 .icon-shape.icon-sm i,
 .icon-shape.icon-sm svg
 {
-    font-size: .875rem;
+    font-size: .875em;
 }
 .icon-shape svg
 {
@@ -18517,7 +18526,7 @@ textarea[resize='horizontal']
 
 .list-group-heading
 {
-    font-size: 1rem;
+    font-size: 1em;
 
     color: #32325d;
 }
@@ -18918,7 +18927,7 @@ textarea[resize='horizontal']
 
 .nav-pills .nav-link
 {
-    font-size: .875rem;
+    font-size: .875em;
     font-weight: 500;
 
     padding: .75rem 1rem;
@@ -18973,12 +18982,12 @@ textarea[resize='horizontal']
 .nav-pills-circle .nav-link-icon i,
 .nav-pills-circle .nav-link-icon svg
 {
-    font-size: 1rem;
+    font-size: 1em;
 }
 
 .navbar-horizontal .navbar-nav .nav-link
 {
-    font-size: .9rem;
+    font-size: .9em;
     font-weight: 400;
 
     transition: all .15s linear; 
@@ -18999,8 +19008,7 @@ textarea[resize='horizontal']
 
 .navbar-horizontal .navbar-brand
 {
-    font-size: .875rem;
-    font-size: .875rem;
+    font-size: .875em;
     font-weight: 600;
 
     letter-spacing: .05px; 
@@ -19053,7 +19061,7 @@ textarea[resize='horizontal']
     }
     .navbar-horizontal .navbar-nav .nav-link-icon
     {
-        font-size: 1rem;
+        font-size: 1em;
 
         padding-right: .5rem !important;
         padding-left: .5rem !important;
@@ -19173,7 +19181,7 @@ textarea[resize='horizontal']
 }
 .navbar-vertical .navbar-nav .nav-link
 {
-    font-size: .9rem; 
+    font-size: .9em; 
 
     padding-right: 1rem;
     padding-left: 1rem;
@@ -19195,7 +19203,7 @@ textarea[resize='horizontal']
 }
 .navbar-vertical .navbar-nav .nav-link > i
 {
-    font-size: .9375rem;
+    font-size: .9375em;
     line-height: 1.5rem; 
 
     min-width: 2.25rem;
@@ -19247,7 +19255,7 @@ textarea[resize='horizontal']
 }
 .navbar-vertical .navbar-heading
 {
-    font-size: .75rem;
+    font-size: .75em;
 
     padding-top: .25rem;
     padding-bottom: .25rem;
@@ -20217,7 +20225,7 @@ textarea[resize='horizontal']
 .page-item .page-link,
 .page-item span
 {
-    font-size: .875rem; 
+    font-size: .875em; 
 
     display: flex;
 
@@ -20777,7 +20785,7 @@ textarea[resize='horizontal']
 
 .progress-label span
 {
-    font-size: .625rem;
+    font-size: .625em;
     font-weight: 600;
 
     display: inline-block;
@@ -20797,7 +20805,7 @@ textarea[resize='horizontal']
 }
 .progress-percentage span
 {
-    font-size: .875rem;
+    font-size: .875em;
     font-weight: 600; 
 
     display: inline-block;
@@ -20866,7 +20874,7 @@ textarea[resize='horizontal']
 
 .table thead th
 {
-    font-size: .65rem;
+    font-size: .65em;
 
     padding-top: .75rem;
     padding-bottom: .75rem;
@@ -20892,7 +20900,7 @@ textarea[resize='horizontal']
 .table td,
 .table th
 {
-    font-size: .9rem;
+    font-size: .9em;
 
     white-space: nowrap;
 }
@@ -20959,14 +20967,14 @@ textarea[resize='horizontal']
 
 p
 {
-    font-size: 1rem;
+    font-size: 1em;
     font-weight: 300;
     line-height: 1.7;
 }
 
 .lead
 {
-    font-size: 1.25rem;
+    font-size: 1.25em;
     font-weight: 300;
     line-height: 1.7;
 
@@ -20979,12 +20987,12 @@ p
 
 .description
 {
-    font-size: .875rem;
+    font-size: .875em;
 }
 
 .heading
 {
-    font-size: .95rem;
+    font-size: .95em;
     font-weight: 600; 
 
     letter-spacing: .025em;
@@ -20993,7 +21001,7 @@ p
 
 .heading-small
 {
-    font-size: .75rem;
+    font-size: .75em;
 
     padding-top: .25rem;
     padding-bottom: .25rem;
@@ -21004,7 +21012,7 @@ p
 
 .heading-title
 {
-    font-size: 1.375rem;
+    font-size: 1.375em;
     font-weight: 600;
 
     letter-spacing: .025em;
@@ -21013,7 +21021,7 @@ p
 
 .heading-section
 {
-    font-size: 1.375rem;
+    font-size: 1.375em;
     font-weight: 600;
 
     letter-spacing: .025em;
@@ -21158,7 +21166,7 @@ article h5 + figure
 .datepicker table tr td,
 .datepicker table tr th
 {
-    font-size: .875rem; 
+    font-size: .875em; 
 
     width: 36px;
     height: 36px;
@@ -21775,7 +21783,7 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
 /* Range slider value labels */
 .range-slider-value
 {
-    font-size: .75rem;
+    font-size: .75em;
     font-weight: 500;
 
     padding: .4em .8em .3em .85em; 
@@ -21871,4 +21879,8 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
     bottom: 0; 
 
     height: 3px;
+}
+
+.icon-rotate {
+    transform: rotate(90deg);
 }

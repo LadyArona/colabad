@@ -52,4 +52,9 @@
 <?php if ($conteudo == 'publicar') { ?>
   <link rel="stylesheet" type='text/css' href="<?php echo base_url();?>assets/css/custom/publicar.css">
 <?php } ?>
+<?php if ($conteudo == 'perfil') { ?>
+  <link rel="stylesheet" type='text/css' href="<?php echo base_url();?>assets/css/custom/perfil.css">
+<?php } ?>
+
+<script src="https://cdn.accesslint.com/accesslint-1.1.2.js"></script>
 </head>

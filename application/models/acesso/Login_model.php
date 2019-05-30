@@ -133,11 +133,16 @@ class Login_model extends CI_Model {
   }
 
   function verificarEmail($email) {
+    $dados  = array();
+
+    if ($this->session->userdata('logged_in_colabad') != null) {
+      //está verificando na alteração do perfil
+      //não dá problema pois o usuário logando não consegue acessar a página de cadastro
+      $dados['USU_ID!='] = $this->session->userdata('logged_in_colabad')['sesColabad_vId'];
+    }
+
     $tabela = 'usu_usuario';
-    $dados  = 
-      array(
-        'USU_EMAIL' => $email
-      );
+    $dados['USU_EMAIL'] = $email;
     $dataFiltered = $this->db->get_where($tabela, $dados)->num_rows();
     return $dataFiltered;
   }
