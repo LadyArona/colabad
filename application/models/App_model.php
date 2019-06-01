@@ -25,7 +25,8 @@ class App_model extends CI_Model {
                     C.CONF_AUTOR,
                     C.CONF_KEYWORDS,
                     C.CONF_FACEBOOK,
-                    C.CONF_REPOSITORIO
+                    C.CONF_REPOSITORIO,
+                    C.CONF_IMGUSUPADRAO
                FROM conf_configuracoes C
                INNER JOIN conf_cidade CD
                   ON CD.CID_ID = C.CID_ID
@@ -56,14 +57,15 @@ class App_model extends CI_Model {
           'email_Password'   => $row->CONF_EMAILPWD,
           'email_Autor'      => 'Equipe '.$row->CONF_ABRV,
  
-          'dt_att'      => $row->CONF_DATAATT,
-          'dt_cad'      => $row->CONF_DATACAD,
-          'versao'      => $row->CONF_VERSAO,
-          'autor'       => $row->CONF_AUTOR,
-          'autor_link'  => '#',
-          'keys'        => $row->CONF_KEYWORDS,
-          'facebook'    => $row->CONF_FACEBOOK,
-          'repositorio' => $row->CONF_REPOSITORIO
+          'dt_att'         => $row->CONF_DATAATT,
+          'dt_cad'         => $row->CONF_DATACAD,
+          'versao'         => $row->CONF_VERSAO,
+          'autor'          => $row->CONF_AUTOR,
+          'autor_link'     => '#',
+          'keys'           => $row->CONF_KEYWORDS,
+          'facebook'       => $row->CONF_FACEBOOK,
+          'repositorio'    => $row->CONF_REPOSITORIO,
+          'img_usu_padrao' => $row->CONF_IMGUSUPADRAO
         ); 
       }
       return $dados;

@@ -33,7 +33,7 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="<?php echo base_url();?>assets/img/usuario_padrao.jpg">
+                  <img id="imgTopo" alt="<?php echo $this->session->userdata('logged_in_colabad')['sesColabad_vImgAlt']; ?>" src="<?php echo $this->session->userdata('logged_in_colabad')['sesColabad_vImg']; ?>">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold"><?php echo $this->session->userdata('logged_in_colabad')['sesColabad_vNome']; ?></span>

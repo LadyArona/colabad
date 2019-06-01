@@ -98,8 +98,8 @@ const projetos = {
           let colab = ''
           item.vColab.map((e) => {
             colab += 
-              `<a href="" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="${e.vNome}">
-                <img alt="Colaborador do Projeto: ${e.vNome}" src="${baseUrl}assets/img/theme/team-1-800x800.jpg" class="rounded-circle">
+              `<a href="${e.vLink}" target="_blanck" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="${e.vNome}">
+                <img alt="Colaborador do Projeto: ${e.vNome}" src="${e.vImg}" class="rounded-circle">
               </a>`
           })
 

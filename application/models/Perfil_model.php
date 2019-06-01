@@ -68,6 +68,14 @@ class Perfil_model extends CI_Model {
             'vPossuiDeficiencia' => $row->vPossuiDeficiencia,
             'vObs'               => $row->vObs
           );
+
+          $img = base_url().$this->config->item('img_usu_padrao');
+          if ($row->vImgNomeUniq != '') {
+            $img = base_url().'assets/img/users/'.$row->vImgNomeUniq;
+          }
+
+          $_SESSION['logged_in_colabad']['sesColabad_vImg'] = $img;
+          $_SESSION['logged_in_colabad']['sesColabad_vImgAlt'] = $row->vImgAudiodesc;
         }
       } else {
         $dados = array(     

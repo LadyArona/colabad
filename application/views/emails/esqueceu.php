@@ -2,7 +2,7 @@
 <h2>Recebemos uma solicitação para redefinir sua senha.</h2>
 <p>Clique no link abaixo para escolher uma nova senha:
   <br>
-  <br><?php echo base_url().'redefinir/'.$conteudo; ?>
+  <br><a src="<?php echo base_url().'redefinir/'.$conteudo; ?>"><?php echo base_url().'redefinir/'.$conteudo; ?></a>
   <br>
   <br>
   <br>Caso não tenha solicitado desconsidere esta mensagem.

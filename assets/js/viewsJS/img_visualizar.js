@@ -35,13 +35,15 @@ const img = {
           colab +=
           `<div class="col-md-3 col-lg-2 mb-5 mb-lg-0">
             <div class="px-4">
-              <img src="${baseUrl}assets/img/question.svg" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="width: 10rem;">
-              <div class="pt-2 text-center">
-                <h5 class="title">
-                  <span class="d-block mb-1">${item.vNome}</span>
-                  <small class="h6 text-muted">${item.vPerfil}</small>
-                </h5>
-              </div>
+              <a href="${item.vLink}" target="_blanck">
+              <img src="${item.vImg}" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="width: 10rem;">
+                <div class="pt-2 text-center">
+                  <h5 class="title">
+                    <span class="d-block mb-1">${item.vNome}</span>
+                    <small class="h6 text-muted">${item.vPerfil}</small>
+                  </h5>
+                </div>
+              </a>
             </div>
           </div>`
         })

@@ -47,7 +47,6 @@
                   de Audiodescrição
                 </h1>
                 <p class="lead  text-white">Possibilitando o acesso à áudiodescrição de imagens para pessoas com deficiência visual e profissionais que precisam do recurso de áudio-descrição em suas imagens. </p>
-                <?php print_r($_SESSION); ?>
                 <div class="btn-wrapper">
                   <a type="button" href="<?php echo base_url();?>login" class="btn btn-block btn-neutral btn-icon mb-3 mb-sm-0">
                     <span class="btn-inner--icon"><i class="fas fa-sign-in-alt mr-2"></i></span>
@@ -61,13 +60,13 @@
         <!-- SVG separator -->
         <div class="separator separator-bottom separator-skew">
           <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+            <polygon class="fill-gray" points="2560 0 2560 100 0 100"></polygon>
           </svg>
         </div>
       </section>
       <!-- 1st Hero Variation -->
     </div>
-    <section class="section section-lg pt-lg-0 mt--200">
+    <section class="section section-lg pt-lg-0 mt--200 gradiente-cinza">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12">

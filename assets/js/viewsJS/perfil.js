@@ -42,6 +42,7 @@ const perfil = {
             type: 'canvas'
           }).then(function (resp) {
             $('#imgPerfil').attr('src', resp);
+            $('#imgTopo').attr('src', resp);
           });
 
         myCroppie.croppie('result', {

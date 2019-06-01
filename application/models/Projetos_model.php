@@ -117,6 +117,8 @@ class Projetos_model extends CI_Model {
     //busca participantes
     $sql = "SELECT P.USU_ID vId,
                    U.USU_NOME vNome,
+                   U.USU_IMG_NOMEUNIQ vImg,
+                   U.USU_LINK vLink,
                    P.PAR_RESPONSAVEL vResponsavel
 
             FROM proj_participantes P
@@ -131,7 +133,9 @@ class Projetos_model extends CI_Model {
         $dados[] = array(
           'vId'          => $row->vId,
           'vNome'        => $row->vNome,
-          'vResponsavel' => $row->vResponsavel
+          'vResponsavel' => $row->vResponsavel,
+          'vLink'        => base_url().'perfil/'.$row->vId.'/'.$row->vLink,
+          'vImg' => ($row->vImg != '') ? (base_url().'assets/img/users/'.$row->vImg) : (base_url().$this->config->item('img_usu_padrao'))
         );
       }
     }
@@ -176,6 +180,8 @@ class Projetos_model extends CI_Model {
         //busca participantes
         $sql = "SELECT P.USU_ID vId,
                        U.USU_NOME vNome,
+                       U.USU_IMG_NOMEUNIQ vImg,
+                       U.USU_LINK vLink,
                        CASE
                         WHEN P.PAR_RESPONSAVEL = 'S' THEN 'Responsável'
                         ELSE ''
@@ -196,7 +202,9 @@ class Projetos_model extends CI_Model {
               'vId'          => $row->vId,
               'vNome'        => $row->vNome,
               'vResponsavel' => $row->vResponsavel,
-              'vPerfil'      => $row->vPerfil
+              'vPerfil'      => $row->vPerfil,
+              'vLink'        => base_url().'perfil/'.$row->vId.'/'.$row->vLink,
+              'vImg' => ($row->vImg != '') ? (base_url().'assets/img/users/'.$row->vImg) : (base_url().$this->config->item('img_usu_padrao'))
             );
           }
         }

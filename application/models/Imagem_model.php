@@ -108,6 +108,9 @@ class Imagem_model extends CI_Model {
 
         //busca participantes
         $sql = "SELECT DISTINCT(U.USU_NOME) vNome,
+                       U.USU_ID vId,
+                       U.USU_IMG_NOMEUNIQ vImg,
+                       U.USU_LINK vLink,
                         P.PERF_DESCRICAO vPerfil
        
                 FROM img_log L 
@@ -121,7 +124,9 @@ class Imagem_model extends CI_Model {
           foreach ($query->result() as $row) {
             $dados['vParticipante'][] = array(
               'vNome'        => $row->vNome,
-              'vPerfil'      => $row->vPerfil
+              'vPerfil'      => $row->vPerfil,
+              'vLink'        => base_url().'perfil/'.$row->vId.'/'.$row->vLink,
+              'vImg' => ($row->vImg != '') ? (base_url().'assets/img/users/'.$row->vImg) : (base_url().$this->config->item('img_usu_padrao'))
             );
           }
         }

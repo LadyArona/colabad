@@ -167,7 +167,10 @@ class Login_model extends CI_Model {
          U.USU_TOKEN,
          U.PERF_ID,
          P.PERF_NIVEL,
-         U.USU_LINK")    
+         U.USU_LINK,
+         USU_IMG_NOMEUNIQ,
+         USU_IMG_AUDIODESCRICAO
+         ")    
       ->from('usu_usuario U')
       ->join('usu_perfil P', ' P.PERF_ID = U.PERF_ID')
       ->where('U.USU_EMAIL', $login)
@@ -196,6 +199,11 @@ class Login_model extends CI_Model {
             exit;
           }
 
+          $img = base_url().$this->config->item('img_usu_padrao');
+          if ($row->USU_IMG_NOMEUNIQ != '') {
+            $img = base_url().'assets/img/users/'.$row->USU_IMG_NOMEUNIQ;
+          }
+
           $session_data = array(
             'sesColabad'              => true,
             'sesColabad_vId'          => $row->USU_ID,
@@ -207,7 +215,9 @@ class Login_model extends CI_Model {
             'sesColabad_vEmailConf'   => $row->USU_EMAILCONF,
             'sesColabad_vPerfilId'    => $row->PERF_ID,
             'sesColabad_vPerfilNivel' => $row->PERF_NIVEL,
-            'sesColabad_vLink'        => $row->USU_LINK
+            'sesColabad_vLink'        => $row->USU_LINK,
+            'sesColabad_vImg'         => $img,
+            'sesColabad_vImgAlt'      => $row->USU_IMG_AUDIODESCRICAO
           );
 
           //atualiza ultimo login

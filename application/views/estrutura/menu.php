@@ -58,14 +58,21 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url();?>projetos">
-              <i class="ni ni-bullet-list-67 text-red"></i> Projetos
+              <i class="ni ni-album-2 text-red"></i> Projetos
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url();?>publicar">
-              <i class="ni ni-album-2 text-info"></i> Imagens
+              <i class="ni ni-image text-info"></i> Publicar Imagem
             </a>
           </li>
+          <?php if ($this->session->userdata('logged_in_colabad')['sesColabad_vPerfilNivel'] > 1) { ?>
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo base_url();?>avaliar">
+              <i class="fas fa-calendar-check text-success"></i> Avaliar Imagem
+            </a>
+          </li>
+          <?php } ?>
         </ul>
         <!-- Divider -->
         <hr class="my-3">
@@ -77,12 +84,6 @@
             ?>
             <a class="nav-link" href="<?php echo $perfil;?>">
               <i class="ni ni-single-02 text-yellow"></i> Meu Perfil
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="ni ni-settings-gear-65"></i>
-              <span>Configurações</span>
             </a>
           </li>
           <li class="nav-item">
