@@ -73,6 +73,13 @@ class Ajax extends CI_Controller {
   function salvarPerfil(){
     $this->load->model('Perfil_model', 'perf');
 
+    $imagem = null;
+    if (isset($_FILES['imagem'])) {
+      if (array_key_exists('imagem', $_FILES)) {
+        $imagem = $_FILES['imagem'];
+      }
+    }
+
     $edNome           = $this->input->post('edNome');
     $edEmail          = $this->input->post('edEmail');
     $edPass           = $this->input->post('edPass');
@@ -84,7 +91,7 @@ class Ajax extends CI_Controller {
     $cbQual           = $this->input->post('cbQual');
     $edObs            = $this->input->post('edObs');
 
-    $registros = $this->perf->salvarPerfil($_FILES['imagem'], $edNome, $edEmail, $edPass, $edAudiodescricao, $cbEstado, $cbCidade, $edOrg, $cbDefic, $cbQual, $edObs);
+    $registros = $this->perf->salvarPerfil($imagem, $edNome, $edEmail, $edPass, $edAudiodescricao, $cbEstado, $cbCidade, $edOrg, $cbDefic, $cbQual, $edObs);
     $this->output
          ->set_content_type('application/json')
          ->set_output(json_encode($registros));

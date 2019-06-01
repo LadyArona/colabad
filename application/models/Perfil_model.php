@@ -8,58 +8,168 @@ class Perfil_model extends CI_Model {
   }
 
   public function carregarPerfil(){
-    
+    $dados = array();
+    $id = $this->session->userdata('logged_in_colabad')['sesColabad_vId'];
+
+    try{
+      $sql = " SELECT U.USU_NOME vNome,
+                      COALESCE(U.USU_CADDATA, '') vDataCad,
+                      COALESCE(U.USU_SITUACAO, '') vSituacao,
+                      COALESCE(U.USU_EMAIL, '') vEmail,
+                      COALESCE(U.PERF_ID, '') vPerfilId,
+                      COALESCE(P.PERF_DESCRICAO, '') vPerfil,
+                      COALESCE(U.USU_LINK, '') vLink,
+                      COALESCE(U.USU_IMG_NOME, '') vImgNome,
+                      COALESCE(U.USU_IMG_NOMEUNIQ, '') vImgNomeUniq,
+                      COALESCE(U.USU_IMG_AUDIODESCRICAO, '') vImgAudiodesc,
+                      COALESCE(U.EST_ID, '') vEstadoId,
+                      COALESCE(E.EST_DESCRICAO, '') vEstadoDescr,
+                      COALESCE(E.EST_UF, '') vEstadoUF,
+                      COALESCE(U.CID_ID, '') vCidadeId,
+                      COALESCE(C.CID_DESCRICAO, '') vCidadeDescr,
+                      COALESCE(U.USU_ORG, '') vOrganização,
+                      COALESCE(U.DEF_ID, '') vDeficienciaId,
+                      COALESCE(D.DEF_DESCRICAO, '') vDeficiencia,
+                      COALESCE(U.USU_DEF, '') vPossuiDeficiencia,
+                      COALESCE(U.USU_OBS, '') vObs
+
+              FROM usu_usuario U
+                LEFT JOIN usu_perfil P ON P.PERF_ID = U.PERF_ID
+                LEFT JOIN conf_estado E ON E.EST_ID = U.EST_ID
+                LEFT JOIN conf_cidade C ON C.CID_ID = U.CID_ID
+                LEFT JOIN conf_deficiencia D ON D.DEF_ID = U.DEF_ID
+              WHERE U.USU_ID = $id ;";
+
+      $this->db->query('SET lc_time_names = "pt_br"'); //para os meses sairem em portugues
+      $query = $this->db->query($sql);
+
+      if ($query->num_rows() > 0){
+        foreach ($query->result() as $row) {
+          $dados = array(     
+            'result'             => 'OK',
+            'vNome'              => $row->vNome,
+            'vDataCad'           => $row->vDataCad,
+            'vSituacao'          => $row->vSituacao,
+            'vEmail'             => $row->vEmail,
+            'vPerfilId'          => $row->vPerfilId,
+            'vPerfil'            => $row->vPerfil,
+            'vLink'              => $row->vLink,
+            'vImgNome'           => $row->vImgNome,
+            'vImgNomeUniq'       => $row->vImgNomeUniq,
+            'vImgAudiodesc'      => $row->vImgAudiodesc,
+            'vEstadoId'          => $row->vEstadoId,
+            'vEstadoDescr'       => $row->vEstadoDescr,
+            'vEstadoUF'          => $row->vEstadoUF,
+            'vCidadeId'          => $row->vCidadeId,
+            'vCidadeDescr'       => $row->vCidadeDescr,
+            'vOrganizacao'       => $row->vOrganização,
+            'vDeficienciaId'     => $row->vDeficienciaId,
+            'vDeficiencia'       => $row->vDeficiencia,
+            'vPossuiDeficiencia' => $row->vPossuiDeficiencia,
+            'vObs'               => $row->vObs
+          );
+        }
+      } else {
+        $dados = array(     
+            'result'             => 'ERRO',
+            'mensagem' => '<strong>Usuário não encontrado</strong>'
+          );
+      }
+
+      return $dados;
+
+    } catch(PDOException $e) { 
+      return
+        array(
+          'result' => 'ERRO',
+          'mensagem' => $e->getMessage()
+        );
+    }
   }
 
   public function salvarPerfil($imagem, $edNome, $edEmail, $edPass, $edAudiodescricao, $cbEstado, $cbCidade, $edOrg, $cbDefic, $cbQual, $edObs) {
     try{
-      $tabela = 'usu_usuario';
+      $id = $this->session->userdata('logged_in_colabad')['sesColabad_vId'];
 
-      // Pega extensão da imagem
-      $ext = explode(".", $imagem['name']);
-      $ext = end($ext);
- 
-      // Gera um nome único para a imagem
-      $nome_imagem = md5(uniqid(time())) . "." . $ext;
+      $USU_IMG_NOME           = '';
+      $USU_IMG_NOMEUNIQ       = '';
+      $USU_IMG_TYPE           = '';
 
-      // Caminho de onde ficará a imagem
-      $caminho = realpath(APPPATH.'../');
-      $caminho = $caminho.'/usuarios/';
-      $caminho_imagem = $caminho . $nome_imagem;
- 
-      // Faz o upload da imagem para seu respectivo caminho
-      move_uploaded_file($imagem["tmp_name"], $caminho_imagem);
+      if ($imagem != null) {
+        // Pega extensão da imagem
+        $ext = explode(".", $imagem['name']);
+        $ext = end($ext);
+   
+        // Gera um nome único para a imagem
+        $nome_imagem = $id.".png";
 
-      $hash  = password_hash($edPass, PASSWORD_BCRYPT);
-      $link = criaLink($edNome);
+        // Caminho de onde ficará a imagem
+        $caminho = realpath(APPPATH.'../');
+        $caminho = $caminho.'/assets/img/users/';
+        $caminho_imagem = $caminho . $nome_imagem;
+        
+        if (file_exists($caminho_imagem)) {
+          unlink($caminho_imagem);
+        }
 
-      $dados = 
-        array(
-          'USU_IMG_NOME'           => $imagem['name'],
-          'USU_IMG_NOMEUNIQ'       => $nome_imagem,
-          'USU_IMG_TYPE'           => $imagem['type'],
-          'USU_IMG_AUDIODESCRICAO' => $edAudiodescricao,
+        // Faz o upload da imagem para seu respectivo caminho
+        move_uploaded_file($imagem["tmp_name"], $caminho_imagem);
 
-          'USU_NOME'  => $edNome,
-          'USU_EMAIL' => $edEmail,
-          'USU_PWD'   => $edPass,
-          'EST_ID'    => $cbEstado,
-          'CID_ID'    => $cbCidade,
-          'USU_ORG'   => $edOrg,
-          'USU_DEF'   => $cbDefic,
-          'DEF_ID'    => $cbQual,
-          'USU_OBS'   => $edObs
-        );  
+        $USU_IMG_NOME     = ' USU_IMG_NOME = '.$this->db->escape($imagem['name']).', ';
+        $USU_IMG_NOMEUNIQ = ' USU_IMG_NOMEUNIQ = '.$this->db->escape($nome_imagem).', ';
+        $USU_IMG_TYPE     = ' USU_IMG_TYPE = '.$this->db->escape($imagem['type']).', ';
+      }
+      $hash = '';
+      if ($edPass != '') {
+        $hash = password_hash($edPass, PASSWORD_BCRYPT);
+        $hash = " USU_PWD = '".$hash."'";
+      } 
 
-      $this->db->insert($tabela, $dados);
-      $id = $this->db->insert_id();
+      $link = ' USU_LINK = '.$this->db->escape(criaLink($edNome)).', ';
 
-      $this->auth->logUsuario($tabela, $id, 3);
+      $edAudiodescricao = ($edAudiodescricao != '')  ? ' USU_IMG_AUDIODESCRICAO = '.$this->db->escape($edAudiodescricao).', ' : '';
+      $edNome   = ($edNome != '')   ? ' USU_NOME = '.$this->db->escape($edNome).', '   : '';
+      $edEmail  = ($edEmail != '')  ? ' USU_EMAIL = '.$this->db->escape($edEmail).', ' : '';
+      $edPass   = ($edPass != '')   ? ' USU_PWD = '.$this->db->escape($hash).', '      : '';
+      $cbEstado = ($cbEstado != '') ? ' EST_ID = '.$this->db->escape($cbEstado).', '   : '';
+      $cbCidade = ($cbCidade != '') ? ' CID_ID = '.$this->db->escape($cbCidade).', '   : '';
+      $edOrg    = ($edOrg != '')    ? ' USU_ORG = '.$this->db->escape($edOrg).', '     : '';
+      $cbDefic  = ($cbDefic != '')  ? ' USU_DEF = '.$this->db->escape($cbDefic).', '   : '';
+      $cbQual   = ($cbQual != '')   ? ' DEF_ID = '.$this->db->escape($cbQual).', '     : '';
+      $edObs    = ($edObs != '')    ? ' USU_OBS = '.$this->db->escape($edObs).', '     : '';
+
+      $update = 
+        $link.
+        $USU_IMG_NOME.
+        $USU_IMG_NOMEUNIQ.
+        $USU_IMG_TYPE.
+        $edAudiodescricao.
+        $edNome.
+        $edEmail.
+        $edPass.
+        $cbEstado.
+        $cbCidade.
+        $edOrg.
+        $cbDefic.
+        $cbQual.
+        $edObs;
+
+      $update = substr($update, 0, -2);
+
+      $sql = " UPDATE usu_usuario
+               SET $update
+               WHERE USU_ID = $id ;";
+
+      /*echo "<pre>";
+      print_r($sql);
+      exit;*/
+      $this->db->query($sql);
+      $this->auth->logUsuario('usu_usuario', $id, 3);
 
       return
         array(
           'result' => 'OK',
-          'mensagem' => $edNome
+          'mensagem' => ''
         );
 
     } catch(PDOException $e) { 

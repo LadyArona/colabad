@@ -52,7 +52,7 @@
                 <div id='img_contain'>
                   <img id="blah" align='middle' 
                        src="<?php echo base_url();?>assets/img/imagem_generica.png" 
-                       alt="Imagem Genérica (sua imagem aparece aqui)" title=''/>
+                       alt="Sua imagem aparece aqui" title=''/>
                 </div> 
               </div>
             </div>

@@ -12,9 +12,13 @@
 <script src="<?php echo base_url();?>assets/js/jquery.loader.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>assets/js/bootstrap-select.min.js" type="text/javascript"></script>
 
+<!-- EDITOR -->
 <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@2.9.5/js/froala_editor.min.js'></script>
 <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@2.9.5/js/languages/pt_br.js'></script>
 <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@2.9.5/js/plugins/help.min.js'></script>
+<!-- IMAGEM -->
+<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/exif-js'></script>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.js'></script>
 
 <script src="<?php echo base_url();?>assets/js/EasyView.min.js" type="text/javascript"></script>
 
