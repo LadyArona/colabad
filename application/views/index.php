@@ -78,14 +78,8 @@
                       <i class="ni ni-istanbul"></i>
                     </div>
                     <h6 class="text-primary text-uppercase">Crie Projetos</h6>
-                    <p class="description mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                    <div>
-                      <span class="badge badge-pill badge-primary">design</span>
-                      <span class="badge badge-pill badge-primary">system</span>
-                      <span class="badge badge-pill badge-primary">creative</span>
-                    </div>
-                    <a href="#" class="btn btn-primary mt-4">Learn more</a>
+                    <p class="description mt-3">Cria projetos públicos ou privados e convide amigos para audiodescrever imagens com você.
+                    <br>O seu projeto é importante.</p>
                   </div>
                 </div>
               </div>
@@ -96,14 +90,7 @@
                       <i class="ni ni-check-bold"></i>
                     </div>
                     <h6 class="text-success text-uppercase">Publique Imagens</h6>
-                    <p class="description mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                    <div>
-                      <span class="badge badge-pill badge-success">business</span>
-                      <span class="badge badge-pill badge-success">vision</span>
-                      <span class="badge badge-pill badge-success">success</span>
-                    </div>
-                    <a href="#" class="btn btn-success mt-4">Learn more</a>
+                    <p class="description mt-3">Ao publicar suas imagens com audiodescrição em um projeto você está contribuindo mais um pouquinho pra disseminar a audiodescrição.</p>
                   </div>
                 </div>
               </div>
@@ -114,14 +101,7 @@
                       <i class="ni ni-planet"></i>
                     </div>
                     <h6 class="text-warning text-uppercase">Colabore</h6>
-                    <p class="description mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                    <div>
-                      <span class="badge badge-pill badge-warning">marketing</span>
-                      <span class="badge badge-pill badge-warning">product</span>
-                      <span class="badge badge-pill badge-warning">launch</span>
-                    </div>
-                    <a href="#" class="btn btn-warning mt-4">Learn more</a>
+                    <p class="description mt-3">Afinal, o trabalho em equipe pode gerar resultados melhores para todos! <br><br>O que você quer compartilhar hoje?</p>
                   </div>
                 </div>
               </div>

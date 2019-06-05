@@ -70,7 +70,11 @@ const perfil = {
       perfil.readURL(this)   
     })
 
-    perfil.initPerfil()
+    setTimeout(function(){
+      $('#edNome').removeAttr('disabled');
+      $('#edEmail').removeAttr('disabled');
+      perfil.initPerfil()
+    }, 200);
   },
   readURL: (input) => {    
     if (input.files && input.files[0]) {

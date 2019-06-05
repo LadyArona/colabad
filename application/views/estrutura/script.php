@@ -10,7 +10,7 @@
 <!-- Optional JS -->
 <script src="<?php echo base_url();?>assets/js/bootstrap-notify.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>assets/js/jquery.loader.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url();?>assets/js/bootstrap-select.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
 
 <!-- EDITOR -->
 <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@2.9.5/js/froala_editor.min.js'></script>
@@ -19,6 +19,8 @@
 <!-- IMAGEM -->
 <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/exif-js'></script>
 <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.js'></script>
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 
 <script src="<?php echo base_url();?>assets/js/EasyView.min.js" type="text/javascript"></script>
 
@@ -71,6 +73,16 @@ if ($conteudo == 'img_visualizar') { ?>
 </script>
 <?php 
 } else
+if ($conteudo == 'avaliar_visualizar') { ?>
+<script src="<?php echo base_url();?>assets/js/viewsJS/avaliar_visualizar.js"></script>
+
+<script>
+  $(document).ready(() => {
+    avalVis.initConfig(<?php echo json_encode($id); ?>)
+  })
+</script>
+<?php 
+} else
 if ($conteudo == 'painel') { ?>
 <script src="<?php echo base_url();?>assets/js/viewsJS/painel.js"></script>
 
@@ -87,6 +99,16 @@ if ($conteudo == 'perfil') { ?>
 <script>
   $(document).ready(() => {
     perfil.initConfig()
+  })
+</script>
+<?php 
+} else
+if ($conteudo == 'avaliar') { ?>
+<script src="<?php echo base_url();?>assets/js/viewsJS/avaliar.js"></script>
+
+<script>
+  $(document).ready(() => {
+    avaliar.initConfig()
   })
 </script>
 <?php 

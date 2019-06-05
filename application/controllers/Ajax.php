@@ -120,4 +120,14 @@ class Ajax extends CI_Controller {
     }
   }
 
+  function carregarAvaliar(){
+    if($this->input->post('carregarAvaliar') == ""){
+      $this->load->model('Avaliar_model', 'aval');
+      $result = $this->aval->carregarAvaliar();
+      $this->output
+           ->set_content_type('application/json')
+           ->set_output(json_encode($result));
+    }
+  }
+
 }

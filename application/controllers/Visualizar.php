@@ -29,6 +29,15 @@ class Visualizar extends CI_Controller {
     $this->load->view('estrutura/template', $data);
   }
 
+  function avaliar($id = null) {
+    $data['title']    = 'Avaliar Imagem';
+    $data['conteudo'] = 'avaliar_visualizar';
+
+    $data['id'] = $id;
+
+    $this->load->view('estrutura/template', $data);
+  }
+
   function perfil($id = null) {
     $data['id'] = $id;
 

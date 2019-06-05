@@ -11,6 +11,7 @@ const publicar = {
 
     $('#btnCancelar').click(function(event) {  
       publicar.limpaImagem()
+      app.carregaCombo('cbProjeto', 'P', 0)
       $('#edTitulo').focus()
     })
   },

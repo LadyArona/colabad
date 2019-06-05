@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xl-12">
     <div class="card bg-secondary shadow">
-            <div class="card-header bg-white border-0">
+      <div class="card-header bg-white border-0">
         <div class="row align-items-center">
           <div class="col-8">
             <button onclick='history.go(-1)' class="btn btn-neutral btn-icon" >
@@ -50,10 +50,30 @@
             <div class="row row-grid" id="vHistorico">
             </div>
           </div>
+          <div class="col-lg-12">
+            <hr class="my-4" />
+            <h6 class="heading text-muted mb-4">Avaliação da Imagem</h6>
+          </div>
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label class="form-control-label" for="edObs">Observação da Avaliação</label>
+              <textarea rows="10" class="form-control" id="edObs" name="edObs" required></textarea>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 pb-3">
+            <a role="button" aria-pressed="false" tabindex="0" class="btn btn-block btn-lg btn-success"
+               href="javascript:avalVis.avaliar(1)">
+              APROVAR IMAGEM
+            </a>
+          </div>
+          <div class="col-lg-6 col-md-6 pb-3">
+            <a role="button" aria-pressed="false" tabindex="0" class="btn btn-block btn-lg btn-danger"
+               href="javascript:avalVis.avaliar(2)">
+              REPROVAR IMAGEM
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-

@@ -62,5 +62,6 @@ $route['vericar/(:any)']         = "/emails/verificar_email/$1";
 $route['redefinir/(:any)']       = "/emails/redefinir_senha/$1";
 $route['redefinir/(:any)']       = "/emails/redefinir_senha/$1";
 $route['projeto/(:num)/(:any)']  = 'visualizar/projeto/$1';
+$route['avaliar/(:num)/(:any)']  = 'visualizar/avaliar/$1';
 $route['imagem/(:num)/(:any)']   = 'visualizar/imagem/$1';
 $route['perfil/(:num)/(:any)']   = 'visualizar/perfil/$1';

@@ -5619,19 +5619,20 @@ CREATE TABLE IF NOT EXISTS `conf_configuracoes` (
   `CONF_DATAATT` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `CONF_DATACAD` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `CONF_VERSAO` varchar(15) NOT NULL,
-  `CONF_AUTOR` varchar(50) NOT NULL,
-  `CONF_KEYWORDS` varchar(150) DEFAULT NULL,
-  `CONF_FACEBOOK` varchar(150) DEFAULT NULL,
-  `CONF_REPOSITORIO` varchar(150) DEFAULT NULL,
+  `CONF_AUTOR` varchar(255) NOT NULL,
+  `CONF_KEYWORDS` varchar(255) DEFAULT NULL,
+  `CONF_FACEBOOK` varchar(255) DEFAULT NULL,
+  `CONF_REPOSITORIO` varchar(255) DEFAULT NULL,
+  `CONF_IMGUSUPADRAO` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`CONF_ID`),
   KEY `FK_conf_configuracoes_conf_cidade` (`CID_ID`),
   CONSTRAINT `FK_conf_configuracoes_conf_cidade` FOREIGN KEY (`CID_ID`) REFERENCES `conf_cidade` (`CID_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela colabad2.conf_configuracoes: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela colabad2.conf_configuracoes: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `conf_configuracoes` DISABLE KEYS */;
-INSERT IGNORE INTO `conf_configuracoes` (`CONF_ID`, `CONF_NOME`, `CONF_ABRV`, `CONF_DESCRICAO`, `CONF_LOGO`, `CONF_LOGOALT`, `CID_ID`, `CONF_EMAIL`, `CONF_EMAILFROM`, `CONF_EMAILPWD`, `CONF_EMAILHOST`, `CONF_DATAATT`, `CONF_DATACAD`, `CONF_VERSAO`, `CONF_AUTOR`, `CONF_KEYWORDS`, `CONF_FACEBOOK`, `CONF_REPOSITORIO`) VALUES
-	(1, 'ColabAD', 'ColabAD', 'Rede Colaborativa de Audiodescrição', 'assets/img/brand/white.png', 'Rede Colaborativa de Audiodescrição', 4780, 'tallinydn@gmail.com', 'xxxxxxx', 'xxxxxx', 'smtp.gmail.com', '2019-05-09 22:12:06', '2019-04-14 18:14:44', '1.0.0.1', 'Talliny Dalla Nora', 'Rede Colaborativa de Audiodescrição', 'https://fb.me/redeColabad', 'https://github.com/LadyArona/colabad');
+INSERT IGNORE INTO `conf_configuracoes` (`CONF_ID`, `CONF_NOME`, `CONF_ABRV`, `CONF_DESCRICAO`, `CONF_LOGO`, `CONF_LOGOALT`, `CID_ID`, `CONF_EMAIL`, `CONF_EMAILFROM`, `CONF_EMAILPWD`, `CONF_EMAILHOST`, `CONF_DATAATT`, `CONF_DATACAD`, `CONF_VERSAO`, `CONF_AUTOR`, `CONF_KEYWORDS`, `CONF_FACEBOOK`, `CONF_REPOSITORIO`, `CONF_IMGUSUPADRAO`) VALUES
+	(1, 'ColabAD', 'ColabAD', 'Rede Colaborativa de Audiodescrição', 'assets/img/brand/white.png', 'Rede Colaborativa de Audiodescrição', 4780, 'equipecolabad@gmail.com', 'equipecolabad@gmail.com', 'xxxxxxx', 'smtp.gmail.com', '2019-06-01 15:00:25', '2019-04-14 18:14:44', '1.0.0.1', 'Talliny Dalla Nora', 'Rede Colaborativa de Audiodescrição', 'https://fb.me/redeColabad', 'https://github.com/LadyArona/colabad', 'assets/img/usuario_padrao.jpg');
 /*!40000 ALTER TABLE `conf_configuracoes` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.conf_deficiencia
@@ -5714,7 +5715,7 @@ INSERT IGNORE INTO `conf_logtipo` (`LT_ID`, `LT_DESCRICAO`) VALUES
 	(3, 'editou'),
 	(4, 'recuperar senha'),
 	(5, 'alterar senha'),
-	(6, 'aprovou');
+	(6, 'avaliou');
 /*!40000 ALTER TABLE `conf_logtipo` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.conf_notificacoes
@@ -5728,13 +5729,15 @@ CREATE TABLE IF NOT EXISTS `conf_notificacoes` (
   `NOTF_USUARIO` varchar(50) NOT NULL,
   `NOTF_DATA_HORA` datetime NOT NULL,
   PRIMARY KEY (`NOTF_ID`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- Copiando dados para a tabela colabad2.conf_notificacoes: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `conf_notificacoes` DISABLE KEYS */;
 INSERT IGNORE INTO `conf_notificacoes` (`NOTF_ID`, `NOTF_DESCRICAO`, `NOTF_TIPO`, `NOTF_LIDA`, `NOTF_PADRAO`, `NOTF_DIRECIONA`, `NOTF_USUARIO`, `NOTF_DATA_HORA`) VALUES
 	(2, 'Você foi adicionado como colaborador do projeto: <b>Projeto Retalhos de Memória de Santa Maria</b>.', 'A', 'N', 'N', 'projeto/18/projeto-r', '30', '2019-05-27 23:56:58'),
-	(3, 'Você foi adicionado como colaborador do projeto: <b>teste</b>.', 'A', 'N', 'N', 'projeto/20/teste', '29', '2019-05-28 01:44:27');
+	(3, 'Nova Imagem para Consulta: <b>sdvsdv</b>.', 'A', 'N', 'N', 'sdvsdv', '31', '2019-06-04 21:22:21'),
+	(4, 'Nova Imagem para Consulta: <b>bbbbbbfgfgn</b>.', 'A', 'N', 'N', 'avaliar/26/bbbbbbfgfgn', '31', '2019-06-04 21:24:06'),
+	(5, 'Nova Imagem para Consulta: <b>aaaaaaaaaaaaaaa</b>.', 'A', 'N', 'N', 'consultar/27/aaaaaaaaaaaaaaa', '31', '2019-06-04 21:28:01');
 /*!40000 ALTER TABLE `conf_notificacoes` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.conf_regiao
@@ -5754,6 +5757,20 @@ INSERT IGNORE INTO `conf_regiao` (`REG_ID`, `REG_DESCRICAO`) VALUES
 	(5, 'Centro-Oeste');
 /*!40000 ALTER TABLE `conf_regiao` ENABLE KEYS */;
 
+-- Copiando estrutura para tabela colabad2.img_avaliacao
+CREATE TABLE IF NOT EXISTS `img_avaliacao` (
+  `IMG_ID` int(11) NOT NULL,
+  `AVAL_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `AVAL_OBS` text,
+  PRIMARY KEY (`AVAL_ID`,`IMG_ID`),
+  KEY `FK_img_avaliacao_img_cadastro` (`IMG_ID`),
+  CONSTRAINT `FK_img_avaliacao_img_cadastro` FOREIGN KEY (`IMG_ID`) REFERENCES `img_cadastro` (`IMG_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela colabad2.img_avaliacao: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `img_avaliacao` DISABLE KEYS */;
+/*!40000 ALTER TABLE `img_avaliacao` ENABLE KEYS */;
+
 -- Copiando estrutura para tabela colabad2.img_cadastro
 CREATE TABLE IF NOT EXISTS `img_cadastro` (
   `IMG_ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -5762,20 +5779,30 @@ CREATE TABLE IF NOT EXISTS `img_cadastro` (
   `IMG_TYPE` varchar(50) DEFAULT NULL,
   `IMG_TITULO` text,
   `IMG_AUDIODESCRICAO` text,
-  `IMG_STATUS` char(1) NOT NULL DEFAULT 'A',
+  `IMG_STATUS` char(1) NOT NULL DEFAULT 'P' COMMENT 'P = PUBLICADA | A = APROVADA | R = REPROVADA | V = PARA AVALIAR',
   `PROJ_ID` int(11) DEFAULT NULL,
   `IMG_LINK` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`IMG_ID`),
   KEY `FK_img_cadastro_proj_cadastro` (`PROJ_ID`),
   CONSTRAINT `FK_img_cadastro_proj_cadastro` FOREIGN KEY (`PROJ_ID`) REFERENCES `proj_cadastro` (`PROJ_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela colabad2.img_cadastro: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `img_cadastro` DISABLE KEYS */;
 INSERT IGNORE INTO `img_cadastro` (`IMG_ID`, `IMG_NOME`, `IMG_NOMEUNIQ`, `IMG_TYPE`, `IMG_TITULO`, `IMG_AUDIODESCRICAO`, `IMG_STATUS`, `PROJ_ID`, `IMG_LINK`) VALUES
-	(15, 'UFSM-Projeto-Retalhos-Artigo-190-1997.080.0001-1024x685.jpg', 'b32fb6e8c311c451042b8c294feda0a0.jpg', 'image/jpeg', 'Usina termoelétrica em Candiota em 1997', '<p>Fotografia, horizontal e colorida, de um vasto campo, ao longe, uma usina.</p><p>Em toda a largura da imagem, um vasto campo verde, cortando horizontalmente esse campo, uma estrada de terra.</p><p>Na direita, uma torre metálica suportando alguns fios. Próximo à torre e mais a frente, um equipamento topográfico.</p><p>Distante, à esquerda e no final do campo, uma usina; da chaminé, sai fumaça que vai para a direita.</p><p>Céu azul claro com o horizonte amarelado.&nbsp;</p>', 'A', 18, 'usina-termoel-trica-em-candiota-em-1997'),
+	(15, 'UFSM-Projeto-Retalhos-Artigo-190-1997.080.0001-1024x685.jpg', 'b32fb6e8c311c451042b8c294feda0a0.jpg', 'image/jpeg', 'Usina termoelétrica em Candiota em 1997', '<p>Fotografia, horizontal e colorida, de um vasto campo, ao longe, uma usina.</p><p>Em toda a largura da imagem, um vasto campo verde, cortando horizontalmente esse campo, uma estrada de terra.</p><p>Na direita, uma torre metálica suportando alguns fios. Próximo à torre e mais a frente, um equipamento topográfico.</p><p>Distante, à esquerda e no final do campo, uma usina; da chaminé, sai fumaça que vai para a direita.</p><p>Céu azul claro com o horizonte amarelado.&nbsp;</p>', 'P', 18, 'usina-termoel-trica-em-candiota-em-1997'),
 	(16, 'UFSM-Projeto-Retalhos-Artigo-182-1996.115.0003-2-1-1024x642.jpg', '11ee3de585fa597880a920e4fa977594.jpg', 'image/jpeg', 'Concurso Estudantil Sobre Antártica em 1996', '<p>Fotografia, horizontal e colorida, de quatro pessoas em pé em um ambiente interno.</p><p>Na esquerda da imagem, um homem em pé, com faixa etária de 50 anos, tem pele branca, cabelo curto, liso e grisalho; veste terno preto, com camisa branca e gravata vermelha. Segura em suas mãos um porta documento de veludo; A fotografia está enquadrada da cintura para cima e o homem está de perfil esquerdo para a imagem.</p><p>A sua frente, uma mulher com faixa etária de 25 anos, tem pele branca, cabelo liso, loiro e comprido. Usa óculos de armação fina de metal e lentes redondas; está com um vestido rosa, e segura a frente de seu corpo um diploma;</p><p>Atrás, uma parede lisa e branca. Próximos a ela, dois homens em pé. A esquerda da imagem um homem com faixa etária de 50 anos, pele branca, cabelo curto, liso e grisalho. Ele veste terno cinza e gravata vermelha com detalhes pretos; está com as mãos em posição de aplauso. Ao seu lado outro homem, com faixa etária de 50 anos, pele clara, cabelo liso, preto e curto; Tem barba preta e usa óculos de lentes redondas e armação fina e escura.&nbsp;</p><p>Atrás dos homens próximo a parede, ao lado esquerdo da imagem, um mastro com a bandeira do Brasil, a frente uma mesa de madeira com um microfone em cima.</p>', 'A', 18, 'concurso-estudantil-sobre-ant-rtica-em-1996'),
-	(17, 'Sem-título-1-1024x853.jpg', '7ab0013aa4985917da79b1fdf500d9c5.jpg', 'image/jpeg', 'Curso de Máquinas e Ferramentas em 1974', '<p>Fotografia, horizontal, em preto e branco. Ao centro, um homem com a boca entreaberta e o braço esquerdo erguido, atrás de uma mesa retangular, em um espaço interno e sombreado (sob a incidência do flash fotográfico).</p><p>&nbsp;</p><p>O homem, em pé, posicionado na diagonal esquerda, está enquadrado da cintura para cima; tem faixa etária de 50 anos, pele clara, estatura alta, compleição física robusta, rosto oval, cabelo liso e escuro com entrada de calvície; veste terno escuro, com camisa clara e gravata escura.</p><p><br></p><p>Ele tem o braço esquerdo levemente voltado à frente, com a palma da mão virada para baixo; e com o direito, apoia-se no tampo da mesa, apenas com as pontas dos dedos.</p><p>&nbsp;</p><p><br></p><p>A mesa se encontra à frente do homem, visível na metade direita, tendo o formato retangular, de madeira, com um opérculo de vidro sobre o tampo de madeira, cuja superfície reflete a sombra do homem.</p><p><br></p><p>Em cima da mesa, à direita, tem um papel claro e, à esquerda, duas caixas de giz claro.</p><p><br></p><p>Ao fundo e à esquerda do homem, a quina de duas paredes. As paredes são claras e lisas, tendo na da direita, a parte inferior esquerda de um quadro negro, com algumas fórmulas ilegíveis.</p>', 'A', 18, 'curso-de-m-quinas-e-ferramentas-em-1974');
+	(17, 'Sem-título-1-1024x853.jpg', '7ab0013aa4985917da79b1fdf500d9c5.jpg', 'image/jpeg', 'Curso de Máquinas e Ferramentas em 1974', '<p>Fotografia, horizontal, em preto e branco. Ao centro, um homem com a boca entreaberta e o braço esquerdo erguido, atrás de uma mesa retangular, em um espaço interno e sombreado (sob a incidência do flash fotográfico).</p><p>&nbsp;</p><p>O homem, em pé, posicionado na diagonal esquerda, está enquadrado da cintura para cima; tem faixa etária de 50 anos, pele clara, estatura alta, compleição física robusta, rosto oval, cabelo liso e escuro com entrada de calvície; veste terno escuro, com camisa clara e gravata escura.</p><p><br></p><p>Ele tem o braço esquerdo levemente voltado à frente, com a palma da mão virada para baixo; e com o direito, apoia-se no tampo da mesa, apenas com as pontas dos dedos.</p><p>&nbsp;</p><p><br></p><p>A mesa se encontra à frente do homem, visível na metade direita, tendo o formato retangular, de madeira, com um opérculo de vidro sobre o tampo de madeira, cuja superfície reflete a sombra do homem.</p><p><br></p><p>Em cima da mesa, à direita, tem um papel claro e, à esquerda, duas caixas de giz claro.</p><p><br></p><p>Ao fundo e à esquerda do homem, a quina de duas paredes. As paredes são claras e lisas, tendo na da direita, a parte inferior esquerda de um quadro negro, com algumas fórmulas ilegíveis.</p>', 'R', 18, 'curso-de-m-quinas-e-ferramentas-em-1974'),
+	(18, 'LOGO_COLABAD.png', '754b055149e6e25958cf7253abf4627e.png', 'image/png', '44454 3', '<p>54545454</p>', 'P', 20, '44454'),
+	(19, 'LOGO_COLABAD.png', '7368fdedc8f673d53a6b9e18d9ece5bf.png', 'image/png', '44454 4', '<p>54545454</p>', 'A', 20, '44454'),
+	(20, 'LOGO_COLABAD.png', 'ed5f03bdc276bb9101bfe7912b6ed254.png', 'image/png', '44454 5', '<p>54545454</p>', 'P', 20, '44454'),
+	(21, 'LOGO_COLABAD.png', 'fc2354386713deb3e763b01567f10434.png', 'image/png', '44454 2', '<p>54545454</p>', 'R', 20, '44454'),
+	(22, 'LOGO_COLABAD.png', '7634ef9f21bbd5d3ef5378ea95b3cf22.png', 'image/png', '44454 1', '<p>54545454</p>', 'P', 20, '44454'),
+	(23, 'LOGO_COLABAD.png', 'cbf7d68ad4ef0ec53099ca91e81d1665.png', 'image/png', 'sdvsdv', '<p>sdvsdv</p>', 'A', 20, 'sdvsdv'),
+	(24, 'LOGO_COLABAD.png', 'ddc537f120e34e08461ece4fb2d0bc39.png', 'image/png', 'sdvsdv', '<p>sdvsdv</p>', 'P', 20, 'sdvsdv'),
+	(25, 'LOGO_COLABAD.png', '6ba16a7ecc1555c0835405d569814112.png', 'image/png', 'sdvsdv', '<p>sdvsdv</p>', 'A', 20, 'sdvsdv'),
+	(26, 'LOGO_COLABAD.png', '81d6daeed075286f392f341ce9a6ab56.png', 'image/png', 'bbbbbbfgfgn', '<p>fgnfgnfgnfgn</p>', 'A', 20, 'bbbbbbfgfgn'),
+	(27, 'fundo_imagem_carrossel_Curso_AD.jpg', '18b7f77caa7f07a69472ab07d3ef9e8b.jpg', 'image/jpeg', 'aaaaaaaaaaaaaaa', '<p>ffefefef efefe&nbsp;</p>', 'A', 20, 'aaaaaaaaaaaaaaa');
 /*!40000 ALTER TABLE `img_cadastro` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.img_log
@@ -5792,7 +5819,7 @@ CREATE TABLE IF NOT EXISTS `img_log` (
   CONSTRAINT `FK_img_log_img_cadastro` FOREIGN KEY (`IMG_ID`) REFERENCES `img_cadastro` (`IMG_ID`),
   CONSTRAINT `FK_img_log_img_logtipo` FOREIGN KEY (`LT_ID`) REFERENCES `conf_logtipo` (`LT_ID`),
   CONSTRAINT `FK_img_log_usu_usuario` FOREIGN KEY (`USU_ID`) REFERENCES `usu_usuario` (`USU_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela colabad2.img_log: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `img_log` DISABLE KEYS */;
@@ -5801,7 +5828,17 @@ INSERT IGNORE INTO `img_log` (`ILOG_ID`, `IMG_ID`, `USU_ID`, `LT_ID`, `ILOG_DATA
 	(7, 16, 29, 1, '2019-05-18 17:33:38'),
 	(8, 17, 29, 1, '2019-05-19 00:28:47'),
 	(9, 16, 29, 3, '2019-05-19 00:43:40'),
-	(10, 16, 30, 6, '2019-05-19 00:45:48');
+	(10, 16, 30, 6, '2019-05-19 00:45:48'),
+	(11, 18, 29, 1, '2019-06-04 21:19:00'),
+	(12, 19, 29, 1, '2019-06-04 21:19:28'),
+	(13, 20, 29, 1, '2019-06-04 21:20:21'),
+	(14, 21, 29, 1, '2019-06-04 21:20:56'),
+	(15, 22, 29, 1, '2019-06-04 21:21:07'),
+	(16, 23, 29, 1, '2019-06-04 21:21:30'),
+	(17, 24, 29, 1, '2019-06-04 21:21:50'),
+	(18, 25, 29, 1, '2019-06-04 21:22:21'),
+	(19, 26, 29, 1, '2019-06-04 21:24:06'),
+	(20, 27, 29, 1, '2019-06-04 21:28:01');
 /*!40000 ALTER TABLE `img_log` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.proj_cadastro
@@ -5871,7 +5908,7 @@ CREATE TABLE IF NOT EXISTS `usu_log` (
   PRIMARY KEY (`LOG_ID`,`USU_ID`),
   KEY `FK_usu_log_conf_logtipo` (`LT_ID`),
   CONSTRAINT `FK_usu_log_conf_logtipo` FOREIGN KEY (`LT_ID`) REFERENCES `conf_logtipo` (`LT_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela colabad2.usu_log: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `usu_log` DISABLE KEYS */;
@@ -5901,7 +5938,67 @@ INSERT IGNORE INTO `usu_log` (`LOG_ID`, `USU_ID`, `LOG_DATA`, `LOG_ORIGEM`, `LOG
 	(36, 29, '2019-05-27 23:53:02', 'proj_cadastro', 0, 3),
 	(37, 29, '2019-05-27 23:55:59', 'proj_cadastro', 0, 3),
 	(38, 29, '2019-05-27 23:56:58', 'proj_cadastro', 18, 3),
-	(39, 29, '2019-05-28 01:44:27', 'proj_cadastro', 20, 1);
+	(39, 29, '2019-05-28 01:44:27', 'proj_cadastro', 20, 1),
+	(40, 29, '2019-05-28 20:09:20', 'usu_usuario', 29, 2),
+	(41, 29, '2019-05-29 20:10:49', 'usu_usuario', 29, 2),
+	(42, 29, '2019-05-29 20:21:28', 'usu_usuario', 29, 2),
+	(43, 29, '2019-05-29 21:48:21', 'usu_usuario', 29, 2),
+	(44, 29, '2019-05-30 01:32:05', 'usu_usuario', 29, 2),
+	(45, 29, '2019-05-30 01:32:39', 'usu_usuario', 29, 2),
+	(46, 29, '2019-05-30 19:16:32', 'usu_usuario', 29, 2),
+	(47, 29, '2019-05-30 22:58:00', 'usu_usuario', 29, 3),
+	(48, 29, '2019-05-30 22:58:22', 'usu_usuario', 29, 3),
+	(49, 29, '2019-05-30 23:04:41', 'usu_usuario', 29, 3),
+	(50, 29, '2019-05-30 23:20:11', 'usu_usuario', 29, 3),
+	(51, 29, '2019-05-30 23:22:39', 'usu_usuario', 29, 3),
+	(52, 29, '2019-05-30 23:30:32', 'usu_usuario', 29, 3),
+	(53, 0, '2019-05-31 21:54:49', 'recuperar_senha', 0, 4),
+	(54, 0, '2019-05-31 21:57:45', 'recuperar_senha', 0, 4),
+	(55, 1, '2019-05-31 21:58:59', 'usu_usuario', 1, 5),
+	(56, 29, '2019-05-31 21:59:05', 'usu_usuario', 29, 2),
+	(57, 29, '2019-05-31 23:28:34', 'usu_usuario', 29, 3),
+	(58, 29, '2019-05-31 23:30:41', 'usu_usuario', 29, 3),
+	(59, 29, '2019-05-31 23:33:40', 'usu_usuario', 29, 3),
+	(60, 29, '2019-05-31 23:36:12', 'usu_usuario', 29, 3),
+	(61, 29, '2019-05-31 23:36:39', 'usu_usuario', 29, 3),
+	(62, 29, '2019-05-31 23:40:11', 'usu_usuario', 29, 3),
+	(63, 29, '2019-06-01 14:47:21', 'usu_usuario', 29, 2),
+	(64, 29, '2019-06-01 14:56:34', 'usu_usuario', 29, 2),
+	(65, 0, '2019-06-01 16:57:37', 'recuperar_senha', 0, 4),
+	(66, 29, '2019-06-01 17:02:31', 'usu_usuario', 29, 2),
+	(67, 0, '2019-06-01 17:06:25', 'recuperar_senha', 0, 4),
+	(68, 29, '2019-06-01 17:06:29', 'usu_usuario', 29, 2),
+	(69, 29, '2019-06-01 17:17:10', 'usu_usuario', 29, 2),
+	(70, 29, '2019-06-01 17:17:43', 'usu_usuario', 29, 3),
+	(71, 29, '2019-06-01 17:24:44', 'usu_usuario', 29, 3),
+	(72, 29, '2019-06-01 17:28:50', 'usu_usuario', 29, 2),
+	(73, 29, '2019-06-01 17:29:21', 'usu_usuario', 29, 3),
+	(74, 29, '2019-06-01 17:36:53', 'usu_usuario', 29, 3),
+	(75, 29, '2019-06-03 23:49:19', 'usu_usuario', 29, 2),
+	(76, 29, '2019-06-04 20:14:16', 'usu_usuario', 29, 2),
+	(77, 31, '2019-06-04 20:22:29', 'usu_usuario', 31, 1),
+	(78, 31, '2019-06-04 20:23:37', 'usu_usuario', 31, 2),
+	(79, 0, '2019-06-04 20:59:22', 'recuperar_senha', 0, 4),
+	(80, 29, '2019-06-04 20:59:24', 'usu_usuario', 29, 2),
+	(81, 29, '2019-06-04 21:03:57', 'usu_usuario', 29, 2),
+	(82, 29, '2019-06-04 21:07:50', 'usu_usuario', 29, 2),
+	(83, 29, '2019-06-04 21:11:54', 'usu_usuario', 29, 2),
+	(84, 29, '2019-06-04 21:12:23', 'usu_usuario', 29, 2),
+	(85, 29, '2019-06-04 21:12:47', 'usu_usuario', 29, 2),
+	(86, 29, '2019-06-04 21:13:39', 'usu_usuario', 29, 2),
+	(87, 29, '2019-06-04 21:13:54', 'usu_usuario', 29, 2),
+	(88, 29, '2019-06-04 21:16:54', 'usu_usuario', 29, 2),
+	(89, 29, '2019-06-04 21:19:00', 'img_cadastro', 18, 1),
+	(90, 29, '2019-06-04 21:19:28', 'img_cadastro', 19, 1),
+	(91, 29, '2019-06-04 21:20:21', 'img_cadastro', 20, 1),
+	(92, 29, '2019-06-04 21:20:57', 'img_cadastro', 21, 1),
+	(93, 29, '2019-06-04 21:21:07', 'img_cadastro', 22, 1),
+	(94, 29, '2019-06-04 21:21:30', 'img_cadastro', 23, 1),
+	(95, 29, '2019-06-04 21:21:50', 'img_cadastro', 24, 1),
+	(96, 29, '2019-06-04 21:22:21', 'img_cadastro', 25, 1),
+	(97, 29, '2019-06-04 21:24:06', 'img_cadastro', 26, 1),
+	(98, 29, '2019-06-04 21:28:01', 'img_cadastro', 27, 1),
+	(99, 29, '2019-06-05 01:11:06', 'usu_usuario', 29, 2);
 /*!40000 ALTER TABLE `usu_log` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.usu_perfil
@@ -5927,7 +6024,7 @@ CREATE TABLE IF NOT EXISTS `usu_tela` (
   `TELA_DESCRICAO` varchar(255) DEFAULT NULL,
   `TELA_PRIVADO` int(11) DEFAULT NULL,
   PRIMARY KEY (`TELA_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela colabad2.usu_tela: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `usu_tela` DISABLE KEYS */;
@@ -5944,7 +6041,9 @@ INSERT IGNORE INTO `usu_tela` (`TELA_ID`, `TELA_CAMINHO`, `TELA_DESCRICAO`, `TEL
 	(10, 'appajax', NULL, 1),
 	(11, 'perfil', NULL, 1),
 	(12, 'suporte', NULL, 1),
-	(13, 'visualizar', NULL, 1);
+	(13, 'visualizar', NULL, 1),
+	(14, 'email_visualizar', NULL, 1),
+	(15, 'avaliar', NULL, 6);
 /*!40000 ALTER TABLE `usu_tela` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela colabad2.usu_usuario
@@ -5961,16 +6060,33 @@ CREATE TABLE IF NOT EXISTS `usu_usuario` (
   `USU_TOKEN` varchar(255) DEFAULT NULL,
   `PERF_ID` int(11) NOT NULL DEFAULT '1',
   `USU_LINK` varchar(50) DEFAULT NULL,
+  `USU_IMG_NOME` varchar(255) DEFAULT NULL,
+  `USU_IMG_NOMEUNIQ` varchar(255) DEFAULT NULL,
+  `USU_IMG_TYPE` varchar(50) DEFAULT NULL,
+  `USU_IMG_AUDIODESCRICAO` text,
+  `EST_ID` int(11) DEFAULT NULL,
+  `CID_ID` int(11) DEFAULT NULL,
+  `USU_ORG` text,
+  `DEF_ID` int(11) DEFAULT NULL,
+  `USU_DEF` char(1) DEFAULT NULL,
+  `USU_OBS` text,
   PRIMARY KEY (`USU_ID`),
   KEY `FK_usu_usuario_usu_perfil` (`PERF_ID`),
+  KEY `FK_usu_usuario_conf_deficiencia` (`DEF_ID`),
+  KEY `FK_usu_usuario_conf_cidade` (`CID_ID`),
+  KEY `FK_usu_usuario_conf_estado` (`EST_ID`),
+  CONSTRAINT `FK_usu_usuario_conf_cidade` FOREIGN KEY (`CID_ID`) REFERENCES `conf_cidade` (`CID_ID`),
+  CONSTRAINT `FK_usu_usuario_conf_deficiencia` FOREIGN KEY (`DEF_ID`) REFERENCES `conf_deficiencia` (`DEF_ID`),
+  CONSTRAINT `FK_usu_usuario_conf_estado` FOREIGN KEY (`EST_ID`) REFERENCES `conf_estado` (`EST_ID`),
   CONSTRAINT `FK_usu_usuario_usu_perfil` FOREIGN KEY (`PERF_ID`) REFERENCES `usu_perfil` (`PERF_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela colabad2.usu_usuario: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `usu_usuario` DISABLE KEYS */;
-INSERT IGNORE INTO `usu_usuario` (`USU_ID`, `USU_NOME`, `USU_CADDATA`, `USU_SITUACAO`, `USU_EMAIL`, `USU_PWD`, `USU_PWDTOKEN`, `USU_PWDTOKENEXP`, `USU_EMAILCONF`, `USU_TOKEN`, `PERF_ID`, `USU_LINK`) VALUES
-	(29, 'Talliny', '2019-04-28 22:58:49', 'A', 'loja.anima.animus@gmail.com', '$2y$10$pq.blSaMfUppsakvGUCDKuEsfKFXimHVCu3ZQP.EB1YzS8LNLMhf2', NULL, '2019-05-01 20:31:26', 1, 'D7gFwKyWvY', 3, 'talliny'),
-	(30, 'João Eduardo', '2019-05-01 23:06:54', 'A', '1fb97b50a5@mailboxy.fun', '$2y$10$taNSjshaMuuSydutARf6t.7rL5aOuD7q0L/3iuKXmDkYzUTpJ6lj.', NULL, NULL, 1, 'XBDEAnmCUVZg', 1, 'joao-eduardo');
+INSERT IGNORE INTO `usu_usuario` (`USU_ID`, `USU_NOME`, `USU_CADDATA`, `USU_SITUACAO`, `USU_EMAIL`, `USU_PWD`, `USU_PWDTOKEN`, `USU_PWDTOKENEXP`, `USU_EMAILCONF`, `USU_TOKEN`, `PERF_ID`, `USU_LINK`, `USU_IMG_NOME`, `USU_IMG_NOMEUNIQ`, `USU_IMG_TYPE`, `USU_IMG_AUDIODESCRICAO`, `EST_ID`, `CID_ID`, `USU_ORG`, `DEF_ID`, `USU_DEF`, `USU_OBS`) VALUES
+	(29, 'Talliny', '2019-04-28 22:58:49', 'A', 'loja.anima.animus@gmail.com', '$2y$10$b7CCZk87zLlgBEftuXSGDu/GlVSzdGsYF8OS/TI3qs2CPBk7xzDHu', 'poj7eFNywqYt', '2019-06-04 21:14:17', 1, 'D7gFwKyWvY', 3, 'talliny', 'blob', '29.png', 'image/png', '<p>Here is a handy CSS centering technique I first noticed in the WordPress media library, where it is used to centre and crop irregularly sized thumbnails within a square container. </p>', 9, 5330, 'UFSM', 2, 'S', '<p>Here is a handy CSS centering technique I first noticed in the WordPress media library, where it is used to centre and crop irregularly sized thumbnails within a square container. </p>'),
+	(30, 'João Eduardo', '2019-05-01 23:06:54', 'A', '1fb97b50a5@mailboxy.fun', '$2y$10$taNSjshaMuuSydutARf6t.7rL5aOuD7q0L/3iuKXmDkYzUTpJ6lj.', NULL, NULL, 1, 'XBDEAnmCUVZg', 1, 'joao-eduardo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(31, 'Equipe ColabAD', '2019-06-04 20:22:29', 'A', 'equipecolabad@gmail.com', '$2y$10$sPx74atwJRRNZQUsfyQdKuWbxASrvNhycNxgCQeVSkY3eHKx8g4xW', NULL, NULL, 1, 'AIJkgTKqo7FP', 2, 'equipe-colabad', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `usu_usuario` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

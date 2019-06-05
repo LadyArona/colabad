@@ -1,6 +1,14 @@
 urlAtual = window.location.pathname.split('/')[2];
 app = {
   initApp: () => {
+    var clipboard = new ClipboardJS('button');
+    clipboard.on('success', function(e) {
+        console.log(e);
+    });
+    clipboard.on('error', function(e) {
+        console.log(e);
+    });
+
     /* ACESSIBILIDADE */
     $(function(){
       $('#font-setting-buttons').easyView({
@@ -16,9 +24,13 @@ app = {
     });
 
     $("#toConteudo").click(function() {
-        $('html,body').animate({scrollTop: $("#conteudo").offset().top}, 'slow')})
+        $('html,body').animate({
+          scrollTop: $("#conteudo").offset().top
+        }, 'slow')})
     $("#toMenu").click(function() {
-        $('html,body').animate({scrollTop: $("#sidenav-main").offset().top}, 'slow')})
+        $('html,body').animate({scrollTop: $("#sidenav-main").offset().top}, 'slow')
+        $("#mnPainel").focus()
+    })
 
     /* ACESSIBILIDADE */
 

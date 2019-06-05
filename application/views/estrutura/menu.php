@@ -52,23 +52,23 @@
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url();?>painel">
+            <a class="nav-link" href="<?php echo base_url();?>painel" role="button" aria-pressed="false" tabindex="0" id="mnPainel">
               <i class="ni ni-tv-2 text-primary"></i> Painel
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url();?>projetos">
+            <a class="nav-link" href="<?php echo base_url();?>projetos" role="button" aria-pressed="false" tabindex="0" >
               <i class="ni ni-album-2 text-red"></i> Projetos
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url();?>publicar">
+            <a class="nav-link" href="<?php echo base_url();?>publicar" role="button" aria-pressed="false" tabindex="0" >
               <i class="ni ni-image text-info"></i> Publicar Imagem
             </a>
           </li>
           <?php if ($this->session->userdata('logged_in_colabad')['sesColabad_vPerfilNivel'] > 1) { ?>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url();?>avaliar">
+            <a class="nav-link" href="<?php echo base_url();?>avaliar" role="button" aria-pressed="false" tabindex="0" >
               <i class="fas fa-calendar-check text-success"></i> Avaliar Imagem
             </a>
           </li>
@@ -82,18 +82,18 @@
             <?php
               $perfil = base_url().'perfil/'.$this->session->userdata('logged_in_colabad')['sesColabad_vId'].'/'.$this->session->userdata('logged_in_colabad')['sesColabad_vLink'];
             ?>
-            <a class="nav-link" href="<?php echo $perfil;?>">
+            <a class="nav-link" href="<?php echo $perfil;?>" role="button" aria-pressed="false" tabindex="0" >
               <i class="ni ni-single-02 text-yellow"></i> Meu Perfil
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" role="button" aria-pressed="false" tabindex="0" >
               <i class="ni ni-calendar-grid-58"></i>
               <span>Atividade</span>
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url();?>suporte" class="nav-link">
+            <a href="<?php echo base_url();?>suporte" class="nav-link" role="button" aria-pressed="false" tabindex="0" >
               <i class="ni ni-support-16"></i>
               <span>Suporte</span>
             </a>
@@ -101,7 +101,7 @@
         </ul>
 
         <hr class="my-3">
-        <a href="<?php echo base_url('index/logout'); ?>" class="nav-link">
+        <a href="<?php echo base_url('index/logout'); ?>" class="nav-link" role="button" aria-pressed="false" tabindex="0" >
           <i class="ni ni-user-run"></i>
           <span>Sair</span> 
         </a>

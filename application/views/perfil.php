@@ -35,14 +35,14 @@
         <div class="col-xl-8 order-xl-1">
           <div class="card bg-secondary shadow">
             <div class="card-body">
-              <form action="" method="POST" enctype="multipart/form-data" id="formPerfil">
+              <form action="" method="POST" enctype="multipart/form-data" id="formPerfil" autocomplete="off">
                 <h6 class="heading-small text-muted mb-4">Imagem de Perfil</h6>
                 <div class="pl-lg-4">
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group"> 
                         <div class="custom-file">
-                          <input type="file" id="inputGroupFile01"
+                          <input autocomplete="off" type="file" id="inputGroupFile01"
                                  class="custom-file-input"
                                  accept="image/jpg, image/jpeg, image/png">
                           <label class="custom-file-label" for="inputGroupFile01">
@@ -73,13 +73,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="edNome">Nome</label>
-                        <input type="text" id="edNome" class="form-control">
+                        <input autocomplete="off" type="text" id="edNome" class="form-control" disabled="disabled">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="edEmail">Email</label>
-                        <input type="email" id="edEmail" class="form-control">
+                        <input autocomplete="off" type="email" id="edEmail" class="form-control" disabled="disabled">
                       </div>
                     </div>
                   </div>
@@ -87,13 +87,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="edPerfilPass">Nova Senha</label>
-                        <input type="password" id="edPerfilPass" class="form-control" value="">
+                        <input autocomplete="off" type="password" id="edPerfilPass" class="form-control" value="">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="edConfPass">Confirmar Senha</label>
-                        <input type="password" id="edConfPass" class="form-control" value="">
+                        <input autocomplete="off" type="password" id="edConfPass" class="form-control" value="">
                       </div>
                     </div>
                   </div>
@@ -124,7 +124,7 @@
                     <div class="col-lg-12">
                       <div class="form-group">
                         <label class="form-control-label" for="edOrg">Empresa/Organização</label>
-                        <input type="text" id="edOrg" class="form-control">
+                        <input autocomplete="off" type="text" id="edOrg" class="form-control">
                       </div>
                     </div>
                   </div>

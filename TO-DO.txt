@@ -1,3 +1,4 @@
+> Perfil
 > Painel do Consultor
 
 > Baixar imagem
@@ -15,3 +16,9 @@
 
 > Mapa do site
 > Sobre nós
+> Pode deletar/desativar o perfil
+
+
+> Ao publicar a imgem > colocar algo que explique o que é AudioDescrição
+
+> Botões para compartilhar!

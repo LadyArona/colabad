@@ -45,6 +45,12 @@ class Imagem_model extends CI_Model {
       $this->app->gravaLog($id, 1);
       $this->auth->logUsuario($tabela, $id, 1);
 
+      $consultor = $this->db->select('USU_ID')->from('usu_usuario')->where('PERF_ID', 2)->get()->result();
+      $link = 'avaliar/'.$id.'/'.$link;
+      foreach ($consultor as $key => $value) {
+        $this->app->geraNotificacao('Nova Imagem para Consulta: <b>'.$titulo.'</b>.', 'A', 'N', $link, $value->USU_ID);
+      }
+
       return
         array(
           'result' => 'OK',
@@ -68,8 +74,11 @@ class Imagem_model extends CI_Model {
       $sql = "SELECT I.IMG_TITULO vTitulo,
                      I.IMG_AUDIODESCRICAO vDescr,
                      P.PROJ_TITULO vProjeto,
+                     P.PROJ_ID vProjetoId,
+                     P.PROJ_LINK vProjetoLink,
                      I.IMG_NOME vNome,
                      I.IMG_NOMEUNIQ vNomeUnico,
+                     I.IMG_STATUS vStatus,
                      
                      (SELECT U.USU_NOME
                       FROM img_log L JOIN usu_usuario U ON U.USU_ID = L.USU_ID
@@ -96,11 +105,12 @@ class Imagem_model extends CI_Model {
             'result'          => 'OK',
             'vTitulo'         => $row->vTitulo,
             'vDescr'          => $row->vDescr,
-            'vProjeto'        => $row->vProjeto,
+            'vProjeto'        => '<a href="'.base_url().'projeto/'.$row->vProjetoId.'/'.$row->vProjetoLink.'">Projeto: '.$row->vProjeto.'</a>',
             'vAudiodescritor' => $row->vAudiodescritor,
             'vConsultor'      => $row->vConsultor,
             'vNome'           => $row->vNome,
             'vNomeUnico'      => $row->vNomeUnico,
+            'vStatus'         => $row->vStatus,
             'vParticipante'   => array(),
             'vHistorico'      => array()
           );
@@ -136,7 +146,7 @@ class Imagem_model extends CI_Model {
                        P.PERF_DESCRICAO,
                        L.ILOG_DATA,
                        T.LT_DESCRICAO,
-                       CONCAT(P.PERF_DESCRICAO, ' ', U.USU_NOME, ' ', T.LT_DESCRICAO, ' a imagem em ',  DATE_FORMAT(L.ILOG_DATA, '%d de %M de %Y as %H:%i')) vHistorico
+                       CONCAT(P.PERF_DESCRICAO, ' <strong>', U.USU_NOME, '</strong> <span class=\'text-blue\'>', T.LT_DESCRICAO, '</span> a imagem em ',  DATE_FORMAT(L.ILOG_DATA, '%d de %M de %Y as %H:%i')) vHistorico
                        
                 FROM img_log L 
                   JOIN usu_usuario U ON U.USU_ID = L.USU_ID

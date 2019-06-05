@@ -6,9 +6,15 @@ const login = {
       login.validaSenha(this.value)
     })
 
-    $("input[name='edPassLogin']").keyup(function(event) {
-      if (event.keyCode === 13) {
-        login.login()
+    $(document).keypress(function(e) {
+      var keycode = (e.keyCode ? e.keyCode : e.which);
+      if (keycode == '13') {
+        /*alert('You pressed enter! - keypress');*/
+        if ($('#entrar-tab').attr('aria-selected') == true) {
+          login.login()
+        } else {
+          login.salvarCadastro()
+        }
       }
     })
   },

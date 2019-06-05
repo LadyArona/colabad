@@ -25,12 +25,12 @@ const projetos = {
         `<tr id="tr_${idColaborador}">
             <td class="nomeColab">${nomeColaborador}${responsavel}</td>
             <td style="cursor:pointer">
-              <i class="fa fa-user" data-toggle="tooltip" data-placement="top" title="Tornar Responsável pelo Projeto"
+              <a role="button" aria-pressed="false" tabindex="0" class="fa fa-user" data-toggle="tooltip" data-placement="top" title="Tornar ${nomeColaborador} Responsável pelo Projeto"
                style="cursor: pointer;font-size: 0.9em;border: 1px solid #cad1d7; padding: 5px 6px 5px 6px; background-color: lightsteelblue; border-radius: 3px;"
-               onclick="projetos.carregaDefineResponsavel(${idColaborador})"></i>&nbsp;&nbsp;
-              <i class="fa fa-close" data-toggle="tooltip" title="Remover do Projeto" 
+               onclick="projetos.carregaDefineResponsavel(${idColaborador})"></a>&nbsp;&nbsp;
+              <a role="button" aria-pressed="false" tabindex="0" class="fa fa-close" data-toggle="tooltip" title="Remover ${nomeColaborador} do Projeto" 
                style="cursor: pointer;font-size: 0.9em;border: 1px solid #cad1d7; padding: 5px 6px 5px 6px; background-color: tomato; border-radius: 3px;"
-               onclick="projetos.removeRow(${idColaborador}, 1)"></i>
+               onclick="projetos.removeRow(${idColaborador}, 1)"></a>
             </td>
         </tr>`
       ].join(''))

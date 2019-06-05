@@ -18,14 +18,10 @@
 <!-- Argon JS -->
 <script src='<?php echo base_url();?>assets/js/argon.js?v=1.0.1'></script>
 <script src="<?php echo base_url();?>assets/js/viewsJs/app.js" type="text/javascript"></script>
-<script>
-  $(document).ready(() => { app.initApp() })
-</script>
-
 <script src='<?php echo base_url();?>assets/js/viewsJs/login.js'></script>
 <script>
   $(document).ready(() => {
     login.initConfigTela()
-  })
+   })
 </script>
 
