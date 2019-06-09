@@ -62,4 +62,4 @@ $route['projeto/(:num)/(:any)']  = 'visualizar/projeto/$1';
 $route['avaliar/(:num)/(:any)']  = 'visualizar/avaliar/$1';
 $route['imagem/(:num)/(:any)']   = 'visualizar/imagem/$1';
 $route['perfil/(:num)/(:any)']   = 'visualizar/perfil/$1';
-$route['revisar/(:num)']         = 'publicar/index/$1';
+$route['revisar/(:num)/(:any)']  = 'publicar/index/$1';

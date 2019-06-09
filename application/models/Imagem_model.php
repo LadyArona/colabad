@@ -113,7 +113,8 @@ class Imagem_model extends CI_Model {
             'vNomeUnico'      => $row->vNomeUnico,
             'vStatus'         => $row->vStatus,
             'vParticipante'   => array(),
-            'vHistorico'      => array()
+            'vHistorico'      => array(),
+            'vAvaliacoes'     => array()
           );
         }
 

@@ -188,7 +188,6 @@ const login = {
           )
         } else
         if (data.result === 'ERRO') {
-          console.log(data)
           app.showNotification(`Erro ao cadastrar ${data.mensagem}`, 'danger', 2)
         }
       }).fail((err) => {

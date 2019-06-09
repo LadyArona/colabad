@@ -110,7 +110,6 @@ const painel = {
         })
       }
     }).done((data) => {
-      console.log(data)
       if (data.result == 'OK') {
         let html = ''
 

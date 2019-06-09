@@ -2,7 +2,6 @@
 - Entrega dos artigos impressos (3 cópias) para a banca: 01 julho
 - Defesas do TGSI I (Apresentações): entre 08 e 12 de julho
 =========================================================================================
-> Usuário poder editar imagem com erro na audiodescrição > Revisar imagem
 > Buscar
 > MATOMO
 > VALIDAR REGRAS DE ACESSIBILIDADE
@@ -20,8 +19,12 @@
 > politica de privacidade
 
 > lembrar usuário
+> colocar legenda das tags das imagens
+
+> no Perfil > Mostrar projetos e imagens da pessoa
 
 =========================================================================================
+OK > Usuário poder editar imagem com erro na audiodescrição > Revisar imagem
 OK > Perfil
 OK > Painel do Consultor
 

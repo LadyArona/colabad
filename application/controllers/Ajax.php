@@ -113,6 +113,18 @@ class Ajax extends CI_Controller {
            ->set_content_type('application/json')
            ->set_output(json_encode($registros));
     }
+  }    
+
+  function revisarImagem(){
+    if($this->input->post('revisarImagem') == ""){
+      $this->load->model('Revisar_model', 'aval');
+      $form      = $this->input->post('form');
+      $imgId     = $this->input->post('imgId');
+      $registros = $this->aval->revisarImagem($form, $imgId);
+      $this->output
+           ->set_content_type('application/json')
+           ->set_output(json_encode($registros));
+    }
   }  
   
   function carregarImagemVisualizar(){
@@ -153,6 +165,16 @@ class Ajax extends CI_Controller {
     if($this->input->post('carregarAvaliar') == ""){
       $this->load->model('Avaliar_model', 'aval');
       $result = $this->aval->carregarAvaliar();
+      $this->output
+           ->set_content_type('application/json')
+           ->set_output(json_encode($result));
+    }
+  }
+
+  function carregarRevisar(){
+    if($this->input->post('carregarRevisar') == ""){
+      $this->load->model('Revisar_model', 'aval');
+      $result = $this->aval->carregarRevisar();
       $this->output
            ->set_content_type('application/json')
            ->set_output(json_encode($result));

@@ -36,7 +36,8 @@ const img = {
           `<div class="col-md-3 col-lg-2 mb-5 mb-lg-0">
             <div class="px-4">
               <a href="${item.vLink}" target="_blanck">
-              <img src="${item.vImg}" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="width: 10rem;">
+              <img src="${item.vImg}" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="width: 10rem;"
+                   alt="Colaborador da Imagem: ${item.vNome}">
                 <div class="pt-2 text-center">
                   <h5 class="title">
                     <span class="d-block mb-1">${item.vNome}</span>

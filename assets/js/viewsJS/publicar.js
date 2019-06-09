@@ -1,4 +1,5 @@
 let revisar = false
+let imgId = ''
 
 const publicar = {
   initConfig: (id) => {
@@ -10,16 +11,24 @@ const publicar = {
       publicar.readURL(this)   
     })
 
-    $('#btnCancelar').click(function(event) {  
-      publicar.limpaImagem()
-      app.carregaCombo('cbProjeto', 'P', null, 0)
-      $('#edTitulo').focus()
-    })
-
     if (id != '') {
       revisar = true
-      publicar.carregaDadosImg(id)
+      imgId = id
+      setTimeout(function(){
+        publicar.carregaDadosImg(id)
+      }, 300);
     }
+
+    $('#btnCancelar').click(function(event) { 
+      if (revisar) {
+        history.go(-1)
+      } else {
+        publicar.limpaImagem()
+        app.carregaCombo('cbProjeto', 'P', null, 0)
+        $('#edTitulo').focus()
+      }
+    })
+
   },
   carregaDadosImg: (id) => {
     $.ajax({
@@ -38,21 +47,26 @@ const publicar = {
       }
     }).done((data) => {
       if (data.result == 'OK') {
-        console.log(data)
-
-        app.carregaCombo('cbProjeto', 'P', data.vProjetoId, 0)
+        $('#cbProjeto').closest('div').find('.selectpicker').attr('disabled', false).selectpicker('refresh')
+        $('#cbProjeto').val(data.vProjetoId).selectpicker('render').selectpicker('refresh')
 
         $('#edTitulo').val(data.vTitulo)
         $('#edAudiodescricao').froalaEditor('html.set', data.vDescr)
 
         let avaliacoes = ''
-        data.vAvaliacoes.map((e) => {
+        if (data.vAvaliacoes.length > 0) {
+          data.vAvaliacoes.map((e) => {
+            avaliacoes +=
+            `<li class="title">
+              ${e.vConsultor} ${e.vAcao} em ${e.vData}: ${e.vAvaliacao}
+            </li>`
+          })
+        } else {
           avaliacoes +=
-          `<li class="title">
-            ${e.vConsultor} ${e.vAcao} em ${e.vData}: ${e.vAvaliacao}
-          </li>`
-        })
-
+            `<li class="title">
+              Esta imagem ainda não foi avaliada por um Consultor.
+            </li>`
+        }
         avaliacoes = 
           `<ul>
             ${avaliacoes}
@@ -66,6 +80,10 @@ const publicar = {
           $('#blah').fadeIn(500)      
           $('.custom-file-label').text(data.vNome)
 
+        // bloqueia os campos
+        $('#edTitulo').attr('disabled', true)
+        $('#inputGroupFile01').attr('disabled', true)
+        $('#cbProjeto').closest('div').find('.selectpicker').attr('disabled', true).selectpicker('refresh')
       } else
       if (data.result == 'ERRO') {
         console.log('error dados ', data)
@@ -105,65 +123,104 @@ const publicar = {
   },
   salvaImagem: () => {
     if (publicar.validaSalvar()) {
+      if (revisar) {
+        $.ajax({
+          url: `${baseUrl}ajax/revisarImagem`,
+          data: {
+            revisarImagem: '',
+            form: $('#formImagem').serialize(),
+            imgId: imgId
+          },
+          dataType: 'JSON',
+          type: 'POST',
+          beforeSend: () => {
+            $.loader({
+              className: 'blue-with-image-2',
+              content: 'Aguarde, salvando...'
+            })
+          }
+        }).done((data) => {
+          if (data.result === 'OK') {
+            app.showNotification(`Imagem revisada com sucesso!`, 'success', 2)
+            setTimeout(function(){
+              history.go(-1)
+            }, 2500);
+          }
+        }).fail((err) => {
+          console.log('error dados ', err)
+          app.showNotification(`Ops! Ocorreu um erro`, 'danger', 2)
+        }).always(() => {
+          $.loader('close')
+        })
+      } else {
         let formData = new FormData()
         formData.append('imagem', $('#inputGroupFile01')[0].files[0])
         formData.append('titulo', $('#edTitulo').val())
         formData.append('projeto', $('#cbProjeto').val())
         formData.append('descricao', $('#edAudiodescricao').val())
 
-      $.ajax({
-        url: `${baseUrl}ajax/salvaImagem`,
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        data: formData,
-        beforeSend: () => {
-          $.loader({
-            className: 'blue-with-image-2',
-            content: ''
-          })
-        }
-      }).done((data) => {
-        if (data.result === 'OK') {
-          app.showNotification(
-            `Imagem publicada com sucesso! <br>
-            <strong>${data.mensagem}</strong>`,
-            'success', 2
-          )
-          $('#btnCancelar').click()
-        }
-      }).fail((err) => {
-        console.log('error dados ', err)
-        app.showNotification(`Ops! Ocorreu um erro`, 'danger', 1)
-      }).always(() => {
-        $.loader('close')
-      })
+        $.ajax({
+          url: `${baseUrl}ajax/salvaImagem`,
+          type: 'POST',
+          processData: false,
+          contentType: false,
+          data: formData,
+          beforeSend: () => {
+            $.loader({
+              className: 'blue-with-image-2',
+              content: ''
+            })
+          }
+        }).done((data) => {
+          if (data.result === 'OK') {
+            app.showNotification(
+              `Imagem publicada com sucesso! <br>
+              <strong>${data.mensagem}</strong>`,
+              'success', 2
+            )
+            $('#btnCancelar').click()
+          }
+        }).fail((err) => {
+          console.log('error dados ', err)
+          app.showNotification(`Ops! Ocorreu um erro`, 'danger', 1)
+        }).always(() => {
+          $.loader('close')
+        })
+      }
     }
   },
   validaSalvar: () => {
-    if ($('#edTitulo').val() == '') {
-      app.showNotification(`Informe o título da imagem!`, 'danger', 5)
-      $('#edTitulo').focus()
-      return false
-    }
+    if (revisar) { 
+      if ($('#edAudiodescricao').val() == '') {
+        app.showNotification(`Informe a áudiodescrição da imagem!`, 'danger', 5)
+        $('#edAudiodescricao').focus()
+        return false
+      }
+    } else {
+      if ($('#edTitulo').val() == '') {
+        app.showNotification(`Informe o título da imagem!`, 'danger', 5)
+        $('#edTitulo').focus()
+        return false
+      }
 
-    if ($('#edAudiodescricao').val() == '') {
-      app.showNotification(`Informe a áudiodescrição da imagem!`, 'danger', 5)
-      $('#edAudiodescricao').focus()
-      return false
-    }
+      if ($('#edAudiodescricao').val() == '') {
+        app.showNotification(`Informe a áudiodescrição da imagem!`, 'danger', 5)
+        $('#edAudiodescricao').focus()
+        return false
+      }
 
-    if(!$("#cbProjeto").selectpicker('val')){
-      app.showNotification("Selecione um Projeto para a Imagem", 'danger', 5);
-      $("#cbProjeto").selectpicker('toggle').selectpicker('render')
-      return false;
-    }
+      if(!$("#cbProjeto").selectpicker('val')){
+        app.showNotification("Selecione um Projeto para a Imagem", 'danger', 5);
+        $("#cbProjeto").selectpicker('toggle').selectpicker('render')
+        return false;
+      }
 
-    if ($('#inputGroupFile01')[0].files[0] == null) {
-      app.showNotification(`Informe a imagem que deseja publicar!`, 'danger', 5)
-      $('#inputGroupFile01').focus()
-      return false
-    }
+      if ($('#inputGroupFile01')[0].files[0] == null) {
+        app.showNotification(`Informe a imagem que deseja publicar!`, 'danger', 5)
+        $('#inputGroupFile01').focus()
+        return false
+      }
+    }      
 
     return true
   },

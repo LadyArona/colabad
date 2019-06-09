@@ -132,6 +132,16 @@ if ($conteudo == 'suporte') { ?>
   })
 </script>
 <?php 
+} else
+if ($conteudo == 'revisar') { ?>
+<script src="<?php echo base_url();?>assets/js/viewsJS/revisar.js"></script>
+
+<script>
+  $(document).ready(() => {
+    revisar.initConfig()
+  })
+</script>
+<?php 
 }
 
 ?>

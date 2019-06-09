@@ -30,7 +30,8 @@ const prv = {
           `<div class="col-md-3 col-lg-2 mb-5 mb-lg-0">
             <div class="px-4">
               <a href="${item.vLink}" target="_blanck">
-                <img src="${item.vImg}" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="width: 10rem;">
+                <img src="${item.vImg}" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="width: 10rem;"
+                     alt="Colaborador do Projeto: ${item.vNome}">
                 <div class="pt-2 text-center">
                   <h5 class="title">
                     <span class="d-block mb-1">${item.vNome}</span>
@@ -51,9 +52,10 @@ const prv = {
           imagens += 
             `<div class="col-lg-4">
               <div class="card card-lift--hover ${e.vStatusClass}" style="width: 18rem;">
-                <img class="card-img-top" src="${baseUrl}uploads/${e.vNome}" aria-labelledby="card-title">
+                <img class="card-img-top" src="${baseUrl}uploads/${e.vNome}" aria-labelledby="card-title${e.vId}"
+                     alt="">
                 <div class="card-body">
-                  <h5 class="card-title" aria-disabled>${e.vDesc}</h5>
+                  <h5 class="card-title" id="card-title${e.vId}" aria-disabled="true">${e.vDesc}</h5>
                   <a class="btn btn-primary btn-block mt-4" 
                      href="${e.vLink}"
                      aria-label="Visualizar imagem ${e.vDesc}">
