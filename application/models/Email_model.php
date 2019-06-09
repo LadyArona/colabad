@@ -45,6 +45,11 @@ class Email_model extends CI_Model {
         $assunto = ' - Recuperar senha';
       }
 
+      if ($data['tipo'] == 'suporte') {
+        $caminho = '';
+        $assunto = ' - SUPORTE';
+      }
+
       // Email subject
       $mail->Subject = $this->config->item('abrv').$assunto;
       
@@ -52,7 +57,11 @@ class Email_model extends CI_Model {
       $mail->isHTML(true);
       
       // Email body content
-      $mailContent = $this->load->view($caminho, $data, true);
+      if ($caminho <> '') {
+        $mailContent = $this->load->view($caminho, $data, true);
+      } else {
+        $mailContent = $data['conteudo'];
+      }
 
       $mail->Body = $mailContent;
       
@@ -97,6 +106,25 @@ class Email_model extends CI_Model {
       }
 
       return $retorno;
+    }
+
+    function emailSuporte($form) {
+      $values = array();
+
+      if (isset($form)) {
+        parse_str($form, $values); 
+
+        $mensagem = "
+          <br><strong>Nome: </strong> ".$values['edNome']."
+          <br><strong>Email: </strong> ".$values['edEmail']."
+          <br><strong>Mensagem: </strong><br><br> ".$values['edMensagem'];
+
+        $data['para'] = $this->config->item('email_Username');
+        $data['tipo'] = 'suporte';
+        $data['conteudo'] = $mensagem;
+
+        return $this->envia_email($data);
+      }
     }
   }
 ?>

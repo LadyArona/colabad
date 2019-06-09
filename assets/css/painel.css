@@ -18370,8 +18370,8 @@ textarea[resize='horizontal']
 {
     content: '\ea4c';
 
-    color: daken(#fb6340, 18%);
-    background-color: #fb6340;
+    color: daken(#fde57b, 18%);
+    background-color: #fde57b;
 }
 
 .has-default .form-control
@@ -18384,21 +18384,21 @@ textarea[resize='horizontal']
 }
 .has-default .form-control:-ms-input-placeholder
 {
-    color: #fb6340;
+    color: #fde57b;
 }
 .has-default .form-control::-ms-input-placeholder
 {
-    color: #fb6340;
+    color: #fde57b;
 }
 .has-default .form-control::placeholder
 {
-    color: #fb6340;
+    color: #fde57b;
 }
 
 .has-danger:after
 {
-    content: '\ea53';
-
+    content: '\ea33';
+    font-size: 24px;
     color: daken(#f5365c, 18%);
     background-color: #f5365c;
 }

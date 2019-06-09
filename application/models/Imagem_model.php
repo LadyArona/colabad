@@ -48,7 +48,7 @@ class Imagem_model extends CI_Model {
       $consultor = $this->db->select('USU_ID')->from('usu_usuario')->where('PERF_ID', 2)->get()->result();
       $link = 'avaliar/'.$id.'/'.$link;
       foreach ($consultor as $key => $value) {
-        $this->app->geraNotificacao('Nova Imagem para Consulta: <b>'.$titulo.'</b>.', 'A', 'N', $link, $value->USU_ID);
+        $this->app->geraNotificacao('Nova Imagem para avaliar: <b>'.$titulo.'</b>.', 'A', 'N', $link, $value->USU_ID);
       }
 
       return
@@ -105,6 +105,7 @@ class Imagem_model extends CI_Model {
             'result'          => 'OK',
             'vTitulo'         => $row->vTitulo,
             'vDescr'          => $row->vDescr,
+            'vProjetoId'      => $row->vProjetoId,
             'vProjeto'        => '<a href="'.base_url().'projeto/'.$row->vProjetoId.'/'.$row->vProjetoLink.'">Projeto: '.$row->vProjeto.'</a>',
             'vAudiodescritor' => $row->vAudiodescritor,
             'vConsultor'      => $row->vConsultor,
@@ -162,6 +163,36 @@ class Imagem_model extends CI_Model {
           foreach ($query->result() as $row) {
             $dados['vHistorico'][] = array(
               'vHistorico' => $row->vHistorico
+            );
+          }
+        }
+
+        //busca avaliações da imagem
+        $sql = "SELECT U.USU_NOME vConsultor,
+                       A.AVAL_OBS vAvaliacao,
+                       CASE
+                        WHEN A.AVAL_STATUS = 1 THEN '<span class=\"text-success\">aprovou a imagem</span>'
+                        WHEN A.AVAL_STATUS = 1 THEN '<span class=\"text-danger\">reprovou a imagem</span>'
+                       END vAcao,
+                       DATE_FORMAT(L.LOG_DATA, '%d de %M de %Y as %H:%i') vData
+
+                FROM img_avaliacao A
+                  JOIN usu_log L ON L.LOG_ORIGEM_ID = A.AVAL_ID AND L.LOG_ORIGEM = 'img_avaliacao'
+                    JOIN usu_usuario U ON U.USU_ID = L.USU_ID
+
+                WHERE A.IMG_ID = $id
+                ORDER BY L.LOG_DATA DESC ;";
+
+        $this->db->query('SET lc_time_names = "pt_br"'); //para os meses sairem em portugues
+        $query = $this->db->query($sql);
+
+        if ($query->num_rows() > 0){
+          foreach ($query->result() as $row) {
+            $dados['vAvaliacoes'][] = array(
+              'vData'      => $row->vData,
+              'vConsultor' => $row->vConsultor,
+              'vAcao'      => $row->vAcao,
+              'vAvaliacao' => $row->vAvaliacao
             );
           }
         }

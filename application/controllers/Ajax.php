@@ -17,8 +17,12 @@ class Ajax extends CI_Controller {
   function buscarProjeto(){
     if($this->input->post('buscarProjeto') == ""){
       $this->load->model('Projetos_model', 'proj');
-      $limit = $this->input->post('limit');
-      $registros = $this->proj->buscarProjeto($limit);
+      $limit    = ($this->input->post('limit') == "") ? 0 : $this->input->post('limit');
+      $order    = ($this->input->post('order') == "") ? '' : $this->input->post('order');
+      $usuWhere = ($this->input->post('usuWhere') == "") ? 0 : $this->input->post('usuWhere');
+      $where    = ($this->input->post('where') == "") ? '' : $this->input->post('where');
+
+      $registros = $this->proj->buscarProjeto($limit, $order, $usuWhere, $where);
       $this->output
            ->set_content_type('application/json')
            ->set_output(json_encode($registros));
@@ -63,12 +67,13 @@ class Ajax extends CI_Controller {
   function carregarPerfil(){
     if($this->input->post('carregarPerfil') == ""){
       $this->load->model('Perfil_model', 'perf');
-      $registros = $this->perf->carregarPerfil();
+      $id   = $this->input->post('id');
+      $registros = $this->perf->carregarPerfil($id);
       $this->output
            ->set_content_type('application/json')
            ->set_output(json_encode($registros));
     }
-  }  
+  }
 
   function salvarPerfil(){
     $this->load->model('Perfil_model', 'perf');
@@ -97,6 +102,19 @@ class Ajax extends CI_Controller {
          ->set_output(json_encode($registros));
   }
   
+  function avaliarImagem(){
+    if($this->input->post('avaliarImagem') == ""){
+      $this->load->model('Avaliar_model', 'aval');
+      $tipo      = $this->input->post('tipo');
+      $obs       = $this->input->post('obs');
+      $imgId     = $this->input->post('imgId');
+      $registros = $this->aval->avaliarImagem($imgId, $tipo, $obs);
+      $this->output
+           ->set_content_type('application/json')
+           ->set_output(json_encode($registros));
+    }
+  }  
+  
   function carregarImagemVisualizar(){
     if($this->input->post('carregarImagemVisualizar') == ""){
       $this->load->model('Imagem_model', 'img');
@@ -107,6 +125,17 @@ class Ajax extends CI_Controller {
            ->set_output(json_encode($registros));
     }
   }  
+
+  function emailSuporte(){
+    if($this->input->post('emailSuporte') == ""){
+      $this->load->model('Email_model', 'email');
+      $form   = $this->input->post('form');
+      $result = $this->email->emailSuporte($form);
+      $this->output
+           ->set_content_type('application/json')
+           ->set_output(json_encode($result));
+    }
+  }
 
   function salvarProjeto(){
     if($this->input->post('salvarProjeto') == ""){

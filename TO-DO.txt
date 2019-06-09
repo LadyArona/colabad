@@ -1,24 +1,31 @@
-> Perfil
-> Painel do Consultor
-
-> Baixar imagem
-> Copiar audiodescrição
-
-> TAG imagem Verificada
-
+- Entrega dos artigos para os orientadores revisarem (versão final): 24 junho
+- Entrega dos artigos impressos (3 cópias) para a banca: 01 julho
+- Defesas do TGSI I (Apresentações): entre 08 e 12 de julho
+=========================================================================================
+> Usuário poder editar imagem com erro na audiodescrição > Revisar imagem
 > Buscar
+> MATOMO
+> VALIDAR REGRAS DE ACESSIBILIDADE
 
-> Suporte
+> Histórico das Avaliações da Imagem
+
+> SUPORTE > Faq > Perfil > O que é cada perfil, colocar algo que explique o que é AudioDescrição
+
 > Atividades = Lista com os logs do usuário
 
-
-
-
 > Mapa do site
-> Sobre nós
 > Pode deletar/desativar o perfil
 
+> termo de uso
+> politica de privacidade
 
-> Ao publicar a imgem > colocar algo que explique o que é AudioDescrição
+> lembrar usuário
 
-> Botões para compartilhar!
+=========================================================================================
+OK > Perfil
+OK > Painel do Consultor
+
+OK > Baixar imagem
+OK > Copiar audiodescrição
+
+OK > TAG imagem Verificada

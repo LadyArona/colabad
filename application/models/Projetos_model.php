@@ -7,16 +7,30 @@ class Projetos_model extends CI_Model {
     $this->load->model('App_model', 'app');
   }
 
-  public function buscarProjeto ($limit = 0) {
+  public function buscarProjeto ($limit = 0, $order = '', $usuWhere = 0, $where = '') {
     $tabela  = 'proj_cadastro';
-    $usuario = $this->session->userdata('logged_in_colabad')['sesColabad_vId'];
     $dados   = array();
 
-    $limit = ($limit > 0) ? 'ORDER BY P.PROJ_DATACAD LIMIT '.$limit : '';
+    $order = ($order == '') ? ' ORDER BY P.PROJ_DATACAD DESC ' : $order;
+    $order = ($order == 1) ? ' ORDER BY RAND() ' : $order;
+
+    $where = ($where == 1) ? ' AND P.PROJ_PRIVADO = 0 ' : $where;
+
+    $limit = ($limit > 0) ? ' LIMIT '.$limit : '';
 
     /*echo "<pre>";
       print_r($limit);
       exit;*/
+    $usuario = '';
+    if ($usuWhere == 0) {
+      $usuario = $this->session->userdata('logged_in_colabad')['sesColabad_vId'];
+      $usuario = "AND P.USU_ID = $usuario 
+                  OR P.PROJ_ID IN 
+                    (SELECT C.PROJ_ID 
+                    FROM proj_participantes C 
+                    WHERE C.USU_ID = $usuario
+                    AND C.PAR_RESPONSAVEL = 'S') ";
+    }
 
     try{
       $sql = "SELECT P.PROJ_ID vId,
@@ -31,13 +45,11 @@ class Projetos_model extends CI_Model {
 
             FROM proj_cadastro P
 
-            WHERE P.USU_ID = $usuario 
-              OR P.PROJ_ID IN 
-                (SELECT C.PROJ_ID 
-                FROM proj_participantes C 
-                WHERE C.USU_ID = $usuario
-                AND C.PAR_RESPONSAVEL = 'S') 
+            WHERE P.PROJ_ID > 0
+            $usuario
+            $where
 
+            $order 
             $limit ;";
       
       $this->db->query('SET lc_time_names = "pt_br"'); //para os meses sairem em portugues
@@ -213,12 +225,18 @@ class Projetos_model extends CI_Model {
         $sqlImg = "SELECT I.IMG_ID vId,
                        I.IMG_NOMEUNIQ vNome,
                        I.IMG_LINK vLink,
-                       I.IMG_TITULO vDesc
+                       I.IMG_TITULO vDesc,
+                       CASE
+                        WHEN I.IMG_STATUS = 'P' THEN ' has-default '
+                        WHEN I.IMG_STATUS = 'A' THEN ' has-success '
+                        WHEN I.IMG_STATUS = 'R' THEN ' has-danger '
+                        WHEN I.IMG_STATUS = 'V' THEN ' has-primary '
+                        ELSE ''
+                       END vStatusClass
 
                 FROM img_cadastro I
 
-                WHERE I.IMG_STATUS = 'A'
-                  AND I.PROJ_ID = $id ;";
+                WHERE I.PROJ_ID = $id ;";
 
         $queryImg = $this->db->query($sqlImg);
 
@@ -229,7 +247,8 @@ class Projetos_model extends CI_Model {
               'vId'   => $rowImg->vId,
               'vNome' => $rowImg->vNome,
               'vLink' => $linkImg,
-              'vDesc' => $rowImg->vDesc
+              'vDesc' => $rowImg->vDesc,
+              'vStatusClass' => $rowImg->vStatusClass
             );
           }
         }

@@ -13,15 +13,15 @@
                 <div class="col">
                   <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                     <div>
-                      <span class="heading">2</span>
+                      <span class="heading" id="vProjetos"></span>
                       <span class="description">Projetos</span>
                     </div>
                     <div>
-                      <span class="heading">10</span>
+                      <span class="heading" id="vFotos"></span>
                       <span class="description">Fotos</span>
                     </div>
                     <div>
-                      <span class="heading">5</span>
+                      <span class="heading" id="vAprovadas"></span>
                       <span class="description">Aprovadas</span>
                     </div>
                   </div>

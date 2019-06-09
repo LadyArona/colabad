@@ -3,7 +3,6 @@ app = {
   initApp: () => {
     var clipboard = new ClipboardJS('button');
     clipboard.on('success', function(e) {
-        console.log(e);
     });
     clipboard.on('error', function(e) {
         console.log(e);

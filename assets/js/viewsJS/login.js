@@ -10,7 +10,7 @@ const login = {
       var keycode = (e.keyCode ? e.keyCode : e.which);
       if (keycode == '13') {
         /*alert('You pressed enter! - keypress');*/
-        if ($('#entrar-tab').attr('aria-selected') == true) {
+        if ($('#entrar-tab').attr('aria-selected') == 'true') {
           login.login()
         } else {
           login.salvarCadastro()

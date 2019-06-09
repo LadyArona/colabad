@@ -5,38 +5,48 @@
   <div class="col-xl-12">
     <div class="card bg-secondary shadow">
       <div class="card-header bg-white border-0">
-        suporte
+        Suporte
       </div>
       <div class="card-body">
-        <br>termos e condições
-        <br>politica de privacidade
-        <br>formulario de contato
+        <div class="row">
+          <div class="col-lg-6 col-md-6 pb-3">
+            <a role="button" aria-pressed="false" tabindex="0" class="btn btn-block btn-lg btn-default"
+               href="<?php echo base_url().'termos';?>">
+              Termos de Uso
+            </a>
+          </div>
+          <div class="col-lg-6 col-md-6 pb-3">
+            <a role="button" aria-pressed="false" tabindex="0" class="btn btn-block btn-lg btn-default"
+               href="<?php echo base_url().'politica';?>">
+              Politica de Privacidade
+            </a>
+          </div>
+        </div>
+
         <div class="card bg-gradient-secondary shadow">
           <div class="card-body p-lg-5">
-            <h4 class="mb-1">Want to work with us?</h4>
-            <p class="mt-0">Your project is very important to us.</p>
-            <div class="form-group mt-5">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-user-run"></i></span>
-                </div>
-                <input class="form-control" placeholder="Your name" type="text">
+            <h4 class="mb-1">Deseja entrar em contato?</h4>
+            <p class="mt-0">Envie uma mensagem para a nossa equipe.</p>
+
+            <form action="" method="POST" id="formSuporte">
+              <div class="form-group">
+                <label class="form-control-label" for="edNome">Nome</label>
+                <input autocomplete="off" type="text" id="edNome" name="edNome" class="form-control">
               </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                </div>
-                <input class="form-control" placeholder="Email address" type="email">
+
+              <div class="form-group">
+                <label class="form-control-label" for="edEmail">Email</label>
+                <input autocomplete="off" type="email" id="edEmail" name="edEmail" class="form-control">
               </div>
-            </div>
-            <div class="form-group mb-4">
-              <textarea class="form-control form-control-alternative" name="name" rows="4" cols="80" placeholder="Type a message..."></textarea>
-            </div>
-            <div>
-              <button type="button" class="btn btn-default btn-round btn-block btn-lg">Send Message</button>
-            </div>
+
+              <div class="form-group mb-4">
+                <label class="form-control-label" for="edMensagem">Mensagem</label>
+                <textarea rows="10" class="form-control" id="edMensagem" name="edMensagem"></textarea>
+              </div>
+              <div>
+                <button type="button" class="btn btn-default btn-round btn-block btn-lg" id="btnEnviar" name="btnEnviar">Enviar Mensagem</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

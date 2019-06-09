@@ -50,6 +50,14 @@
             <div class="row row-grid" id="vHistorico">
             </div>
           </div>
+          <div class="col-lg-12">
+            <hr class="my-4" />
+            <h6 class="heading text-muted mb-4">Avaliações da Imagem</h6>
+          </div>
+          <div class="col-lg-12">
+            <div class="row row-grid" id="vAvaliacoes">
+            </div>
+          </div>
         </div>
       </div>
     </div>

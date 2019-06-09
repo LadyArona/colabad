@@ -64,7 +64,20 @@ const img = {
 
         $('#vHistorico').html(historico)
 
+        let avaliacoes = ''
+        data.vAvaliacoes.map((e) => {
+          avaliacoes +=
+          `<li class="title">
+            ${e.vConsultor} ${e.vAcao} em ${e.vData}: ${e.vAvaliacao}
+          </li>`
+        })
 
+        avaliacoes = 
+          `<ul>
+            ${avaliacoes}
+          </ul>`
+
+        $('#vAvaliacoes').html(avaliacoes)
 
       } else
       if (data.result == 'ERRO') {

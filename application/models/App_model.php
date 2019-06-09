@@ -151,6 +151,10 @@ class App_model extends CI_Model {
 
     $query = $this->db->query($sql);
 
+/*    echo "<pre>";
+    print_r($this->db->last_query());
+    exit;*/
+
     if ($query->num_rows() > 0){
       foreach ($query->result() as $row) {
             $dados[] = array(

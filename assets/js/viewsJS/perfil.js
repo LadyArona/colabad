@@ -116,7 +116,6 @@ const perfil = {
       }
     }).done((data) => {
       if (data.result == 'OK') {
-        console.log(data)
         $('#edNome').val(data.vNome)
         $('#edEmail').val(data.vEmail)
         $('#edAudiodescricao').froalaEditor('html.set', data.vImgAudiodesc)
@@ -154,6 +153,10 @@ const perfil = {
       $('#imgPerfil').attr('src', `${baseUrl}assets/img/users/${data.vImgNomeUniq}`)
       $('#imgPerfil').attr('alt', data.vImgAudiodesc)
     }
+    
+    $('#vProjetos').html(data.vProjetos)
+    $('#vFotos').html(data.vFotos)
+    $('#vAprovadas').html(data.vAprovadas)
 
     let html = 
           `<h2>

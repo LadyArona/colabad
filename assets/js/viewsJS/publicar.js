@@ -1,7 +1,8 @@
+let revisar = false
 
 const publicar = {
-  initConfig: () => {
-    app.carregaCombo('cbProjeto', 'P', 0)
+  initConfig: (id) => {
+    app.carregaCombo('cbProjeto', 'P', null, 0)
 
     $('#edTitulo').focus()
 
@@ -11,8 +12,70 @@ const publicar = {
 
     $('#btnCancelar').click(function(event) {  
       publicar.limpaImagem()
-      app.carregaCombo('cbProjeto', 'P', 0)
+      app.carregaCombo('cbProjeto', 'P', null, 0)
       $('#edTitulo').focus()
+    })
+
+    if (id != '') {
+      revisar = true
+      publicar.carregaDadosImg(id)
+    }
+  },
+  carregaDadosImg: (id) => {
+    $.ajax({
+      url: `${baseUrl}ajax/carregarImagemVisualizar`,
+      data: {
+        carregarImagemVisualizar: '',
+        id
+      },
+      dataType: 'JSON',
+      type: 'POST',
+      beforeSend: () => {
+        $.loader({
+          className: 'blue-with-image-2',
+          content: 'Aguarde, carregando...'
+        })
+      }
+    }).done((data) => {
+      if (data.result == 'OK') {
+        console.log(data)
+
+        app.carregaCombo('cbProjeto', 'P', data.vProjetoId, 0)
+
+        $('#edTitulo').val(data.vTitulo)
+        $('#edAudiodescricao').froalaEditor('html.set', data.vDescr)
+
+        let avaliacoes = ''
+        data.vAvaliacoes.map((e) => {
+          avaliacoes +=
+          `<li class="title">
+            ${e.vConsultor} ${e.vAcao} em ${e.vData}: ${e.vAvaliacao}
+          </li>`
+        })
+
+        avaliacoes = 
+          `<ul>
+            ${avaliacoes}
+          </ul>`
+
+        $('#vAvaliacoes').html(avaliacoes)
+
+        $('#blah').attr('src', `${baseUrl}uploads/${data.vNomeUnico}`)
+          $('#blah').attr('alt', data.vNome)
+          $('#blah').hide()
+          $('#blah').fadeIn(500)      
+          $('.custom-file-label').text(data.vNome)
+
+      } else
+      if (data.result == 'ERRO') {
+        console.log('error dados ', data)
+        app.showNotification(`Ops! Erro ao carregar`, 'danger', 2)
+      }
+    }).fail((err) => {
+      console.log('error dados ', err)
+      app.showNotification(`Ops! Ocorreu um erro`, 'danger', 2)
+    }).always(() => {
+      $.loader('close')
     })
   },
   readURL: (input) => {    

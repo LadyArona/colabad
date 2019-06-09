@@ -50,7 +50,7 @@ const prv = {
         data.vImagens.map((e) => {
           imagens += 
             `<div class="col-lg-4">
-              <div class="card card-lift--hover" style="width: 18rem;">
+              <div class="card card-lift--hover ${e.vStatusClass}" style="width: 18rem;">
                 <img class="card-img-top" src="${baseUrl}uploads/${e.vNome}" aria-labelledby="card-title">
                 <div class="card-body">
                   <h5 class="card-title" aria-disabled>${e.vDesc}</h5>

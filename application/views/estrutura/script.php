@@ -37,7 +37,7 @@ $(document).ready(() => { app.initApp() })
 
 <script>
   $(document).ready(() => {
-    publicar.initConfig()
+    publicar.initConfig(<?php echo json_encode($imgId); ?>)
   })
 </script>
 <?php 
@@ -103,12 +103,32 @@ if ($conteudo == 'perfil') { ?>
 </script>
 <?php 
 } else
+if ($conteudo == 'perfil_visualizar') { ?>
+<script src="<?php echo base_url();?>assets/js/viewsJS/perfil_visualizar.js"></script>
+
+<script>
+  $(document).ready(() => {
+    perfilVis.initConfig(<?php echo json_encode($id); ?>)
+  })
+</script>
+<?php 
+} else
 if ($conteudo == 'avaliar') { ?>
 <script src="<?php echo base_url();?>assets/js/viewsJS/avaliar.js"></script>
 
 <script>
   $(document).ready(() => {
     avaliar.initConfig()
+  })
+</script>
+<?php 
+} else
+if ($conteudo == 'suporte') { ?>
+<script src="<?php echo base_url();?>assets/js/viewsJS/suporte.js"></script>
+
+<script>
+  $(document).ready(() => {
+    suporte.initConfig()
   })
 </script>
 <?php 

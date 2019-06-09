@@ -7,9 +7,12 @@ class Perfil_model extends CI_Model {
     $this->load->model('App_model', 'app');
   }
 
-  public function carregarPerfil(){
+  public function carregarPerfil($id = ''){
+    $alterar = ($id == '') ? true : false;
     $dados = array();
-    $id = $this->session->userdata('logged_in_colabad')['sesColabad_vId'];
+    if ($id == '') {
+      $id = $this->session->userdata('logged_in_colabad')['sesColabad_vId'];
+    }
 
     try{
       $sql = " SELECT U.USU_NOME vNome,
@@ -45,6 +48,10 @@ class Perfil_model extends CI_Model {
 
       if ($query->num_rows() > 0){
         foreach ($query->result() as $row) {
+          $projetos   = $this->usuTotProjetos($id);
+          $fotos      = $this->usuTotFotos($id);
+          $aprovadas  = $this->usuTotAprovadas($id);
+
           $dados = array(     
             'result'             => 'OK',
             'vNome'              => $row->vNome,
@@ -66,16 +73,21 @@ class Perfil_model extends CI_Model {
             'vDeficienciaId'     => $row->vDeficienciaId,
             'vDeficiencia'       => $row->vDeficiencia,
             'vPossuiDeficiencia' => $row->vPossuiDeficiencia,
-            'vObs'               => $row->vObs
+            'vObs'               => $row->vObs,
+            'vProjetos'          => $projetos,
+            'vFotos'             => $fotos,
+            'vAprovadas'         => $aprovadas
           );
 
-          $img = base_url().$this->config->item('img_usu_padrao');
-          if ($row->vImgNomeUniq != '') {
-            $img = base_url().'assets/img/users/'.$row->vImgNomeUniq;
-          }
+          if ($alterar) {
+            $img = base_url().$this->config->item('img_usu_padrao');
+            if ($row->vImgNomeUniq != '') {
+              $img = base_url().'assets/img/users/'.$row->vImgNomeUniq;
+            }
 
-          $_SESSION['logged_in_colabad']['sesColabad_vImg'] = $img;
-          $_SESSION['logged_in_colabad']['sesColabad_vImgAlt'] = $row->vImgAudiodesc;
+            $_SESSION['logged_in_colabad']['sesColabad_vImg'] = $img;
+            $_SESSION['logged_in_colabad']['sesColabad_vImgAlt'] = $row->vImgAudiodesc;
+          }
         }
       } else {
         $dados = array(     
@@ -93,6 +105,63 @@ class Perfil_model extends CI_Model {
           'mensagem' => $e->getMessage()
         );
     }
+  }
+
+  private function usuTotProjetos($id) {
+    $retorno = '0'; //default
+
+    $sql = "SELECT COUNT(P.PROJ_ID) TOT
+            FROM proj_cadastro P
+            WHERE P.USU_ID = $id
+              OR P.PROJ_ID IN 
+                (SELECT C.PROJ_ID 
+                FROM proj_participantes C 
+                WHERE C.USU_ID = $id ) ; ";
+
+    $query = $this->db->query($sql);
+    
+    if ($query->num_rows() > 0){
+      $retorno = $query->result()[0]->TOT;
+    }
+
+    return $retorno;
+  }
+
+  private function usuTotFotos($id) {
+    $retorno = '0'; //default
+
+    $sql = "SELECT COUNT(I.IMG_ID) TOT
+            FROM img_log I
+            WHERE I.USU_ID = $id
+            AND I.LT_ID = 1 ; ";
+
+    $query = $this->db->query($sql);
+    
+    if ($query->num_rows() > 0){
+      $retorno = $query->result()[0]->TOT;
+    }
+
+    return $retorno;
+  }
+
+  private function usuTotAprovadas($id) {
+    $retorno = '0'; //default
+
+    $sql = "SELECT COUNT(C.IMG_ID) TOT
+            FROM img_cadastro C
+            WHERE C.IMG_STATUS = 'A'
+            AND C.IMG_ID IN (SELECT I.IMG_ID
+                            FROM img_log I
+                            WHERE I.USU_ID = $id
+                            AND I.LT_ID = 1 ) ; ";
+
+    $query = $this->db->query($sql);
+    
+    if ($query->num_rows() > 0){
+      $retorno = $query->result()[0]->TOT;
+    }
+
+    return $retorno;
   }
 
   public function salvarPerfil($imagem, $edNome, $edEmail, $edPass, $edAudiodescricao, $cbEstado, $cbCidade, $edOrg, $cbDefic, $cbQual, $edObs) {
@@ -198,7 +267,14 @@ class Perfil_model extends CI_Model {
                      I.IMG_AUDIODESCRICAO vDescr,
                      P.PROJ_TITULO vProjeto,
                      I.IMG_NOME vNome,
-                     I.IMG_NOMEUNIQ vNomeUnico,
+                     I.IMG_NOMEUNIQ vNomeUnico,,
+                     CASE
+                      WHEN I.IMG_STATUS = 'P' THEN ' has-default '
+                      WHEN I.IMG_STATUS = 'A' THEN ' has-success '
+                      WHEN I.IMG_STATUS = 'R' THEN ' has-danger '
+                      WHEN I.IMG_STATUS = 'V' THEN ' has-primary '
+                      ELSE ''
+                     END vStatusClass,
                      
                      (SELECT U.USU_NOME
                       FROM img_log L JOIN usu_usuario U ON U.USU_ID = L.USU_ID
@@ -230,6 +306,7 @@ class Perfil_model extends CI_Model {
             'vConsultor'      => $row->vConsultor,
             'vNome'           => $row->vNome,
             'vNomeUnico'      => $row->vNomeUnico,
+            'vStatusClass'    => $row->vStatusClass,
             'vParticipante'   => array(),
             'vHistorico'      => array()
           );

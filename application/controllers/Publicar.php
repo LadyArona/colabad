@@ -7,9 +7,14 @@ class Publicar extends CI_Controller {
     parent::__construct();
   }
 
-  public function index(){
+  public function index($id = ''){
     $data['title']    = 'Publicar Imagem';
     $data['conteudo'] = 'publicar';
+    $data['imgId']    = $id;
+
+    if ($id != '') {
+      $data['title']    = 'Revisar Imagem';
+    }
 
     $this->load->view('estrutura/template', $data);
   }
