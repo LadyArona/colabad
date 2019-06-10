@@ -173,8 +173,19 @@ class Ajax extends CI_Controller {
 
   function carregarRevisar(){
     if($this->input->post('carregarRevisar') == ""){
-      $this->load->model('Revisar_model', 'aval');
-      $result = $this->aval->carregarRevisar();
+      $this->load->model('Revisar_model', 'rev');
+      $result = $this->rev->carregarRevisar();
+      $this->output
+           ->set_content_type('application/json')
+           ->set_output(json_encode($result));
+    }
+  }
+
+  function carregarPesquisar(){
+    if($this->input->post('carregarPesquisar') == ""){
+      $this->load->model('Pesquisar_model', 'pesq');
+      $pesquisa = $this->input->post('pesquisa');
+      $result = $this->pesq->carregarPesquisar($pesquisa);
       $this->output
            ->set_content_type('application/json')
            ->set_output(json_encode($result));

@@ -2,9 +2,9 @@
 - Entrega dos artigos impressos (3 cópias) para a banca: 01 julho
 - Defesas do TGSI I (Apresentações): entre 08 e 12 de julho
 =========================================================================================
-> Buscar
+OK > Buscar
 > MATOMO
-> VALIDAR REGRAS DE ACESSIBILIDADE
+OK > VALIDAR REGRAS DE ACESSIBILIDADE
 
 > Histórico das Avaliações da Imagem
 

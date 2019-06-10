@@ -5,14 +5,15 @@
         <!-- Brand -->
         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="<?php echo base_url().$conteudo; ?>"><?php echo $title; ?></a>
         <!-- Form -->
-        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" 
+              method="GET" id="formPesquisar" name="formPesquisar" action="<?php echo base_url().'pesquisar'; ?>">
           <div class="form-group mb-0">
             <div class="input-group input-group-alternative">
               <div class="input-group-prepend">
                 <span class="input-group-text text-white"><i class="fas fa-search"></i></span>
-                <label class="form-control-label text-white pr-2" for="edPesquisar">Pesquisar: </label>
+                <label class="form-control-label text-white pr-2" for="pesquisar">Pesquisar: </label>
               </div>
-              <input class="form-control" id="edPesquisar" name="edPesquisar" type="text">
+              <input class="form-control" id="por" name="por" type="text">
             </div>
           </div>
         </form>

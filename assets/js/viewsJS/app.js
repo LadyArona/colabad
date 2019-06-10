@@ -78,6 +78,14 @@ app = {
         ]
       }]
     })
+
+    document.getElementById("formPesquisar").onsubmit = function onSubmit(form) {
+      if ($('#por').val() != '') {
+        return true
+      } else {
+        return false
+      }
+    }    
   },
   selectTab: (tabindex = 0) => {
     $('.nav-pills li a').removeClass('active show');

@@ -142,6 +142,16 @@ if ($conteudo == 'revisar') { ?>
   })
 </script>
 <?php 
+} else
+if ($conteudo == 'pesquisar') { ?>
+<script src="<?php echo base_url();?>assets/js/viewsJS/pesquisar.js"></script>
+
+<script>
+  $(document).ready(() => {
+    pesquisar.initConfig(<?php echo json_encode($pesquisa); ?>)
+  })
+</script>
+<?php 
 }
 
 ?>

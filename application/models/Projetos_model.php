@@ -10,12 +10,11 @@ class Projetos_model extends CI_Model {
   public function buscarProjeto ($limit = 0, $order = '', $usuWhere = 0, $where = '') {
     $tabela  = 'proj_cadastro';
     $dados   = array();
+    $result  = array();
 
     $order = ($order == '') ? ' ORDER BY P.PROJ_DATACAD DESC ' : $order;
     $order = ($order == 1) ? ' ORDER BY RAND() ' : $order;
-
     $where = ($where == 1) ? ' AND P.PROJ_PRIVADO = 0 ' : $where;
-
     $limit = ($limit > 0) ? ' LIMIT '.$limit : '';
 
     /*echo "<pre>";
@@ -69,17 +68,19 @@ class Projetos_model extends CI_Model {
             'vColab'   => $this->carregaColaboradores($row->vId)
           );
       }
-      $dados = array('result'    => 'OK',
-                     'vProjetos' => $dados);
-      return $dados;
 
-      } catch(PDOException $e) { 
-        return
-          array(
-            'result' => 'ERRO',
-            'mensagem' => $e->getMessage()
-          );
-      }           
+      $result = array('result'   => 'OK',
+                     'vProjetos' => $dados);
+
+      return $result;
+
+    } catch(PDOException $e) { 
+      return
+        array(
+          'result' => 'ERRO',
+          'mensagem' => $e->getMessage()
+        );
+    }           
   }
 
   public function carregarProjeto ($id) {
@@ -126,6 +127,7 @@ class Projetos_model extends CI_Model {
   }
 
   private function carregaColaboradores ($id) {
+    $dados = array();
     //busca participantes
     $sql = "SELECT P.USU_ID vId,
                    U.USU_NOME vNome,
