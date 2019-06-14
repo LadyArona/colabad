@@ -18,7 +18,7 @@
   $this->load->view('estrutura/menu');
 ?>
   <!-- Main content -->
-  <div class="main-content pt-4">
+  <div class="main-content pt-lg-4">
     <?php 
       $this->load->view('estrutura/nav');
       $this->load->view('estrutura/header');
@@ -27,8 +27,12 @@
     <div class="container-fluid mt--9" id="conteudo">
       <?php
         $this->load->view($conteudo);
-        $this->load->view('estrutura/footer');
-      ?>      
+        $base = base_url();
+      ?>
+      <script>
+        let baseUrl = ''
+        baseUrl = '<?php echo $base; ?>'
+      </script>
     </div>
   </div>
 

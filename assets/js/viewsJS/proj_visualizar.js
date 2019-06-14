@@ -35,7 +35,7 @@ const prv = {
                 <div class="pt-2 text-center">
                   <h5 class="title">
                     <span class="d-block mb-1">${item.vNome}</span>
-                    <small class="h6 text-muted">${item.vPerfil}</small>
+                    <span class="h5 text-muted">${item.vPerfil}</span>
                     ${responsavel}
                   </h5>
                 </div>

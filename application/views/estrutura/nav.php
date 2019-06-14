@@ -1,6 +1,6 @@
 
     <!-- Top navbar -->
-    <nav class="navbar navbar-top navbar-expand-md navbar-dark pt-5" id="navbar-main">
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark pt-lg-5" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="<?php echo base_url().$conteudo; ?>"><?php echo $title; ?></a>

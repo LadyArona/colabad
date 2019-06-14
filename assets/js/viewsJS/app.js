@@ -41,44 +41,7 @@ app = {
 
     $("body").tooltip({ selector: '[data-toggle=tooltip]' })
     $('.selectpicker').selectpicker()
-    $('textarea').froalaEditor({
-      height: 300,
-      language: 'pt_br',
-      toolbarButtons: [
-        'fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 
-        'fontFamily', 'fontSize', 'color', 'inlineClass', 'inlineStyle', 'paragraphStyle', 'lineHeight', '|', 
-        'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'embedly', 'insertFile', 'insertTable', '|', 
-        'emoticons', 'fontAwesome', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 
-        'print', 'getPDF', 'spellChecker', 'help', 'html', '|', 
-        'undo', 'redo'
-      ],
-      helpSets: [
-      {
-        title: 'Common actions',
-        commands: [
-          { val: 'OSkeyC',  desc: 'Copy' },
-          { val: 'OSkeyX',  desc: 'Cut' },
-          { val: 'OSkeyV',  desc: 'Paste' },
-          { val: 'OSkeyZ',  desc: 'Undo' },
-          { val: 'OSkeyShift+Z',  desc: 'Redo' },
-          { val: 'OSkeyK',  desc: 'Insert Link' },
-          { val: 'OSkeyP',  desc: 'Insert Image' }
-        ]
-      },
-      {
-        title: 'Basic Formatting',
-        commands: [
-          { val: 'OSkeyA',  desc: 'Select All' },
-          { val: 'OSkeyB',  desc: 'Bold' },
-          { val: 'OSkeyI',  desc: 'Italic' },
-          { val: 'OSkeyU',  desc: 'Underline' },
-          { val: 'OSkeyS',  desc: 'Strikethrough' },
-          { val: 'OSkey]',  desc: 'Increase Indent' },
-          { val: 'OSkey[',  desc: 'Decrease Indent' }
-        ]
-      }]
-    })
-
+ 
     document.getElementById("formPesquisar").onsubmit = function onSubmit(form) {
       if ($('#por').val() != '') {
         return true
@@ -256,21 +219,21 @@ app = {
                   j[i].vNotLida == 'S'
                     ? '<span class"text-muted" style="font-size:10px; float:left; cursor:pointer;" onclick="app.atualizaNotificacaoLerNaoLerExcluir(' +
                       j[i].vNotId +
-                      ',\'N\')"><i class="iconAction fa fa-undo"></i>Não lida</span>'
+                      ',\'N\')"><i class="iconAction fa fa-undo pr-1"></i>Não lida</span>'
                     : '',
                   '<span class"text-muted" style="font-size:10px; float:left; cursor:pointer;" onclick="app.atualizaNotificacaoLerNaoLerExcluir(' +
                     j[i].vNotId +
                     ",'S','" +
                     '' +
-                    '\',\'S\')"><i class="iconAction fa fa-close"></i>Excluir</span>',
+                    '\',\'S\')"><i class="iconAction fa fa-close pr-1"></i>Excluir</span>',
                   '<a href="#" class="notfic" onclick="app.atualizaNotificacaoLerNaoLerExcluir(' +
                     j[i].vNotId +
                     ",'S','" +
                     j[i].vNotDireciona +
                     '\')">',
                   (j[i].vNotLida == 'S'
-                    ? '<i class="fa fa-envelope-open" style="color:#17bcd0;" aria-hidden="true"></i> '
-                    : '<i class="fa fa-envelope" style="color:#f44336;" aria-hidden="true"></i> ') +
+                    ? '<i class="fa fa-envelope-open pr-1" style="color:#17bcd0;" aria-hidden="true"></i> '
+                    : '<i class="fa fa-envelope pr-1" style="color:#f44336;" aria-hidden="true"></i> ') +
                     j[i].vNotDesc,
                   '</a>',
                   '</li>'
@@ -285,33 +248,31 @@ app = {
                 [
                   '<div class="dropdown-item">',
                     '<div class="row pb-2">',
-                      '<div class="col-8">',
+                      '<div class="col-sm-7 pb-2">',
                       '<span class="btn btn-sm btn-outline-danger" style="font-size:12px; padding: 0.05rem .5rem;" onclick="app.atualizaNotificacaoLerNaoLerExcluir(' +
                           j[i].vNotId +
                           ",'S','" +
                           '' +
-                          '\',\'S\')"><i class="iconAction fas fa-close"></i>Excluir</span>',
+                          '\',\'S\')"><i class="iconAction fas fa-close pr-1"></i>Excluir</span>',
 
                         j[i].vNotLida == 'S'
                           ? '<span class="btn btn-sm btn-outline-light" style="font-size:12px; padding: 0.05rem .5rem;" onclick="app.atualizaNotificacaoLerNaoLerExcluir(' +
                             j[i].vNotId +
-                            ',\'N\')"><i class="iconAction fas fa-undo"></i>Não lida</span>'
+                            ',\'N\')"><i class="iconAction fas fa-undo pr-1"></i>Não lida</span>'
                           : '',
                       '</div>',
-                      '<div class="col-4 text-right">',
+                      '<div class="col-sm-4 text-right">',
                         '<span  class="badge badge-success" style="font-size:12px;">' +
                           j[i].vNotDataHora +
                         '</span>',
                       '</div>',
-                    '</div>',
-                    '<div class="row">',
-                      '<div class="col-lg-12">',
+                      '<div class="col-sm-12">',
                         '<a href="#" class="notfic" onclick="app.atualizaNotificacaoLerNaoLerExcluir(' +
                           j[i].vNotId + ",'S','" + j[i].vNotDireciona + '\')">',
                         
                           (j[i].vNotLida == 'S'
-                            ? '<i class="fas fa-envelope-open" style="color:#17bcd0;" aria-hidden="true"></i> '
-                            : '<i class="fas fa-envelope" style="color:#f44336;" aria-hidden="true"></i> ') + j[i].vNotDesc,
+                            ? '<i class="fas fa-envelope-open pr-1" style="color:#17bcd0;" aria-hidden="true"></i> '
+                            : '<i class="fas fa-envelope pr-1" style="color:#f44336;" aria-hidden="true"></i> ') + j[i].vNotDesc,
                         '</a>',
                       '</div>',
                     '</div>',

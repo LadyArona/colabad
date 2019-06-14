@@ -5,7 +5,7 @@ const publicar = {
   initConfig: (id) => {
     app.carregaCombo('cbProjeto', 'P', null, 0)
 
-    $('#edTitulo').focus()
+    $('#cbProjeto').focus()
 
     $('#inputGroupFile01').change(function(event) {  
       publicar.readURL(this)   
@@ -25,7 +25,7 @@ const publicar = {
       } else {
         publicar.limpaImagem()
         app.carregaCombo('cbProjeto', 'P', null, 0)
-        $('#edTitulo').focus()
+        $('#cbProjeto').focus()
       }
     })
 
@@ -51,7 +51,7 @@ const publicar = {
         $('#cbProjeto').val(data.vProjetoId).selectpicker('render').selectpicker('refresh')
 
         $('#edTitulo').val(data.vTitulo)
-        $('#edAudiodescricao').froalaEditor('html.set', data.vDescr)
+        $('#edAudiodescricao').val(data.vDescr)
 
         let avaliacoes = ''
         if (data.vAvaliacoes.length > 0) {

@@ -8,7 +8,7 @@
                 </div>
               </div>
             </div>
-            <div class="card-body pt-0 pt-md-5">
+            <div class="card-body pt-0 mt-md-5 mt-sm-7">
               <div class="row">
                 <div class="col">
                   <div class="card-profile-stats d-flex justify-content-center mt-md-5">
@@ -39,7 +39,7 @@
                 <h6 class="heading-small text-muted mb-4">Imagem de Perfil</h6>
                 <div class="pl-lg-4">
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12 mb-sm-8">
                       <div class="form-group"> 
                         <div class="custom-file">
                           <input autocomplete="off" type="file" id="inputGroupFile01"
@@ -56,7 +56,7 @@
                           </div>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                       <div class="form-group">
                         <label class="form-control-label" for="edAudiodescricao">Áudiodescrição da Imagem de Perfil</label>
                         <textarea rows="10" class="form-control" id="edAudiodescricao" name="edAudiodescricao"></textarea>
@@ -163,7 +163,7 @@
                 <hr class="my-4" />
                 <div class="pl-lg-4">
                   <div class="row">
-                    <div class="col-lg-6 col-md-3">
+                    <div class="col-lg-6 col-md-3 pb-4">
                       <button type="button" class="btn btn-block btn-success" 
                               value="Salvar" id="btnSalvar">SALVAR</button>
                     </div>

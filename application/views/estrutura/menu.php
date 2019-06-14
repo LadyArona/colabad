@@ -93,8 +93,8 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link" role="button" aria-pressed="false" tabindex="0" >
-              <i class="ni ni-calendar-grid-58"></i>
-              <span>Atividade</span>
+              <i class="ni ni-map-big"></i>
+              <span>Mapa do Site</span>
             </a>
           </li>
           <li class="nav-item">

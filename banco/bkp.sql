@@ -11,11 +11,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-
--- Copiando estrutura do banco de dados para colabad2
-CREATE DATABASE IF NOT EXISTS `colabad2` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `colabad2`;
-
 -- Copiando estrutura para tabela colabad2.conf_cidade
 CREATE TABLE IF NOT EXISTS `conf_cidade` (
   `CID_ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -5794,7 +5789,7 @@ CREATE TABLE IF NOT EXISTS `img_cadastro` (
   CONSTRAINT `FK_img_cadastro_proj_cadastro` FOREIGN KEY (`PROJ_ID`) REFERENCES `proj_cadastro` (`PROJ_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela colabad2.img_cadastro: ~13 rows (aproximadamente)
+-- Copiando dados para a tabela colabad2.img_cadastro: ~0 rows (aproximadamente)
 DELETE FROM `img_cadastro`;
 /*!40000 ALTER TABLE `img_cadastro` DISABLE KEYS */;
 /*!40000 ALTER TABLE `img_cadastro` ENABLE KEYS */;
@@ -5854,7 +5849,7 @@ CREATE TABLE IF NOT EXISTS `proj_cadastro` (
   CONSTRAINT `FK_proj_cadastro_usu_usuario` FOREIGN KEY (`USU_ID`) REFERENCES `usu_usuario` (`USU_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela colabad2.proj_cadastro: ~3 rows (aproximadamente)
+-- Copiando dados para a tabela colabad2.proj_cadastro: ~1 rows (aproximadamente)
 DELETE FROM `proj_cadastro`;
 /*!40000 ALTER TABLE `proj_cadastro` DISABLE KEYS */;
 /*!40000 ALTER TABLE `proj_cadastro` ENABLE KEYS */;
@@ -5979,7 +5974,7 @@ CREATE TABLE IF NOT EXISTS `usu_usuario` (
   CONSTRAINT `FK_usu_usuario_usu_perfil` FOREIGN KEY (`PERF_ID`) REFERENCES `usu_perfil` (`PERF_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela colabad2.usu_usuario: ~3 rows (aproximadamente)
+-- Copiando dados para a tabela colabad2.usu_usuario: ~2 rows (aproximadamente)
 DELETE FROM `usu_usuario`;
 /*!40000 ALTER TABLE `usu_usuario` DISABLE KEYS */;
 INSERT INTO `usu_usuario` (`USU_ID`, `USU_NOME`, `PERF_ID`, `USU_CADDATA`, `USU_SITUACAO`, `USU_EMAIL`, `USU_PWD`, `USU_PWDTOKEN`, `USU_PWDTOKENEXP`, `USU_EMAILCONF`, `USU_TOKEN`, `USU_LINK`, `USU_IMG_NOME`, `USU_IMG_NOMEUNIQ`, `USU_IMG_TYPE`, `USU_IMG_AUDIODESCRICAO`, `EST_ID`, `CID_ID`, `USU_ORG`, `DEF_ID`, `USU_DEF`, `USU_OBS`) VALUES

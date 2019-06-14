@@ -24,6 +24,13 @@
 
 </body>
 <?php 
+    $base = base_url();
+?>
+<script>
+  let baseUrl = ''
+  baseUrl = '<?php echo $base; ?>'
+</script>
+<?php 
   $this->load->view('acesso/footer');
   $this->load->view('acesso/scripts');
 ?> 

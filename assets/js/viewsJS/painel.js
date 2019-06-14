@@ -26,8 +26,8 @@ const painel = {
 
         if (data.vProjetos.length == 0) {
           html +=
-            `<div class="col-lg-4 pb-4">
-              <div class="card card-lift--hover shadow border-0">
+            `<div class="col-lg-4">
+              <div class="card card-lift--hover shadow border-0 mb--150">
                 <div class="card-body py-4">
                   <h3 class="title text-uppercase">Nenhum Projeto Recente</h3>
                 </div>
@@ -48,8 +48,8 @@ const painel = {
             })
 
             html +=
-            `<div class="col-lg-4 pb-4">
-              <div class="card card-lift--hover shadow border-0">
+            `<div class="col-lg-4">
+              <div class="card card-lift--hover shadow border-0 mb--150">
                 <div class="card-body py-4">
                   <h3 class="title text-uppercase">${item.vTitulo}</h3>
                   <p>Cadastrado em ${item.vData}</p>
@@ -115,7 +115,7 @@ const painel = {
 
         if (data.vProjetos.length == 0) {
           html +=
-            `<div class="col-lg-4 pb-4">
+            `<div class="col-lg-4">
               <div class="card card-lift--hover shadow border-0">
                 <div class="card-body py-4">
                   <h3 class="title text-uppercase">Nenhum Projeto Público</h3>
@@ -137,7 +137,7 @@ const painel = {
             })
 
             html +=
-            `<div class="col-lg-4 pb-4">
+            `<div class="col-lg-4">
               <div class="card card-lift--hover shadow border-0">
                 <div class="card-body py-4">
                   <h3 class="title text-uppercase">${item.vTitulo}</h3>

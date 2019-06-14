@@ -4307,7 +4307,7 @@ input[type='button'].btn-block
     padding: .25rem 1.5rem;
 
     text-align: inherit;
-    white-space: nowrap;
+    white-space: normal;
 
     color: #212529;
     border: 0; 
@@ -5795,7 +5795,7 @@ input[type='button'].btn-block
     background-color: #fff;
     background-clip: border-box;
 
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 .card > hr
 {
@@ -16313,7 +16313,7 @@ button.section-darker:focus
 
 .row.row-grid > [class*='col-'] + [class*='col-']
 {
-    margin-top: 3rem;
+    margin-top: 1rem;
 }
 
 @media (min-width: 992px)
@@ -18065,7 +18065,7 @@ a.btn-icon-only
 
 .dropdown-menu
 {
-    min-width: 12rem;
+    min-width: 21rem;
 }
 .dropdown-menu .dropdown-item
 {

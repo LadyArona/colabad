@@ -111,7 +111,7 @@
             <hr class="my-4" />
             <div class="pl-lg-4">
               <div class="row">
-                <div class="col-lg-6 col-md-3">
+                <div class="col-lg-6 col-md-3 pb-4">
                   <button type="button" class="btn btn-block btn-success" 
                           value="Salvar" id="btnSalvar">SALVAR</button>
                 </div>

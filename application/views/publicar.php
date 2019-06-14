@@ -20,6 +20,14 @@
 
         <form action="" method="POST" enctype="multipart/form-data" id="formImagem">
           <div class="pl-lg-4">
+            <div class="form-group">
+              <label class="form-control-label" for="cbProjeto">Projeto</label>
+              <select class="selectpicker form-control" data-style="select-with-transition" 
+                      title="Selecione" id="cbProjeto" name="cbProjeto" required>
+              </select>
+            </div>
+          </div>
+          <div class="pl-lg-4">
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
@@ -28,20 +36,6 @@
                          value="" type="text">
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="pl-lg-4">
-            <div class="form-group">
-              <label class="form-control-label" for="edAudiodescricao">Áudiodescrição da imagem</label>
-              <textarea rows="10" class="form-control" id="edAudiodescricao" name="edAudiodescricao" required></textarea>
-            </div>
-          </div>
-          <div class="pl-lg-4">
-            <div class="form-group">
-              <label class="form-control-label" for="cbProjeto">Projeto</label>
-              <select class="selectpicker form-control" data-style="select-with-transition" 
-                      title="Selecione" id="cbProjeto" name="cbProjeto" required>
-              </select>
             </div>
           </div>
           <hr class="my-4" />
@@ -70,10 +64,16 @@
               </div>
             </div>
           </div>
+          <div class="pl-lg-4">
+            <div class="form-group">
+              <label class="form-control-label" for="edAudiodescricao">Áudiodescrição da imagem</label>
+              <textarea rows="10" class="form-control" id="edAudiodescricao" name="edAudiodescricao" required></textarea>
+            </div>
+          </div>
           <hr class="my-4" />
           <div class="pl-lg-4">
             <div class="row">
-              <div class="col-lg-6 col-md-3">
+              <div class="col-lg-6 col-md-3 pb-4">
                 <button type="button" class="btn btn-block btn-success" 
                         value="Salvar" id="btnSalvar"
                         onclick="publicar.salvaImagem()">SALVAR</button>

@@ -240,7 +240,7 @@ const projetos = {
         app.selectTab(1)
 
         $('#edTitulo').val(data.vTitulo)
-        $('#edDescricao').froalaEditor('html.set', data.vDescricao)
+        $('#edDescricao').val(data.vDescricao)
 
         $('#cbPublico').val(data.vPrivado).selectpicker('render').selectpicker('refresh')
         $('#cbStatus').val(data.vStatus).selectpicker('render').selectpicker('refresh')

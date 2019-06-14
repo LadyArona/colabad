@@ -12,10 +12,6 @@
 <script src="<?php echo base_url();?>assets/js/jquery.loader.min.js" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
 
-<!-- EDITOR -->
-<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@2.9.5/js/froala_editor.min.js'></script>
-<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@2.9.5/js/languages/pt_br.js'></script>
-<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@2.9.5/js/plugins/help.min.js'></script>
 <!-- IMAGEM -->
 <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/exif-js'></script>
 <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.js'></script>
@@ -26,14 +22,14 @@
 
 <!-- Custom JS -->
 <script src="<?php echo base_url();?>assets/js/painel.js?v=1.0.0"></script>
-<script src="<?php echo base_url();?>assets/js/viewsJS/app.js" type="text/javascript"></script>
+<script src="<?php echo base_url();?>assets/js/viewsJs/app.js" type="text/javascript"></script>
 
 <script>
 $(document).ready(() => { app.initApp() })
 </script>
 
 <?php if ($conteudo == 'publicar') { ?>
-<script src="<?php echo base_url();?>assets/js/viewsJS/publicar.js"></script>
+<script src="<?php echo base_url();?>assets/js/viewsJs/publicar.js"></script>
 
 <script>
   $(document).ready(() => {
@@ -44,7 +40,7 @@ $(document).ready(() => { app.initApp() })
 } else
 
 if ($conteudo == 'projetos') { ?>
-<script src="<?php echo base_url();?>assets/js/viewsJS/projetos.js"></script>
+<script src="<?php echo base_url();?>assets/js/viewsJs/projetos.js"></script>
 
 <script>
   $(document).ready(() => {
@@ -54,7 +50,7 @@ if ($conteudo == 'projetos') { ?>
 <?php 
 } else
 if ($conteudo == 'proj_visualizar') { ?>
-<script src="<?php echo base_url();?>assets/js/viewsJS/proj_visualizar.js"></script>
+<script src="<?php echo base_url();?>assets/js/viewsJs/proj_visualizar.js"></script>
 
 <script>
   $(document).ready(() => {
@@ -64,7 +60,7 @@ if ($conteudo == 'proj_visualizar') { ?>
 <?php 
 } else
 if ($conteudo == 'img_visualizar') { ?>
-<script src="<?php echo base_url();?>assets/js/viewsJS/img_visualizar.js"></script>
+<script src="<?php echo base_url();?>assets/js/viewsJs/img_visualizar.js"></script>
 
 <script>
   $(document).ready(() => {
@@ -74,7 +70,7 @@ if ($conteudo == 'img_visualizar') { ?>
 <?php 
 } else
 if ($conteudo == 'avaliar_visualizar') { ?>
-<script src="<?php echo base_url();?>assets/js/viewsJS/avaliar_visualizar.js"></script>
+<script src="<?php echo base_url();?>assets/js/viewsJs/avaliar_visualizar.js"></script>
 
 <script>
   $(document).ready(() => {
@@ -84,7 +80,7 @@ if ($conteudo == 'avaliar_visualizar') { ?>
 <?php 
 } else
 if ($conteudo == 'painel') { ?>
-<script src="<?php echo base_url();?>assets/js/viewsJS/painel.js"></script>
+<script src="<?php echo base_url();?>assets/js/viewsJs/painel.js"></script>
 
 <script>
   $(document).ready(() => {
@@ -94,7 +90,7 @@ if ($conteudo == 'painel') { ?>
 <?php 
 } else
 if ($conteudo == 'perfil') { ?>
-<script src="<?php echo base_url();?>assets/js/viewsJS/perfil.js"></script>
+<script src="<?php echo base_url();?>assets/js/viewsJs/perfil.js"></script>
 
 <script>
   $(document).ready(() => {
@@ -104,7 +100,7 @@ if ($conteudo == 'perfil') { ?>
 <?php 
 } else
 if ($conteudo == 'perfil_visualizar') { ?>
-<script src="<?php echo base_url();?>assets/js/viewsJS/perfil_visualizar.js"></script>
+<script src="<?php echo base_url();?>assets/js/viewsJs/perfil_visualizar.js"></script>
 
 <script>
   $(document).ready(() => {
@@ -114,7 +110,7 @@ if ($conteudo == 'perfil_visualizar') { ?>
 <?php 
 } else
 if ($conteudo == 'avaliar') { ?>
-<script src="<?php echo base_url();?>assets/js/viewsJS/avaliar.js"></script>
+<script src="<?php echo base_url();?>assets/js/viewsJs/avaliar.js"></script>
 
 <script>
   $(document).ready(() => {
@@ -124,7 +120,7 @@ if ($conteudo == 'avaliar') { ?>
 <?php 
 } else
 if ($conteudo == 'suporte') { ?>
-<script src="<?php echo base_url();?>assets/js/viewsJS/suporte.js"></script>
+<script src="<?php echo base_url();?>assets/js/viewsJs/suporte.js"></script>
 
 <script>
   $(document).ready(() => {
@@ -134,7 +130,7 @@ if ($conteudo == 'suporte') { ?>
 <?php 
 } else
 if ($conteudo == 'revisar') { ?>
-<script src="<?php echo base_url();?>assets/js/viewsJS/revisar.js"></script>
+<script src="<?php echo base_url();?>assets/js/viewsJs/revisar.js"></script>
 
 <script>
   $(document).ready(() => {
@@ -144,7 +140,7 @@ if ($conteudo == 'revisar') { ?>
 <?php 
 } else
 if ($conteudo == 'pesquisar') { ?>
-<script src="<?php echo base_url();?>assets/js/viewsJS/pesquisar.js"></script>
+<script src="<?php echo base_url();?>assets/js/viewsJs/pesquisar.js"></script>
 
 <script>
   $(document).ready(() => {

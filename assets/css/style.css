@@ -579,7 +579,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   font-weight: 400;
   color: #212529;
   text-align: inherit;
-  white-space: nowrap;
+  white-space: normal;
   background-color: transparent;
   border: 0;
 }
@@ -643,5 +643,5 @@ ul.itensNotificacoes li.notficDropAvisos ul li a:hover {
 }
 
 .cardTopPainel {
-  min-height: 66vh;
+  min-height: 60vh;
 }

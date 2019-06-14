@@ -1,10 +1,4 @@
-<?php 
-    $base = base_url();
-?>
-<script>
-  let baseUrl = ''
-  baseUrl = '<?php echo $base; ?>'
-</script>
+
 
 <!-- Footer -->
 <footer class="footer">

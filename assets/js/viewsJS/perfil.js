@@ -118,7 +118,7 @@ const perfil = {
       if (data.result == 'OK') {
         $('#edNome').val(data.vNome)
         $('#edEmail').val(data.vEmail)
-        $('#edAudiodescricao').froalaEditor('html.set', data.vImgAudiodesc)
+        $('#edAudiodescricao').val(data.vImgAudiodesc)
 
         app.carregaCombo('cbEstado', 'EST', data.vEstadoId)
         if (data.vCidadeId != '') {
@@ -131,7 +131,7 @@ const perfil = {
           $('#cbQual').closest('div').find('.selectpicker').attr('disabled', false).selectpicker('refresh')
           app.carregaCombo('cbQual', 'DEF', data.vDeficienciaId)
         }
-        $('#edObs').froalaEditor('html.set', data.vObs)
+        $('#edObs').val(data.vObs)
 
         perfil.carregaVisualizarPerfil(data)
       } else

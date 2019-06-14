@@ -5,7 +5,7 @@
   <div class="col-xl-12">
     <div class="card bg-secondary shadow">
       <div class="card-header bg-white border-0">
-        Suporte
+        Suporte / Contato
       </div>
       <div class="card-body">
         <div class="row">
