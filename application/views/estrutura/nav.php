@@ -37,7 +37,7 @@
                   <img id="imgTopo" alt="<?php echo $this->session->userdata('logged_in_colabad')['sesColabad_vImgAlt']; ?>" src="<?php echo $this->session->userdata('logged_in_colabad')['sesColabad_vImg']; ?>">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold"><?php echo $this->session->userdata('logged_in_colabad')['sesColabad_vNome']; ?></span>
+                  <span class="mb-0 text-sm  font-weight-bold"><?php echo $this->session->userdata('logged_in_colabad')['sesColabad_vNome']; ?> (<?php echo $this->session->userdata('logged_in_colabad')['sesColabad_vPerfilDescr']; ?>)</span>
                 </div>
               </div>
             </a>

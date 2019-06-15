@@ -75,10 +75,13 @@ const img = {
 
         avaliacoes = 
           `<ul>
-            ${avaliacoes}
+            ${avaliacoes != '' ? avaliacoes : `Nenhuma avaliação`}
           </ul>`
 
         $('#vAvaliacoes').html(avaliacoes)
+        let vAvaliada = (data.vStatus != 'A') ? ' Roteiro da ' : ''
+        $('#vAvaliada').html(vAvaliada)
+        $('#vBtnAvaliada').html((vAvaliada == '') ? `<i class="fas fa-copy"></i> Copiar Audiodescrição` : `<i class="fas fa-copy"></i> Copiar Roteiro da Audiodescrição`)
 
       } else
       if (data.result == 'ERRO') {

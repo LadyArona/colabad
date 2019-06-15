@@ -22,7 +22,7 @@ const avaliar = {
     }).done((data) => {
         let html = ''
 
-        if (data.lenght > 0) {
+        if (data.length > 0) {
           data.map((e) => {
             html +=
             `<div class="col-lg-4">

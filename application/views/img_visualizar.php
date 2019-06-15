@@ -27,11 +27,10 @@
           </div>
           <div class="col-lg-12">
             <hr class="my-4" />
-            <h6 class="heading text-muted mb-4">Audiodescrição</h6>
+            <h6 class="heading text-muted mb-4"><span id="vAvaliada"></span>Audiodescrição</h6>
             <p class="lead p-md-4" id="edDescricao"></p>
-            <button type="button" class="btn btn-sm btn-icon-clipboard" 
-                    data-clipboard-target="#edDescricao" title="" data-original-title="Copiar audiodescrição para área de transferência">
-              <i class="fas fa-copy"></i> Copiar Audiodescrição
+            <button type="button" class="btn btn-sm btn-icon-clipboard" id="vBtnAvaliada"
+                    data-clipboard-target="#edDescricao" title="" data-original-title="Copiar para área de transferência">
             </button>
           </div>
           <div class="col-lg-12">

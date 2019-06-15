@@ -287,8 +287,8 @@ img
     vertical-align: middle;
 
     border-style: none;
-    
-    max-width: 78vw;
+    /* na página de visualizar imagem */
+    max-width: 74vw;
 }
 
 svg
@@ -6141,6 +6141,8 @@ input[type='button'].btn-block
     list-style: none;
 
     border-radius: .375rem;
+
+    margin-bottom: 0;
 }
 
 .page-link

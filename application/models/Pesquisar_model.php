@@ -8,7 +8,7 @@ class Pesquisar_model extends CI_Model {
 
   public function carregarPesquisar($pesquisa){
     $dados = array();
-
+    $usuario = $this->session->userdata('logged_in_colabad')['sesColabad_vId'];
     $pesquisa = $this->db->escape($pesquisa);
     try {
       $sql = "
@@ -24,8 +24,12 @@ class Pesquisar_model extends CI_Model {
                  
           FROM img_cadastro I
           
-          WHERE MATCH(I.IMG_TITULO)
-          AGAINST($pesquisa IN NATURAL LANGUAGE MODE)
+          WHERE I.PROJ_ID IN (SELECT P.PROJ_ID FROM proj_cadastro P 
+                              WHERE P.PROJ_PRIVADO = 0
+                              OR P.PROJ_ID IN (SELECT C.PROJ_ID 
+                                              FROM proj_participantes C 
+                                              WHERE C.USU_ID = $usuario))
+            AND MATCH(I.IMG_TITULO) AGAINST($pesquisa IN NATURAL LANGUAGE MODE)
           
           UNION
           
@@ -36,8 +40,12 @@ class Pesquisar_model extends CI_Model {
                  
           FROM img_cadastro I
           
-          WHERE MATCH(I.IMG_AUDIODESCRICAO)
-          AGAINST($pesquisa IN NATURAL LANGUAGE MODE)
+          WHERE I.PROJ_ID IN (SELECT P.PROJ_ID FROM proj_cadastro P 
+                              WHERE P.PROJ_PRIVADO = 0
+                              OR P.PROJ_ID IN (SELECT C.PROJ_ID 
+                                              FROM proj_participantes C 
+                                              WHERE C.USU_ID = $usuario))
+            AND MATCH(I.IMG_AUDIODESCRICAO) AGAINST($pesquisa IN NATURAL LANGUAGE MODE)
           
           UNION
           
@@ -48,8 +56,11 @@ class Pesquisar_model extends CI_Model {
                  
           FROM proj_cadastro P
           
-          WHERE MATCH(P.PROJ_TITULO)
-          AGAINST($pesquisa IN NATURAL LANGUAGE MODE)
+          WHERE P.PROJ_PRIVADO = 0
+            OR P.PROJ_ID IN (SELECT C.PROJ_ID 
+                              FROM proj_participantes C 
+                              WHERE C.USU_ID = $usuario)
+          AND MATCH(P.PROJ_TITULO) AGAINST($pesquisa IN NATURAL LANGUAGE MODE)
           
           UNION
           
@@ -60,13 +71,17 @@ class Pesquisar_model extends CI_Model {
                  
           FROM proj_cadastro P
           
-          WHERE MATCH(P.PROJ_DESCRICAO)
-          AGAINST($pesquisa IN NATURAL LANGUAGE MODE) 
+          WHERE P.PROJ_PRIVADO = 0
+             OR P.PROJ_ID IN (SELECT C.PROJ_ID 
+                              FROM proj_participantes C 
+                              WHERE C.USU_ID = $usuario)
+            AND MATCH(P.PROJ_DESCRICAO) AGAINST($pesquisa IN NATURAL LANGUAGE MODE) 
         ) TABELA
+
+        WHERE TABELA.SOMA > 0
 
         GROUP BY TABELA.LINK
         ORDER BY TABELA.SOMA, TABELA.DESCR ; ";
-
 
       $query = $this->db->query($sql);
 

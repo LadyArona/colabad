@@ -79,6 +79,13 @@ class Imagem_model extends CI_Model {
                      I.IMG_NOME vNome,
                      I.IMG_NOMEUNIQ vNomeUnico,
                      I.IMG_STATUS vStatus,
+                     CASE
+                      WHEN I.IMG_STATUS = 'P' THEN ' has-default '
+                      WHEN I.IMG_STATUS = 'A' THEN ' has-success '
+                      WHEN I.IMG_STATUS = 'R' THEN ' has-danger '
+                      WHEN I.IMG_STATUS = 'V' THEN ' has-primary '
+                      ELSE ''
+                     END vStatusClass,
                      
                      (SELECT U.USU_NOME
                       FROM img_log L JOIN usu_usuario U ON U.USU_ID = L.USU_ID
@@ -173,7 +180,7 @@ class Imagem_model extends CI_Model {
                        A.AVAL_OBS vAvaliacao,
                        CASE
                         WHEN A.AVAL_STATUS = 1 THEN '<span class=\"text-success\">aprovou a imagem</span>'
-                        WHEN A.AVAL_STATUS = 1 THEN '<span class=\"text-danger\">reprovou a imagem</span>'
+                        WHEN A.AVAL_STATUS = 2 THEN '<span class=\"text-danger\">reprovou a imagem</span>'
                        END vAcao,
                        DATE_FORMAT(L.LOG_DATA, '%d de %M de %Y as %H:%i') vData
 

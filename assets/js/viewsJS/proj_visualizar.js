@@ -48,23 +48,30 @@ const prv = {
         let imgQtdDesc = imgQtd == 1 ? 'imagem' : 'imagens'
         $('#vImgQtd').html(`${imgQtd} ${imgQtdDesc}`)
 
-        data.vImagens.map((e) => {
+        if (data.vImagens.length > 0) {
+          data.vImagens.map((e) => {
+            imagens += 
+              `<div class="col-lg-4">
+                <div class="card card-lift--hover ${e.vStatusClass}" style="width: 18rem;">
+                  <img class="card-img-top" src="${baseUrl}uploads/${e.vNome}" aria-labelledby="card-title${e.vId}"
+                       alt="">
+                  <div class="card-body">
+                    <h5 class="card-title" id="card-title${e.vId}" aria-disabled="true">${e.vDesc}</h5>
+                    <a class="btn btn-primary btn-block mt-4" 
+                       href="${e.vLink}"
+                       aria-label="Visualizar imagem ${e.vDesc}">
+                      Visualizar Detalhes
+                    </a>
+                  </div>
+                </div>
+            </div>`
+          })
+        } else {
           imagens += 
             `<div class="col-lg-4">
-              <div class="card card-lift--hover ${e.vStatusClass}" style="width: 18rem;">
-                <img class="card-img-top" src="${baseUrl}uploads/${e.vNome}" aria-labelledby="card-title${e.vId}"
-                     alt="">
-                <div class="card-body">
-                  <h5 class="card-title" id="card-title${e.vId}" aria-disabled="true">${e.vDesc}</h5>
-                  <a class="btn btn-primary btn-block mt-4" 
-                     href="${e.vLink}"
-                     aria-label="Visualizar imagem ${e.vDesc}">
-                    Visualizar Detalhes
-                  </a>
-                </div>
-              </div>
-          </div>`
-        })
+              <h5>Projeto não possui imagens</h5>
+            </div>`
+        }
 
         $('#vParticipante').html(colab)
         $('#vImagensProj').html(imagens)

@@ -22,6 +22,7 @@ const avalVis = {
         
         $('#edTitulo').html(data.vTitulo)
         $('#edDescricao').html(data.vDescr)
+        $('#edAudiodesc').html(data.vDescr)
         $('#vProjeto').html(data.vProjeto)
 
         let img = 
@@ -65,9 +66,25 @@ const avalVis = {
           </ul>`
 
         $('#vHistorico').html(historico)
+        
+        let avaliacoes = ''
+        data.vAvaliacoes.map((e) => {
+          avaliacoes +=
+          `<li class="title">
+            ${e.vConsultor} ${e.vAcao} em ${e.vData}: ${e.vAvaliacao}
+          </li>`
+        })
 
+        avaliacoes = 
+          `<ul>
+            ${avaliacoes != '' ? avaliacoes : `Nenhuma avaliação`}
+          </ul>`
 
+        $('#vAvaliacoes').html(avaliacoes)
 
+        let vAvaliada = (data.vStatus != 'A') ? ' Roteiro da ' : ''
+        $('#vAvaliada').html(vAvaliada)
+        $('#vBtnAvaliada').html((vAvaliada == '') ? `<i class="fas fa-copy"></i> Copiar Audiodescrição` : `<i class="fas fa-copy"></i> Copiar Roteiro da Audiodescrição`)
       } else
       if (data.result == 'ERRO') {
         console.log('error dados ', data)
@@ -82,13 +99,15 @@ const avalVis = {
   },
   avaliar: (tipo) => {
     let obs = $('#edObs').val()
+    let descr = $('#edAudiodesc').val()
     $.ajax({
       url: `${baseUrl}ajax/avaliarImagem`,
       data: {
         avaliarImagem: '',
         tipo,
         imgId,
-        obs
+        obs,
+        descr
       },
       dataType: 'JSON',
       type: 'POST',

@@ -44,7 +44,7 @@ if ($conteudo == 'projetos') { ?>
 
 <script>
   $(document).ready(() => {
-    projetos.initConfig()
+    projetos.initConfig(<?php echo json_encode($this->session->userdata('logged_in_colabad')['sesColabad_vId']); ?>)
   })
 </script>
 <?php 

@@ -1,8 +1,13 @@
 let participantes = []
 
 const projetos = {
-  initConfig: () => {
-    app.carregaCombo('cbParticipante', 'U')
+  initConfig: (colabAtual) => {
+    app.carregaCombo('cbParticipante', 'U', colabAtual)
+
+    setTimeout(function(){
+      projetos.addRow($('#cbParticipante').selectpicker('val'), $('#cbParticipante').find(':selected').text(), 'N')
+      $('#cbParticipante').val('').selectpicker('render').selectpicker('refresh')
+    }, 2000);
 
     $('#btnCancelar').click(function(event) {  
       projetos.limparCampos()
@@ -18,16 +23,12 @@ const projetos = {
     
     projetos.initProjetos()
   },
-  addRow: (idColaborador, nomeColaborador, resp) => {
+  addRow: (idColaborador, nomeColaborador) => {
     if (participantes.findIndex(x => x.cod === idColaborador) === -1) {
-      const responsavel = (resp === 'S') ? '&nbsp;&nbsp;<span class="label label-success">(Responsável)</span>' : ''
       $('table.tableParticipantes').find('tbody').append([
         `<tr id="tr_${idColaborador}">
-            <td class="nomeColab">${nomeColaborador}${responsavel}</td>
+            <td class="nomeColab">${nomeColaborador}</td>
             <td style="cursor:pointer">
-              <a role="button" aria-pressed="false" tabindex="0" class="fa fa-user" data-toggle="tooltip" data-placement="top" title="Tornar ${nomeColaborador} Responsável pelo Projeto"
-               style="cursor: pointer;font-size: 0.9em;border: 1px solid #cad1d7; padding: 5px 6px 5px 6px; background-color: lightsteelblue; border-radius: 3px;"
-               onclick="projetos.carregaDefineResponsavel(${idColaborador})"></a>&nbsp;&nbsp;
               <a role="button" aria-pressed="false" tabindex="0" class="fa fa-close" data-toggle="tooltip" title="Remover ${nomeColaborador} do Projeto" 
                style="cursor: pointer;font-size: 0.9em;border: 1px solid #cad1d7; padding: 5px 6px 5px 6px; background-color: tomato; border-radius: 3px;"
                onclick="projetos.removeRow(${idColaborador}, 1)"></a>
@@ -37,8 +38,7 @@ const projetos = {
       participantes.push({
         cod: idColaborador,
         nome: nomeColaborador,
-        resp
-      })
+        resp: 'N'})
     }
     $('#cbParticipante').val('').selectpicker('render').selectpicker('refresh')
   },
@@ -54,21 +54,6 @@ const projetos = {
       return n.cod !== String(p)
     })
     return false
-  },
-  carregaDefineResponsavel: (id = 0, arrColabEdit = null) => {
-    const participantesAux = (arrColabEdit != null) ? arrColabEdit : participantes
-    $(participantes).each((index, el) => {
-      projetos.removeRow(el.cod)
-    })
-    setTimeout(() => {
-      $(participantesAux).each((index, el) => {
-        if (id > 0) {
-          projetos.addRow(el.cod, el.nome, (parseInt(el.cod, 10) === parseInt(id, 10)) ? 'S' : 'N')
-        } else if (arrColabEdit != null) {
-          projetos.addRow(el.cod, el.nome, el.resp)
-        }
-      })
-    }, 500)
   },
   initProjetos: () => {
     $('#vProjetos').html('')
@@ -113,6 +98,18 @@ const projetos = {
                 </a>`
             })
 
+            let editar = ''
+            if (item.vResp == 'S') {
+              editar =
+                `<div class="col-md-6">
+                  <button class="btn btn-default btn-block"
+                  onclick='projetos.carregaEdit(${item.vId});'
+                  aria-label="Editar este Projeto">
+                    <i class="fas fa-edit"></i> Editar
+                  </button>
+                </div>`
+            }
+
             html +=
             `<div class="col-lg-6 pb-4">
               <div class="card card-lift--hover shadow border-0">
@@ -128,14 +125,8 @@ const projetos = {
                     ${colab}
                   </div>
                   <div class="row mt-4">
-                    <div class="col-md-6">
-                      <button class="btn btn-default btn-block"
-                      onclick='projetos.carregaEdit(${item.vId});'
-                      aria-label="Editar este Projeto">
-                        <i class="fas fa-edit"></i> Editar
-                      </button>
-                    </div>
-                    <div class="col-md-6">
+                    ${editar}
+                    <div class="col-md-${(editar != '') ? '6' : '12'}">
                       <a class="btn btn-primary btn-block"
                       href='${item.vLink}'
                       aria-label="Visualizar este Projeto">

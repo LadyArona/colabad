@@ -7,31 +7,105 @@ class Projetos_model extends CI_Model {
     $this->load->model('App_model', 'app');
   }
 
-  public function buscarProjeto ($limit = 0, $order = '', $usuWhere = 0, $where = '') {
+  public function buscarProjeto ($limit = 0) {
     $tabela  = 'proj_cadastro';
     $dados   = array();
     $result  = array();
 
-    $order = ($order == '') ? ' ORDER BY P.PROJ_DATACAD DESC ' : $order;
-    $order = ($order == 1) ? ' ORDER BY RAND() ' : $order;
-    $where = ($where == 1) ? ' AND P.PROJ_PRIVADO = 0 ' : $where;
     $limit = ($limit > 0) ? ' LIMIT '.$limit : '';
 
     /*echo "<pre>";
       print_r($limit);
       exit;*/
-    $usuario = '';
-    if ($usuWhere == 0) {
-      $usuario = $this->session->userdata('logged_in_colabad')['sesColabad_vId'];
-      $usuario = "AND P.USU_ID = $usuario 
-                  OR P.PROJ_ID IN 
-                    (SELECT C.PROJ_ID 
-                    FROM proj_participantes C 
-                    WHERE C.USU_ID = $usuario
-                    AND C.PAR_RESPONSAVEL = 'S') ";
-    }
+
+    $usuario = $this->session->userdata('logged_in_colabad')['sesColabad_vId'];
+    $painel = '';
 
     try{
+      $sql = "SELECT P.PROJ_ID vId,
+                   P.PROJ_TITULO vTitulo,
+                   P.PROJ_DESCRICAO vDescricao,
+                   P.PROJ_LINK vLink,
+                   P.PROJ_STATUS vStatus,
+                   P.PROJ_PRIVADO vPrivado,
+                   DATE_FORMAT(P.PROJ_DATACAD, '%d de %M de %Y as %H:%i') vData,
+                   (SELECT COUNT(C.PROJ_ID) FROM proj_participantes C WHERE C.PROJ_ID = P.PROJ_ID) vColab,
+                   (SELECT COUNT(I.IMG_ID) FROM img_cadastro I WHERE I.PROJ_ID = P.PROJ_ID) vImagens,
+                   P.USU_ID vResponsavel
+
+            FROM proj_cadastro P
+
+            WHERE P.PROJ_ID > 0
+              AND P.USU_ID = $usuario
+              OR P.PROJ_ID IN 
+                    (SELECT C.PROJ_ID 
+                    FROM proj_participantes C 
+                    WHERE C.USU_ID = $usuario) 
+
+            ORDER BY P.PROJ_DATACAD DESC
+            $limit ;";
+      
+      $this->db->query('SET lc_time_names = "pt_br"'); //para os meses sairem em portugues
+      $query = $this->db->query($sql);
+
+      /*echo "<pre>";
+      print_r($this->db->last_query());
+      exit;*/
+
+      foreach ($query->result() as $row) {
+        $link = ($row->vLink != '') ? base_url().'projeto/'.$row->vId.'/'.$row->vLink : '';
+        $dados[] = 
+          array(
+            'vId'      => $row->vId,
+            'vTitulo'  => '<strong>'.$row->vTitulo.'</strong>',
+            'vStatus'  => $row->vStatus,
+            'vPrivado' => $row->vPrivado,
+            'vData'    => $row->vData,
+            'vImagens' => $row->vImagens,
+            'vLink'    => $link,
+            'vResp'    => ($row->vResponsavel == $usuario) ? "S" : "N",
+            'vColab'   => $this->carregaColaboradores($row->vId)
+          );
+      }
+
+      $result = array('result'   => 'OK',
+                     'vProjetos' => $dados);
+
+      return $result;
+
+    } catch(PDOException $e) { 
+      return
+        array(
+          'result' => 'ERRO',
+          'mensagem' => $e->getMessage()
+        );
+    }           
+  }
+
+  public function buscarProjetoPublico ($page = 1) {
+    $tabela  = 'proj_cadastro';
+    $per_pg  = 6;
+    $start_from = ($page - 1) * $per_pg;
+    $dados   = array();
+    $result  = array();
+
+    $order = ' ORDER BY P.PROJ_DATACAD DESC ';
+    $where = ' AND P.PROJ_PRIVADO = 0 ';
+    $limit = ' LIMIT '.$start_from.', '.$per_pg;
+
+    /*echo "<pre>";
+      print_r($limit);
+      exit;*/
+    try{
+      // busca total para paginação
+      $sqlTot = "SELECT P.PROJ_ID
+            FROM proj_cadastro P
+            WHERE P.PROJ_ID > 0
+            $where;";
+      $queryTot = $this->db->query($sqlTot);
+      $total = $queryTot->num_rows();
+      $totalPages = ceil($total/$per_pg);
+
       $sql = "SELECT P.PROJ_ID vId,
                    P.PROJ_TITULO vTitulo,
                    P.PROJ_DESCRICAO vDescricao,
@@ -45,9 +119,7 @@ class Projetos_model extends CI_Model {
             FROM proj_cadastro P
 
             WHERE P.PROJ_ID > 0
-            $usuario
             $where
-
             $order 
             $limit ;";
       
@@ -69,8 +141,9 @@ class Projetos_model extends CI_Model {
           );
       }
 
-      $result = array('result'   => 'OK',
-                     'vProjetos' => $dados);
+      $result = array('result'    => 'OK',
+                      'vTotal'    => $totalPages,
+                      'vProjetos' => $dados);
 
       return $result;
 
@@ -350,6 +423,10 @@ class Projetos_model extends CI_Model {
         $this->app->geraNotificacao('Você foi adicionado como colaborador do projeto: <b>'.$projeto.'</b>.', 'A', 'N', $link, $value['cod']);
       }
     }
+
+    $usu = $this->session->userdata('logged_in_colabad')['sesColabad_vId'];
+    $sql = " INSERT IGNORE INTO `proj_participantes` (`PROJ_ID`, `USU_ID`, `PAR_RESPONSAVEL`) VALUES ($id, $usu, 'S'); ";
+    $this->db->query($sql);
   }  
 
 }

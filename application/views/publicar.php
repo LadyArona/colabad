@@ -5,19 +5,6 @@
         <h3 class="mb-0">Dados da Imagem</h3>
       </div>
       <div class="card-body">
-        <?php if ($imgId != '') { ?>
-          <div class="row">
-            <div class="col-lg-12">
-              <h6 class="heading text-muted mb-4">Avaliações da Imagem</h6>
-            </div>
-            <div class="col-lg-12">
-              <div class="row row-grid" id="vAvaliacoes">
-              </div>
-              <hr class="my-4" />
-            </div>
-          </div>
-        <?php } ?>
-
         <form action="" method="POST" enctype="multipart/form-data" id="formImagem">
           <div class="pl-lg-4">
             <div class="form-group">
@@ -65,8 +52,20 @@
             </div>
           </div>
           <div class="pl-lg-4">
+            <?php if ($imgId != '') { ?>
+              <div class="row">
+                <div class="col-lg-12">
+                  <h6 class="heading text-muted mb-4">Avaliações da Imagem</h6>
+                </div>
+                <div class="col-lg-12">
+                  <div class="row row-grid" id="vAvaliacoes">
+                  </div>
+                  <hr class="my-4" />
+                </div>
+              </div>
+            <?php } ?>
             <div class="form-group">
-              <label class="form-control-label" for="edAudiodescricao">Áudiodescrição da imagem</label>
+              <label class="form-control-label" for="edAudiodescricao">Roteiro da audiodescrição da imagem</label>
               <textarea rows="10" class="form-control" id="edAudiodescricao" name="edAudiodescricao" required></textarea>
             </div>
           </div>

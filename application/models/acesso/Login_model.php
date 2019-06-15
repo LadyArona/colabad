@@ -167,6 +167,7 @@ class Login_model extends CI_Model {
          U.USU_TOKEN,
          U.PERF_ID,
          P.PERF_NIVEL,
+         P.PERF_DESCRICAO,
          U.USU_LINK,
          USU_IMG_NOMEUNIQ,
          USU_IMG_AUDIODESCRICAO
@@ -215,6 +216,7 @@ class Login_model extends CI_Model {
             'sesColabad_vEmailConf'   => $row->USU_EMAILCONF,
             'sesColabad_vPerfilId'    => $row->PERF_ID,
             'sesColabad_vPerfilNivel' => $row->PERF_NIVEL,
+            'sesColabad_vPerfilDescr' => $row->PERF_DESCRICAO,
             'sesColabad_vLink'        => $row->USU_LINK,
             'sesColabad_vImg'         => $img,
             'sesColabad_vImgAlt'      => $row->USU_IMG_AUDIODESCRICAO

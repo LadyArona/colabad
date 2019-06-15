@@ -31,12 +31,13 @@ class Avaliar_model extends CI_Model {
               FROM img_cadastro I
                 JOIN proj_cadastro P ON P.PROJ_ID = I.PROJ_ID
 
-              WHERE I.IMG_ID NOT IN (SELECT DISTINCT(L.IMG_ID)
-                                     FROM img_log L
-                                     WHERE L.LT_ID = 6)
-                AND I.IMG_STATUS IN ('P', 'V') ; ";
+              WHERE I.IMG_STATUS IN ('P', 'V') ; ";
 
       $query = $this->db->query($sql);
+
+      /*echo "<pre>";
+      print_r($this->db->last_query());
+      exit;*/
 
       if ($query->num_rows() > 0){
         foreach ($query->result() as $row) {
@@ -65,14 +66,15 @@ class Avaliar_model extends CI_Model {
     }
   }
 
-  public function avaliarImagem($imgId, $tipo, $obs){
+  public function avaliarImagem($imgId, $tipo, $obs, $descr){
     try {
       $tabela = 'img_avaliacao';
       $dados = 
         array(
           'IMG_ID'      => $imgId,
           'AVAL_STATUS' => $tipo,
-          'AVAL_OBS'    => $obs
+          'AVAL_OBS'    => $obs,
+          'AVAL_DESCR'  => $descr
         );
 
       $this->db->insert($tabela, $dados);
@@ -83,7 +85,7 @@ class Avaliar_model extends CI_Model {
       $status = ($tipo == 1) ? 'A' : (($tipo == 2) ? 'R' : '');
       if ($status != '') {
         //update
-        $data = array('IMG_STATUS' => $status);
+        $data = array('IMG_STATUS' => $status, 'IMG_AUDIODESCRICAO' => $descr);
         $this->db->where('IMG_ID', $imgId);
         $this->db->update('img_cadastro', $data);
       }

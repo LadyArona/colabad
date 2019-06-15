@@ -2,25 +2,20 @@
 - Entrega dos artigos impressos (3 cópias) para a banca: 01 julho
 - Defesas do TGSI I (Apresentações): entre 08 e 12 de julho
 =========================================================================================
-Só é audiodescrição depois que o Consultor avalia.
+Colocar algo visual nos campos obrigatórios
 
-projetos públicos (pesquisar) e paginação
-trazer perfil ao lado do nome da pessoa;
-consultor poder editar a descrição da imagem.
+pessoa pode se auto-intitular consultor
+Deixar de ser consultor
 
-ok > ajustar notificações no celular
+Melhorar as notificações
 
-OK > tirar atividade
-OK > rodapé retirar
+-------------
 
-OK > Buscar
-OK > VALIDAR REGRAS DE ACESSIBILIDADE
+> colocar legenda das tags das imagens
 
 > Histórico das Avaliações da Imagem
 
 > SUPORTE > Faq > Perfil > O que é cada perfil, colocar algo que explique o que é AudioDescrição
-
-> Atividades = Lista com os logs do usuário
 
 > Mapa do site
 > Pode deletar/desativar o perfil
@@ -29,11 +24,12 @@ OK > VALIDAR REGRAS DE ACESSIBILIDADE
 > politica de privacidade
 
 > lembrar usuário
-> colocar legenda das tags das imagens
 
 > no Perfil > Mostrar projetos e imagens da pessoa
 
 =========================================================================================
+OK > consultor poder editar a descrição da imagem.
+
 OK > Usuário poder editar imagem com erro na audiodescrição > Revisar imagem
 OK > Perfil
 OK > Painel do Consultor
@@ -42,3 +38,19 @@ OK > Baixar imagem
 OK > Copiar audiodescrição
 
 OK > TAG imagem Verificada
+
+OK > trazer perfil ao lado do nome da pessoa;
+OK > NÃO PODE ACESSAR PROJETOS PRIVADOS!
+OK > NÃO PODE ACESSAR IMAGENS DE PROJETOS PRIVADOS!
+
+OK > Só é audiodescrição depois que o Consultor avalia. (Deixei como Roteiro)
+
+OK > projetos públicos (pesquisar) e paginação
+
+ok > ajustar notificações no celular
+
+OK > tirar atividade
+OK > rodapé retirar
+
+OK > Buscar
+OK > VALIDAR REGRAS DE ACESSIBILIDADE

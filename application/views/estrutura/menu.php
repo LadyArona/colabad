@@ -71,7 +71,7 @@
               <i class="fas fa-calendar-check text-yellow"></i> Revisar Imagem
             </a>
           </li>
-          <?php if ($this->session->userdata('logged_in_colabad')['sesColabad_vPerfilNivel'] > 1) { ?>
+          <?php if ($this->session->userdata('logged_in_colabad')['sesColabad_vPerfilNivel'] >= 6) { ?>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url();?>avaliar" role="button" aria-pressed="false" tabindex="0" >
               <i class="ni ni-paper-diploma text-success"></i> Avaliar Imagem

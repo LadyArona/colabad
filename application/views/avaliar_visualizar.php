@@ -27,9 +27,9 @@
           </div>
           <div class="col-lg-12">
             <hr class="my-4" />
-            <h6 class="heading text-muted mb-4">Audiodescrição</h6>
+            <h6 class="heading text-muted mb-4"><span id="vAvaliada"></span>Audiodescrição</h6>
             <p class="lead p-md-4" id="edDescricao"></p>
-            <button type="button" class="btn btn-sm btn-icon-clipboard" 
+            <button type="button" class="btn btn-sm btn-icon-clipboard" id="vBtnAvaliada"
                     data-clipboard-target="#edDescricao" title="" data-original-title="Copiar audiodescrição para área de transferência">
               <i class="fas fa-copy"></i> Copiar Audiodescrição
             </button>
@@ -52,24 +52,38 @@
           </div>
           <div class="col-lg-12">
             <hr class="my-4" />
-            <h6 class="heading text-muted mb-4">Avaliação da Imagem</h6>
+            <h6 class="heading text-muted mb-4">Avaliações da Imagem</h6>
+          </div>
+          <div class="col-lg-12">
+            <div class="row row-grid" id="vAvaliacoes">
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <hr class="my-4" />
+            <h6 class="heading text-muted mb-4">Avaliação</h6>
+          </div>
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label class="form-control-label" for="edAudiodesc">Modificar o Roteiro da Audiodescrição</label>
+              <textarea rows="10" class="form-control" id="edAudiodesc" name="edAudiodesc" required></textarea>
+            </div>
           </div>
           <div class="col-lg-12">
             <div class="form-group">
               <label class="form-control-label" for="edObs">Observação da Avaliação</label>
-              <textarea rows="10" class="form-control" id="edObs" name="edObs" required></textarea>
+              <textarea rows="3" class="form-control" id="edObs" name="edObs" required></textarea>
             </div>
           </div>
           <div class="col-lg-6 col-md-6 pb-3">
             <a role="button" aria-pressed="false" tabindex="0" class="btn btn-block btn-lg btn-success"
                href="javascript:avalVis.avaliar(1)">
-              APROVAR IMAGEM
+              APROVAR
             </a>
           </div>
           <div class="col-lg-6 col-md-6 pb-3">
             <a role="button" aria-pressed="false" tabindex="0" class="btn btn-block btn-lg btn-danger"
                href="javascript:avalVis.avaliar(2)">
-              REPROVAR IMAGEM
+              REPROVAR
             </a>
           </div>
         </div>

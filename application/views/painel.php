@@ -15,7 +15,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" id="pgPublicos">
         <div class="col-xl-12 mb-5 mb-xl-0">
           <div class="card shadow cardTopPainel">
             <div class="card-header border-0">
@@ -28,6 +28,12 @@
             <div class="card-body">
               <div class="row row-grid" id="vPublicos">
               </div>
+            </div>
+            <div class="card-footer">
+              <nav aria-label="...">
+                <ul class="pagination justify-content-center pagination-lg" id="vPagination">
+                </ul>
+              </nav>
             </div>
           </div>
         </div>

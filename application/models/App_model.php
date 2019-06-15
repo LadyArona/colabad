@@ -129,14 +129,13 @@ class App_model extends CI_Model {
                 ORDER BY U.USU_NOME; ";
     } else 
     if ($tipoInfo == 'P') {
-      if ($codToControl == 0) {
+      if ($codToControl == 1) {
         $usuario = $this->session->userdata('logged_in_colabad')['sesColabad_vId'];
         $where = " AND P.USU_ID = $usuario
                 OR P.PROJ_ID IN 
                   (SELECT C.PROJ_ID 
                   FROM proj_participantes C 
-                  WHERE C.USU_ID = $usuario
-                  AND C.PAR_RESPONSAVEL = 'S') ";
+                  WHERE C.USU_ID = $usuario) ";
       } else 
       if ($codToControl != '')  { 
         $where = ' AND P.PROJ_ID = '.$codToControl;

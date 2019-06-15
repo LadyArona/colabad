@@ -89,17 +89,14 @@ const painel = {
       $.loader('close')
     })
   },
-  initPublicos: () => {
+  initPublicos: (page = 1) => {
     $('#vPublicos').html('')
 
     $.ajax({
-      url: `${baseUrl}ajax/buscarProjeto`,
+      url: `${baseUrl}ajax/buscarProjetoPublico`,
       data: {
-        buscarProjeto: '',
-        limit: 12,
-        order: 1,
-        where: 1,
-        usuWhere: 1
+        buscarProjetoPublico: '',
+        page
       },
       dataType: 'JSON',
       type: 'POST',
@@ -112,6 +109,7 @@ const painel = {
     }).done((data) => {
       if (data.result == 'OK') {
         let html = ''
+        let pagination = ''
 
         if (data.vProjetos.length == 0) {
           html +=
@@ -165,7 +163,38 @@ const painel = {
           })
         }
 
+        let paginas = data.vTotal
+        for (var i = 1; i <= paginas; i++) {
+          pagination +=
+          `<li class="page-item ${(i == page) ? ' active' : ''}">
+            <a class="page-link" href="${(i != page) ? 'javascript:painel.initPublicos('+i+')' : ''}">
+              ${i} ${(i == page) ? ' <span class="sr-only">(Página Atual)</span>' : ''}
+            </a>
+          </li>`
+        }
+          pagination =
+          `<li class="page-item ${(page == 1) ? ' disabled' : ''}">
+              <a class="page-link" href="${(page != 1) ? 'javascript:painel.initPublicos('+(page-1)+')' : ''}" ${(page == 1) ? ' tabindex="-1"' : ''}>
+                <i class="fa fa-angle-left"></i>
+                <span class="sr-only">Página Anterior</span>
+              </a>
+            </li>
+              ${pagination}
+            <li class="page-item ${(page == paginas) ? ' disabled' : ''}">
+              <a class="page-link" href="${(page != paginas) ? 'javascript:painel.initPublicos('+(page+1)+')' : ''}" ${(page == paginas) ? ' tabindex="-1"' : ''}>
+                <i class="fa fa-angle-right"></i>
+                <span class="sr-only">Próxima Página</span>
+              </a>
+            </li>`
+
         $('#vPublicos').html(html)
+        $('#vPagination').html(pagination)
+
+        if (page != 1) {
+          $('html,body').animate({
+            scrollTop: $("#pgPublicos").offset().top
+          }, 'slow')
+        }
       } else
       if (data.result == 'ERRO') {
         console.log('error dados ', data)

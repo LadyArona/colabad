@@ -3,7 +3,7 @@ let imgId = ''
 
 const publicar = {
   initConfig: (id) => {
-    app.carregaCombo('cbProjeto', 'P', null, 0)
+    app.carregaCombo('cbProjeto', 'P', null, 1)
 
     $('#cbProjeto').focus()
 

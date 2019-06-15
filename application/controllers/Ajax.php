@@ -18,11 +18,19 @@ class Ajax extends CI_Controller {
     if($this->input->post('buscarProjeto') == ""){
       $this->load->model('Projetos_model', 'proj');
       $limit    = ($this->input->post('limit') == "") ? 0 : $this->input->post('limit');
-      $order    = ($this->input->post('order') == "") ? '' : $this->input->post('order');
-      $usuWhere = ($this->input->post('usuWhere') == "") ? 0 : $this->input->post('usuWhere');
-      $where    = ($this->input->post('where') == "") ? '' : $this->input->post('where');
 
-      $registros = $this->proj->buscarProjeto($limit, $order, $usuWhere, $where);
+      $registros = $this->proj->buscarProjeto($limit);
+      $this->output
+           ->set_content_type('application/json')
+           ->set_output(json_encode($registros));
+    }
+  }  
+
+  function buscarProjetoPublico(){
+    if($this->input->post('buscarProjetoPublico') == ""){
+      $this->load->model('Projetos_model', 'proj');
+      $page  = ($this->input->post('page') == "")  ? 1 : $this->input->post('page');
+      $registros = $this->proj->buscarProjetoPublico($page);
       $this->output
            ->set_content_type('application/json')
            ->set_output(json_encode($registros));
@@ -107,8 +115,9 @@ class Ajax extends CI_Controller {
       $this->load->model('Avaliar_model', 'aval');
       $tipo      = $this->input->post('tipo');
       $obs       = $this->input->post('obs');
+      $descr     = $this->input->post('descr');
       $imgId     = $this->input->post('imgId');
-      $registros = $this->aval->avaliarImagem($imgId, $tipo, $obs);
+      $registros = $this->aval->avaliarImagem($imgId, $tipo, $obs, $descr);
       $this->output
            ->set_content_type('application/json')
            ->set_output(json_encode($registros));
