@@ -2,6 +2,9 @@
 - Entrega dos artigos impressos (3 cópias) para a banca: 01 julho
 - Defesas do TGSI I (Apresentações): entre 08 e 12 de julho
 =========================================================================================
+perfil, deficiencia não, limpar
+não deixa salvar vazio...
+
 Colocar algo visual nos campos obrigatórios
 
 pessoa pode se auto-intitular consultor

@@ -43,11 +43,7 @@
   <link rel="stylesheet" type='text/css' href="<?php echo base_url();?>assets/css/style.css">
   <link rel="stylesheet" type='text/css' href="<?php echo base_url();?>assets/css/painel.css?v=1.0.0">
 
-  <!-- Include Editor style. -->
-  <link href='https://cdn.jsdelivr.net/npm/froala-editor@2.9.5/css/froala_editor.min.css' rel='stylesheet' type='text/css' />
-  <link href='https://cdn.jsdelivr.net/npm/froala-editor@2.9.5/css/froala_style.min.css' rel='stylesheet' type='text/css' />
   <link href='https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.css' rel='stylesheet' type='text/css' />
-
 
   <!-- CSS ESPECÍFICO -->
 <?php if ($conteudo == 'publicar') { ?>
