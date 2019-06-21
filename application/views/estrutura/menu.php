@@ -39,9 +39,10 @@
           </div>
         </div>
         <!-- Form -->
-        <form class="mt-4 mb-3 d-md-none">
+        <form class="mt-4 mb-3 d-md-none" method="GET" id="formPesquisar" name="formPesquisar" action="<?php echo base_url().'pesquisar'; ?>">
+          <label class="form-control-label pr-2" for="pesquisar">Pesquisar: </label>
           <div class="input-group input-group-rounded input-group-merge">
-            <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
+            <input type="search" class="form-control form-control-rounded form-control-prepended" aria-label="Pesquisar" id="por" name="por" >
             <div class="input-group-prepend">
               <div class="input-group-text">
                 <span class="fa fa-search"></span>
@@ -49,6 +50,7 @@
             </div>
           </div>
         </form>
+
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -89,12 +91,6 @@
             ?>
             <a class="nav-link" href="<?php echo $perfil;?>" role="button" aria-pressed="false" tabindex="0" >
               <i class="ni ni-single-02 text-yellow"></i> Meu Perfil
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link" role="button" aria-pressed="false" tabindex="0" >
-              <i class="ni ni-map-big"></i>
-              <span>Mapa do Site</span>
             </a>
           </li>
           <li class="nav-item">

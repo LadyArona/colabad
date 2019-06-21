@@ -6,14 +6,6 @@ class Ajax extends CI_Controller {
     parent::__construct();
   }
 
-  function _remap($method){
-    if (method_exists($this, $method) && $_SERVER['REQUEST_METHOD'] == 'POST'){
-      $this->$method();
-    }else {
-      $this->index($method);
-    }
-  }
-
   function buscarProjeto(){
     if($this->input->post('buscarProjeto') == ""){
       $this->load->model('Projetos_model', 'proj');
@@ -103,8 +95,9 @@ class Ajax extends CI_Controller {
     $cbDefic          = $this->input->post('cbDefic');
     $cbQual           = $this->input->post('cbQual');
     $edObs            = $this->input->post('edObs');
+    $rbPerfil         = $this->input->post('rbPerfil');
 
-    $registros = $this->perf->salvarPerfil($imagem, $edNome, $edEmail, $edPass, $edAudiodescricao, $cbEstado, $cbCidade, $edOrg, $cbDefic, $cbQual, $edObs);
+    $registros = $this->perf->salvarPerfil($imagem, $edNome, $edEmail, $edPass, $edAudiodescricao, $cbEstado, $cbCidade, $edOrg, $cbDefic, $cbQual, $edObs, $rbPerfil);
     $this->output
          ->set_content_type('application/json')
          ->set_output(json_encode($registros));

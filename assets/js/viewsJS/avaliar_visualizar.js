@@ -119,7 +119,7 @@ const avalVis = {
       }
     }).done((data) => {
       if (data.result == 'OK') {
-        app.showNotification(`Imagem avaliada!`, 'success', 2)
+        window.location.href = `${baseUrl}avaliar`
       } else
       if (data.result == 'ERRO') {
         console.log('error dados ', data)

@@ -10,8 +10,8 @@
             </div>
             <div class="card-body pt-0 mt-md-5 mt-sm-7">
               <div class="row">
-                <div class="col">
-                  <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                <div class="col col col-sm-auto">
+                  <div class="card-profile-stats d-flex justify-content-center mt-md-5 mt-sm-7">
                     <div>
                       <span class="heading" id="vProjetos"></span>
                       <span class="description">Projetos</span>
@@ -35,6 +35,22 @@
         <div class="col-xl-8 order-xl-1">
           <div class="card bg-secondary shadow">
             <div class="card-body">
+              <span id="msg">
+                <?php 
+                $msg = $this->session->flashdata('perfil_ok');
+                if ($msg != '') {
+                ?>
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <span class="alert-inner--icon mr-3"><i class="ni ni-like-2"></i></span>
+                    <span class="alert-inner--text"><strong><?php echo $msg; ?></strong></span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Fechar Notificação">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                <?php 
+                }
+                ?>
+              </span>
               <form action="" method="POST" enctype="multipart/form-data" id="formPerfil" autocomplete="off">
                 <h6 class="heading-small text-muted mb-4">Imagem de Perfil</h6>
                 <div class="pl-lg-4">
@@ -132,31 +148,58 @@
                 <hr class="my-4" />
                 <!-- Descricao -->
                 <h6 class="heading-small text-muted mb-4">Sobre você</h6>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="cbDefic">Você tem alguma deficiência?</label>
-                      <select class="selectpicker form-control" data-style="select-with-transition" 
-                              title="Selecione uma opção" id="cbDefic" name="cbDefic">
-                        <option value="S">Sim</option>
-                        <option value="N">Não</option>
-                      </select>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="cbDefic">Você tem alguma deficiência?</label>
+                        <select class="selectpicker form-control" data-style="select-with-transition" 
+                                title="Selecione uma opção" id="cbDefic" name="cbDefic">
+                          <option value="S">Sim</option>
+                          <option value="N">Não</option>
+                        </select>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="cbQual">Qual?</label>
-                      <select class="selectpicker form-control" data-style="select-with-transition" 
-                              title="Selecione sua Deficiência" id="cbQual" name="cbQual">
-                      </select>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="cbQual">Qual?</label>
+                        <select class="selectpicker form-control" data-style="select-with-transition" 
+                                title="Selecione sua Deficiência" id="cbQual" name="cbQual">
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="edObs">Escreva um pouco sobre você</label>
+                        <textarea rows="5" class="form-control" id="edObs" name="edObs"
+                                  placeholder="Escreva um pouco sobre você..."></textarea>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="pl-lg-12">
-                  <div class="form-group">
-                    <label class="form-control-label" for="edObs">Escreva um pouco sobre você</label>
-                    <textarea rows="5" class="form-control" id="edObs" name="edObs"
-                              placeholder="Escreva um pouco sobre você..."></textarea>
+
+                <hr class="my-4" />
+                <!-- Descricao -->
+                <h6 class="heading-small text-muted mb-4">Perfil</h6>
+                <div class="pl-lg-5">
+                  <p>
+                    O perfil autodeclarado pelo usuário é de sua inteira responsabilidade.
+                  </p>
+                  <div class="custom-control custom-radio mb-3">
+                    <input name="rbPerfil" class="custom-control-input" id="customRadio1" type="radio" value="1" checked="">
+                    <label class="custom-control-label" for="customRadio1">
+                      <strong>AUDIODESCRITOR ROTEIRISTA</strong> (ABNT NBR 16452:2016)
+                      <br>Profissional que elabora o roteiro da audiodescrição, com formação técnica adequada
+                      <br><span class="text-blue"><strong>No ColabAD:</strong> Cadastra projetos, publica e revisa imagens e roteiro da audiodescrição.</span>
+                    </label>
+                  </div>
+                  <div class="custom-control custom-radio mb-3">
+                    <input name="rbPerfil" class="custom-control-input" id="customRadio2" type="radio" value="2">
+                    <label class="custom-control-label" for="customRadio2">
+                      <strong>AUDIODESCRITOR CONSULTOR</strong> (ABNT NBR 16452:2016)
+                      <br>Profissional que realiza a revisão e adequação do roteiro e da narração da audiodescrição com formação técnica adequada. Convém que seja um profissional com deficiência visual
+                      <br><span class="text-blue"><strong>No ColabAD:</strong> Cadastra projetos, publica e revisa imagens e roteiro da audiodescrição. Faz as avaliações das imagens e roteiro da audiodescrição, como consultor.</span>
+                    </label>
                   </div>
                 </div>
 

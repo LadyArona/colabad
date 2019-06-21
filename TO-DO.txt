@@ -7,20 +7,12 @@ não deixa salvar vazio...
 
 Colocar algo visual nos campos obrigatórios
 
-pessoa pode se auto-intitular consultor
-Deixar de ser consultor
-
-Melhorar as notificações
-
 -------------
 
 > colocar legenda das tags das imagens
 
-> Histórico das Avaliações da Imagem
-
 > SUPORTE > Faq > Perfil > O que é cada perfil, colocar algo que explique o que é AudioDescrição
 
-> Mapa do site
 > Pode deletar/desativar o perfil
 
 > termo de uso
@@ -31,6 +23,14 @@ Melhorar as notificações
 > no Perfil > Mostrar projetos e imagens da pessoa
 
 =========================================================================================
+
+OK > Histórico das Avaliações da Imagem
+
+OK > pessoa pode se auto-intitular consultor
+OK > Deixar de ser consultor
+
+OK > Melhorar as notificações
+
 OK > consultor poder editar a descrição da imagem.
 
 OK > Usuário poder editar imagem com erro na audiodescrição > Revisar imagem

@@ -11,7 +11,7 @@
             <div class="input-group input-group-alternative">
               <div class="input-group-prepend">
                 <span class="input-group-text text-white"><i class="fas fa-search"></i></span>
-                <label class="form-control-label text-white pr-2" for="pesquisar">Pesquisar: </label>
+                <label class="form-control-label text-white pr-2" for="por">Pesquisar: </label>
               </div>
               <input class="form-control" id="por" name="por" type="text">
             </div>

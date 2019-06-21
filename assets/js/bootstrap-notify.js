@@ -64,7 +64,7 @@
         onClose: null,
         onClosed: null,
         icon_type: 'class',
-        template: '<div data-notify="container" class="col-xs-11 col-sm-4 alert alert-{0}" role="alert"><button type="button" aria-hidden="true" class="close" data-notify="dismiss">&times;</button><i data-notify="icon" class="material-icons"></i><span data-notify="title">{1}</span> <span data-notify="message">{2}</span><div class="progress" data-notify="progressbar"><div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div><a href="{3}" target="{4}" data-notify="url"></a></div>'
+        template: '<div data-notify="container" class="col-lg-8 col-sm-4 alert alert-{0} alert-dismissible" role="alert"><span class="alert-inner--icon mr-3"><i data-notify="icon" class="material-icons"></i></span><span data-notify="title">{1}</span> <span class="alert-inner--text" data-notify="message">{2}</span><div class="progress" data-notify="progressbar"><div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div><a href="{3}" target="{4}" data-notify="url"></a><button type="button" aria-hidden="true" class="close" data-notify="dismiss" data-dismiss="alert" aria-label="Fechar Notificação"><span aria-hidden="true">&times;</span></button></div>'
     };
 
     String.format = function() {
@@ -147,7 +147,8 @@
             if (this.settings.content.url != "#") {
                 this.styleURL();
             }
-            this.styleDismiss();
+            //this.styleDismiss();
+            this.styleMessage();
             this.placement();
             this.bind();
 
@@ -235,6 +236,14 @@
                 top: '50%',
                 marginTop: '-13px',
                 zIndex: this.settings.z_index + 2
+            });
+        },
+        styleMessage: function() {
+            this.$ele.find('[data-notify="message"]').css({
+                margin: '0',
+                position: 'absolute',
+                top: '50%',
+                transform: 'translateY(-50%)'
             });
         },
         styleURL: function() {

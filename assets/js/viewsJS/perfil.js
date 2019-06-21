@@ -71,10 +71,14 @@ const perfil = {
     })
 
     setTimeout(function(){
-      $('#edNome').removeAttr('disabled');
-      $('#edEmail').removeAttr('disabled');
       perfil.initPerfil()
     }, 200);
+
+    if ($('#msg').html().length > 31) {
+      $('html,body').animate({
+        scrollTop: ($("#conteudo").offset().top - 50)
+      }, 'slow')
+    }
   },
   readURL: (input) => {    
     if (input.files && input.files[0]) {
@@ -90,8 +94,6 @@ const perfil = {
         reader.onload = function (e) {
           myCroppie.croppie('bind', {
             url: e.target.result
-          }).then(function(){
-            console.log('Imagem lida com sucesso');
           })
           $('#blah').attr('alt', filename)
           $('.custom-file-label').text(filename)
@@ -116,6 +118,9 @@ const perfil = {
       }
     }).done((data) => {
       if (data.result == 'OK') {
+        $('#edNome').removeAttr('disabled');
+        $('#edEmail').removeAttr('disabled');
+
         $('#edNome').val(data.vNome)
         $('#edEmail').val(data.vEmail)
         $('#edAudiodescricao').val(data.vImgAudiodesc)
@@ -132,6 +137,7 @@ const perfil = {
           app.carregaCombo('cbQual', 'DEF', data.vDeficienciaId)
         }
         $('#edObs').val(data.vObs)
+        $(`#customRadio${data.vPerfilId}`).attr("checked", "checked")
 
         perfil.carregaVisualizarPerfil(data)
       } else
@@ -230,6 +236,10 @@ const perfil = {
         formData.append('cbQual', $('#cbQual').val())
         formData.append('edObs', $('#edObs').val())
 
+        $('#formPerfil').find(':checkbox:checked, :radio:checked').each(function () {
+          formData.append(this.name, $(this).val());
+        })
+
       $.ajax({
         url: `${baseUrl}ajax/salvarPerfil`,
         type: 'POST',
@@ -244,11 +254,7 @@ const perfil = {
         }
       }).done((data) => {
         if (data.result === 'OK') {
-          app.showNotification(
-            `Perfil alterado com sucesso! <br>
-            <strong>${data.mensagem}</strong>`,
-            'success', 4
-          )
+          location.reload();
         }
       }).fail((err) => {
         console.log('error dados ', err)

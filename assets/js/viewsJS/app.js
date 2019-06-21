@@ -1,6 +1,11 @@
 urlAtual = window.location.pathname.split('/')[2];
 app = {
   initApp: () => {
+    //recarrega a página em 15 minutos para expirar a sessão
+    setTimeout(function(){
+       window.location.reload(1);
+    }, 901000);
+
     var clipboard = new ClipboardJS('button');
     clipboard.on('success', function(e) {
     });
@@ -24,8 +29,9 @@ app = {
 
     $("#toConteudo").click(function() {
         $('html,body').animate({
-          scrollTop: $("#conteudo").offset().top
-        }, 'slow')})
+          scrollTop: ($("#conteudo").offset().top - 50)
+        }, 'slow')
+    })
     $("#toMenu").click(function() {
         $('html,body').animate({scrollTop: $("#sidenav-main").offset().top}, 'slow')
         $("#mnPainel").focus()

@@ -9,6 +9,7 @@ class Avaliar_model extends CI_Model {
 
   public function carregarAvaliar(){
     $dados = array();
+    $usu = $this->session->userdata('logged_in_colabad')['sesColabad_vId'];
     try {
       $sql = "SELECT I.IMG_ID vImgId,
                      I.IMG_NOMEUNIQ vImg,
@@ -31,7 +32,12 @@ class Avaliar_model extends CI_Model {
               FROM img_cadastro I
                 JOIN proj_cadastro P ON P.PROJ_ID = I.PROJ_ID
 
-              WHERE I.IMG_STATUS IN ('P', 'V') ; ";
+              WHERE I.IMG_STATUS IN ('P', 'V')
+                AND I.IMG_ID NOT IN (SELECT I.IMG_ID
+                                      FROM img_cadastro I
+                                        JOIN img_log L ON L.IMG_ID = I.IMG_ID
+                                      WHERE L.USU_ID = $usu 
+                                       AND L.LT_ID = 1) ; ";
 
       $query = $this->db->query($sql);
 
@@ -97,6 +103,8 @@ class Avaliar_model extends CI_Model {
       $imagem = $this->db->select('IMG_TITULO, IMG_LINK')->from('img_cadastro')->where('IMG_ID', $imgId)->get()->result()[0];
       $link = 'imagem/'.$imgId.'/'.$imagem->IMG_LINK;
       $this->app->geraNotificacao('Sua audiodescrição foi avaliada por um Consultor: <b>'.$imagem->IMG_TITULO.'</b>.', 'A', 'N', $link, $usu);
+
+      $this->session->set_flashdata('avaliar_ok', $imagem->IMG_TITULO.' avaliada com sucesso!');
 
       return
         array(

@@ -13,6 +13,13 @@ class Auth {
   }
 
   function CheckAuth($classe, $metodo, $valida=false) {
+    // antes de autenticar, testa a sessão de 15 minutos
+    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] >= 900)) {
+        // last request was more than 15 minutes ago
+      $this->logout();
+    }
+    $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+
     $classe = $classe; //detalhado
     $metodo = $metodo; //1
     /*
@@ -102,13 +109,15 @@ class Auth {
     $tabela = 'usu_log';
 
     $usuario = $this->CI->session->userdata('logged_in_colabad') != null ? $this->CI->session->userdata('logged_in_colabad')['sesColabad_vId'] : $id;
+    $perfil = $this->CI->session->userdata('logged_in_colabad') != null ? $this->CI->session->userdata('logged_in_colabad')['sesColabad_vPerfilId'] : null;
 
     $dados = 
       array(
         'LOG_ORIGEM'    => $origem,
         'LOG_ORIGEM_ID' => $id,
         'LT_ID'         => $tipo,
-        'USU_ID'        => $usuario
+        'USU_ID'        => $usuario,
+        'PERF_ID'       => $perfil
       );
 
     $this->CI->db->insert($tabela, $dados);

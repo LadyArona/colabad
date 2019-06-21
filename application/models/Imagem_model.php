@@ -45,7 +45,8 @@ class Imagem_model extends CI_Model {
       $this->app->gravaLog($id, 1);
       $this->auth->logUsuario($tabela, $id, 1);
 
-      $consultor = $this->db->select('USU_ID')->from('usu_usuario')->where('PERF_ID', 2)->get()->result();
+      $usu = $this->session->userdata('logged_in_colabad')['sesColabad_vId'];
+      $consultor = $this->db->select('USU_ID')->from('usu_usuario')->where(array('PERF_ID' => 2, 'USU_ID !=' => $usu))->get()->result();
       $link = 'avaliar/'.$id.'/'.$link;
       foreach ($consultor as $key => $value) {
         $this->app->geraNotificacao('Nova Imagem para avaliar: <b>'.$titulo.'</b>.', 'A', 'N', $link, $value->USU_ID);

@@ -157,20 +157,9 @@ class Login_model extends CI_Model {
       //busca dados do usuário
       $this->db->select(
         "U.USU_ID,
-         U.USU_CADDATA,
-         U.USU_SITUACAO,
-         SUBSTRING_INDEX(SUBSTRING_INDEX(U.USU_NOME, ' ', 1), ' ', -1) USU_NOME,
-         U.USU_NOME NOME,
-         U.USU_EMAIL,
-         U.USU_PWD,
          U.USU_EMAILCONF,
-         U.USU_TOKEN,
-         U.PERF_ID,
-         P.PERF_NIVEL,
-         P.PERF_DESCRICAO,
-         U.USU_LINK,
-         USU_IMG_NOMEUNIQ,
-         USU_IMG_AUDIODESCRICAO
+         U.USU_PWD,
+         U.USU_SITUACAO
          ")    
       ->from('usu_usuario U')
       ->join('usu_perfil P', ' P.PERF_ID = U.PERF_ID')
@@ -200,32 +189,11 @@ class Login_model extends CI_Model {
             exit;
           }
 
-          $img = base_url().$this->config->item('img_usu_padrao');
-          if ($row->USU_IMG_NOMEUNIQ != '') {
-            $img = base_url().'assets/img/users/'.$row->USU_IMG_NOMEUNIQ;
-          }
-
-          $session_data = array(
-            'sesColabad'              => true,
-            'sesColabad_vId'          => $row->USU_ID,
-            'sesColabad_vCadastro'    => $row->USU_CADDATA,
-            'sesColabad_vStatus'      => $row->USU_SITUACAO,
-            'sesColabad_vNome'        => $row->USU_NOME,
-            'sesColabad_vEmail'       => $row->USU_EMAIL,
-            'sesColabad_vPw'          => $row->USU_PWD,
-            'sesColabad_vEmailConf'   => $row->USU_EMAILCONF,
-            'sesColabad_vPerfilId'    => $row->PERF_ID,
-            'sesColabad_vPerfilNivel' => $row->PERF_NIVEL,
-            'sesColabad_vPerfilDescr' => $row->PERF_DESCRICAO,
-            'sesColabad_vLink'        => $row->USU_LINK,
-            'sesColabad_vImg'         => $img,
-            'sesColabad_vImgAlt'      => $row->USU_IMG_AUDIODESCRICAO
-          );
+          $this->carregaSessao($row->USU_ID);
 
           //atualiza ultimo login
           $this->auth->logUsuario('usu_usuario', $row->USU_ID, 2);
 
-          $this->session->set_userdata('logged_in_colabad', $session_data);
           return 
             array(
               'result'   => 'OK',
@@ -241,6 +209,61 @@ class Login_model extends CI_Model {
           exit;
         }
       }
+    }
+  }
+
+
+  function carregaSessao($id) {
+    //busca dados do usuário
+    $this->db->select(
+      "U.USU_ID,
+       U.USU_CADDATA,
+       U.USU_SITUACAO,
+       SUBSTRING_INDEX(SUBSTRING_INDEX(U.USU_NOME, ' ', 1), ' ', -1) USU_NOME,
+       U.USU_NOME NOME,
+       U.USU_EMAIL,
+       U.USU_PWD,
+       U.USU_EMAILCONF,
+       U.USU_TOKEN,
+       U.PERF_ID,
+       P.PERF_NIVEL,
+       P.PERF_DESCRICAO,
+       U.USU_LINK,
+       USU_IMG_NOMEUNIQ,
+       USU_IMG_AUDIODESCRICAO
+       ")    
+    ->from('usu_usuario U')
+    ->join('usu_perfil P', ' P.PERF_ID = U.PERF_ID')
+    ->where('U.USU_ID', $id)
+    ->limit(1);
+    
+    $query = $this->db->get();
+
+    if($query->num_rows() == 1){
+      $row = $query->result()[0];
+
+      $img = base_url().$this->config->item('img_usu_padrao');
+      if ($row->USU_IMG_NOMEUNIQ != '') {
+        $img = base_url().'assets/img/users/'.$row->USU_IMG_NOMEUNIQ;
+      }
+
+      $session_data = array(
+        'sesColabad'              => true,
+        'sesColabad_vId'          => $row->USU_ID,
+        'sesColabad_vCadastro'    => $row->USU_CADDATA,
+        'sesColabad_vStatus'      => $row->USU_SITUACAO,
+        'sesColabad_vNome'        => $row->USU_NOME,
+        'sesColabad_vEmail'       => $row->USU_EMAIL,
+        'sesColabad_vEmailConf'   => $row->USU_EMAILCONF,
+        'sesColabad_vPerfilId'    => $row->PERF_ID,
+        'sesColabad_vPerfilNivel' => $row->PERF_NIVEL,
+        'sesColabad_vPerfilDescr' => $row->PERF_DESCRICAO,
+        'sesColabad_vLink'        => $row->USU_LINK,
+        'sesColabad_vImg'         => $img,
+        'sesColabad_vImgAlt'      => $row->USU_IMG_AUDIODESCRICAO
+      );
+
+      $this->session->set_userdata('logged_in_colabad', $session_data);
     }
   }
 

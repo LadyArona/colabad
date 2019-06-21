@@ -91,7 +91,7 @@ class Perfil_model extends CI_Model {
         }
       } else {
         $dados = array(     
-            'result'             => 'ERRO',
+            'result'   => 'ERRO',
             'mensagem' => '<strong>Usuário não encontrado</strong>'
           );
       }
@@ -164,7 +164,7 @@ class Perfil_model extends CI_Model {
     return $retorno;
   }
 
-  public function salvarPerfil($imagem, $edNome, $edEmail, $edPass, $edAudiodescricao, $cbEstado, $cbCidade, $edOrg, $cbDefic, $cbQual, $edObs) {
+  public function salvarPerfil($imagem, $edNome, $edEmail, $edPass, $edAudiodescricao, $cbEstado, $cbCidade, $edOrg, $cbDefic, $cbQual, $edObs, $rbPerfil) {
     try{
       $id = $this->session->userdata('logged_in_colabad')['sesColabad_vId'];
 
@@ -192,10 +192,16 @@ class Perfil_model extends CI_Model {
         // Faz o upload da imagem para seu respectivo caminho
         move_uploaded_file($imagem["tmp_name"], $caminho_imagem);
 
+        $img = base_url().$this->config->item('img_usu_padrao');
+        if ($nome_imagem != '') {
+          $img = base_url().'assets/img/users/'.$nome_imagem;
+        }
+
         $USU_IMG_NOME     = ' USU_IMG_NOME = '.$this->db->escape($imagem['name']).', ';
         $USU_IMG_NOMEUNIQ = ' USU_IMG_NOMEUNIQ = '.$this->db->escape($nome_imagem).', ';
         $USU_IMG_TYPE     = ' USU_IMG_TYPE = '.$this->db->escape($imagem['type']).', ';
       }
+
       $hash = '';
       if ($edPass != '') {
         $hash = password_hash($edPass, PASSWORD_BCRYPT);
@@ -214,6 +220,7 @@ class Perfil_model extends CI_Model {
       $cbDefic  = ($cbDefic != '')  ? ' USU_DEF = '.$this->db->escape($cbDefic).', '   : '';
       $cbQual   = ($cbQual != '')   ? ' DEF_ID = '.$this->db->escape($cbQual).', '     : '';
       $edObs    = ($edObs != '')    ? ' USU_OBS = '.$this->db->escape($edObs).', '     : '';
+      $rbPerfil = ($rbPerfil != '') ? ' PERF_ID = '.$this->db->escape($rbPerfil).', '     : '';
 
       $update = 
         $link.
@@ -229,7 +236,8 @@ class Perfil_model extends CI_Model {
         $edOrg.
         $cbDefic.
         $cbQual.
-        $edObs;
+        $edObs.
+        $rbPerfil;
 
       $update = substr($update, 0, -2);
 
@@ -242,6 +250,11 @@ class Perfil_model extends CI_Model {
       exit;*/
       $this->db->query($sql);
       $this->auth->logUsuario('usu_usuario', $id, 3);
+
+      $this->load->model('acesso/login_model', 'login');
+      $this->login->carregaSessao($id);
+
+      $this->session->set_flashdata('perfil_ok', 'Perfil alterado com sucesso!');
 
       return
         array(

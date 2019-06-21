@@ -24,7 +24,7 @@
     --red: #f5365c;
     --orange: #fb6340;
     --yellow: #ffd600;
-    --green: #2dce89;
+    --green: #249866;
     --teal: #11cdef;
     --cyan: #2bffc6;
     --white: #fff;
@@ -34,7 +34,7 @@
     --lighter: #e9ecef;
     --primary: #5e72e4;
     --secondary: #f7fafc;
-    --success: #2dce89;
+    --success: #249866;
     --info: #11cdef;
     --warning: #fb6340;
     --danger: #f5365c;
@@ -4127,7 +4127,7 @@ input[type='button'].btn-block
     font-size: 1em;
 
     position: absolute;
-    z-index: 1000;
+    z-index: 999;
     top: 100%;
     left: 0;
 
@@ -20217,8 +20217,7 @@ textarea[resize='horizontal']
     border-color: rgba(0, 0, 0, .9);
 }
 
-@media (min-width: 768px)
-{
+@media (min-width: 768px) {
     .navbar .dropdown-menu
     {
         margin: 0; 
