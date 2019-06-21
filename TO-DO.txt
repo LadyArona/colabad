@@ -18,8 +18,6 @@ Colocar algo visual nos campos obrigatórios
 > termo de uso
 > politica de privacidade
 
-> lembrar usuário
-
 > no Perfil > Mostrar projetos e imagens da pessoa
 
 =========================================================================================

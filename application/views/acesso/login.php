@@ -61,15 +61,7 @@
                         </div>
                       </div>
                         <div class="row mt-3">
-                          <div class="col-6">
-                            <div class="custom-control custom-control-alternative custom-checkbox">
-                              <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                              <label class="custom-control-label" for=" customCheckLogin">
-                                <span>Lembrar usuário?</span>
-                              </label>
-                            </div>
-                          </div>
-                          <div class="col-6 text-right">
+                          <div class="col-12 text-right">
                             <a href="javascript:login.esqueceuSenha()" class="text-light">
                              Esqueceu sua senha?
                             </a>

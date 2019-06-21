@@ -15,7 +15,7 @@
 <body>
 
   <header class="header-global">
-    <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
+    <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom mt-3">
       <div class="container">
         <a class="navbar-brand mr-lg-5" href="<?php echo base_url();?>">
           <img src="<?php echo base_url(); echo $this->config->item('logo'); ?>" 
@@ -39,7 +39,7 @@
           <span></span>
           <span></span>
         </div>
-        <div class="container py-lg-md d-flex">
+        <div class="container py-lg-md d-flex mt-3">
           <div class="col px-0">
             <div class="row">
               <div class="col-lg-6">
