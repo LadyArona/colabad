@@ -9,16 +9,10 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-lg-6 col-md-6 pb-3">
+          <div class="col-lg-12 col-md-12 pb-3">
             <a role="button" aria-pressed="false" tabindex="0" class="btn btn-block btn-lg btn-default"
                href="<?php echo base_url().'termos';?>">
-              Termos de Uso
-            </a>
-          </div>
-          <div class="col-lg-6 col-md-6 pb-3">
-            <a role="button" aria-pressed="false" tabindex="0" class="btn btn-block btn-lg btn-default"
-               href="<?php echo base_url().'politica';?>">
-              Politica de Privacidade
+              Termos de serviço e Contrato do usuário
             </a>
           </div>
         </div>

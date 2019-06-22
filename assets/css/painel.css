@@ -2729,7 +2729,7 @@ textarea.form-control
 
     color: #fff;
     border-radius: .2rem; 
-    background-color: rgba(251, 99, 64, .8);
+    background-color: rgba(215, 41, 4, .8);
 }
 
 .was-validated .form-control:invalid,
@@ -2807,7 +2807,7 @@ textarea.form-control
 .was-validated .custom-control-input:invalid:focus ~ .custom-control-label::before,
 .custom-control-input.is-invalid:focus ~ .custom-control-label::before
 {
-    box-shadow: 0 0 0 1px #f8f9fe, 0 0 0 0 rgba(251, 99, 64, .25);
+    box-shadow: 0 0 0 1px #f8f9fe, 0 0 0 0 rgba(215, 41, 4, .25);
     outline: 2px dotted gray;
 }
 
@@ -2833,7 +2833,7 @@ textarea.form-control
 .was-validated .custom-file-input:invalid:focus ~ .custom-file-label,
 .custom-file-input.is-invalid:focus ~ .custom-file-label
 {
-    box-shadow: 0 0 0 0 rgba(251, 99, 64, .25);
+    box-shadow: 0 0 0 0 rgba(215, 41, 4, .25);
     outline: 2px dotted gray;
 }
 
@@ -3169,7 +3169,7 @@ fieldset:disabled a.btn
 .btn-warning:focus,
 .btn-warning.focus
 {
-    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08), 0 0 0 0 rgba(251, 99, 64, .5);
+    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08), 0 0 0 0 rgba(215, 41, 4, .5);
     outline: 2px dotted gray;
 }
 .btn-warning.disabled,
@@ -3191,7 +3191,7 @@ fieldset:disabled a.btn
 .btn-warning:not(:disabled):not(.disabled).active:focus,
 .show > .btn-warning.dropdown-toggle:focus
 {
-    box-shadow: none, 0 0 0 0 rgba(251, 99, 64, .5);
+    box-shadow: none, 0 0 0 0 rgba(215, 41, 4, .5);
     outline: 2px dotted gray;
 }
 
@@ -3669,7 +3669,7 @@ fieldset:disabled a.btn
 .btn-outline-warning:focus,
 .btn-outline-warning.focus
 {
-    box-shadow: 0 0 0 0 rgba(251, 99, 64, .5);
+    box-shadow: 0 0 0 0 rgba(215, 41, 4, .5);
     outline: 2px dotted gray;
 }
 .btn-outline-warning.disabled,
@@ -3690,7 +3690,7 @@ fieldset:disabled a.btn
 .btn-outline-warning:not(:disabled):not(.disabled).active:focus,
 .show > .btn-outline-warning.dropdown-toggle:focus
 {
-    box-shadow: 0 0 0 0 rgba(251, 99, 64, .5);
+    box-shadow: 0 0 0 0 rgba(215, 41, 4, .5);
     outline: 2px dotted gray;
 }
 
