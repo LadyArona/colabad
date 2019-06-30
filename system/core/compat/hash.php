@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @category	Compatibility
  * @author		Andrey Andreev
  * @link		https://codeigniter.com/user_guide/
- * @link		http://php.net/hash
+ * @link		https://php.net/hash
  */
 
 // ------------------------------------------------------------------------
@@ -62,7 +62,7 @@ if ( ! function_exists('hash_equals'))
 	/**
 	 * hash_equals()
 	 *
-	 * @link	http://php.net/hash_equals
+	 * @link	https://php.net/hash_equals
 	 * @param	string	$known_string
 	 * @param	string	$user_string
 	 * @return	bool
@@ -108,7 +108,7 @@ if ( ! function_exists('hash_pbkdf2'))
 	/**
 	 * hash_pbkdf2()
 	 *
-	 * @link	http://php.net/hash_pbkdf2
+	 * @link	https://php.net/hash_pbkdf2
 	 * @param	string	$algo
 	 * @param	string	$password
 	 * @param	string	$salt

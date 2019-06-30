@@ -354,7 +354,7 @@ class CI_Xmlrpc {
 	{
 		if (stripos($url, 'http') !== 0)
 		{
-			$url = 'http://'.$url;
+			$url = 'https://'.$url;
 		}
 
 		$parts = parse_url($url);
@@ -657,7 +657,7 @@ class XML_RPC_Client extends CI_Xmlrpc
 	{
 		parent::__construct();
 
-		$url = parse_url('http://'.$server);
+		$url = parse_url('https://'.$server);
 
 		if (isset($url['user'], $url['pass']))
 		{
@@ -743,7 +743,7 @@ class XML_RPC_Client extends CI_Xmlrpc
 			{
 				break;
 			}
-			// See https://bugs.php.net/bug.php?id=39598 and http://php.net/manual/en/function.fwrite.php#96951
+			// See https://bugs.php.net/bug.php?id=39598 and https://php.net/manual/en/function.fwrite.php#96951
 			elseif ($result === 0)
 			{
 				if ($timestamp === 0)

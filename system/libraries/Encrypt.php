@@ -330,7 +330,7 @@ class CI_Encrypt {
 	/**
 	 * Adds permuted noise to the IV + encrypted data to protect
 	 * against Man-in-the-middle attacks on CBC mode ciphers
-	 * http://www.ciphersbyritter.com/GLOSSARY.HTM#IV
+	 * https://www.ciphersbyritter.com/GLOSSARY.HTM#IV
 	 *
 	 * @param	string
 	 * @param	string

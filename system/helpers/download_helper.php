@@ -113,7 +113,7 @@ if ( ! function_exists('force_download'))
 		 * need to have the filename extension upper-cased in order to be able to
 		 * download it.
 		 *
-		 * Reference: http://digiblog.de/2011/04/19/android-and-the-download-file-headers/
+		 * Reference: https://digiblog.de/2011/04/19/android-and-the-download-file-headers/
 		 */
 		if (count($x) !== 1 && isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/Android\s(1|2\.[01])/', $_SERVER['HTTP_USER_AGENT']))
 		{

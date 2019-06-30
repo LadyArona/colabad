@@ -8,7 +8,7 @@ class Publicar extends CI_Controller {
   }
 
   public function index($id = ''){
-    $data['title']    = 'Publicar Imagem';
+    $data['title']    = 'Adicionar Imagem';
     $data['conteudo'] = 'publicar';
     $data['imgId']    = $id;
 

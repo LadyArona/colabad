@@ -339,10 +339,10 @@ class CI_Security {
 	 *	 It's not something that should be used for general
 	 *	 runtime processing.
 	 *
-	 * @link	http://channel.bitflux.ch/wiki/XSS_Prevention
+	 * @link	https://channel.bitflux.ch/wiki/XSS_Prevention
 	 * 		Based in part on some code and ideas from Bitflux.
 	 *
-	 * @link	http://ha.ckers.org/xss.html
+	 * @link	https://ha.ckers.org/xss.html
 	 * 		To help develop this script I used this great list of
 	 *		vulnerabilities along with a few other hacks I've
 	 *		harvested from examining vulnerabilities in other programs.
@@ -372,7 +372,7 @@ class CI_Security {
 		 *
 		 * Just in case stuff like this is submitted:
 		 *
-		 * <a href="http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D">Google</a>
+		 * <a href="https://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D">Google</a>
 		 *
 		 * Note: Use rawurldecode() so it does not remove plus signs
 		 */
@@ -668,7 +668,7 @@ class CI_Security {
 	 * correctly. html_entity_decode() does not convert entities without
 	 * semicolons, so we are left with our own little solution here. Bummer.
 	 *
-	 * @link	http://php.net/html-entity-decode
+	 * @link	https://php.net/html-entity-decode
 	 *
 	 * @param	string	$str		Input
 	 * @param	string	$charset	Character set

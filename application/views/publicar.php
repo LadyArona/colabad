@@ -7,15 +7,16 @@
       <div class="card-body">
         <form action="" method="POST" enctype="multipart/form-data" id="formImagem">
           <div class="pl-lg-4">
-            <div class="form-group">
-              <label class="form-control-label" for="cbProjeto">Projeto</label>
-              <select class="selectpicker form-control" data-style="select-with-transition" 
-                      title="Selecione" id="cbProjeto" name="cbProjeto" required>
-              </select>
-            </div>
-          </div>
-          <div class="pl-lg-4">
             <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="form-control-label" for="cbProjeto">Projeto</label>
+                  <select class="selectpicker form-control"   
+                          title="Selecione o Projeto da Imagem" id="cbProjeto" name="cbProjeto" required
+                          aria-haspopup="true" aria-expanded="false" aria-label="Selecione o Projeto da Imagem">
+                  </select>
+                </div>
+              </div>
               <div class="col-md-12">
                 <div class="form-group">
                   <label class="form-control-label" for="edTitulo">Título da imagem</label>
@@ -24,9 +25,7 @@
                 </div>
               </div>
             </div>
-          </div>
-          <hr class="my-4" />
-          <div class="pl-lg-4">
+            <hr class="my-4" />
             <div class="row">
               <div class="col-lg-12">
                 <div class="form-group"> 
@@ -40,8 +39,6 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row">
               <div class="col-lg-12">
                 <div id='img_contain'>
                   <img id="blah" align='middle' 

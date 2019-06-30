@@ -361,7 +361,7 @@ class CI_Trackback {
 	/**
 	 * Validate URL
 	 *
-	 * Simply adds "http://" if missing
+	 * Simply adds "https://" if missing
 	 *
 	 * @param	string
 	 * @return	void
@@ -372,7 +372,7 @@ class CI_Trackback {
 
 		if (stripos($url, 'http') !== 0)
 		{
-			$url = 'http://'.$url;
+			$url = 'https://'.$url;
 		}
 	}
 

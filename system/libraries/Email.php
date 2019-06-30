@@ -174,7 +174,7 @@ class CI_Email {
 	 * Newline character sequence.
 	 * Use "\r\n" to comply with RFC 822.
 	 *
-	 * @link	http://www.ietf.org/rfc/rfc822.txt
+	 * @link	https://www.ietf.org/rfc/rfc822.txt
 	 * @var	string	"\r\n" or "\n"
 	 */
 	public $newline		= "\n";			// Default newline. "\r\n" or "\n" (Use "\r\n" to comply with RFC 822)
@@ -188,7 +188,7 @@ class CI_Email {
 	 * switching to "\n", while improper, is the only solution
 	 * that seems to work for all environments.
 	 *
-	 * @link	http://www.ietf.org/rfc/rfc822.txt
+	 * @link	https://www.ietf.org/rfc/rfc822.txt
 	 * @var	string
 	 */
 	public $crlf		= "\n";
@@ -1490,7 +1490,7 @@ class CI_Email {
 	 * Prep Quoted Printable
 	 *
 	 * Prepares string for Quoted-Printable Content-Transfer-Encoding
-	 * Refer to RFC 2045 http://www.ietf.org/rfc/rfc2045.txt
+	 * Refer to RFC 2045 https://www.ietf.org/rfc/rfc2045.txt
 	 *
 	 * @param	string
 	 * @return	string
@@ -1499,7 +1499,7 @@ class CI_Email {
 	{
 		// ASCII code numbers for "safe" characters that can always be
 		// used literally, without encoding, as described in RFC 2049.
-		// http://www.ietf.org/rfc/rfc2049.txt
+		// https://www.ietf.org/rfc/rfc2049.txt
 		static $ascii_safe_chars = array(
 			// ' (  )   +   ,   -   .   /   :   =   ?
 			39, 40, 41, 43, 44, 45, 46, 47, 58, 61, 63,
@@ -2269,7 +2269,7 @@ class CI_Email {
 			{
 				break;
 			}
-			// See https://bugs.php.net/bug.php?id=39598 and http://php.net/manual/en/function.fwrite.php#96951
+			// See https://bugs.php.net/bug.php?id=39598 and https://php.net/manual/en/function.fwrite.php#96951
 			elseif ($result === 0)
 			{
 				if ($timestamp === 0)
@@ -2332,7 +2332,7 @@ class CI_Email {
 	 * (eg: "[1.2.3.4]").
 	 *
 	 * @link	https://tools.ietf.org/html/rfc5321#section-2.3.5
-	 * @link	http://cbl.abuseat.org/namingproblems.html
+	 * @link	https://cbl.abuseat.org/namingproblems.html
 	 * @return	string
 	 */
 	protected function _get_hostname()

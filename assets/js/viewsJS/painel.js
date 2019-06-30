@@ -42,8 +42,8 @@ const painel = {
             let colab = ''
             item.vColab.map((e) => {
               colab += 
-                `<a href="" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="${e.vNome}">
-                  <img alt="Colaborador do Projeto: ${e.vNome}" src="${e.vImg}" class="rounded-circle">
+                `<a href="" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="${e.vNome}" tabindex="-1">
+                  <img alt="Colaborador do Projeto: ${e.vNome}" src="${e.vImg}" class="rounded-circle" tabindex="-1">
                 </a>`
             })
 
@@ -51,7 +51,7 @@ const painel = {
             `<div class="col-lg-4">
               <div class="card card-lift--hover shadow border-0 mb--150">
                 <div class="card-body py-4">
-                  <h3 class="title text-uppercase">${item.vTitulo}</h3>
+                  <h3 class="title text-uppercase strong">${item.vTitulo}</h3>
                   <p>Cadastrado em ${item.vData}</p>
                   <div>
                     ${privado}
@@ -65,7 +65,7 @@ const painel = {
                     <div class="col-md-12">
                       <a class="btn btn-primary btn-block"
                       href='${item.vLink}'
-                      aria-label="Visualizar este Projeto">
+                      aria-label="Visualizar projeto ${item.vTitulo}">
                         <i class="fas fa-eye"></i> Visualizar
                       </a>
                     </div>
@@ -129,8 +129,8 @@ const painel = {
             let colab = ''
             item.vColab.map((e) => {
               colab += 
-                `<a href="" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="${e.vNome}">
-                  <img alt="Colaborador do Projeto: ${e.vNome}" src="${e.vImg}" class="rounded-circle">
+                `<a href="" tabindex="-1" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="${e.vNome}" tabindex="-1">
+                  <img tabindex="-1" alt="Colaborador do Projeto: ${e.vNome}" src="${e.vImg}" class="rounded-circle" tabindex="-1">
                 </a>`
             })
 
@@ -138,7 +138,7 @@ const painel = {
             `<div class="col-lg-4">
               <div class="card card-lift--hover shadow border-0">
                 <div class="card-body py-4">
-                  <h3 class="title text-uppercase">${item.vTitulo}</h3>
+                  <h3 class="title text-uppercase strong">${item.vTitulo}</h3>
                   <p>Cadastrado em ${item.vData}</p>
                   <div>
                     ${privado}
@@ -152,7 +152,7 @@ const painel = {
                     <div class="col-md-12">
                       <a class="btn btn-primary btn-block"
                       href='${item.vLink}'
-                      aria-label="Visualizar este Projeto">
+                      aria-label="Visualizar projeto ${item.vTitulo}">
                         <i class="fas fa-eye"></i> Visualizar
                       </a>
                     </div>

@@ -30,7 +30,7 @@
           <div class="card-body">
           <form action="" method="POST" enctype="multipart/form-data" id="formProjeto">
 
-            <h6 class="heading-small text-muted mb-4">DADOS DO PROJETO</h6>
+            <h4 class="heading-small text-muted mb-4">DADOS DO PROJETO</h4>
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-md-12">
@@ -54,7 +54,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="cbPublico">Privacidade do Projeto</label>
-                    <select class="selectpicker form-control" data-style="select-with-transition" 
+                    <select class="selectpicker form-control"   
                             title="Selecione" id="cbPublico" name="cbPublico" required>
                       <option value="0" selected>Público</option>
                       <option value="1">Privado</option>
@@ -64,7 +64,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="cbStatus">Status do Projeto</label>
-                    <select class="selectpicker form-control" data-style="select-with-transition" 
+                    <select class="selectpicker form-control"   
                             title="Selecione" id="cbStatus" name="cbStatus" required>
                       <option value="A" selected>Ativo</option>
                       <option value="I">Inativo</option>
@@ -75,14 +75,14 @@
             </div>
 
             <hr class="my-4" />
-            <h6 class="heading-small text-muted mb-4">COLABORADORES DO PROJETO</h6>
+            <h4 class="heading-small text-muted mb-4">COLABORADORES DO PROJETO</h4>
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="form-control-label" for="cbParticipante">Selecione os colaboradores</label>
                     <select class="selectpicker form-control" 
-                            data-style="select-with-transition" 
+                              
                             data-live-search="true" 
                             title="Selecione os colaboradores do projeto" 
                             id="cbParticipante" 

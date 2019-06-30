@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Zip Compression Class
  *
  * This class is based on a library I found at Zend:
- * http://www.zend.com/codex.php?id=696&single=1
+ * https://www.zend.com/codex.php?id=696&single=1
  *
  * The original library is a little rough around the edges so I
  * refactored it and added several additional methods -- Rick Ellis

@@ -31,6 +31,8 @@ app = {
         $('html,body').animate({
           scrollTop: ($("#conteudo").offset().top - 50)
         }, 'slow')
+        $("#idUsuario").focus()
+        app.nextTab("#idUsuario")
     })
     $("#toMenu").click(function() {
         $('html,body').animate({scrollTop: $("#sidenav-main").offset().top}, 'slow')
@@ -46,7 +48,6 @@ app = {
     }, 300000)
 
     $("body").tooltip({ selector: '[data-toggle=tooltip]' })
-    $('.selectpicker').selectpicker()
  
     document.getElementById("formPesquisar").onsubmit = function onSubmit(form) {
       if ($('#por').val() != '') {
@@ -54,7 +55,28 @@ app = {
       } else {
         return false
       }
+    }
+
+    document.getElementById("formNavPesquisar").onsubmit = function onSubmit(form) {
+      if ($('#navPor').val() != '') {
+        return true
+      } else {
+        return false
+      }
     }    
+  },
+  nextTab: (elemento) => {
+    //Isolate the node that we're after
+    const currentNode = document.querySelector(elemento);
+
+    //find all tab-able elements
+    const allElements = document.querySelectorAll('input, button, a, area, object, select, textarea, [contenteditable]');
+
+    //Find the current tab index.
+    const currentIndex = [...allElements].findIndex(el => currentNode.isEqualNode(el))
+
+    //focus the following element
+    allElements[currentIndex + 1].focus();
   },
   selectTab: (tabindex = 0) => {
     $('.nav-pills li a').removeClass('active show');
@@ -104,10 +126,8 @@ app = {
         if(j != null){
           for (let i = 0; i < j.length; i++) {
               $("#"+idCombo).append($('<option>', {
-                'data-icon': j[i].vIconInfo != '' ? j[i].vIconInfo : '',
                 value: j[i].vIdInfo,
                 text: j[i].vNomeInfo, 
-                style: j[i].vCorInfo != '' ? 'border-bottom: 2px solid ' + j[i].vCorInfo  : '',
                 selected: function(){
                   if(codToSelect != null){
                     if(j[i].vIdInfo == codToSelect){
@@ -196,7 +216,7 @@ app = {
   },
   verificaNotificacao: function () {
     $('ul.itensNotificacoes .notficDropSoliticacoes ul li').remove()
-    $('ul.itensNotificacoes .notficDropAvisos  #divAvisos div').remove()
+    $('ul.itensNotificacoes .notficDropAvisos  #divAvisos div, ul.itensNotificacoes .notficDropAvisos  #divNavAvisos div').remove()
     $('ul.itensNotificacoes span').remove()
 
     $.post(
@@ -223,15 +243,15 @@ app = {
                     j[i].vNotDataHora +
                     '</span>',
                   j[i].vNotLida == 'S'
-                    ? '<span class"text-muted" style="font-size:10px; float:left; cursor:pointer;" onclick="app.atualizaNotificacaoLerNaoLerExcluir(' +
+                    ? '<button aria-label="Marcar como não lida esta notificação" class"text-muted" style="font-size:10px; float:left; cursor:pointer;" onclick="app.atualizaNotificacaoLerNaoLerExcluir(' +
                       j[i].vNotId +
-                      ',\'N\')"><i class="iconAction fa fa-undo pr-1"></i>Não lida</span>'
+                      ',\'N\')"><i class="iconAction fa fa-undo pr-1"></i>Não lida</button>'
                     : '',
-                  '<span class"text-muted" style="font-size:10px; float:left; cursor:pointer;" onclick="app.atualizaNotificacaoLerNaoLerExcluir(' +
+                  '<button aria-label="Excluir esta notificação" class"text-muted" style="font-size:10px; float:left; cursor:pointer;" onclick="app.atualizaNotificacaoLerNaoLerExcluir(' +
                     j[i].vNotId +
                     ",'S','" +
                     '' +
-                    '\',\'S\')"><i class="iconAction fa fa-close pr-1"></i>Excluir</span>',
+                    '\',\'S\')"><i class="iconAction fa fa-close pr-1"></i>Excluir</button>',
                   '<a href="#" class="notfic" onclick="app.atualizaNotificacaoLerNaoLerExcluir(' +
                     j[i].vNotId +
                     ",'S','" +
@@ -250,22 +270,16 @@ app = {
               if (j[i].vNotLida == 'N') {
                 totalAvisosNL++
               }
-              $('ul.itensNotificacoes .notficDropAvisos #divAvisos').append(
+              $('ul.itensNotificacoes .notficDropAvisos #divAvisos, ul.itensNotificacoes .notficDropAvisos #divNavAvisos').append(
                 [
                   '<div class="dropdown-item">',
                     '<div class="row pb-2">',
                       '<div class="col-sm-7 pb-2">',
-                      '<span class="btn btn-sm btn-outline-danger" style="font-size:12px; padding: 0.05rem .5rem;" onclick="app.atualizaNotificacaoLerNaoLerExcluir(' +
+                      '<button aria-label="Excluir esta notificação" class="btn btn-sm btn-outline-danger" style="font-size:12px; padding: 0.05rem .5rem;" onclick="app.atualizaNotificacaoLerNaoLerExcluir(' +
                           j[i].vNotId +
                           ",'S','" +
                           '' +
-                          '\',\'S\')"><i class="iconAction fas fa-close pr-1"></i>Excluir</span>',
-
-                        j[i].vNotLida == 'S'
-                          ? '<span class="btn btn-sm btn-outline-light" style="font-size:12px; padding: 0.05rem .5rem;" onclick="app.atualizaNotificacaoLerNaoLerExcluir(' +
-                            j[i].vNotId +
-                            ',\'N\')"><i class="iconAction fas fa-undo pr-1"></i>Não lida</span>'
-                          : '',
+                          '\',\'S\')"><i class="iconAction fas fa-close pr-1"></i>Excluir</button>',
                       '</div>',
                       '<div class="col-sm-4 text-right">',
                         '<span  class="badge badge-success" style="font-size:12px;">' +
@@ -314,13 +328,13 @@ app = {
               )
             }
           } else if (totalAvisosNL == 0 && contA == 0) {
-            $('ul.itensNotificacoes .notficDropAvisos #divAvisos')
+            $('ul.itensNotificacoes .notficDropAvisos #divAvisos, ul.itensNotificacoes .notficDropAvisos #divNavAvisos')
               .append(['<li><a href="#" class="notfic">Sem notificações</a></li>'].join(''))
           }
         } else {
-          $('ul.itensNotificacoes .notficDropSoliticacoes #divAvisos')
+          $('ul.itensNotificacoes .notficDropSoliticacoes #divAvisos, ul.itensNotificacoes .notficDropSoliticacoes #divNavAvisos')
             .append(['<div class="dropdown-item"><a href="#" class="notfic">Sem solicitações</a></div>'].join(''))
-          $('ul.itensNotificacoes .notficDropAvisos #divAvisos').append(
+          $('ul.itensNotificacoes .notficDropAvisos #divAvisos, ul.itensNotificacoes .notficDropAvisos #divNavAvisos').append(
             ['<div class="dropdown-item"><a href="#" class="notfic">Sem notificações</a></div>'].join(
               ''
             )

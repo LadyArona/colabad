@@ -211,7 +211,7 @@ if ( ! function_exists('anchor_popup'))
 		{
 			$attributes = array($attributes);
 
-			// Ref: http://www.w3schools.com/jsref/met_win_open.asp
+			// Ref: https://www.w3schools.com/jsref/met_win_open.asp
 			$window_name = '_blank';
 		}
 		elseif ( ! empty($attributes['window_name']))
@@ -408,7 +408,7 @@ if ( ! function_exists('auto_link'))
 				//
 				// With PREG_OFFSET_CAPTURE, both of the above is an array,
 				// where the actual value is held in [0] and its offset at the [1] index.
-				$a = '<a href="'.(strpos($match[1][0], '/') ? '' : 'http://').$match[0][0].'"'.$target.'>'.$match[0][0].'</a>';
+				$a = '<a href="'.(strpos($match[1][0], '/') ? '' : 'https://').$match[0][0].'"'.$target.'>'.$match[0][0].'</a>';
 				$str = substr_replace($str, $a, $match[0][1], strlen($match[0][0]));
 			}
 		}
@@ -436,14 +436,14 @@ if ( ! function_exists('prep_url'))
 	/**
 	 * Prep URL
 	 *
-	 * Simply adds the http:// part if no scheme is included
+	 * Simply adds the https:// part if no scheme is included
 	 *
 	 * @param	string	the URL
 	 * @return	string
 	 */
 	function prep_url($str = '')
 	{
-		if ($str === 'http://' OR $str === '')
+		if ($str === 'https://' OR $str === '')
 		{
 			return '';
 		}
@@ -452,7 +452,7 @@ if ( ! function_exists('prep_url'))
 
 		if ( ! $url OR ! isset($url['scheme']))
 		{
-			return 'http://'.$str;
+			return 'https://'.$str;
 		}
 
 		return $str;
@@ -546,7 +546,7 @@ if ( ! function_exists('redirect'))
 			if (isset($_SERVER['SERVER_PROTOCOL'], $_SERVER['REQUEST_METHOD']) && $_SERVER['SERVER_PROTOCOL'] === 'HTTP/1.1')
 			{
 				$code = ($_SERVER['REQUEST_METHOD'] !== 'GET')
-					? 303	// reference: http://en.wikipedia.org/wiki/Post/Redirect/Get
+					? 303	// reference: https://en.wikipedia.org/wiki/Post/Redirect/Get
 					: 307;
 			}
 			else

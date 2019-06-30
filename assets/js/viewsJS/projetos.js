@@ -93,8 +93,8 @@ const projetos = {
             let colab = ''
             item.vColab.map((e) => {
               colab += 
-                `<a href="${e.vLink}" target="_blanck" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="${e.vNome}">
-                  <img alt="Colaborador do Projeto: ${e.vNome}" src="${e.vImg}" class="rounded-circle">
+                `<a href="${e.vLink}" tabindex="-1" target="_blanck" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="${e.vNome}">
+                  <img tabindex="-1" alt="Colaborador do Projeto: ${e.vNome}" src="${e.vImg}" class="rounded-circle">
                 </a>`
             })
 
@@ -104,7 +104,7 @@ const projetos = {
                 `<div class="col-md-6">
                   <button class="btn btn-default btn-block"
                   onclick='projetos.carregaEdit(${item.vId});'
-                  aria-label="Editar este Projeto">
+                  aria-label="Editar projeto ${item.vTitulo}">
                     <i class="fas fa-edit"></i> Editar
                   </button>
                 </div>`
@@ -129,7 +129,7 @@ const projetos = {
                     <div class="col-md-${(editar != '') ? '6' : '12'}">
                       <a class="btn btn-primary btn-block"
                       href='${item.vLink}'
-                      aria-label="Visualizar este Projeto">
+                      aria-label="Visualizar projeto ${item.vTitulo}">
                         <i class="fas fa-eye"></i> Visualizar
                       </a>
                     </div>

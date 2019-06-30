@@ -57,7 +57,7 @@ class Projetos_model extends CI_Model {
         $dados[] = 
           array(
             'vId'      => $row->vId,
-            'vTitulo'  => '<strong>'.$row->vTitulo.'</strong>',
+            'vTitulo'  => $row->vTitulo,
             'vStatus'  => $row->vStatus,
             'vPrivado' => $row->vPrivado,
             'vData'    => $row->vData,
@@ -131,7 +131,7 @@ class Projetos_model extends CI_Model {
         $dados[] = 
           array(
             'vId'      => $row->vId,
-            'vTitulo'  => '<strong>'.$row->vTitulo.'</strong>',
+            'vTitulo'  => $row->vTitulo,
             'vStatus'  => $row->vStatus,
             'vPrivado' => $row->vPrivado,
             'vData'    => $row->vData,

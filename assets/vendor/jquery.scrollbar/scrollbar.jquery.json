@@ -21,9 +21,9 @@
             "url": "https://github.com/gromo/jquery.scrollbar/blob/master/license-gpl.txt"
         }
     ],
-    "homepage": "http://gromo.github.io/jquery.scrollbar/",
-    "download": "http://gromo.github.io/jquery.scrollbar/jquery.scrollbar.zip",
-    "demo": "http://gromo.github.io/jquery.scrollbar/demo/basic.html",
+    "homepage": "https://gromo.github.io/jquery.scrollbar/",
+    "download": "https://gromo.github.io/jquery.scrollbar/jquery.scrollbar.zip",
+    "demo": "https://gromo.github.io/jquery.scrollbar/demo/basic.html",
     "dependencies": {
         "jquery": ">=1.7"
     }

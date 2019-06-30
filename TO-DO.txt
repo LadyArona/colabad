@@ -2,8 +2,11 @@
 - Entrega dos artigos impressos (3 cópias) para a banca: 01 julho
 - Defesas do TGSI I (Apresentações): entre 08 e 12 de julho
 =========================================================================================
-perfil, deficiencia não, limpar
-não deixa salvar vazio...
+no perfil, trocar "Fotos" por "imagens"
+no painel, não está funcionando o link para o perfil dos outros colaboradores
+
+perfil, deficiencia não limpa
+perfil, não deixa salvar vazio...
 
 Colocar algo visual nos campos obrigatórios
 

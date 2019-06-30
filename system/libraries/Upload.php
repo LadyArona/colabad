@@ -1183,7 +1183,7 @@ class CI_Upload {
 	 * Prevents possible script execution from Apache's handling
 	 * of files' multiple extensions.
 	 *
-	 * @link	http://httpd.apache.org/docs/1.3/mod/mod_mime.html#multipleext
+	 * @link	https://httpd.apache.org/docs/1.3/mod/mod_mime.html#multipleext
 	 *
 	 * @param	string	$filename
 	 * @return	string

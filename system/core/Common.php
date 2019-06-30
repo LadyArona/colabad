@@ -625,7 +625,7 @@ if ( ! function_exists('_error_handler'))
 
 		// If the error is fatal, the execution of the script should be stopped because
 		// errors can't be recovered from. Halting the script conforms with PHP's
-		// default error handling. See http://www.php.net/manual/en/errorfunc.constants.php
+		// default error handling. See https://www.php.net/manual/en/errorfunc.constants.php
 		if ($is_error)
 		{
 			exit(1); // EXIT_ERROR
@@ -677,7 +677,7 @@ if ( ! function_exists('_shutdown_handler'))
 	 * E_STRICT is purposively neglected because such events may have
 	 * been caught. Duplication or none? None is preferred for now.
 	 *
-	 * @link	http://insomanic.me.uk/post/229851073/php-trick-catching-fatal-errors-e-error-with-a
+	 * @link	https://insomanic.me.uk/post/229851073/php-trick-catching-fatal-errors-e-error-with-a
 	 * @return	void
 	 */
 	function _shutdown_handler()
@@ -823,7 +823,7 @@ if ( ! function_exists('function_usable'))
 	 * that version is yet to be released. This function will therefore
 	 * be just temporary, but would probably be kept for a few years.
 	 *
-	 * @link	http://www.hardened-php.net/suhosin/
+	 * @link	https://www.hardened-php.net/suhosin/
 	 * @param	string	$function_name	Function to check for
 	 * @return	bool	TRUE if the function exists and is safe to call,
 	 *			FALSE otherwise.

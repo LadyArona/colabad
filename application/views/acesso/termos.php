@@ -14,19 +14,22 @@
           <div class="col-lg-11">
             <div class="card bg-secondary shadow border-0">
               <div class="card-header bg-white">
-                <div class="text-muted text-center">
-                  <h1 class="display-4">Termos de serviço e Contrato do usuário</h1>
-                </div>
+                <button onclick='history.go(-1)' class="btn btn-neutral btn-icon" >
+                  <span class="btn-inner--icon">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                  </span>
+                  <span class="nav-link-inner--text">VOLTAR</span>
+                </button>
               </div>
               <div class="card-body px-lg-5 py-lg-5">            
-
-  <strong class="text-warning">LEIA TODO O CONTRATO E CONFIRME SE VOCÊ CONCORDA COM OS TERMOS.</strong>
+  <h1 class="display-4 pb-5 pt-1 text-center text-uppercase">Termos de serviço e Contrato do usuário</h1>
+  <strong class="text-warning">LEIA TODO O CONTRATO APENAS SE CADASTRE SE VOCÊ CONCORDA COM OS TERMOS.</strong>
   <ul class="text-justify strong pt-3">
     <li class="pb-3">ESTE É UM CONTRATO ENTRE VOCÊ E A REDE COLABORATIVA DE AUDIODESCRIÇÃO COLABAD.</li>
     <li class="pb-3">O ACESSO AOS SERVIÇOS DA REDE COLABORATIVA DE AUDIODESCRIÇÃO COLABAD É EXPRESSAMENTE CONDICIONADO À SUA ACEITAÇÃO DOS TERMOS DO PRESENTE CONTRATO. </li>
-    <li class="pb-3">SE VOCÊ NÃO CONCORDAR COM ESTES TERMOS, NÃO CONSEGUIRÁ CRIAR UMA CONTA E NÃO CONSEGUIRÁ ACESSAR OS SERVIÇOS DA REDE COLABORATIVA DE AUDIODESCRIÇÃO COLABAD.</li>
+    <li class="pb-3">SE VOCÊ NÃO CONCORDAR COM ESTES TERMOS, NÃO DEVERÁ CRIAR UMA CONTA E NÃO DEVERÁ ACESSAR OS SERVIÇOS DA REDE COLABORATIVA DE AUDIODESCRIÇÃO COLABAD.</li>
     <li class="pb-3">PARA ACEITAR ESSES TERMOS E CRIAR UMA CONTA, VOCÊ DEVE SER UM ADULTO COM MAIORIDADE LEGAL NO PAÍS DE REGISTRO DA SUA CONTA. VOCÊ É RESPONSÁVEL JURÍDICA E FINANCEIRAMENTE POR TODAS AS AÇÕES EM SUA CONTA, INCLUSIVE AS AÇÕES REALIZADAS POR CRIANÇAS OU QUALQUER OUTRA PESSOA COM ACESSO À SUA CONTA.</li>
-    <li class="pb-3">AO CLICAR NO BOTÃO "CADASTRAR" (OU "ACEITAR"), VOCÊ AFIRMA QUE ALCANÇOU A MAIORIDADE LEGAL, QUE COMPREENDE ESSE CONTRATO E ACEITA SEUS TERMOS, E QUE ACEITA A POLÍTICA DE PRIVACIDADE, SE VOCÊ FOR MENOR DE IDADE, UM DE SEUS PAIS OU TUTOR LEGAL DEVE ACEITAR ESTE CONTRATO.</li>
+    <li class="pb-3">AO CLICAR NO BOTÃO "CADASTRAR", VOCÊ AFIRMA QUE ALCANÇOU A MAIORIDADE LEGAL, QUE COMPREENDE ESSE CONTRATO E ACEITA SEUS TERMOS, E QUE ACEITA A POLÍTICA DE PRIVACIDADE, SE VOCÊ FOR MENOR DE IDADE, UM DE SEUS PAIS OU TUTOR LEGAL DEVE ACEITAR ESTE CONTRATO.</li>
     <li class="pb-3">AO ACEITAR ESSES TERMOS, VOCÊ TAMBÉM CONCORDA EM OBSERVAR TODAS AS POLÍTICAS DE SERVIÇOS DO SISTEMA E O CÓDIGO DE CONDUTA COMUNITÁRIO DESCRITO A SEGUIR.</li>
   </ul>
 
@@ -87,11 +90,6 @@
     As Partes declaram, para todos os fins, que estão regularmente representadas e que as pessoas que assinam o presente instrumento têm poderes para assumir as obrigações ora pactuadas.
     <br><br>
     As Partes declaram ter tido prévia ciência do inteiro teor deste instrumento e que o mesmo é expressamente aceito em todos os seus termos e condições, obrigando as Partes, seus herdeiros e sucessores a qualquer título.
-  </p>
-
-  <h2 class="display-4 pb-3 pt-5">FORO</h2>
-  <p class="text-justify strong">
-    As Partes elegem o foro da comarca da cidade de Frederico Westphalem/RS para dirimir qualquer controvérsia oriunda do presente Contrato, renunciando expressamente a qualquer outro, por mais privilegiado que seja.
   </p>
     <br>
     <hr>

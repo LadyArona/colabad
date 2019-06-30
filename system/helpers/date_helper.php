@@ -134,7 +134,7 @@ if ( ! function_exists('standard_date'))
 	 *
 	 * @todo	Remove in version 3.1+.
 	 * @deprecated	3.0.0	Use PHP's native date() instead.
-	 * @link	http://www.php.net/manual/en/class.datetime.php#datetime.constants.types
+	 * @link	https://www.php.net/manual/en/class.datetime.php#datetime.constants.types
 	 *
 	 * @example	date(DATE_RFC822, now()); // default
 	 * @example	date(DATE_W3C, $time); // a different format and time

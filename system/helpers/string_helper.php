@@ -146,13 +146,13 @@ if ( ! function_exists('reduce_double_slashes'))
 	 * Reduce Double Slashes
 	 *
 	 * Converts double slashes in a string to a single slash,
-	 * except those found in http://
+	 * except those found in https://
 	 *
-	 * http://www.some-site.com//index.php
+	 * https://www.some-site.com//index.php
 	 *
 	 * becomes:
 	 *
-	 * http://www.some-site.com/index.php
+	 * https://www.some-site.com/index.php
 	 *
 	 * @param	string
 	 * @return	string

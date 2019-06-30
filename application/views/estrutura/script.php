@@ -10,7 +10,7 @@
 <!-- Optional JS -->
 <script src="<?php echo base_url();?>assets/js/bootstrap-notify.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>assets/js/jquery.loader.min.js" type="text/javascript"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.10/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
 
 <!-- IMAGEM -->
 <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/exif-js'></script>

@@ -7,7 +7,7 @@
 *
 * Adjustments by @Dentxinho and @MichelAlonso and @marcelod
 *
-* Location: http://github.com/benedmunds/CodeIgniter-Ion-Auth
+* Location: https://github.com/benedmunds/CodeIgniter-Ion-Auth
 *
 * Created:  17.05.2010
 *

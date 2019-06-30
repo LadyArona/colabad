@@ -194,9 +194,9 @@ if ( ! function_exists('validaAjustaUrl')){
 
         if(preg_match("/^$regularExpression$/i", $posted_url)) { 
             if(preg_match("@^http|https://@i",$posted_url)) {
-                $final_url = preg_replace("@(http://)+@i",'http://',$posted_url);
+                $final_url = preg_replace("@(https://)+@i",'https://',$posted_url);
             }else { 
-                $final_url = 'http://'.$posted_url;
+                $final_url = 'https://'.$posted_url;
             }
         }else {
             $final_url = "";

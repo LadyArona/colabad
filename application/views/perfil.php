@@ -18,7 +18,7 @@
                     </div>
                     <div>
                       <span class="heading" id="vFotos"></span>
-                      <span class="description">Fotos</span>
+                      <span class="description">Imagens</span>
                     </div>
                     <div>
                       <span class="heading" id="vAprovadas"></span>
@@ -52,7 +52,7 @@
                 ?>
               </span>
               <form action="" method="POST" enctype="multipart/form-data" id="formPerfil" autocomplete="off">
-                <h6 class="heading-small text-muted mb-4">Imagem de Perfil</h6>
+                <h3 class="heading-small text-muted mb-4">Imagem de Perfil</h3>
                 <div class="pl-lg-4">
                   <div class="row">
                     <div class="col-md-12 mb-sm-8">
@@ -62,7 +62,7 @@
                                  class="custom-file-input"
                                  accept="image/jpg, image/jpeg, image/png">
                           <label class="custom-file-label" for="inputGroupFile01">
-                            Selecione a imagem
+                            Selecione a sua imagem de perfil
                           </label>
                         </div>
                       </div>
@@ -74,7 +74,7 @@
                     </div>
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label class="form-control-label" for="edAudiodescricao">Áudiodescrição da Imagem de Perfil</label>
+                        <label class="form-control-label" for="edAudiodescricao">Roteiro da Áudiodescrição da Imagem de Perfil</label>
                         <textarea rows="10" class="form-control" id="edAudiodescricao" name="edAudiodescricao"></textarea>
                       </div>
                     </div>
@@ -83,7 +83,7 @@
 
                 <hr class="my-4" />
 
-                <h6 class="heading-small text-muted mb-4">Informação do Usuário</h6>
+                <h3 class="heading-small text-muted mb-4">Informação do Usuário</h3>
                 <div class="pl-lg-4">
                   <div class="row">
                     <div class="col-lg-6">
@@ -116,13 +116,13 @@
                 </div>
                 <hr class="my-4" />
                 <!-- Endereco -->
-                <h6 class="heading-small text-muted mb-4">Informação de Contato</h6>
+                <h3 class="heading-small text-muted mb-4">Informação de Contato</h3>
                 <div class="pl-lg-4">
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="form-control-label" for="cbEstado">Estado</label>
-                        <select class="selectpicker form-control" data-style="select-with-transition" 
+                        <select class="selectpicker form-control"   
                                 title="Selecione o Estado" id="cbEstado" name="cbEstado"
                                 data-live-search="true">
                         </select>
@@ -131,7 +131,7 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="cbCidade">Cidade</label>
-                        <select class="selectpicker form-control" data-style="select-with-transition" 
+                        <select class="selectpicker form-control"   
                                 title="Selecione a Cidade" id="cbCidade" name="cbCidade"
                                 data-live-search="true">
                         </select>
@@ -147,13 +147,13 @@
                 </div>
                 <hr class="my-4" />
                 <!-- Descricao -->
-                <h6 class="heading-small text-muted mb-4">Sobre você</h6>
+                <h3 class="heading-small text-muted mb-4">Sobre você</h3>
                 <div class="pl-lg-4">
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="form-control-label" for="cbDefic">Você tem alguma deficiência?</label>
-                        <select class="selectpicker form-control" data-style="select-with-transition" 
+                        <select class="selectpicker form-control"   
                                 title="Selecione uma opção" id="cbDefic" name="cbDefic">
                           <option value="S">Sim</option>
                           <option value="N">Não</option>
@@ -163,7 +163,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="form-control-label" for="cbQual">Qual?</label>
-                        <select class="selectpicker form-control" data-style="select-with-transition" 
+                        <select class="selectpicker form-control"   
                                 title="Selecione sua Deficiência" id="cbQual" name="cbQual">
                         </select>
                       </div>
@@ -180,7 +180,7 @@
 
                 <hr class="my-4" />
                 <!-- Descricao -->
-                <h6 class="heading-small text-muted mb-4">Perfil</h6>
+                <h3 class="heading-small text-muted mb-4">Perfil</h3>
                 <div class="pl-lg-5">
                   <p>
                     O perfil autodeclarado pelo usuário é de sua inteira responsabilidade.
